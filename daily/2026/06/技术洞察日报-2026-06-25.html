@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-06-25</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-06-25</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-06-24T00:00:00+00:00 ~ 2026-06-25T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-06-25 15:19:53 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年06月25日</strong></p><p><strong>生成时间：2026-06-25 15:19 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：13 个 | 本期条目：19 条 | 覆盖板块：11 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：AI应用与产品化场景 1 条，智能体平台、协议与执行系统 1 条，AI推理与服务加速 4 条，AI模型 2 条，模型训练 2 条，AI安全、可信与治理 2 条，云与AI基础设施 1 条，AI与通算硬件 2 条，核心网与通信系统架构 1 条，标准、协议与产业联盟 2 条，通信设备供应商 1 条，合计 19 条。</li><li>日报内容：今日头条聚焦 <strong>蚂蚁集团发布百灵Ling &amp; Ring 2.6技术报告，万亿参数模型实现4倍token效率提升和Agent能力原生优化</strong>，并同步关注OpenAI 与 Broadcom 联合发布自研推理芯片 Jalapeño，目标吉瓦级部署；GRACE：基于Hard Concrete门控与L0正则化的高效时间序列因果发现方法；AsyncOPD：面向LLM后训练的异步在线策略蒸馏框架，将训练吞吐提升1.6-3.8倍。</li><li>关键亮点：华为与湖北移动实现运营商首个AI推理加速方案现网测试，Token吞吐率最高提升372%；Netflix开源Headroom无损压缩90%冗余Token，已节省70万美元；GRACE方法以75倍速度优势实现大规模时间序列因果发现。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-51351">蚂蚁集团发布百灵Ling &amp; Ring 2.6技术报告，万亿参数模型实现4倍token效率提升和Agent能力原生优化</a></li></ul><ul><li><a href="#event-52107">OpenAI 与 Broadcom 联合发布自研推理芯片 Jalapeño，目标吉瓦级部署</a></li></ul><ul><li><a href="#event-51049">GRACE：基于Hard Concrete门控与L0正则化的高效时间序列因果发现方法</a></li></ul><ul><li><a href="#event-51019">AsyncOPD：面向LLM后训练的异步在线策略蒸馏框架，将训练吞吐提升1.6-3.8倍</a></li></ul><ul><li><a href="#event-51042">面向长上下文LLM推理的KV缓存优化：Nexus Sampling驱逐方法与Block-GTQ量化方法</a></li></ul><ul><li><a href="#event-51619">蚂蚁开源 Sing-Guard-0.8b 多模态安全护栏模型</a></li></ul><ul><li><a href="#event-51462">蚂蚁集团吴伟揭秘训推一体池化调度：如何把GPU用到极限</a></li></ul><ul><li><a href="#event-51237">Netflix开源Headroom：无损压缩90%冗余Token，已为用户节省70万美元</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI应用与产品化场景</h2><h3 id="event-52416">1、OpenAI推出GPT-Bidi-1双向音频模型，打破语音对话轮次结构实现自然交互</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">OpenAI</span> <span class="md-tag">GPT-Bidi-1</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong>正在为ChatGPT语音能力进行重大升级，推出名为<strong>GPT-</strong>Bidi<strong>-1</strong>（简称<strong>Bidi</strong> 1）的新一代双向音频模型。该模型已在部分用户的ChatGPT网页端和App界面中出现，预计最快本周开始逐步推送。Bidi 1的核心突破在于打破传统语音助手“用户说完、AI再答”的轮次对话模式，实现真正的双向并行交互：AI能够在用户说话时同步理解语义，并在适当时机以“嗯”“好的”等轻量化方式自然回应，而不是完全沉默等待；用户可随时打断当前回答并切换任务，例如让模型从1数到10后中途要求倒数，模型能立即调整执行。此外，Bidi 1在对话连续性上显著改善，不易丢失长对话上下文，且不会频繁抢话，同时保留了唱歌、节奏口技等创意表达能力，并更自然地嵌入实时翻译功能。</p><p>📌 <strong>总结</strong>：<strong>GPT-</strong>Bidi<strong>-1</strong>标志着<strong>OpenAI</strong>将语音从功能模块升级为默认交互入口的关键一步。此前的语音系统通常是“文本模型+语音外壳”的组合，而<strong>Bidi</strong> 1更接近于原生语音对话模型，不再只是把文字转为语音，而是在语音流中直接进行理解与生成。这意味着人机交互逻辑从“问与答”转向实时协作式交流，对语音AI的产品架构、对话设计、用户体验标准产生根本性影响。对于AI前沿技术预研规划师和架构师而言，Bidi 1的双向并行交互机制、打断处理、上下文保持能力等技术方向值得深入研究，可能成为未来语音交互产品的基准范式。</p><p>来源：<a href="https://zhidx.com/p/568921.html" target="_blank" rel="noreferrer">智东西 - 人工智能专题</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-51943">1、OpenClaw-memgpt插件为OpenClaw智能体提供MemGPT三层记忆架构</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">OpenClaw</span> <span class="md-tag">记忆架构</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日，开源项目<strong>OpenClaw</strong>-memgpt发布，为<strong>OpenClaw</strong>智能体提供MemGPT的三层<strong>记忆架构</strong>。该架构包括三个记忆层级，智能体通过工具调用自行管理。插件提供跨会话持久化（记忆在重启后保留）和对话摘要功能（旧轮次被压缩到回忆记忆中，而不是丢失）。该插件与提供商无关，记忆侧车可与任何OpenAI兼容端点通信。</p><p>📌 <strong>总结</strong>：<strong>OpenClaw</strong>-memgpt插件对智能体应用的开发有实际工程价值。对于技术主管和预研规划师，这一插件展示了如何将先进记忆管理架构集成到现有智能体框架中，为构建具有长期记忆能力的智能体提供了可复用的解决方案。</p><p>来源：<a href="https://github.com/xltvy/openclaw-memgpt" target="_blank" rel="noreferrer">OpenClaw Docs</a></p><p>原文标题：OpenClaw-memgpt – MemGPT&#x27;s three-tier memory architecture as an OpenClaw plugin</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-51042">1、面向长上下文LLM推理的KV缓存优化：Nexus Sampling驱逐方法与Block-GTQ量化方法</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">大模型推理 KV缓存管理 Nexus Samp…</span> <span class="md-tag">长上下文 推理优化 内存压缩</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：长上下文和Agent型LLM工作负载使KV缓存超出固定内存预算，传统驱逐方法采用单步注意力分数后的确定性top-K选择，导致重要令牌永久丢失。针对此问题，格林内尔学院联合莱斯大学和Lambda公司提出Nexus <strong>Sampling</strong>，通过迭代注意力行走发现桥接令牌，结合加权水库采样替代确定性top-K，理论证明能长期保留微妙重要令牌，实验在<strong>80%</strong>驱逐率下LongBench接近全注意力，检索任务超越基线。同时，香港科技大学与小米提出Block-<strong>GTQ</strong>，针对RoPE下键缓存各频率块对量化误差敏感度不同，设计无标签能量评分和贪心比特分配器，在2比特量化下将LongBench均分从36.87提升至53.31，在DeepSeek-<strong>R1-</strong>Distill模型上AIME成绩接近全精度，且单H800上Qwen2.5-<strong>3B</strong>实现<strong>3.24倍</strong>压缩和<strong>1.34倍</strong>加速，支持更大上下文。两方法均无需重训练，直接降低推理内存成本，提升长上下文服务能力。</p><p>📌 <strong>总结</strong>：<strong>Nexus</strong> Sampling和<strong>Block-</strong>GTQ分别为KV缓存驱逐和量化提供无训练优化方案，直接降低推理内存占用和成本：<strong>Nexus</strong> Sampling通过迭代注意力机制保证重要令牌长期存活，<strong>Block-</strong>GTQ通过RoPE感知量化保留高频块精度。它们可集成到vLLM、<strong>TensorRT-</strong>LLM等推理框架，提升长上下文和Agent场景的服务效率。Block-GTQ在极端量化下恢复模型推理能力，使低资源部署成为可能，减少GPU显存需求。Nexus Sampling的随机采样方法为驱逐策略提供新范式，可能影响未来推理缓存管理标准。这些工作对AI推理基础设施供应商和云服务商有明显的实用价值，能降低TCO并支持更大的上下文窗口和更多并发用户，加速长上下文应用落地。</p><p>来源：<a href="https://arxiv.org/abs/2606.24033" target="_blank" rel="noreferrer">研究团队</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51615">2、蚂蚁推出 Fused MoE V2 kernel，使 Ling-2.6-1T 在 TPU 上推理延迟降低 53%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Fused MoE V2 kernel</span> <span class="md-tag">TPU推理优化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日，蚂蚁 <strong>ASystem Core</strong> 与 <strong>SGLang</strong>-JAX 团队在 <strong>TPU</strong> v7x 上优化了 <strong>1T</strong> 参数稀疏 <strong>MoE</strong> 模型 <strong>Ling-2.6-1T</strong> 的推理性能。核心是 Fused <strong>MoE</strong> V2 Pallas kernel，将 scatter、expert <strong>FFN</strong> 和 gather 合并，通过计算与数据搬运重叠降低延迟。相比 V1，MoE prefill latency 从 <strong>5.16 ms</strong> 降至 <strong>2.42 ms</strong>（降 <strong>53%</strong>），decode kernel latency 从 <strong>0.249 ms</strong> 降至 <strong>0.211 ms</strong>。仅替换 MoE kernel 即可使 prefill throughput 提升 <strong>24.8%</strong>，decode throughput 提升 <strong>18.5%</strong>–<strong>35.3%</strong>。在 <strong>SGLang</strong> decode benchmark 下，16 颗 <strong>TPU</strong> v7x 的 output throughput 达到 16 张 <strong>H200</strong> 的 1.29x–1.77x。该工作还完整支持 hybrid backbone。</p><p>📌 <strong>总结</strong>：该优化结果对推理加速领域有重要工程价值。<strong>Fused MoE V2</strong> 展示了通过精细的 kernel 融合和数据搬运隐藏来优化大规模稀疏模型推理的可行路径。对于通信设备商，类似的优化思路可应用于 5G/6G 核心网中 AI 推理模块（如 <strong>NWDAF</strong> 中的模型推理）的加速。同时，<strong>TPU</strong> vs <strong>H200</strong> 的对比（1.29x–1.77x）也为硬件选型提供了参考——在特定工作负载下，<strong>TPU</strong> 可超过 <strong>H200</strong>。该工作也体现了 <strong>SGLang</strong> 生态的扩展性。</p><p>来源：<a href="https://mp.weixin.qq.com/s/Ql7lU0d4uf5_f1MscFMSQg" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51237">3、Netflix开源Headroom：无损压缩90%冗余Token，已为用户节省70万美元</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Netflix Headroom</span> <span class="md-tag">Token压缩</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Netflix高级工程师Tejas Chopra于2026年1月开源Headroom工具，旨在压缩发送给大语言模型的指令中的冗余Token。Chopra估计高达<strong>90%</strong>的Token是冗余的，主要来自JSON结构、API返回模板、数据库字段等。Headroom采用CacheAligner只发送新增内容，通过AST压缩器、JSON压缩器等模块处理不同数据类型，并支持CCR（压缩缓存与读取）让模型可调取原始未压缩数据。该工具已为用户节省约<strong>70万</strong>美元和<strong>2000亿</strong>Token，在GitHub上获得2000星标。Chopra还计划开源Headlight用于追踪每个Token来源。</p><p>📌 <strong>总结</strong>：Headroom为AI推理成本优化提供了开源解决方案，尤其适用于Agent和长上下文场景。对于AI前沿技术预研规划师，该工具展示了无损上下文压缩的技术路线，可结合KV缓存优化进一步降低推理成本。对于技术主管，Headroom的部署友好性（作为代理运行）和可逆压缩机制使其适合集成到现有工作流中，直接减少Token支出。同时，精简提示词还能降低响应延迟和提升模型输出稳定性。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzU1NDA4NjU2MA==&amp;amp;mid=2247663896&amp;amp;idx=2&amp;amp;sn=859e21e3fb90cb3c27238ac6550b3318&amp;amp;chksm=fa9bb62ebda11dfbd002d08be25d48d1b17a377115448127524c9cee7fe055622dd819183e87&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">AI前线</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51194">4、湖北移动与华为完成首个运营商AI推理加速方案现网测试，Token吞吐率最高提升372%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">华为</span> <span class="md-tag">UCM</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日MWC上海，华为与湖北移动联合宣布成功完成全国运营商首个AI推理加速方案现网测试。该方案基于华为OceanStor A800存储与昇腾A3超节点架构，搭载<strong>UCM</strong>（<strong>Unified </strong>Cache<strong> Manager</strong>）推理记忆数据管理技术，通过外置存储提供PB级KV <strong>Cache</strong>，并实现全生命周期分层管理调度。测试部署vLLM-Ascend框架，对MiniMax <strong>M2.</strong>5和<strong>GLM-5.</strong>1模型模拟8K至190K长序列输入。结果显示：MiniMax <strong>M2.</strong>5在128K序列下TPS提升<strong>78%</strong>；<strong>GLM-5.</strong>1在64K序列下TPS提升<strong>313%</strong>，128K序列下TPS提升<strong>372%</strong>，TTFT优化<strong>51%</strong>-<strong>93%</strong>。</p><p>📌 <strong>总结</strong>：该测试成果对AI推理基础设施架构有重要影响。<strong>UCM</strong>技术通过打破HBM容量限制，将KV Cache扩展到PB级，可大幅降低长上下文推理的Token成本，并提升用户首Token延迟体验。对于运营商智算中心建设，这意味着存储与算力的协同优化可能成为核心竞争力，对Token套餐定价和Agent应用规模化有直接推动作用。硬件层面，外置存储与超节点架构的结合为推理集群设计提供了新思路。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1312645.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-51351">1、蚂蚁集团发布百灵Ling &amp; Ring 2.6技术报告，万亿参数模型实现4倍token效率提升和Agent能力原生优化</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">百灵2.6</span> <span class="md-tag">Hybrid Linear Attention</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：蚂蚁集团于2026年6月24日正式发布百灵Ling &amp; <strong>Ring 2.</strong>6技术报告。该系列包括<strong>Ling-2.6-</strong>flash、<strong>Ling-2.6-</strong>1T和<strong>Ring-2.</strong>6-<strong>1T</strong>三个模型，面向Agent、Coding和企业工作流等真实复杂任务。关键技术包括：<strong>Hybrid Linear Attention</strong>架构（<strong>Lightning</strong> Attention与MLA以7:1比例结合），在4×H20上Ling-2.6-flash达到<strong>340 token</strong>s/s；四阶段架构迁移从GQA到混合注意力，使用约<strong>400B</strong> tokens；预训练总计<strong>9.6T</strong> tokens，上下文从4K扩展到256K。后训练采用专家驱动范式，通过Evo-<strong>CoT</strong>、LPO和双向偏好对齐提升token效率，Ling-2.6-<strong>1T</strong>在Artificial <strong>Analysis Intelligence</strong> Index上使用约16M输出tokens取得34分，token效率较2.0提升约<strong>4倍</strong>。<strong>Ring-2.</strong>6引入KPop算法（binary KL divergence替代固定比例约束），在SWE-bench Verified上将solve rate从<strong>70.8%</strong>提升到<strong>76.28%</strong>。评测显示，<strong>Ring-2.6-1T</strong> high在PinchBench上取得87.60（开源模型第一），在τ2-Telecom上取得96.71。</p><p>📌 <strong>总结</strong>：<strong>百灵2.6</strong>技术报告展示了万亿参数模型从对话系统向Agentic系统转型的完整技术路径，包括架构选择、训练策略和推理优化。其<strong>Hybrid </strong>Linear<strong> Attention</strong>架构为长上下文高效推理提供了可行方案，KPop算法为MoE模型的强化学习稳定性提供了新思路。对于技术预研规划师，该报告提供了可复现的技术细节和开源模型，可直接用于评估和二次开发。对于商业主管，<strong>百灵2.6</strong>在Agent任务上的领先表现表明蚂蚁在AI Agent领域已建立竞争优势。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;amp;mid=2247721152&amp;amp;idx=3&amp;amp;sn=03eee413c4c53bc366be175b9f7524ea" target="_blank" rel="noreferrer">PaperWeekly 微信公众号 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51049">2、GRACE：基于Hard Concrete门控与L0正则化的高效时间序列因果发现方法</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">机器学习、因果发现、时间序列</span> <span class="md-tag">GRACE、Hard Concrete门控、L…</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：时间序列因果发现是网络运维、气候分析等领域的核心任务，但现有约束基础方法在大规模数据上因非线性条件独立性检验计算成本过高而不可行，分数基础方法则依赖脆弱的阈值选择。GRACE方法提出使用Hard Concrete门控配合L0正则化，为每个候选边赋予独立门控，促使门控值集中在0或1附近，实现清晰的二值决策；同时采用快速线性CI骨架生成高召回候选集合，再通过门控模型学习哪些边真正改善预测，自动调节正则化强度。实验覆盖无标度、<strong>Erdos-Renyi</strong>、小世界等多种图拓扑以及高达100维的数据，结果显示GRACE的F1值大幅超越基线，速度比非线性CI测试快<strong>75倍</strong>；在易北河水流数据集上，GRACE正确恢复11条因果边中的9条，仅出现1个假阳性，假阳性减少<strong>99%</strong>，F1达0.86。该方法为大规模因果发现提供了兼顾统计严谨性与计算效率的轻量方案，可支撑网络故障定位、系统诊断等智能运维场景的前沿研究。</p><p>📌 <strong>总结</strong>：该论文改进的时间序列因果发现方法直接增强了<strong>AI模型</strong>在复杂动态系统中的可解释性与决策可靠性，可嵌入网络运维中的异常检测、根因分析和预测性维护管道。对于AI前沿技术预研规划师，GRACE提供了一种将统计约束与深度学习门控相结合的轻量化方案，适合作为网络分析模块的基础组件；对于5G/6G标准专家，该方法的可扩展性与高效性有利于NWDAF等网络数据分析功能的增强；对于核心网架构师和技术主管，GRACE能够降低因果分析的计算开销，提升运维智能化的落地可行性。整体上，GRACE在因果发现算法的性能与效率之间取得新平衡，对AI基础设施中的分析服务具有正向影响，并为通信场景下的时间序列推理提供了技术储备。</p><p>来源：<a href="https://arxiv.org/abs/2606.23758" target="_blank" rel="noreferrer">研究团队</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-51019">1、AsyncOPD：面向LLM后训练的异步在线策略蒸馏框架，将训练吞吐提升1.6-3.8倍</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">LLM后训练+异步在线策略蒸馏+AsyncOPD</span> <span class="md-tag">训练吞吐、陈旧策略、KL散度</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：LLM后训练中在线策略蒸馏（<strong>OPD</strong>）因需学生模型自身rollout，面临与强化学习类似的系统瓶颈，rollout生成主导训练耗时。异步训练可解耦rollout与学习，但引入陈旧策略数据。来自FuriosaAI、亚洲大学、UC Berkeley和微软研究院的团队首次系统研究异步<strong>OPD</strong>中的陈旧性，聚焦于KL损失与有限教师score缓存的实用场景。研究发现：前向KL（教师加权）对陈旧rollout更鲁棒，而反向KL（学生加权）易受陈旧影响；针对反向KL，在Learner端重新计算信号比传统异步RL稳定方法更有效；有限缓存带来偏差-方差权衡，多采样MC估计器可降低方差。基于此构建并开源AsyncOPD全异步管道，实验显示同步精度下吞吐提升1.6-<strong>3.8倍</strong>。这一工作为大规模LLM后训练的异步蒸馏提供了清晰设计思路与可复用框架。</p><p>📌 <strong>总结</strong>：该工作直接提升LLM后训练的效率与可扩展性，使推理模型等需要大量rollout的训练可更经济地扩展到更大规模。对AI前沿技术预研规划师：陈旧策略管理方法应纳入训练基础设施设计，影响分布式训练框架的异步策略选型；对技术主管：AsyncOPD可降低对训练集群的峰值需求，提升已有GPU资源利用率，缩短后训练周期；对架构师：可借鉴其缓存机制与估计器设计优化自有训练管道；对5G/6G标准专家：虽不直接涉及通信协议，但影响6G网络AI模型（如NWDAF推理模型）的离线训练效率，间接推动AI in Network的工程落地。整体上，该论文将异步蒸馏从理论推向实用，提升了<strong>模型训练</strong>板块的研发效率与成本竞争力。</p><p>来源：<a href="https://arxiv.org/abs/2606.24396" target="_blank" rel="noreferrer">研究团队</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-52333">2、阿里千问发布Qwen-AgentWorld语言世界模型，跨七领域提升智能体性能</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">Qwen</span> <span class="md-tag">世界模型</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年6月24日，阿里千问团队发布<strong>Qwen</strong>-<strong>AgentWorld</strong>，包含两个模型，训练目标不是让模型在智能体环境中行动，而是预测环境将返回什么。该模型覆盖七个领域：<strong>MCP</strong>、搜索、终端、软件工程、<strong>Android</strong>、Web和OS，采用单一架构。研究团队发现，使用世界<strong>模型训练</strong>作为智能体微调前的热身，在七个基准上均提升了性能，包括三个训练中未见过的领域。论文指出，世界建模是通往通用智能体的关键缺失部分。与之前的工作（如仅覆盖Web的WebWorld）不同，<strong>Qwen</strong>-<strong>AgentWorld</strong>实现了跨领域知识迁移。</p><p>📌 <strong>总结</strong>：<strong>Qwen</strong>-AgentWorld提出了一种新的智能体训练范式：通过语言<strong>世界模型</strong>预测环境状态，而非直接优化动作选择。这种方法突破了真实环境难以提供边缘案例的限制，使得智能体能够通过模拟器暴露于罕见但关键的场景。对于核心网和通信设备供应商而言，该技术可用于训练网络运维智能体，使其能够处理各种故障和异常情况。同时，跨领域迁移能力意味着一个模型可适用于多种运维环境，降低训练成本。建议关注其后续在通信领域的应用。</p><p>来源：<a href="https://venturebeat.com/technology/alibabas-model-never-trained-as-an-agent-and-improved-agent-performance-across-seven-benchmarks" target="_blank" rel="noreferrer">VentureBeat</a></p><p>原文标题：Alibaba&#x27;s model never trained as an agent — and improved agent performance across seven benchmarks</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-51619">1、蚂蚁开源 Sing-Guard-0.8b 多模态安全护栏模型</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Sing-Guard安全护栏</span> <span class="md-tag">策略自适应</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：2026年6月24日，蚂蚁 inclusionAI 在 <strong>HuggingFace</strong> 上开源了 <strong>Sing-Guard-0.8b</strong> 模型。<strong>SingGuard</strong> 是一个<strong>策略自适应</strong>多模态安全护栏模型，支持文本、图像、图文、多语言、查询侧和响应侧等多种安全评估场景。其创新点在于将安全策略作为运行时输入而非固定训练时分类体系，使得部署团队可以在不重新训练模型的情况下评估内容是否符合默认类别或自定义规则。该模型采用 fast-slow 推理模式，先快速路由输出安全信号，再在需要时推理更精细的判断。模型基于 <strong>Qwen3-VL-</strong>8B<strong>-Instruct</strong> 微调，支持标准 <strong>Transformers</strong> 和 vLLM 推理。</p><p>📌 <strong>总结</strong>：<strong>Sing-Guard</strong> 的<strong>策略自适应</strong>设计对 AI 安全领域有重要参考价值。运行时策略输入允许不同组织、不同场景使用同一模型但应用不同安全规则，降低了安全模型的定制化成本。fast-slow 推理模式也在安全性和推理效率之间提供了灵活权衡。对于通信设备商，该模型可直接用于 AI 应用（如客服机器人、<strong>Agent</strong> 平台）的内容安全审核，确保合规。同时开源<strong>策略自适应</strong>方案比固定分类体系更适合快速变化的合规要求。</p><p>来源：<a href="https://huggingface.co/inclusionAI/Sing-Guard-0.8b" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-50827">2、OpenAI用有益行为强化学习训练模型，在超80%分布外对齐基准上表现提升</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">OpenAI</span> <span class="md-tag">有益行为强化学习</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong>的Akshay V. Jagadeesh等人在预印本中研究通过强化学习（RL）训练有益行为能否产生广泛且持久的对齐泛化。团队构建了一个覆盖健康、科学、教育等多领域的真实场景数据集，用于衡量和训练真实性、公平性、风险意识和可纠正性等有益特质。使用该数据集进行RL训练后，模型在超过50个独立对齐基准中的<strong>80%</strong>以上表现优于计算匹配基线。当RL干预完全限制在健康领域时，仍能在非健康对齐评估中产生广泛改善，包括减少奖励黑客、欺骗和一般性错位。训练后的模型在对抗性提示和有害微调下表现出更强的对齐持久性。</p><p>📌 <strong>总结</strong>：这项来自<strong>OpenAI</strong>的研究为AI安全与对齐提供了可复现的RL训练方法论——通过在真实领域强化有益行为，模型不仅能泛化到分布外场景，还能保持对齐的持久性。对于预研规划师和架构师而言，该方法论可用于指导通信网络AI模型的训练策略设计，减少部署后因行为偏移导致的<strong>安全风险</strong>。尤其是NWDAF等网络智能体，在引入RL训练时可借鉴其有益特质数据集构建方式，提升系统可信度。</p><p>来源：<a href="https://arxiv.org/abs/2606.24251" target="_blank" rel="noreferrer">研究团队</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-51462">1、蚂蚁集团吴伟揭秘训推一体池化调度：如何把GPU用到极限</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">蚂蚁集团</span> <span class="md-tag">GPU调度</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：<strong>蚂蚁集团</strong>高级技术专家、容器调度团队负责人吴伟在AICon大会访谈中详细介绍了训推一体池化调度实践。核心方案为：将训练和推理集群合并到统一池，通过三步实现：1）软件栈打平（OS <strong>Kernel</strong>、CUDA驱动等统一）；2）精细化资源和任务管理（高优任务如预训练和C端推理获得SLO保障，低优任务使用闲置资源）；3）发生争抢时的回收机制（Checkpoint自恢复、异步Checkpoint优化）。通过XPU统一抽象管理包括英伟达和国产卡在内的异构算力。关键在于业务SLO与资源成本之间的动态均衡，预留动态Buffer保障突发流量。</p><p>📌 <strong>总结</strong>：蚂蚁的实践对AI基础设施的运营效率提升有直接指导价值：（1）训推合池解决了两类负载的潮汐差异问题（训练夜间空闲、推理白天高峰等），显著提升整体GPU利用率；（2）优先级抢占和Checkpoint优化机制为在共享集群上运行混合负载提供了工程参考；（3）国产芯片的纳入经验（精度对齐、全链路适配）对其他企业评估国产GPU替代有重要参考价值；（4）对通信设备商和服务商而言，同样面临AI训练与推理的负载混合场景，蚂蚁的池化调度架构可直接借鉴到核心网AI能力平台的资源管理设计。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;amp;mid=2651287639&amp;amp;idx=2&amp;amp;sn=e7ba685b72669645851d105c1910bc24&amp;amp;chksm=bcea3bdf6f98150299c7fa25acd737654d5efcfbf46ec615766604a4f03ed955a29da4181f9e&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">InfoQ</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-51228">1、Google正式向第三方出售TPU芯片，并与黑石共建500兆瓦算力中心</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">Google TPU</span> <span class="md-tag">推理芯片</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Google于2026年6月宣布正式向第三方数据中心及客户直接出售自研TPU芯片及配套AI算力硬件，此前TPU仅通过Google Cloud租用。同时，Google与私募公司黑石签署<strong>50亿</strong>美元协议，共同建造一座容量为500兆瓦的大型算力中心。TPU专为AI矩阵运算设计，在推理场景中能效比优于通用GPU，Gemini模型已凭借TPU实现较低token定价。此举被视为Google对英伟达的正面竞争，意图通过系统级方案（芯片+网络+调度）抢占AI推理市场份额。目前英伟达仍主导训练市场，但推理阶段token成本正成为AI普及的关键瓶颈。</p><p>📌 <strong>总结</strong>：Google开卖TPU标志着AI芯片竞争从训练向推理延伸，云厂商自研芯片生态加速成型。对于AI前沿技术预研规划师，需关注TPU在推理场景的能效优势及对模型部署架构的影响；对于商业主管，token<strong>成本下降</strong>将直接降低AI应用运营成本，可能催生更多大规模推理需求。同时，英伟达面临生态挑战，但CUDA护城河短期内难以撼动。国内华为昇腾、阿里真武等芯片也需加速生态建设。</p><p>来源：<a href="https://www.36kr.com/p/3866902311320456" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-52107">2、OpenAI 与 Broadcom 联合发布自研推理芯片 Jalapeño，目标吉瓦级部署</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">Jalapeño 推理芯片</span> <span class="md-tag">OpenAI</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年6月24日，<strong>OpenAI</strong> 与 <strong>Broadcom</strong> 联合发布自研推理芯片 Jalapeño。该芯片从零设计，围绕大语言模型推理场景优化，通过减少数据移动、均衡算力/内存/网络资源提升实际利用率。工程样品已在实验室以量产目标频率和功耗稳定运行 <strong>GPT-5.3-Codex-Spark</strong> 等负载，早期测试显示每瓦性能大幅优于当前最先进水平。从设计到流片仅用9个月，创下高性能 <strong>ASIC</strong> 开发周期纪录。<strong>OpenAI</strong> 自家模型在芯片设计过程中直接参与优化，形成“模型设计芯片、芯片运行模型”的闭环。Jalapeño 计划于2026年底开始部署，并与微软等合作伙伴共同推进吉瓦级数据中心规模。</p><p>📌 <strong>总结</strong>：Jalapeño 的发布是 <strong>OpenAI</strong> 全栈基础设施战略的关键里程碑，通过自研推理芯片实现从模型到芯片的垂直整合，有望大幅降低推理 token 成本并提升服务可靠性。该芯片将直接挑战 <strong>NVIDIA</strong> 在 AI 推理芯片市场的主导地位，加速 AI 算力架构从通用 <strong>GPU</strong> 向专用 <strong>ASIC</strong> 的转型。对于 AI 基础设施规划，Jalapeño 展示了模型与芯片协同设计的工程可行性，将为 6G 网络智能、核心网 AI 推理等场景的专用芯片设计提供参考。同时，其 9 个月流片速度也验证了 AI 辅助芯片设计的效率优势。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg3MTkxMjYzOA==&amp;amp;mid=2247515902&amp;amp;idx=1&amp;amp;sn=1fbca91d52fbf261ff87e18ba6cd0cc2&amp;amp;chksm=cfbbae7a1562acba02062d544a6df38f92b1f6d2baee99ef25cf6eaca1a4ae54454e69fc700e&amp;amp;scene=0#rd" target="_blank" rel="noreferrer">AI寒武纪 中文</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>核心网与通信系统架构</h2><h3 id="event-51192">1、中信科移动与中国电信发布6G网络运行大模型原型系统，网络资源利用率提升35%</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">中信科移动</span> <span class="md-tag">6G网络运行大模型</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日MWC上海，<strong>中信科移动</strong>联合<strong>中国电信</strong>发布<strong>6G网络运行大模型</strong>原型系统。系统融合<strong>中信科移动</strong>智能无线接入网与<strong>中国电信</strong>智能核心网，由数字孪生和AI智能体构成。数字孪生模块汇聚多源数据实现环境、基站、用户的全域高精度映射，辅助网络资源调度；AI智能体可识别通信保障意图并实时优化，实现分钟级无人自主通信保障。相比传统网络，时延、抖动、吞吐量等性能全面跃升，网络资源利用率提升<strong>35%</strong>以上。</p><p>📌 <strong>总结</strong>：该原型系统为6G网络从传统静态配参向AI原生自治演进提供了重要参考和验证平台。对标准专家而言，其中涉及的智能体通信、数字孪生等技术概念可能影响3GPP 6G标准制定。对核心网架构师，系统展示了AI智能体在核心网中的应用模式，对L4/L5自智网络架构设计有启发作用。</p><p>来源：<a href="https://www.c114.com.cn/news/654/a1312647.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-50749">1、中国铁塔加入GSMA并完成560万基站边缘智能升级，推动AI就绪基础设施标准与生态协同</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">中国铁塔</span> <span class="md-tag">GSMA Tower Forum</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年6月24日MWC上海期间，<strong>GSMA</strong>宣布全球最大通信铁塔公司<strong>中国铁塔</strong>正式加入<strong>GSMA</strong>。<strong>中国铁塔</strong>已于2025年完成全国性基础设施升级，将其<strong>560万</strong>基站和<strong>211万</strong>站址转化为智能边缘计算枢纽，并开发了数百个AI算法用于监控和运营场景。GSMA同期新设Tower <strong>Forum</strong>，聚焦能效、政策许可、技术演进四大领域，旨在推动运营商与铁塔公司在AI就绪基础设施上的协作。中国铁塔董事长张志勇表示将通过该论坛深化全球合作，参与技术创新、标准制定和安全治理。</p><p>📌 <strong>总结</strong>：<strong>中国铁塔</strong>以全球最大规模的铁塔资源和已完成边缘智能升级的实践，为<strong>GSMA</strong> <strong>Tower</strong> Forum提供了可量化的参考基线。该论坛的知识共享、技术路线图、数字化与网络AI推理最佳实践指南等产出，将直接影响运营商和设备商在AI-<strong>RAN</strong>、边缘计算、能效优化和基础设施开放化方面的技术选型与投资决策。对于5G/6G标准专家和架构师而言，<strong>中国铁塔</strong>的部署规模（<strong>560万</strong>基站、<strong>211万</strong>站址、1.79租户比）和AI算法开发经验，是评估AI就绪基础设施成本、性能和生态影响的关键参照。</p><p>来源：<a href="https://www.gsma.com/newsroom/press-release/gsma-welcomes-china-tower-to-advance-ai-ready-mobile-infrastructure/" target="_blank" rel="noreferrer">GSMA Newsroom</a></p><p>原文标题：GSMA welcomes China Tower to advance AI-ready mobile infrastructure</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-50750">2、GSMA与TM Forum联合推动电信AI规模化，聚焦行业专用模型与标准框架</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">GSMA与TM Forum</span> <span class="md-tag">电信AI规模化</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>GSMA与TM Forum</strong>于2026年6月24日宣布深化合作，旨在解决电信行业AI部署的结构性障碍——多厂商、碎片化、数据孤岛及低容错要求。GSMA的Open <strong>Telco</strong> AI倡议专注于构建电信级AI模型（如OTEL模型系列）和基准测试，确保模型在电信任务上的准确性与可信度；TM Forum则提供自治网络、可信AI与数据框架、开放数字架构（<strong>ODA</strong>）及解决方案包，定义互操作标准与高价值用例。双方已产生实际影响：菲律宾Globe Telecom正利用TM Forum技术方案包暴露多厂商RAN标准化API，并结合Open <strong>Telco</strong> AI的模型与智能体实现根因分析自动化；AT&amp;T的OTEL模型被适配到TM Forum的Model-as-a-<strong>Service</strong>（<strong>MODaaS</strong>）和<strong>ODA</strong> Canvas环境，将运营商级AI转化为可跨厂商、云原生环境复用的标准化资产。该合作连接了AI栈的端到端链路——共享模型、通用框架与可信部署路径，目标是减少碎片化、加速行业级AI采纳。</p><p>📌 <strong>总结</strong>：<strong>GSMA与TM Forum</strong>的联合行动直接回应了电信AI部署中“模型不懂电信”和“框架不统一”两大核心瓶颈。通过将OTEL等电信专用模型嵌入TM <strong>Forum</strong>的ODA与MODaaS体系，运营商和设备商获得了一条从模型开发到多厂商互操作部署的标准化路径。这对技术路线的影响在于：电信AI将从依赖通用大模型转向行业专用模型+行业标准框架的组合；对产品架构的影响是，<strong>NWDAF</strong>、自治网络等网元将更紧密地与TM <strong>Forum</strong> ODA和Open <strong>Telco</strong> AI模型对齐；对商业判断的影响是，运营商可降低AI集成风险，设备商需确保其AI方案兼容GSMA/TM Forum定义的模型与接口标准。该合作也为6G时代AI原生网络奠定了产业协同基础，值得标准专家和架构师持续跟踪其模型评测、用例定义和成员验证进展。</p><p>来源：<a href="https://www.gsma.com/newsroom/press-release/scaling-telco-ai-from-ambition-to-reality/" target="_blank" rel="noreferrer">GSMA Newsroom</a></p><p>原文标题：Scaling Telco AI from Ambition to Reality</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-50789">1、诺基亚联合AWS升级自治网络组合，发布Agent库提升60-80%运维效率</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">诺基亚</span> <span class="md-tag">AWS</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：背景：<strong>诺基亚</strong>于DTW <strong>Ignite</strong> 2026更新自治网络组合：自治网络套件支持本地部署、VoLTE服务质量优化、RAN用户体验增强；将自治网络Fabric迁移到<strong>AWS</strong>；发布自治网络Agent库，包含零日攻击识别、异常推理、事件分类、服务工单排查、多Agent协作等预构建Agent。技术机制：Agent库基于Amazon <strong>Bedrock</strong>，与<strong>AWS</strong>云交互实现切片管理自动化，早前已与Orange和Du合作5G-Advanced网络切片。结果：声称安全运维效率提升60-<strong>80%</strong>，同时增强了MantaRay SMO平台的非实时RIC功能。</p><p>📌 <strong>总结</strong>：<strong>诺基亚</strong>的Agent库和<strong>AWS</strong>集成标志着电信运维Agent化的重要里程碑，展示了AI Agent在网络自动化中的具体应用。对于设备商和运营商而言，需要加速构建可复用的Agent资产，并考虑与公有云合作以降低部署门槛。同时，多Agent协作框架对智能体协议（如MCP/<strong>A2A</strong>）的需求可能增加。</p><p>来源：<a href="https://www.sdxcentral.com/news/nokia-amps-up-autonomous-networks-with-aws-and-yes-ai-agents/" target="_blank" rel="noreferrer">SDxCentral</a></p><p>原文标题：Nokia amps up autonomous networks with AWS and, yes, AI agents</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI应用与产品化场景</h2><h3 id="event-52416">1、OpenAI推出GPT-Bidi-1双向音频模型，打破语音对话轮次结构实现自然交互</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">OpenAI</span> <span class="md-tag">GPT-Bidi-1</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong>正在为ChatGPT语音能力进行重大升级，推出名为<strong>GPT-</strong>Bidi<strong>-1</strong>（简称<strong>Bidi</strong> 1）的新一代双向音频模型。该模型已在部分用户的ChatGPT网页端和App界面中出现，预计最快本周开始逐步推送。Bidi 1的核心突破在于打破传统语音助手“用户说完、AI再答”的轮次对话模式，实现真正的双向并行交互：AI能够在用户说话时同步理解语义，并在适当时机以“嗯”“好的”等轻量化方式自然回应，而不是完全沉默等待；用户可随时打断当前回答并切换任务，例如让模型从1数到10后中途要求倒数，模型能立即调整执行。此外，Bidi 1在对话连续性上显著改善，不易丢失长对话上下文，且不会频繁抢话，同时保留了唱歌、节奏口技等创意表达能力，并更自然地嵌入实时翻译功能。</p><p>📌 <strong>总结</strong>：<strong>GPT-</strong>Bidi<strong>-1</strong>标志着<strong>OpenAI</strong>将语音从功能模块升级为默认交互入口的关键一步。此前的语音系统通常是“文本模型+语音外壳”的组合，而<strong>Bidi</strong> 1更接近于原生语音对话模型，不再只是把文字转为语音，而是在语音流中直接进行理解与生成。这意味着人机交互逻辑从“问与答”转向实时协作式交流，对语音AI的产品架构、对话设计、用户体验标准产生根本性影响。对于AI前沿技术预研规划师和架构师而言，Bidi 1的双向并行交互机制、打断处理、上下文保持能力等技术方向值得深入研究，可能成为未来语音交互产品的基准范式。</p><p>来源：<a href="https://zhidx.com/p/568921.html" target="_blank" rel="noreferrer">智东西 - 人工智能专题</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-51943">1、OpenClaw-memgpt插件为OpenClaw智能体提供MemGPT三层记忆架构</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">OpenClaw</span> <span class="md-tag">记忆架构</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日，开源项目<strong>OpenClaw</strong>-memgpt发布，为<strong>OpenClaw</strong>智能体提供MemGPT的三层<strong>记忆架构</strong>。该架构包括三个记忆层级，智能体通过工具调用自行管理。插件提供跨会话持久化（记忆在重启后保留）和对话摘要功能（旧轮次被压缩到回忆记忆中，而不是丢失）。该插件与提供商无关，记忆侧车可与任何OpenAI兼容端点通信。</p><p>📌 <strong>总结</strong>：<strong>OpenClaw</strong>-memgpt插件对智能体应用的开发有实际工程价值。对于技术主管和预研规划师，这一插件展示了如何将先进记忆管理架构集成到现有智能体框架中，为构建具有长期记忆能力的智能体提供了可复用的解决方案。</p><p>来源：<a href="https://github.com/xltvy/openclaw-memgpt" target="_blank" rel="noreferrer">OpenClaw Docs</a></p><p>原文标题：OpenClaw-memgpt – MemGPT&#x27;s three-tier memory architecture as an OpenClaw plugin</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-51615">1、蚂蚁推出 Fused MoE V2 kernel，使 Ling-2.6-1T 在 TPU 上推理延迟降低 53%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Fused MoE V2 kernel</span> <span class="md-tag">TPU推理优化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日，蚂蚁 <strong>ASystem Core</strong> 与 <strong>SGLang</strong>-JAX 团队在 <strong>TPU</strong> v7x 上优化了 <strong>1T</strong> 参数稀疏 <strong>MoE</strong> 模型 <strong>Ling-2.6-1T</strong> 的推理性能。核心是 Fused <strong>MoE</strong> V2 Pallas kernel，将 scatter、expert <strong>FFN</strong> 和 gather 合并，通过计算与数据搬运重叠降低延迟。相比 V1，MoE prefill latency 从 <strong>5.16 ms</strong> 降至 <strong>2.42 ms</strong>（降 <strong>53%</strong>），decode kernel latency 从 <strong>0.249 ms</strong> 降至 <strong>0.211 ms</strong>。仅替换 MoE kernel 即可使 prefill throughput 提升 <strong>24.8%</strong>，decode throughput 提升 <strong>18.5%</strong>–<strong>35.3%</strong>。在 <strong>SGLang</strong> decode benchmark 下，16 颗 <strong>TPU</strong> v7x 的 output throughput 达到 16 张 <strong>H200</strong> 的 1.29x–1.77x。该工作还完整支持 hybrid backbone。</p><p>📌 <strong>总结</strong>：该优化结果对推理加速领域有重要工程价值。<strong>Fused MoE V2</strong> 展示了通过精细的 kernel 融合和数据搬运隐藏来优化大规模稀疏模型推理的可行路径。对于通信设备商，类似的优化思路可应用于 5G/6G 核心网中 AI 推理模块（如 <strong>NWDAF</strong> 中的模型推理）的加速。同时，<strong>TPU</strong> vs <strong>H200</strong> 的对比（1.29x–1.77x）也为硬件选型提供了参考——在特定工作负载下，<strong>TPU</strong> 可超过 <strong>H200</strong>。该工作也体现了 <strong>SGLang</strong> 生态的扩展性。</p><p>来源：<a href="https://mp.weixin.qq.com/s/Ql7lU0d4uf5_f1MscFMSQg" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51237">2、Netflix开源Headroom：无损压缩90%冗余Token，已为用户节省70万美元</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Netflix Headroom</span> <span class="md-tag">Token压缩</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Netflix高级工程师Tejas Chopra于2026年1月开源Headroom工具，旨在压缩发送给大语言模型的指令中的冗余Token。Chopra估计高达<strong>90%</strong>的Token是冗余的，主要来自JSON结构、API返回模板、数据库字段等。Headroom采用CacheAligner只发送新增内容，通过AST压缩器、JSON压缩器等模块处理不同数据类型，并支持CCR（压缩缓存与读取）让模型可调取原始未压缩数据。该工具已为用户节省约<strong>70万</strong>美元和<strong>2000亿</strong>Token，在GitHub上获得2000星标。Chopra还计划开源Headlight用于追踪每个Token来源。</p><p>📌 <strong>总结</strong>：Headroom为AI推理成本优化提供了开源解决方案，尤其适用于Agent和长上下文场景。对于AI前沿技术预研规划师，该工具展示了无损上下文压缩的技术路线，可结合KV缓存优化进一步降低推理成本。对于技术主管，Headroom的部署友好性（作为代理运行）和可逆压缩机制使其适合集成到现有工作流中，直接减少Token支出。同时，精简提示词还能降低响应延迟和提升模型输出稳定性。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzU1NDA4NjU2MA==&amp;amp;mid=2247663896&amp;amp;idx=2&amp;amp;sn=859e21e3fb90cb3c27238ac6550b3318&amp;amp;chksm=fa9bb62ebda11dfbd002d08be25d48d1b17a377115448127524c9cee7fe055622dd819183e87&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">AI前线</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51194">3、湖北移动与华为完成首个运营商AI推理加速方案现网测试，Token吞吐率最高提升372%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">华为</span> <span class="md-tag">UCM</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年6月24日MWC上海，华为与湖北移动联合宣布成功完成全国运营商首个AI推理加速方案现网测试。该方案基于华为OceanStor A800存储与昇腾A3超节点架构，搭载<strong>UCM</strong>（<strong>Unified </strong>Cache<strong> Manager</strong>）推理记忆数据管理技术，通过外置存储提供PB级KV <strong>Cache</strong>，并实现全生命周期分层管理调度。测试部署vLLM-Ascend框架，对MiniMax <strong>M2.</strong>5和<strong>GLM-5.</strong>1模型模拟8K至190K长序列输入。结果显示：MiniMax <strong>M2.</strong>5在128K序列下TPS提升<strong>78%</strong>；<strong>GLM-5.</strong>1在64K序列下TPS提升<strong>313%</strong>，128K序列下TPS提升<strong>372%</strong>，TTFT优化<strong>51%</strong>-<strong>93%</strong>。</p><p>📌 <strong>总结</strong>：该测试成果对AI推理基础设施架构有重要影响。<strong>UCM</strong>技术通过打破HBM容量限制，将KV Cache扩展到PB级，可大幅降低长上下文推理的Token成本，并提升用户首Token延迟体验。对于运营商智算中心建设，这意味着存储与算力的协同优化可能成为核心竞争力，对Token套餐定价和Agent应用规模化有直接推动作用。硬件层面，外置存储与超节点架构的结合为推理集群设计提供了新思路。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1312645.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-52333">1、阿里千问发布Qwen-AgentWorld语言世界模型，跨七领域提升智能体性能</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">Qwen</span> <span class="md-tag">世界模型</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年6月24日，阿里千问团队发布<strong>Qwen</strong>-<strong>AgentWorld</strong>，包含两个模型，训练目标不是让模型在智能体环境中行动，而是预测环境将返回什么。该模型覆盖七个领域：<strong>MCP</strong>、搜索、终端、软件工程、<strong>Android</strong>、Web和OS，采用单一架构。研究团队发现，使用世界<strong>模型训练</strong>作为智能体微调前的热身，在七个基准上均提升了性能，包括三个训练中未见过的领域。论文指出，世界建模是通往通用智能体的关键缺失部分。与之前的工作（如仅覆盖Web的WebWorld）不同，<strong>Qwen</strong>-<strong>AgentWorld</strong>实现了跨领域知识迁移。</p><p>📌 <strong>总结</strong>：<strong>Qwen</strong>-AgentWorld提出了一种新的智能体训练范式：通过语言<strong>世界模型</strong>预测环境状态，而非直接优化动作选择。这种方法突破了真实环境难以提供边缘案例的限制，使得智能体能够通过模拟器暴露于罕见但关键的场景。对于核心网和通信设备供应商而言，该技术可用于训练网络运维智能体，使其能够处理各种故障和异常情况。同时，跨领域迁移能力意味着一个模型可适用于多种运维环境，降低训练成本。建议关注其后续在通信领域的应用。</p><p>来源：<a href="https://venturebeat.com/technology/alibabas-model-never-trained-as-an-agent-and-improved-agent-performance-across-seven-benchmarks" target="_blank" rel="noreferrer">VentureBeat</a></p><p>原文标题：Alibaba&#x27;s model never trained as an agent — and improved agent performance across seven benchmarks</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-51619">1、蚂蚁开源 Sing-Guard-0.8b 多模态安全护栏模型</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Sing-Guard安全护栏</span> <span class="md-tag">策略自适应</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：2026年6月24日，蚂蚁 inclusionAI 在 <strong>HuggingFace</strong> 上开源了 <strong>Sing-Guard-0.8b</strong> 模型。<strong>SingGuard</strong> 是一个<strong>策略自适应</strong>多模态安全护栏模型，支持文本、图像、图文、多语言、查询侧和响应侧等多种安全评估场景。其创新点在于将安全策略作为运行时输入而非固定训练时分类体系，使得部署团队可以在不重新训练模型的情况下评估内容是否符合默认类别或自定义规则。该模型采用 fast-slow 推理模式，先快速路由输出安全信号，再在需要时推理更精细的判断。模型基于 <strong>Qwen3-VL-</strong>8B<strong>-Instruct</strong> 微调，支持标准 <strong>Transformers</strong> 和 vLLM 推理。</p><p>📌 <strong>总结</strong>：<strong>Sing-Guard</strong> 的<strong>策略自适应</strong>设计对 AI 安全领域有重要参考价值。运行时策略输入允许不同组织、不同场景使用同一模型但应用不同安全规则，降低了安全模型的定制化成本。fast-slow 推理模式也在安全性和推理效率之间提供了灵活权衡。对于通信设备商，该模型可直接用于 AI 应用（如客服机器人、<strong>Agent</strong> 平台）的内容安全审核，确保合规。同时开源<strong>策略自适应</strong>方案比固定分类体系更适合快速变化的合规要求。</p><p>来源：<a href="https://huggingface.co/inclusionAI/Sing-Guard-0.8b" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-51462">1、蚂蚁集团吴伟揭秘训推一体池化调度：如何把GPU用到极限</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">蚂蚁集团</span> <span class="md-tag">GPU调度</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：<strong>蚂蚁集团</strong>高级技术专家、容器调度团队负责人吴伟在AICon大会访谈中详细介绍了训推一体池化调度实践。核心方案为：将训练和推理集群合并到统一池，通过三步实现：1）软件栈打平（OS <strong>Kernel</strong>、CUDA驱动等统一）；2）精细化资源和任务管理（高优任务如预训练和C端推理获得SLO保障，低优任务使用闲置资源）；3）发生争抢时的回收机制（Checkpoint自恢复、异步Checkpoint优化）。通过XPU统一抽象管理包括英伟达和国产卡在内的异构算力。关键在于业务SLO与资源成本之间的动态均衡，预留动态Buffer保障突发流量。</p><p>📌 <strong>总结</strong>：蚂蚁的实践对AI基础设施的运营效率提升有直接指导价值：（1）训推合池解决了两类负载的潮汐差异问题（训练夜间空闲、推理白天高峰等），显著提升整体GPU利用率；（2）优先级抢占和Checkpoint优化机制为在共享集群上运行混合负载提供了工程参考；（3）国产芯片的纳入经验（精度对齐、全链路适配）对其他企业评估国产GPU替代有重要参考价值；（4）对通信设备商和服务商而言，同样面临AI训练与推理的负载混合场景，蚂蚁的池化调度架构可直接借鉴到核心网AI能力平台的资源管理设计。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;amp;mid=2651287639&amp;amp;idx=2&amp;amp;sn=e7ba685b72669645851d105c1910bc24&amp;amp;chksm=bcea3bdf6f98150299c7fa25acd737654d5efcfbf46ec615766604a4f03ed955a29da4181f9e&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">InfoQ</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-51228">1、Google正式向第三方出售TPU芯片，并与黑石共建500兆瓦算力中心</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">Google TPU</span> <span class="md-tag">推理芯片</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Google于2026年6月宣布正式向第三方数据中心及客户直接出售自研TPU芯片及配套AI算力硬件，此前TPU仅通过Google Cloud租用。同时，Google与私募公司黑石签署<strong>50亿</strong>美元协议，共同建造一座容量为500兆瓦的大型算力中心。TPU专为AI矩阵运算设计，在推理场景中能效比优于通用GPU，Gemini模型已凭借TPU实现较低token定价。此举被视为Google对英伟达的正面竞争，意图通过系统级方案（芯片+网络+调度）抢占AI推理市场份额。目前英伟达仍主导训练市场，但推理阶段token成本正成为AI普及的关键瓶颈。</p><p>📌 <strong>总结</strong>：Google开卖TPU标志着AI芯片竞争从训练向推理延伸，云厂商自研芯片生态加速成型。对于AI前沿技术预研规划师，需关注TPU在推理场景的能效优势及对模型部署架构的影响；对于商业主管，token<strong>成本下降</strong>将直接降低AI应用运营成本，可能催生更多大规模推理需求。同时，英伟达面临生态挑战，但CUDA护城河短期内难以撼动。国内华为昇腾、阿里真武等芯片也需加速生态建设。</p><p>来源：<a href="https://www.36kr.com/p/3866902311320456" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-52107">2、OpenAI 与 Broadcom 联合发布自研推理芯片 Jalapeño，目标吉瓦级部署</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">Jalapeño 推理芯片</span> <span class="md-tag">OpenAI</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年6月24日，<strong>OpenAI</strong> 与 <strong>Broadcom</strong> 联合发布自研推理芯片 Jalapeño。该芯片从零设计，围绕大语言模型推理场景优化，通过减少数据移动、均衡算力/内存/网络资源提升实际利用率。工程样品已在实验室以量产目标频率和功耗稳定运行 <strong>GPT-5.3-Codex-Spark</strong> 等负载，早期测试显示每瓦性能大幅优于当前最先进水平。从设计到流片仅用9个月，创下高性能 <strong>ASIC</strong> 开发周期纪录。<strong>OpenAI</strong> 自家模型在芯片设计过程中直接参与优化，形成“模型设计芯片、芯片运行模型”的闭环。Jalapeño 计划于2026年底开始部署，并与微软等合作伙伴共同推进吉瓦级数据中心规模。</p><p>📌 <strong>总结</strong>：Jalapeño 的发布是 <strong>OpenAI</strong> 全栈基础设施战略的关键里程碑，通过自研推理芯片实现从模型到芯片的垂直整合，有望大幅降低推理 token 成本并提升服务可靠性。该芯片将直接挑战 <strong>NVIDIA</strong> 在 AI 推理芯片市场的主导地位，加速 AI 算力架构从通用 <strong>GPU</strong> 向专用 <strong>ASIC</strong> 的转型。对于 AI 基础设施规划，Jalapeño 展示了模型与芯片协同设计的工程可行性，将为 6G 网络智能、核心网 AI 推理等场景的专用芯片设计提供参考。同时，其 9 个月流片速度也验证了 AI 辅助芯片设计的效率优势。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg3MTkxMjYzOA==&amp;amp;mid=2247515902&amp;amp;idx=1&amp;amp;sn=1fbca91d52fbf261ff87e18ba6cd0cc2&amp;amp;chksm=cfbbae7a1562acba02062d544a6df38f92b1f6d2baee99ef25cf6eaca1a4ae54454e69fc700e&amp;amp;scene=0#rd" target="_blank" rel="noreferrer">AI寒武纪 中文</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-50789">1、诺基亚联合AWS升级自治网络组合，发布Agent库提升60-80%运维效率</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">诺基亚</span> <span class="md-tag">AWS</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：背景：<strong>诺基亚</strong>于DTW <strong>Ignite</strong> 2026更新自治网络组合：自治网络套件支持本地部署、VoLTE服务质量优化、RAN用户体验增强；将自治网络Fabric迁移到<strong>AWS</strong>；发布自治网络Agent库，包含零日攻击识别、异常推理、事件分类、服务工单排查、多Agent协作等预构建Agent。技术机制：Agent库基于Amazon <strong>Bedrock</strong>，与<strong>AWS</strong>云交互实现切片管理自动化，早前已与Orange和Du合作5G-Advanced网络切片。结果：声称安全运维效率提升60-<strong>80%</strong>，同时增强了MantaRay SMO平台的非实时RIC功能。</p><p>📌 <strong>总结</strong>：<strong>诺基亚</strong>的Agent库和<strong>AWS</strong>集成标志着电信运维Agent化的重要里程碑，展示了AI Agent在网络自动化中的具体应用。对于设备商和运营商而言，需要加速构建可复用的Agent资产，并考虑与公有云合作以降低部署门槛。同时，多Agent协作框架对智能体协议（如MCP/<strong>A2A</strong>）的需求可能增加。</p><p>来源：<a href="https://www.sdxcentral.com/news/nokia-amps-up-autonomous-networks-with-aws-and-yes-ai-agents/" target="_blank" rel="noreferrer">SDxCentral</a></p><p>原文标题：Nokia amps up autonomous networks with AWS and, yes, AI agents</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-51042">1、面向长上下文LLM推理的KV缓存优化：Nexus Sampling驱逐方法与Block-GTQ量化方法</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">大模型推理 KV缓存管理 Nexus Samp…</span> <span class="md-tag">长上下文 推理优化 内存压缩</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：长上下文和Agent型LLM工作负载使KV缓存超出固定内存预算，传统驱逐方法采用单步注意力分数后的确定性top-K选择，导致重要令牌永久丢失。针对此问题，格林内尔学院联合莱斯大学和Lambda公司提出Nexus <strong>Sampling</strong>，通过迭代注意力行走发现桥接令牌，结合加权水库采样替代确定性top-K，理论证明能长期保留微妙重要令牌，实验在<strong>80%</strong>驱逐率下LongBench接近全注意力，检索任务超越基线。同时，香港科技大学与小米提出Block-<strong>GTQ</strong>，针对RoPE下键缓存各频率块对量化误差敏感度不同，设计无标签能量评分和贪心比特分配器，在2比特量化下将LongBench均分从36.87提升至53.31，在DeepSeek-<strong>R1-</strong>Distill模型上AIME成绩接近全精度，且单H800上Qwen2.5-<strong>3B</strong>实现<strong>3.24倍</strong>压缩和<strong>1.34倍</strong>加速，支持更大上下文。两方法均无需重训练，直接降低推理内存成本，提升长上下文服务能力。</p><p>📌 <strong>总结</strong>：<strong>Nexus</strong> Sampling和<strong>Block-</strong>GTQ分别为KV缓存驱逐和量化提供无训练优化方案，直接降低推理内存占用和成本：<strong>Nexus</strong> Sampling通过迭代注意力机制保证重要令牌长期存活，<strong>Block-</strong>GTQ通过RoPE感知量化保留高频块精度。它们可集成到vLLM、<strong>TensorRT-</strong>LLM等推理框架，提升长上下文和Agent场景的服务效率。Block-GTQ在极端量化下恢复模型推理能力，使低资源部署成为可能，减少GPU显存需求。Nexus Sampling的随机采样方法为驱逐策略提供新范式，可能影响未来推理缓存管理标准。这些工作对AI推理基础设施供应商和云服务商有明显的实用价值，能降低TCO并支持更大的上下文窗口和更多并发用户，加速长上下文应用落地。</p><p>来源：<a href="https://arxiv.org/abs/2606.24033" target="_blank" rel="noreferrer">研究团队</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-51351">1、蚂蚁集团发布百灵Ling &amp; Ring 2.6技术报告，万亿参数模型实现4倍token效率提升和Agent能力原生优化</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">百灵2.6</span> <span class="md-tag">Hybrid Linear Attention</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：蚂蚁集团于2026年6月24日正式发布百灵Ling &amp; <strong>Ring 2.</strong>6技术报告。该系列包括<strong>Ling-2.6-</strong>flash、<strong>Ling-2.6-</strong>1T和<strong>Ring-2.</strong>6-<strong>1T</strong>三个模型，面向Agent、Coding和企业工作流等真实复杂任务。关键技术包括：<strong>Hybrid Linear Attention</strong>架构（<strong>Lightning</strong> Attention与MLA以7:1比例结合），在4×H20上Ling-2.6-flash达到<strong>340 token</strong>s/s；四阶段架构迁移从GQA到混合注意力，使用约<strong>400B</strong> tokens；预训练总计<strong>9.6T</strong> tokens，上下文从4K扩展到256K。后训练采用专家驱动范式，通过Evo-<strong>CoT</strong>、LPO和双向偏好对齐提升token效率，Ling-2.6-<strong>1T</strong>在Artificial <strong>Analysis Intelligence</strong> Index上使用约16M输出tokens取得34分，token效率较2.0提升约<strong>4倍</strong>。<strong>Ring-2.</strong>6引入KPop算法（binary KL divergence替代固定比例约束），在SWE-bench Verified上将solve rate从<strong>70.8%</strong>提升到<strong>76.28%</strong>。评测显示，<strong>Ring-2.6-1T</strong> high在PinchBench上取得87.60（开源模型第一），在τ2-Telecom上取得96.71。</p><p>📌 <strong>总结</strong>：<strong>百灵2.6</strong>技术报告展示了万亿参数模型从对话系统向Agentic系统转型的完整技术路径，包括架构选择、训练策略和推理优化。其<strong>Hybrid </strong>Linear<strong> Attention</strong>架构为长上下文高效推理提供了可行方案，KPop算法为MoE模型的强化学习稳定性提供了新思路。对于技术预研规划师，该报告提供了可复现的技术细节和开源模型，可直接用于评估和二次开发。对于商业主管，<strong>百灵2.6</strong>在Agent任务上的领先表现表明蚂蚁在AI Agent领域已建立竞争优势。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;amp;mid=2247721152&amp;amp;idx=3&amp;amp;sn=03eee413c4c53bc366be175b9f7524ea" target="_blank" rel="noreferrer">PaperWeekly 微信公众号 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-51049">2、GRACE：基于Hard Concrete门控与L0正则化的高效时间序列因果发现方法</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">机器学习、因果发现、时间序列</span> <span class="md-tag">GRACE、Hard Concrete门控、L…</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：时间序列因果发现是网络运维、气候分析等领域的核心任务，但现有约束基础方法在大规模数据上因非线性条件独立性检验计算成本过高而不可行，分数基础方法则依赖脆弱的阈值选择。GRACE方法提出使用Hard Concrete门控配合L0正则化，为每个候选边赋予独立门控，促使门控值集中在0或1附近，实现清晰的二值决策；同时采用快速线性CI骨架生成高召回候选集合，再通过门控模型学习哪些边真正改善预测，自动调节正则化强度。实验覆盖无标度、<strong>Erdos-Renyi</strong>、小世界等多种图拓扑以及高达100维的数据，结果显示GRACE的F1值大幅超越基线，速度比非线性CI测试快<strong>75倍</strong>；在易北河水流数据集上，GRACE正确恢复11条因果边中的9条，仅出现1个假阳性，假阳性减少<strong>99%</strong>，F1达0.86。该方法为大规模因果发现提供了兼顾统计严谨性与计算效率的轻量方案，可支撑网络故障定位、系统诊断等智能运维场景的前沿研究。</p><p>📌 <strong>总结</strong>：该论文改进的时间序列因果发现方法直接增强了<strong>AI模型</strong>在复杂动态系统中的可解释性与决策可靠性，可嵌入网络运维中的异常检测、根因分析和预测性维护管道。对于AI前沿技术预研规划师，GRACE提供了一种将统计约束与深度学习门控相结合的轻量化方案，适合作为网络分析模块的基础组件；对于5G/6G标准专家，该方法的可扩展性与高效性有利于NWDAF等网络数据分析功能的增强；对于核心网架构师和技术主管，GRACE能够降低因果分析的计算开销，提升运维智能化的落地可行性。整体上，GRACE在因果发现算法的性能与效率之间取得新平衡，对AI基础设施中的分析服务具有正向影响，并为通信场景下的时间序列推理提供了技术储备。</p><p>来源：<a href="https://arxiv.org/abs/2606.23758" target="_blank" rel="noreferrer">研究团队</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-51019">1、AsyncOPD：面向LLM后训练的异步在线策略蒸馏框架，将训练吞吐提升1.6-3.8倍</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">LLM后训练+异步在线策略蒸馏+AsyncOPD</span> <span class="md-tag">训练吞吐、陈旧策略、KL散度</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：LLM后训练中在线策略蒸馏（<strong>OPD</strong>）因需学生模型自身rollout，面临与强化学习类似的系统瓶颈，rollout生成主导训练耗时。异步训练可解耦rollout与学习，但引入陈旧策略数据。来自FuriosaAI、亚洲大学、UC Berkeley和微软研究院的团队首次系统研究异步<strong>OPD</strong>中的陈旧性，聚焦于KL损失与有限教师score缓存的实用场景。研究发现：前向KL（教师加权）对陈旧rollout更鲁棒，而反向KL（学生加权）易受陈旧影响；针对反向KL，在Learner端重新计算信号比传统异步RL稳定方法更有效；有限缓存带来偏差-方差权衡，多采样MC估计器可降低方差。基于此构建并开源AsyncOPD全异步管道，实验显示同步精度下吞吐提升1.6-<strong>3.8倍</strong>。这一工作为大规模LLM后训练的异步蒸馏提供了清晰设计思路与可复用框架。</p><p>📌 <strong>总结</strong>：该工作直接提升LLM后训练的效率与可扩展性，使推理模型等需要大量rollout的训练可更经济地扩展到更大规模。对AI前沿技术预研规划师：陈旧策略管理方法应纳入训练基础设施设计，影响分布式训练框架的异步策略选型；对技术主管：AsyncOPD可降低对训练集群的峰值需求，提升已有GPU资源利用率，缩短后训练周期；对架构师：可借鉴其缓存机制与估计器设计优化自有训练管道；对5G/6G标准专家：虽不直接涉及通信协议，但影响6G网络AI模型（如NWDAF推理模型）的离线训练效率，间接推动AI in Network的工程落地。整体上，该论文将异步蒸馏从理论推向实用，提升了<strong>模型训练</strong>板块的研发效率与成本竞争力。</p><p>来源：<a href="https://arxiv.org/abs/2606.24396" target="_blank" rel="noreferrer">研究团队</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-50827">1、OpenAI用有益行为强化学习训练模型，在超80%分布外对齐基准上表现提升</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">OpenAI</span> <span class="md-tag">有益行为强化学习</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong>的Akshay V. Jagadeesh等人在预印本中研究通过强化学习（RL）训练有益行为能否产生广泛且持久的对齐泛化。团队构建了一个覆盖健康、科学、教育等多领域的真实场景数据集，用于衡量和训练真实性、公平性、风险意识和可纠正性等有益特质。使用该数据集进行RL训练后，模型在超过50个独立对齐基准中的<strong>80%</strong>以上表现优于计算匹配基线。当RL干预完全限制在健康领域时，仍能在非健康对齐评估中产生广泛改善，包括减少奖励黑客、欺骗和一般性错位。训练后的模型在对抗性提示和有害微调下表现出更强的对齐持久性。</p><p>📌 <strong>总结</strong>：这项来自<strong>OpenAI</strong>的研究为AI安全与对齐提供了可复现的RL训练方法论——通过在真实领域强化有益行为，模型不仅能泛化到分布外场景，还能保持对齐的持久性。对于预研规划师和架构师而言，该方法论可用于指导通信网络AI模型的训练策略设计，减少部署后因行为偏移导致的<strong>安全风险</strong>。尤其是NWDAF等网络智能体，在引入RL训练时可借鉴其有益特质数据集构建方式，提升系统可信度。</p><p>来源：<a href="https://arxiv.org/abs/2606.24251" target="_blank" rel="noreferrer">研究团队</a></p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>OpenAI推出GPT-Bidi-1双向音频模型，打破语音对话轮次结构实现自然交互</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>OpenClaw-memgpt插件为OpenClaw智能体提供MemGPT三层记忆架构</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>面向长上下文LLM推理的KV缓存优化：Nexus Sampling驱逐方法与Block-GTQ量化方法</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>蚂蚁推出 Fused MoE V2 kernel，使 Ling-2.6-1T 在 TPU 上推理延迟降低 53%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Netflix开源Headroom：无损压缩90%冗余Token，已为用户节省70万美元</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>蚂蚁集团发布百灵Ling &amp; Ring 2.6技术报告，万亿参数模型实现4倍token效率提升和Agent能力原生优化</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>GRACE：基于Hard Concrete门控与L0正则化的高效时间序列因果发现方法</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>AsyncOPD：面向LLM后训练的异步在线策略蒸馏框架，将训练吞吐提升1.6-3.8倍</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI推理与服务加速</td><td>4</td></tr><tr><td>AI模型</td><td>2</td></tr><tr><td>模型训练</td><td>2</td></tr><tr><td>AI安全、可信与治理</td><td>2</td></tr><tr><td>AI与通算硬件</td><td>2</td></tr><tr><td>标准、协议与产业联盟</td><td>2</td></tr><tr><td>AI应用与产品化场景</td><td>1</td></tr><tr><td>智能体平台、协议与执行系统</td><td>1</td></tr><tr><td>云与AI基础设施</td><td>1</td></tr><tr><td>核心网与通信系统架构</td><td>1</td></tr><tr><td>通信设备供应商</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>19</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
