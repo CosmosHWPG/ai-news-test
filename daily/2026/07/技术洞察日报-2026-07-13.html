@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-07-13 管理精简版</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-07-13 管理精简版</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-07-12T00:00:00+00:00 ~ 2026-07-13T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-07-13 16:55:35 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年07月13日</strong></p><p><strong>生成时间：2026-07-13 16:54 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：11 个 | 本期条目：12 条 | 覆盖板块：7 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 4 条，AI推理与服务加速 2 条，AI模型 1 条，模型训练 1 条，AI安全、可信与治理 1 条，AI与通算硬件 2 条，基础竞争力 1 条，合计 12 条。</li><li>日报内容：今日头条聚焦 <strong>MMLab联合清北开源SearchEyes，构建模拟搜索世界训练多模态搜索Agent，27B模型准确率领先开源基线6.2个点</strong>，并同步关注蚂蚁开源双模推理安全框架，面向智能体与多模态模型；阶跃星辰发布Step Edge端侧模型全家桶，补齐Agent本地执行关键拼图；TikTok与NUS提出CAMEL置信度门控反思，让奖励模型更准更高效。</li><li>关键亮点：SearchEyes通过模拟世界实现Agentic RL自进化，AgenticSTS固定记忆层提供长任务低成本新范式，CAMEL置信度门控反思以14B参数超越70B奖励模型，蚂蚁安全框架支持快慢思考与多规则并行审核。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-76981">MMLab联合清北开源SearchEyes，构建模拟搜索世界训练多模态搜索Agent，27B模型准确率领先开源基线6.2个点</a></li></ul><ul><li><a href="#event-77116">蚂蚁开源双模推理安全框架，面向智能体与多模态模型</a></li></ul><ul><li><a href="#event-77020">阶跃星辰发布Step Edge端侧模型全家桶，补齐Agent本地执行关键拼图</a></li></ul><ul><li><a href="#event-76997">TikTok与NUS提出CAMEL置信度门控反思，让奖励模型更准更高效</a></li></ul><ul><li><a href="#event-77079">AgenticSTS用固定记忆层替代增长日志，在《Slay the Spire 2》中胜率翻倍且token消耗降至1/90</a></li></ul><ul><li><a href="#event-77034">开源Mesh LLM发布：基于iroh实现分布式推理，池化多机GPU运行大模型</a></li></ul><ul><li><a href="#event-77106">ServiceTitan构建AI组装线实现85%遗留代码迁移自动化，项目周期从季度缩至数周</a></li></ul><ul><li><a href="#event-77264">复杂Agent架构性能优化：7个方向覆盖全生命周期，启动加速96%</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-77264">1、复杂Agent架构性能优化：7个方向覆盖全生命周期，启动加速96%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;Agent架构&quot;</span> <span class="md-tag">&quot;性能优化&quot;</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，开发者分享复杂Agent架构性能优化经验，覆盖启动、编排、推理、持久化全生命周期。核心优化方向：分层就绪（启动从<strong>1200ms</strong>降至<strong>50ms</strong>）、引擎复用（消除重复工具调用）、Prompt裁剪（Token消耗降<strong>97%</strong>）、资源池化（沙箱获取从秒级降至亚秒）、异步持久化（单轮省<strong>200ms</strong>-2s）、预热预分配（首条消息&lt;<strong>50ms</strong>）、并行编排（请求编排省<strong>45%</strong>）。每个方向都有具体架构方案和实践数据。</p><p>📌 <strong>总结</strong>：该优化方案对Agent系统设计有直接参考价值，特别是对于通信设备供应商在开发网络运维Agent时，可借鉴分层就绪、资源池化、并行编排等策略。核心启示：Agent系统性能优化需要从全生命周期考虑，而非仅关注推理速度。建议进入日报正文。</p><p>来源：<a href="https://juejin.cn/post/7660902254526578728" target="_blank" rel="noreferrer">掘金 - frontend</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77005">2、UIUC提出GraphPlanner，将LLM路由从简单模型选择升级为多智能体工作流生成</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;GraphPlanner&quot;</span> <span class="md-tag">&quot;多智能体路由&quot;</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：UIUC研究人员于2026年7月提出Graph<strong>Planner</strong>，将LLM路由从传统的backbone selection推进到agentic workflow generation。Graph<strong>Planner</strong>在每一步同时决定调用哪个模型以及激活哪个智能体角色（Planner、<strong>Executor</strong>、<strong>Summarizer</strong>），并利用异构图记忆网络GARNet记录历史交互与当前工作流状态。在14个任务、6个领域的系统评估中，GraphPlanner相比最强baseline带来约<strong>9.3%</strong>的平均准确率提升，并展现出优秀的泛化能力，在out-of-domain任务上取得<strong>78%</strong>的平均准确率。</p><p>📌 <strong>总结</strong>：GraphPlanner代表了LLM路由从简单模型选择到多智能体工作流生成的重要演进。对于核心网设备供应商而言，这种动态工作流生成思想可借鉴到网络运维Agent的编排中，根据不同的网络故障场景动态组织多个专用模型协作处理。同时，图记忆网络的设计为构建可扩展的多模型协作系统提供了新范式。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;amp;mid=2652712432&amp;amp;idx=3&amp;amp;sn=16ed508986e394a232ff179f9b6f6847&amp;amp;chksm=f0297c3e5031619bd1432d8d798ab1292f79ffd4779e78c8dc625bcff0930bf51c8e5a13b20d&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">新智元</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77079">3、AgenticSTS用固定记忆层替代增长日志，在《Slay the Spire 2》中胜率翻倍且token消耗降至1/90</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;AgenticSTS&quot;</span> <span class="md-tag">&quot;记忆层&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：AgenticSTS项目由Alaya Lab与上海交通大学等机构发布，针对AI Agent在长任务（如《<strong>Slay</strong> the <strong>Spire</strong> 2》数百步决策）中的记忆管理问题。传统ReAct等方式将历史不断追加到上下文，导致token爆炸（STS2MCP一次调用达527k token）。AgenticSTS采用五个固定记忆层：L1协议指令、L2状态模式、L3检索规则、L4历史对局摘要、L5策略技能库。每次决策仅构建约<strong>5000 token</strong>提示词。在最低难度A0下，无记忆层胜率3/10，启用L5后升至6/10。对比公开Agent，每得一分仅消耗其1/66至1/90的token量，耗时仅四分之一。跨模型迁移测试显示记忆内容与创建模型强绑定。</p><p>📌 <strong>总结</strong>：AgenticSTS为Agent记忆架构提供了可复用的设计范式：通过分离固定知识、检索信息和技能库，在长任务中保持提示词短小。对智能体平台和推理服务板块，这种架构可显著降低推理成本和延迟。对技术预研规划师，L4跨局学习和L5技能库设计值得深入研究。建议评估在通信网络运维Agent等长场景中的应用潜力。</p><p>来源：<a href="https://aihot.virxact.com/items/cmrhi3rfa00gebimnokmso8g8" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-76981">4、MMLab联合清北开源SearchEyes，构建模拟搜索世界训练多模态搜索Agent，27B模型准确率领先开源基线6.2个点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;SearchEyes&quot;</span> <span class="md-tag">&quot;多模态搜索Agent&quot;</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：香港中文大学MMLab、清华大学、香港大学、北京大学等机构联合提出SearchEyes，一个面向多模态深度搜索的Search <strong>World</strong> Simulation框架。核心创新是构建一个自包含的模拟搜索世界（基于Wikidata5M等构建约<strong>120万</strong>实体、<strong>34万</strong>视觉实体、<strong>580万</strong>关系三元组的typed KG），同时承担数据生成器、交互环境和奖励结构三种角色。提出Perception-<strong>Knowledge Chain</strong>（<strong>PKC</strong>）保留多跳实体路径，以及Hop-<strong>Anchored Policy Optimization</strong>（<strong>HaPO</strong>）将路径变为步骤级奖励锚点。在六个多模态知识密集型benchmark上，<strong>SearchEyes-</strong>2<strong>7B</strong>平均准确率68.1，较最强开源基线OpenSearch-<strong>VL-</strong>3<strong>2B</strong>的61.9提升6.2个点。<strong>SearchEyes-</strong>9B平均59.3，接近<strong>30B</strong>级别基线。消融实验表明，P-K交替约束、反捷径过滤和<strong>HaPO</strong>步骤级奖励均对性能有显著贡献。</p><p>📌 <strong>总结</strong>：SearchEyes为多模态搜索Agent训练提供了可复现、可演化的标准化环境，通过数据-环境-算法协同设计解决了开源系统追赶闭源系统的关键瓶颈。对于AI前沿技术预研规划师，该工作展示了Agentic RL中环境构建和奖励塑形的重要性，可能推动Search、<strong>SWE</strong>、<strong>Computer</strong> Use等Agent场景的self-evolving能力。对于技术主管，SearchEyes的开源发布降低了多模态搜索Agent的研发门槛。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561108&amp;amp;idx=1&amp;amp;sn=2378d7f39aada2b78d5263d19097fda6&amp;amp;chksm=cf9c49fd24c7a30544905690c3b3efcb424ba632718f2b06484328d87b078fc7bd5ddebfbb81&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-77034">1、开源Mesh LLM发布：基于iroh实现分布式推理，池化多机GPU运行大模型</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">&quot;Mesh LLM&quot;</span> <span class="md-tag">&quot;分布式推理&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>Mesh</strong> LLM于2026年7月12日发布，是一个基于iroh点对点网络库的开源分布式AI计算项目。它可将用户多台机器的GPU和内存池化，对外暴露兼容<strong>OpenAI</strong>的API（localhost:9337/v1）。请求处理有三种模式：本地GPU运行、路由到已加载模型的对等节点、或将模型按层流水线拆分到多台机器（内部称Skippy）。内置40多个模型，从<strong>5亿</strong>参数到<strong>235B</strong> <strong>MoE</strong>。软件体积约<strong>18MB</strong>，启动即服务。通信依赖iroh的QUIC连接和ALPN协商，无需中央服务器。</p><p>📌 <strong>总结</strong>：<strong>Mesh</strong> LLM代表了一种去中心化推理基础设施的趋势，对<strong>AI推理与服务加速</strong>板块有直接意义。它使团队能够利用闲置GPU资源运行大模型，降低对云API的依赖，增强数据隐私和控制。对技术预研规划师而言，这种P2P推理架构可能重塑边缘推理部署策略；对核心网架构师，其网络穿透和流式激活值传输技术值得关注。建议部署试用，评估在私有集群和边缘场景的实用性。</p><p>来源：<a href="https://aihot.virxact.com/items/cmrh78s5t00w5bir7mozf8oyb" target="_blank" rel="noreferrer">AIHot Virxact 精选TOP RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77056">2、邵猛提出为Claude Fable 5设计成本高效Harness，以34%成本达90%性能</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">&quot;Claude Fable 5&quot;</span> <span class="md-tag">&quot;成本高效Harness&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：邵猛在2026年7月12日的推文中详细阐述了为Claude <strong>Fable</strong> 5设计成本高效Harness的方法。核心思路是利用任务token智能需求的不对称性：少数token需要前沿判断力，多数token只需廉价执行。他提出了三种分配模式：<strong>Orchestrator</strong>（编排）、<strong>Advisor</strong>（顾问）、<strong>Verifier</strong>（验证）。实验一：<strong>Fable</strong> 5作顾问+<strong>Sonnet</strong> 5作执行者，在Parameter Golf任务中以<strong>34%</strong> token成本达到Fable-solo约<strong>90%</strong>的增益，发现中段检查点纠偏比前置规划更关键。实验二：BrowseComp完整集（~31M tokens/题）实现<strong>96%</strong>分数/<strong>46%</strong>成本，易子集无收益。四条设计准则包括审视任务形状、使用委派启发式、评估协调成本、保证prompt cache命中。</p><p>📌 <strong>总结</strong>：该方法为推理服务成本优化提供了系统性的工程框架，尤其适用于需要混合使用不同能力层级模型的场景。对于AI推理服务加速领域，该方案可直接应用于vLLM、SGLang等serving系统的调度策略设计，通过动态委派降低token成本。同时，对核心网运维Agent的部署也有参考价值，可在保证任务质量的前提下大幅降低推理成本。</p><p>来源：<a href="https://aihot.virxact.com/items/cmrht36c300d1biid9m34tktd" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-77020">1、阶跃星辰发布Step Edge端侧模型全家桶，补齐Agent本地执行关键拼图</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">&quot;Step Edge&quot;</span> <span class="md-tag">&quot;端侧模型&quot;</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：阶跃星辰于2026年7月发布<strong>Step</strong> Edge端侧模型全家桶，包含4款模型：<strong>Step</strong> Edge基础模型覆盖文本与视觉理解，<strong>Step Edge</strong> Audio强化语音与音频交互，<strong>Step Edge</strong> GUI强化屏幕理解和界面操作，Step Edge Gen强化端侧图像生成与编辑。配套自研Step <strong>Inference</strong> NPU引擎，<strong>1024 token</strong>文本输入延迟<strong>4.33秒</strong>，768分辨率图像延迟<strong>5.61秒</strong>，<strong>30秒</strong>语音输入延迟<strong>10.7秒</strong>。</p><p>📌 <strong>总结</strong>：<strong>Step</strong> Edge的发布使阶跃星辰完成“<strong>Pro+Flash+Edge</strong>”云端协同矩阵，端侧模型作为Agent本地执行层，负责实时环境感知、GUI操作和隐私数据处理。对于核心网设备供应商而言，端云协同的架构思想可借鉴到网络运维Agent的设计中，将实时性要求高的任务在终端处理，复杂推理任务上云。</p><p>来源：<a href="http://weixin.sogou.com/weixin?type=2&amp;amp;query=%E6%96%B0%E6%99%BA%E5%85%83+%E8%BF%99%E5%AE%B6%E5%85%AD%E5%B0%8F%E9%BE%99%E4%B8%8A%E6%96%B0%E5%85%A8%E5%AE%B6%E6%A1%B6%EF%BC%8CAgent%E6%8E%A5%E7%AE%A1%E7%BB%88%E7%AB%AF%E5%85%B3%E9%94%AE%E4%B8%80%E6%88%98%EF%BC%81%E8%80%81%E9%BB%84%E9%A2%84%E8%A8%80%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%BA%86" target="_blank" rel="noreferrer">新智元 微信公众号</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-76997">1、TikTok与NUS提出CAMEL置信度门控反思，让奖励模型更准更高效</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">&quot;CAMEL&quot;</span> <span class="md-tag">&quot;奖励模型&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：TikTok与新加坡国立大学联合提出的CAMEL方法，将奖励建模改造为置信度门控反思。核心创新在于利用两个verdict token之间的log-probability margin作为零额外成本的置信度信号，先以单token给出初判，置信度足够高直接输出，置信度低才触发reflection复核。训练上引入Counterfactual <strong>Prefix Augmentation</strong>，通过GRPO训练使反思成为真正的自我修正机制。基于Qwen3-<strong>14B</strong>构建的CAMEL在RewardBench、<strong>RM-Bench</strong>、JudgeBench上平均准确率<strong>82.9%</strong>，较此前最佳提升<strong>3.2%</strong>，以<strong>14B</strong>参数超过多个<strong>70B</strong>级奖励模型。</p><p>📌 <strong>总结</strong>：CAMEL体现了“把计算花在真正困难的地方”这一原则，为奖励模型提供了可调节的准确率-成本Pareto前沿。对于需要高频调用奖励模型的线上系统，省去无差别的长reasoning意味着可观的成本收益。该方法可广泛应用于RLHF、RLAIF等后训练流程，降低对齐成本的同时保持甚至提升模型对齐质量。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651043906&amp;amp;idx=2&amp;amp;sn=b664726db41281efe1ba814d26ae887c&amp;amp;chksm=8548d920de8925feb54366855eece18c8ed1e3fbdd380d996ed7cc1c48f011e467680db67b1c&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-77116">1、蚂蚁开源双模推理安全框架，面向智能体与多模态模型</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">&quot;蚂蚁&quot;</span> <span class="md-tag">&quot;安全框架&quot;</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，蚂蚁安全团队开源了两大安全框架：面向智能体安全的双模推理护栏框架SingGuard-<strong>NSFA</strong>（<strong>0.8B</strong>/<strong>2B</strong>/<strong>4B</strong>/<strong>9B</strong>四个尺寸）和面向多模态大模型的SingGuard（<strong>0.8B</strong>/<strong>2B</strong>/<strong>4B</strong>/<strong>8B</strong>）。SingGuard-<strong>NSFA</strong>基于NSFA风险分类体系，采用SFT生成式推理与判别式分类头双模式，判别式延迟低至45-<strong>57ms</strong>，骨干网络冻结，新增风险仅需补训轻量分类头；在3大评测基准上均取得SOTA，<strong>0.8B</strong>模型即可比肩<strong>8B</strong>竞品。SingGuard将安全规则作为运行时输入，支持快慢思考自动切换，并引入RI-Mask实现多规则并行审核，多模态推理最高提速<strong>5倍</strong>以上。</p><p>📌 <strong>总结</strong>：蚂蚁此次开源从底层定义了Agent行为安全和多模态感知安全的边界，提供可解释、可扩展的安全基础设施。对于部署Agent（如Claude <strong>Code</strong>、<strong>OpenClaw</strong>）的企业，该框架可替代零散补丁方案，降低安全运维成本。同时，其“冻结骨干+轻量分类头”的设计使系统能快速适应新风险，对AI安全框架标准化有示范意义。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;amp;mid=2247903091&amp;amp;idx=1&amp;amp;sn=6efa9d6657251390eda8017a73484478&amp;amp;chksm=e9b69eb30a427db80b089e892e6d537418eae17d449229c1be07dc99f51d4f44a93083b35e02&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">量子位</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-77410">1、Spectral Compute 推出 SCALE 编译器，让 CUDA 代码在 AMD GPU 上性能提升近 6 倍</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">&quot;SCALE编译器&quot;</span> <span class="md-tag">&quot;CUDA&quot;</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年7月12日，半导体行业观察报道，<strong>Spectral</strong> Compute公司开发了名为SCALE的编译器，采用CLang和LLVM技术，旨在替代英伟达的CUDA编译器NVCC，使CUDA代码能够在<strong>AMD</strong> GPU等非英伟达硬件上高效运行。该公司在ISC 2026大会上展示的基准测试显示，与使用HIPIFY将CUDA代码转换为<strong>AMD</strong> ROCm环境相比，SCALE在AMD GPU上实现了近<strong>6倍</strong>的性能提升。SCALE能充分利用底层硬件，超越其他CUDA兼容编译器的中等性能。</p><p>📌 <strong>总结</strong>：SCALE编译器若成功推广，将削弱英伟达CUDA生态的护城河，使AI芯片客户更容易转向<strong>AMD</strong>等替代硬件，从而影响AI算力硬件市场的竞争格局和定价权。对于AI推理与服务加速，这可能降低对英伟达GPU的依赖，增加供应多样性。</p><p>来源：<a href="https://www.163.com/dy/article/L1KLUEAL0511CPMT.html" target="_blank" rel="noreferrer">半导体行业观察 网易号</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77241">2、云豹智能冲刺国产 DPU 第一股，腾讯为最大股东，自研 400Gbps 6nm SoC</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">&quot;云豹智能&quot;</span> <span class="md-tag">&quot;DPU&quot;</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年7月，深圳云豹智能股份有限公司创业板IPO申请获深交所受理，冲刺“国产DPU第一股”。公司由斯坦福博士萧启阳于2020年创办，自主研发国内首款高性能通用可编程DPU SoC芯片，网络带宽达400Gbps，相比传统方案性能提升<strong>4倍</strong>、功耗降低<strong>50%</strong>以上，仅用4年完成从FPGA验证到6nm SoC量产。招股书显示，2025年营收<strong>3.7亿</strong>元（同比增长超<strong>900%</strong>），但净亏损<strong>11.9亿</strong>元。腾讯通过关联主体持股<strong>19.78%</strong>为第一大股东，红杉中国、深创投、淡马锡等参投。公司提供弹性网络与存储、虚拟化、安全及低时延RDMA等功能的一站式解决方案。</p><p>📌 <strong>总结</strong>：云豹智能IPO是国产DPU赛道的重要里程碑，DPU作为CPU+GPU之外的第三颗核心芯片，在AI数据中心中承担网络、存储、安全卸载功能，直接降低CPU负载并提升整体系统效率。对于AI基础设施规划师和架构师而言，云豹智能的400Gbps DPU和6nm工艺表明国产DPU已具备与国际产品竞争的能力，可纳入AI集群网络方案评估。腾讯的重仓也释放了产业资本对DPU长期价值的信心。该事件对<strong>AI与通算硬件</strong>板块有直接参考价值，建议进入日报正文。</p><p>来源：<a href="https://www.36kr.com/p/3892352153942530" target="_blank" rel="noreferrer">36氪 - hot-list / catalog</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-77106">1、ServiceTitan构建AI组装线实现85%遗留代码迁移自动化，项目周期从季度缩至数周</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">&quot;ServiceTitan&quot;</span> <span class="md-tag">&quot;代码迁移&quot;</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：ServiceTitan的首席AI工程师David Stein在QCon上分享了利用AI代理进行大规模遗留代码迁移的经验。面对几百个依赖复杂、文档不全的业务指标迁移任务，团队没有直接让AI处理整个代码库，而是构建了一条“组装线”：将大任务分解到AI能独立完成并验证的子任务粒度；为每个子任务建立可程序化判断通过/失败的验证器；配备CLI工具和上下文文件（如migration_goals.txt、migration_tasks.txt）；形成“上下文获取→编写代码→运行验证器→失败则重试”的自愈循环。最终<strong>85%</strong>的指标由AI自主完成迁移，仅<strong>15%</strong>复杂案例需人工介入，项目周期从数个季度缩短到数周。关键教训是验证器要极其精确，否则会产出垃圾结果。</p><p>📌 <strong>总结</strong>：该案例为大规模系统迁移提供了可复用的工程方法论，对技术主管和核心网架构师尤其有价值。它证明AI不需要无限聪明，只要任务分解粒度得当、验证机制严格，就能胜任复杂的代码重构。建议将在5GC升级、NFV迁移等场景中借鉴此“组装线”模式，可大幅降低迁移成本和风险。对AI前沿技术预研规划师，该实践也展示了AI代理的任务规划能力边界。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;amp;mid=2651288666&amp;amp;idx=1&amp;amp;sn=8bbada4ac098dd4390b3408be7fb1370&amp;amp;chksm=bc5c4580ddfec1da96d2cd899f4938f736fd762fb2dbd6a6936da15375329c04c98fa6bc9cfa&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">InfoQ</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-77264">1、复杂Agent架构性能优化：7个方向覆盖全生命周期，启动加速96%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;Agent架构&quot;</span> <span class="md-tag">&quot;性能优化&quot;</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，开发者分享复杂Agent架构性能优化经验，覆盖启动、编排、推理、持久化全生命周期。核心优化方向：分层就绪（启动从<strong>1200ms</strong>降至<strong>50ms</strong>）、引擎复用（消除重复工具调用）、Prompt裁剪（Token消耗降<strong>97%</strong>）、资源池化（沙箱获取从秒级降至亚秒）、异步持久化（单轮省<strong>200ms</strong>-2s）、预热预分配（首条消息&lt;<strong>50ms</strong>）、并行编排（请求编排省<strong>45%</strong>）。每个方向都有具体架构方案和实践数据。</p><p>📌 <strong>总结</strong>：该优化方案对Agent系统设计有直接参考价值，特别是对于通信设备供应商在开发网络运维Agent时，可借鉴分层就绪、资源池化、并行编排等策略。核心启示：Agent系统性能优化需要从全生命周期考虑，而非仅关注推理速度。建议进入日报正文。</p><p>来源：<a href="https://juejin.cn/post/7660902254526578728" target="_blank" rel="noreferrer">掘金 - frontend</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77005">2、UIUC提出GraphPlanner，将LLM路由从简单模型选择升级为多智能体工作流生成</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;GraphPlanner&quot;</span> <span class="md-tag">&quot;多智能体路由&quot;</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：UIUC研究人员于2026年7月提出Graph<strong>Planner</strong>，将LLM路由从传统的backbone selection推进到agentic workflow generation。Graph<strong>Planner</strong>在每一步同时决定调用哪个模型以及激活哪个智能体角色（Planner、<strong>Executor</strong>、<strong>Summarizer</strong>），并利用异构图记忆网络GARNet记录历史交互与当前工作流状态。在14个任务、6个领域的系统评估中，GraphPlanner相比最强baseline带来约<strong>9.3%</strong>的平均准确率提升，并展现出优秀的泛化能力，在out-of-domain任务上取得<strong>78%</strong>的平均准确率。</p><p>📌 <strong>总结</strong>：GraphPlanner代表了LLM路由从简单模型选择到多智能体工作流生成的重要演进。对于核心网设备供应商而言，这种动态工作流生成思想可借鉴到网络运维Agent的编排中，根据不同的网络故障场景动态组织多个专用模型协作处理。同时，图记忆网络的设计为构建可扩展的多模型协作系统提供了新范式。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;amp;mid=2652712432&amp;amp;idx=3&amp;amp;sn=16ed508986e394a232ff179f9b6f6847&amp;amp;chksm=f0297c3e5031619bd1432d8d798ab1292f79ffd4779e78c8dc625bcff0930bf51c8e5a13b20d&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">新智元</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77079">3、AgenticSTS用固定记忆层替代增长日志，在《Slay the Spire 2》中胜率翻倍且token消耗降至1/90</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;AgenticSTS&quot;</span> <span class="md-tag">&quot;记忆层&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：AgenticSTS项目由Alaya Lab与上海交通大学等机构发布，针对AI Agent在长任务（如《<strong>Slay</strong> the <strong>Spire</strong> 2》数百步决策）中的记忆管理问题。传统ReAct等方式将历史不断追加到上下文，导致token爆炸（STS2MCP一次调用达527k token）。AgenticSTS采用五个固定记忆层：L1协议指令、L2状态模式、L3检索规则、L4历史对局摘要、L5策略技能库。每次决策仅构建约<strong>5000 token</strong>提示词。在最低难度A0下，无记忆层胜率3/10，启用L5后升至6/10。对比公开Agent，每得一分仅消耗其1/66至1/90的token量，耗时仅四分之一。跨模型迁移测试显示记忆内容与创建模型强绑定。</p><p>📌 <strong>总结</strong>：AgenticSTS为Agent记忆架构提供了可复用的设计范式：通过分离固定知识、检索信息和技能库，在长任务中保持提示词短小。对智能体平台和推理服务板块，这种架构可显著降低推理成本和延迟。对技术预研规划师，L4跨局学习和L5技能库设计值得深入研究。建议评估在通信网络运维Agent等长场景中的应用潜力。</p><p>来源：<a href="https://aihot.virxact.com/items/cmrhi3rfa00gebimnokmso8g8" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-76981">4、MMLab联合清北开源SearchEyes，构建模拟搜索世界训练多模态搜索Agent，27B模型准确率领先开源基线6.2个点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">&quot;SearchEyes&quot;</span> <span class="md-tag">&quot;多模态搜索Agent&quot;</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：香港中文大学MMLab、清华大学、香港大学、北京大学等机构联合提出SearchEyes，一个面向多模态深度搜索的Search <strong>World</strong> Simulation框架。核心创新是构建一个自包含的模拟搜索世界（基于Wikidata5M等构建约<strong>120万</strong>实体、<strong>34万</strong>视觉实体、<strong>580万</strong>关系三元组的typed KG），同时承担数据生成器、交互环境和奖励结构三种角色。提出Perception-<strong>Knowledge Chain</strong>（<strong>PKC</strong>）保留多跳实体路径，以及Hop-<strong>Anchored Policy Optimization</strong>（<strong>HaPO</strong>）将路径变为步骤级奖励锚点。在六个多模态知识密集型benchmark上，<strong>SearchEyes-</strong>2<strong>7B</strong>平均准确率68.1，较最强开源基线OpenSearch-<strong>VL-</strong>3<strong>2B</strong>的61.9提升6.2个点。<strong>SearchEyes-</strong>9B平均59.3，接近<strong>30B</strong>级别基线。消融实验表明，P-K交替约束、反捷径过滤和<strong>HaPO</strong>步骤级奖励均对性能有显著贡献。</p><p>📌 <strong>总结</strong>：SearchEyes为多模态搜索Agent训练提供了可复现、可演化的标准化环境，通过数据-环境-算法协同设计解决了开源系统追赶闭源系统的关键瓶颈。对于AI前沿技术预研规划师，该工作展示了Agentic RL中环境构建和奖励塑形的重要性，可能推动Search、<strong>SWE</strong>、<strong>Computer</strong> Use等Agent场景的self-evolving能力。对于技术主管，SearchEyes的开源发布降低了多模态搜索Agent的研发门槛。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561108&amp;amp;idx=1&amp;amp;sn=2378d7f39aada2b78d5263d19097fda6&amp;amp;chksm=cf9c49fd24c7a30544905690c3b3efcb424ba632718f2b06484328d87b078fc7bd5ddebfbb81&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-77034">1、开源Mesh LLM发布：基于iroh实现分布式推理，池化多机GPU运行大模型</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">&quot;Mesh LLM&quot;</span> <span class="md-tag">&quot;分布式推理&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>Mesh</strong> LLM于2026年7月12日发布，是一个基于iroh点对点网络库的开源分布式AI计算项目。它可将用户多台机器的GPU和内存池化，对外暴露兼容<strong>OpenAI</strong>的API（localhost:9337/v1）。请求处理有三种模式：本地GPU运行、路由到已加载模型的对等节点、或将模型按层流水线拆分到多台机器（内部称Skippy）。内置40多个模型，从<strong>5亿</strong>参数到<strong>235B</strong> <strong>MoE</strong>。软件体积约<strong>18MB</strong>，启动即服务。通信依赖iroh的QUIC连接和ALPN协商，无需中央服务器。</p><p>📌 <strong>总结</strong>：<strong>Mesh</strong> LLM代表了一种去中心化推理基础设施的趋势，对<strong>AI推理与服务加速</strong>板块有直接意义。它使团队能够利用闲置GPU资源运行大模型，降低对云API的依赖，增强数据隐私和控制。对技术预研规划师而言，这种P2P推理架构可能重塑边缘推理部署策略；对核心网架构师，其网络穿透和流式激活值传输技术值得关注。建议部署试用，评估在私有集群和边缘场景的实用性。</p><p>来源：<a href="https://aihot.virxact.com/items/cmrh78s5t00w5bir7mozf8oyb" target="_blank" rel="noreferrer">AIHot Virxact 精选TOP RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77056">2、邵猛提出为Claude Fable 5设计成本高效Harness，以34%成本达90%性能</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">&quot;Claude Fable 5&quot;</span> <span class="md-tag">&quot;成本高效Harness&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：邵猛在2026年7月12日的推文中详细阐述了为Claude <strong>Fable</strong> 5设计成本高效Harness的方法。核心思路是利用任务token智能需求的不对称性：少数token需要前沿判断力，多数token只需廉价执行。他提出了三种分配模式：<strong>Orchestrator</strong>（编排）、<strong>Advisor</strong>（顾问）、<strong>Verifier</strong>（验证）。实验一：<strong>Fable</strong> 5作顾问+<strong>Sonnet</strong> 5作执行者，在Parameter Golf任务中以<strong>34%</strong> token成本达到Fable-solo约<strong>90%</strong>的增益，发现中段检查点纠偏比前置规划更关键。实验二：BrowseComp完整集（~31M tokens/题）实现<strong>96%</strong>分数/<strong>46%</strong>成本，易子集无收益。四条设计准则包括审视任务形状、使用委派启发式、评估协调成本、保证prompt cache命中。</p><p>📌 <strong>总结</strong>：该方法为推理服务成本优化提供了系统性的工程框架，尤其适用于需要混合使用不同能力层级模型的场景。对于AI推理服务加速领域，该方案可直接应用于vLLM、SGLang等serving系统的调度策略设计，通过动态委派降低token成本。同时，对核心网运维Agent的部署也有参考价值，可在保证任务质量的前提下大幅降低推理成本。</p><p>来源：<a href="https://aihot.virxact.com/items/cmrht36c300d1biid9m34tktd" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-77020">1、阶跃星辰发布Step Edge端侧模型全家桶，补齐Agent本地执行关键拼图</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">&quot;Step Edge&quot;</span> <span class="md-tag">&quot;端侧模型&quot;</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：阶跃星辰于2026年7月发布<strong>Step</strong> Edge端侧模型全家桶，包含4款模型：<strong>Step</strong> Edge基础模型覆盖文本与视觉理解，<strong>Step Edge</strong> Audio强化语音与音频交互，<strong>Step Edge</strong> GUI强化屏幕理解和界面操作，Step Edge Gen强化端侧图像生成与编辑。配套自研Step <strong>Inference</strong> NPU引擎，<strong>1024 token</strong>文本输入延迟<strong>4.33秒</strong>，768分辨率图像延迟<strong>5.61秒</strong>，<strong>30秒</strong>语音输入延迟<strong>10.7秒</strong>。</p><p>📌 <strong>总结</strong>：<strong>Step</strong> Edge的发布使阶跃星辰完成“<strong>Pro+Flash+Edge</strong>”云端协同矩阵，端侧模型作为Agent本地执行层，负责实时环境感知、GUI操作和隐私数据处理。对于核心网设备供应商而言，端云协同的架构思想可借鉴到网络运维Agent的设计中，将实时性要求高的任务在终端处理，复杂推理任务上云。</p><p>来源：<a href="http://weixin.sogou.com/weixin?type=2&amp;amp;query=%E6%96%B0%E6%99%BA%E5%85%83+%E8%BF%99%E5%AE%B6%E5%85%AD%E5%B0%8F%E9%BE%99%E4%B8%8A%E6%96%B0%E5%85%A8%E5%AE%B6%E6%A1%B6%EF%BC%8CAgent%E6%8E%A5%E7%AE%A1%E7%BB%88%E7%AB%AF%E5%85%B3%E9%94%AE%E4%B8%80%E6%88%98%EF%BC%81%E8%80%81%E9%BB%84%E9%A2%84%E8%A8%80%E6%97%B6%E4%BB%A3%E6%9D%A5%E4%BA%86" target="_blank" rel="noreferrer">新智元 微信公众号</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-76997">1、TikTok与NUS提出CAMEL置信度门控反思，让奖励模型更准更高效</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">&quot;CAMEL&quot;</span> <span class="md-tag">&quot;奖励模型&quot;</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：TikTok与新加坡国立大学联合提出的CAMEL方法，将奖励建模改造为置信度门控反思。核心创新在于利用两个verdict token之间的log-probability margin作为零额外成本的置信度信号，先以单token给出初判，置信度足够高直接输出，置信度低才触发reflection复核。训练上引入Counterfactual <strong>Prefix Augmentation</strong>，通过GRPO训练使反思成为真正的自我修正机制。基于Qwen3-<strong>14B</strong>构建的CAMEL在RewardBench、<strong>RM-Bench</strong>、JudgeBench上平均准确率<strong>82.9%</strong>，较此前最佳提升<strong>3.2%</strong>，以<strong>14B</strong>参数超过多个<strong>70B</strong>级奖励模型。</p><p>📌 <strong>总结</strong>：CAMEL体现了“把计算花在真正困难的地方”这一原则，为奖励模型提供了可调节的准确率-成本Pareto前沿。对于需要高频调用奖励模型的线上系统，省去无差别的长reasoning意味着可观的成本收益。该方法可广泛应用于RLHF、RLAIF等后训练流程，降低对齐成本的同时保持甚至提升模型对齐质量。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651043906&amp;amp;idx=2&amp;amp;sn=b664726db41281efe1ba814d26ae887c&amp;amp;chksm=8548d920de8925feb54366855eece18c8ed1e3fbdd380d996ed7cc1c48f011e467680db67b1c&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-77116">1、蚂蚁开源双模推理安全框架，面向智能体与多模态模型</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">&quot;蚂蚁&quot;</span> <span class="md-tag">&quot;安全框架&quot;</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，蚂蚁安全团队开源了两大安全框架：面向智能体安全的双模推理护栏框架SingGuard-<strong>NSFA</strong>（<strong>0.8B</strong>/<strong>2B</strong>/<strong>4B</strong>/<strong>9B</strong>四个尺寸）和面向多模态大模型的SingGuard（<strong>0.8B</strong>/<strong>2B</strong>/<strong>4B</strong>/<strong>8B</strong>）。SingGuard-<strong>NSFA</strong>基于NSFA风险分类体系，采用SFT生成式推理与判别式分类头双模式，判别式延迟低至45-<strong>57ms</strong>，骨干网络冻结，新增风险仅需补训轻量分类头；在3大评测基准上均取得SOTA，<strong>0.8B</strong>模型即可比肩<strong>8B</strong>竞品。SingGuard将安全规则作为运行时输入，支持快慢思考自动切换，并引入RI-Mask实现多规则并行审核，多模态推理最高提速<strong>5倍</strong>以上。</p><p>📌 <strong>总结</strong>：蚂蚁此次开源从底层定义了Agent行为安全和多模态感知安全的边界，提供可解释、可扩展的安全基础设施。对于部署Agent（如Claude <strong>Code</strong>、<strong>OpenClaw</strong>）的企业，该框架可替代零散补丁方案，降低安全运维成本。同时，其“冻结骨干+轻量分类头”的设计使系统能快速适应新风险，对AI安全框架标准化有示范意义。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;amp;mid=2247903091&amp;amp;idx=1&amp;amp;sn=6efa9d6657251390eda8017a73484478&amp;amp;chksm=e9b69eb30a427db80b089e892e6d537418eae17d449229c1be07dc99f51d4f44a93083b35e02&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">量子位</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-77410">1、Spectral Compute 推出 SCALE 编译器，让 CUDA 代码在 AMD GPU 上性能提升近 6 倍</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">&quot;SCALE编译器&quot;</span> <span class="md-tag">&quot;CUDA&quot;</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年7月12日，半导体行业观察报道，<strong>Spectral</strong> Compute公司开发了名为SCALE的编译器，采用CLang和LLVM技术，旨在替代英伟达的CUDA编译器NVCC，使CUDA代码能够在<strong>AMD</strong> GPU等非英伟达硬件上高效运行。该公司在ISC 2026大会上展示的基准测试显示，与使用HIPIFY将CUDA代码转换为<strong>AMD</strong> ROCm环境相比，SCALE在AMD GPU上实现了近<strong>6倍</strong>的性能提升。SCALE能充分利用底层硬件，超越其他CUDA兼容编译器的中等性能。</p><p>📌 <strong>总结</strong>：SCALE编译器若成功推广，将削弱英伟达CUDA生态的护城河，使AI芯片客户更容易转向<strong>AMD</strong>等替代硬件，从而影响AI算力硬件市场的竞争格局和定价权。对于AI推理与服务加速，这可能降低对英伟达GPU的依赖，增加供应多样性。</p><p>来源：<a href="https://www.163.com/dy/article/L1KLUEAL0511CPMT.html" target="_blank" rel="noreferrer">半导体行业观察 网易号</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-77241">2、云豹智能冲刺国产 DPU 第一股，腾讯为最大股东，自研 400Gbps 6nm SoC</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">&quot;云豹智能&quot;</span> <span class="md-tag">&quot;DPU&quot;</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年7月，深圳云豹智能股份有限公司创业板IPO申请获深交所受理，冲刺“国产DPU第一股”。公司由斯坦福博士萧启阳于2020年创办，自主研发国内首款高性能通用可编程DPU SoC芯片，网络带宽达400Gbps，相比传统方案性能提升<strong>4倍</strong>、功耗降低<strong>50%</strong>以上，仅用4年完成从FPGA验证到6nm SoC量产。招股书显示，2025年营收<strong>3.7亿</strong>元（同比增长超<strong>900%</strong>），但净亏损<strong>11.9亿</strong>元。腾讯通过关联主体持股<strong>19.78%</strong>为第一大股东，红杉中国、深创投、淡马锡等参投。公司提供弹性网络与存储、虚拟化、安全及低时延RDMA等功能的一站式解决方案。</p><p>📌 <strong>总结</strong>：云豹智能IPO是国产DPU赛道的重要里程碑，DPU作为CPU+GPU之外的第三颗核心芯片，在AI数据中心中承担网络、存储、安全卸载功能，直接降低CPU负载并提升整体系统效率。对于AI基础设施规划师和架构师而言，云豹智能的400Gbps DPU和6nm工艺表明国产DPU已具备与国际产品竞争的能力，可纳入AI集群网络方案评估。腾讯的重仓也释放了产业资本对DPU长期价值的信心。该事件对<strong>AI与通算硬件</strong>板块有直接参考价值，建议进入日报正文。</p><p>来源：<a href="https://www.36kr.com/p/3892352153942530" target="_blank" rel="noreferrer">36氪 - hot-list / catalog</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-77106">1、ServiceTitan构建AI组装线实现85%遗留代码迁移自动化，项目周期从季度缩至数周</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">&quot;ServiceTitan&quot;</span> <span class="md-tag">&quot;代码迁移&quot;</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：ServiceTitan的首席AI工程师David Stein在QCon上分享了利用AI代理进行大规模遗留代码迁移的经验。面对几百个依赖复杂、文档不全的业务指标迁移任务，团队没有直接让AI处理整个代码库，而是构建了一条“组装线”：将大任务分解到AI能独立完成并验证的子任务粒度；为每个子任务建立可程序化判断通过/失败的验证器；配备CLI工具和上下文文件（如migration_goals.txt、migration_tasks.txt）；形成“上下文获取→编写代码→运行验证器→失败则重试”的自愈循环。最终<strong>85%</strong>的指标由AI自主完成迁移，仅<strong>15%</strong>复杂案例需人工介入，项目周期从数个季度缩短到数周。关键教训是验证器要极其精确，否则会产出垃圾结果。</p><p>📌 <strong>总结</strong>：该案例为大规模系统迁移提供了可复用的工程方法论，对技术主管和核心网架构师尤其有价值。它证明AI不需要无限聪明，只要任务分解粒度得当、验证机制严格，就能胜任复杂的代码重构。建议将在5GC升级、NFV迁移等场景中借鉴此“组装线”模式，可大幅降低迁移成本和风险。对AI前沿技术预研规划师，该实践也展示了AI代理的任务规划能力边界。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;amp;mid=2651288666&amp;amp;idx=1&amp;amp;sn=8bbada4ac098dd4390b3408be7fb1370&amp;amp;chksm=bc5c4580ddfec1da96d2cd899f4938f736fd762fb2dbd6a6936da15375329c04c98fa6bc9cfa&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">InfoQ</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>UIUC提出GraphPlanner，将LLM路由从简单模型选择升级为多智能体工作流生成</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>AgenticSTS用固定记忆层替代增长日志，在《Slay the Spire 2》中胜率翻倍且token消耗降至1/90</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>MMLab联合清北开源SearchEyes，构建模拟搜索世界训练多模态搜索Agent，27B模型准确率领先开源基线6.2个点</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>开源Mesh LLM发布：基于iroh实现分布式推理，池化多机GPU运行大模型</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>邵猛提出为Claude Fable 5设计成本高效Harness，以34%成本达90%性能</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>阶跃星辰发布Step Edge端侧模型全家桶，补齐Agent本地执行关键拼图</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>TikTok与NUS提出CAMEL置信度门控反思，让奖励模型更准更高效</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Spectral Compute 推出 SCALE 编译器，让 CUDA 代码在 AMD GPU 上性能提升近 6 倍</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>4</td></tr><tr><td>AI推理与服务加速</td><td>2</td></tr><tr><td>AI与通算硬件</td><td>2</td></tr><tr><td>AI模型</td><td>1</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>AI安全、可信与治理</td><td>1</td></tr><tr><td>基础竞争力</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>12</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
