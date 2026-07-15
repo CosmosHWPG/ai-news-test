@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-07-16</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-07-16</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-07-15T00:00:00+00:00 ~ 2026-07-16T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-07-15 20:46:58 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年07月16日</strong></p><p><strong>生成时间：2026-07-15 20:38 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：14 个 | 本期条目：17 条 | 覆盖板块：7 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 4 条，AI推理与服务加速 4 条，AI模型 4 条，模型训练 1 条，模型评测 1 条，AI安全、可信与治理 1 条，基础竞争力 2 条，合计 17 条。</li><li>日报内容：今日头条聚焦 <strong>CoLT：用潜思维链加速多模态推理10倍，仅需3步潜向量</strong>，并同步关注阿里发布Qwen-Audio-3.0-Realtime实时语音交互模型，综合排名超越GPT-Realtim…；2026年7月，开源项目 lfm-wasm 实现 350M 参数 LLM 纯浏览器端推理：无服务器、无 W…；OpenAI、Anthropic、xAI集体转向性价比竞争，大模型进入杰文斯时刻。</li><li>关键亮点：CoLT将多模态推理加速提升至10倍并保持更高精度；audio.cpp在RTX 5090上实现200倍以上实时TTS推理；中兴对RISC-V GLIBC深度优化使内存函数性能翻倍；以及AHA协议促成支付宝与OPPO智能体跨端互联落地。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-80723">CoLT：用潜思维链加速多模态推理10倍，仅需3步潜向量</a></li></ul><ul><li><a href="#event-81697">阿里发布Qwen-Audio-3.0-Realtime实时语音交互模型，综合排名超越GPT-Realtime-2</a></li></ul><ul><li><a href="#event-81589">2026年7月，开源项目 lfm-wasm 实现 350M 参数 LLM 纯浏览器端推理：无服务器、无 WebGPU、全 WASM SIMD…</a></li></ul><ul><li><a href="#event-81631">OpenAI、Anthropic、xAI集体转向性价比竞争，大模型进入杰文斯时刻</a></li></ul><ul><li><a href="#event-81594">audio.cpp 0.3 发布，在 RTX 5090 上实现 200 倍以上实时 TTS 推理加速</a></li></ul><ul><li><a href="#event-81569">中兴对RISC-V架构下GLIBC进行向量优化，内存函数性能翻倍</a></li></ul><ul><li><a href="#event-81404">JoLT：基于联合Tucker分解与JL残差分配的LLM KV缓存近无损压缩方法</a></li></ul><ul><li><a href="#event-81768">PrismML Bonsai-27B 1-bit模型上线Hugging Face，支持本地推理</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-81186">1、阿里云 AgentScope Java 在线训练插件发布，实现智能体自我进化</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">阿里云</span> <span class="md-tag">在线训练</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，<strong>阿里云</strong>发布 <strong>AgentScope Java</strong> <strong>在线训练</strong>插件，旨在解决智能体部署后能力静态化的问题。该插件支持使用真实生产数据通过 <strong>Trinity-RFT</strong> 强化学习进行<strong>在线训练</strong>，使智能体能够持续适应业务变化、工具演化和用户行为漂移。插件解决了传统离线训练中模拟环境与生产环境不匹配的问题，并填补了 <strong>Java</strong> 生态在 <strong>RFT</strong> 框架上的空白。</p><p>📌 <strong>总结</strong>：<strong>AgentScope Java</strong> <strong>在线训练</strong>插件将强化学习引入生产环境，使智能体具备自我进化能力，对客服自动化、运维诊断等长期运行场景具有重要价值。该方案降低了训练与部署的环境差异，并扩展了 <strong>Java</strong> 企业级应用在 AI 优化方面的能力。对运营商和设备商而言，可参考此方案设计网络运维 <strong>Agent</strong> 的持续学习机制。</p><p>来源：<a href="https://www.alibabacloud.com/blog/the-more-the-agent-is-used-the-smarter-it-becomes-the-agentscope-java-online-training-plugin-is-here_602866" target="_blank" rel="noreferrer">阿里云博客</a></p><p>原文标题：The More the Agent Is Used, the Smarter It Becomes? The AgentScope Java Online Training Plugin is Here! - Alibaba Cloud Community</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81770">2、阿里云发布Agent运行时ANOLISA v0.3，强化安全与Token管理能力</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">阿里云 ANOLISA</span> <span class="md-tag">Agent安全</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，阿里云技术博客发布了ANOLISA v0.3的详细技术文章。ANOLISA被定位为新一代Agent操作系统（<strong>Agentic OS</strong>），在传统操作系统之上提供一个转化层，更好地支持Agent运行。v0.3版本主要针对三类用户反馈的痛点：安全担忧（恶意Prompt、第三方Skill篡改、误命令）、操作无法恢复、Token消耗不够透明。新功能包括：多层安全防护网络、Token消耗可视化仪表盘、以及即时工作空间回滚能力。阿里云CTO李飞飞在5月20日的阿里云峰会上已将ANOLISA定位为Agent基础设施全景图的计算能力基础层。对于AI前沿技术预研规划师和技术主管，ANOLISA代表了Agent运行时基础设施的重要发展方向。</p><p>📌 <strong>总结</strong>：<strong>ANOLISA</strong> v0.3的发布标志着Agent运行时从专用功能向系统级平台的演进。对于技术主管，该产品提供了在操作系统层面管理<strong>Agent安全</strong>、成本和可恢复性的完整解决方案，可大幅降低企业部署Agent的安全顾虑。其Token消耗可视化功能直接回应了企业对LLM成本的关注。对于核心网架构师，<strong>ANOLISA</strong>的“Agent操作系统”模式与网络功能虚拟化（<strong>NFV</strong>）的思路有相似之处，可作为未来网络Agent运行时的参考架构。</p><p>来源：<a href="https://www.alibabacloud.com/blog/the-more-capable-the-agent-the-less-you-dare-to-let-go-anolisa-gives-it-full-protection_603360" target="_blank" rel="noreferrer">阿里云博客</a></p><p>原文标题：The More Capable the Agent, the Less You Dare to Let Go? ANOLISA Gives It Full Protection - Alibaba Cloud Community</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81705">3、支付宝与OPPO基于AHA协议实现智能体跨端互联，近200项服务可语音调用</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">支付宝阿宝</span> <span class="md-tag">AHA协议</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月15日，支付宝与OPPO宣布正式达成智能体跨端互联合作，基于双方此前共建的AHA（<strong>Agent Hub Access</strong>）协议，OPPO手机用户可通过系统级AI助手“小布”以自然语言指令直接调用支付宝AI助手“阿宝”整合的近200项生活服务，涵盖电影购票、外卖点餐、社保公积金查询等场景。该协议于2025年10月在OPPO开发者大会上首次亮相，旨在实现系统级AI与第三方智能体的高效协同。安全机制上，小布仅负责语音指令接收与传达，不触碰账户信息；阿宝仅执行服务调用，不控制手机系统，涉及资金或隐私的操作须用户亲手确认，支付宝多维风控系统全程保障。目前该功能已在OPPO手机端上线，标志着支付宝AI开放平台“一次接入、多端分发”模式在手机终端的重要落地，未来可扩展至车机、智能眼镜等终端。</p><p>📌 <strong>总结</strong>：支付宝与OPPO的智能体跨端合作，通过<strong>AHA协议</strong>标准化了手机厂商与AI服务之间的互操作接口，为智能体生态的跨设备分发提供了可复用的技术路径。对于技术预研规划师而言，<strong>AHA协议</strong>的设计思路（功能抽象、安全隔离、多端适配）可作为MCP/A2A等协议之外的参考实现。对于5G/6G标准专家，这种跨端智能体协同模式可能影响未来网络API（如CAMARA）的调用范式和QoS需求。商业主管可关注该模式对移动端AI应用入口的争夺，以及支付宝作为超级App向AI服务中台演进的趋势。</p><p>来源：<a href="https://www.ithome.com/0/976/823.htm" target="_blank" rel="noreferrer">AIHot Virxact 新闻资讯热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81740">4、Airtap iMessage新功能：发条短信让AI替你在手机上操作</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Airtap</span> <span class="md-tag">云手机Agent</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Airtap</strong>推出iMessage新功能，用户只需给美国号码发一条iMessage，其云手机上的AI Agent就能通过视觉模拟点击，替用户完成TikTok刷视频、星巴克点单等操作，无需安装对应App。其架构分为三层：大脑（理解指令）、<strong>AutoPilot</strong>（视觉操控屏幕）、云手机（<strong>24小时</strong>在线）。但支付等敏感操作仍需用户手动完成，信任与授权仍是所有Agent厂商的难题。</p><p>📌 <strong>总结</strong>：<strong>Airtap</strong>的iMessage Agent展示了AI Agent通过云手机和视觉操控实现跨App任务执行的能力，打破了传统App入口逻辑，用户无需安装App即可使用服务。这对移动互联网产品形态可能产生深远影响，但信任和授权问题仍是商业化障碍。对于智能体平台预研，该架构（云手机+视觉操控）是MCP/工具调用之外的另一条路径，值得关注其安全性和用户体验。</p><p>来源：<a href="https://x.com/AYi_AInotes/status/2077217295504490992" target="_blank" rel="noreferrer">AIHot Virxact X 热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-80723">1、CoLT：用潜思维链加速多模态推理10倍，仅需3步潜向量</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">CoLT</span> <span class="md-tag">潜思维链</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，南洋理工大学、上海交通大学、南开大学、天津大学联合发表论文《<strong>CoLT</strong>: <strong>Teaching Multi-Modal Models</strong> to <strong>Think</strong> with <strong>Chain</strong> of <strong>Latent Thoughts</strong>》，被ECCV 2026接收。<strong>CoLT</strong>将多模态大模型的推理过程从生成L步显式文本替换为仅K步（默认3）潜思维向量，每一步对应语言模型最后一层隐状态。通过前向解码、后向解码和内部步间预测三重监督，在无约束潜空间中保证语义。在Qwen3-<strong>VL-</strong>8B骨干上，CoLT在八个基准平均<strong>79.1%</strong>，超越Text <strong>CoT</strong>（<strong>75.7%</strong>）和现有潜推理方法，同时生成加速<strong>22.6倍</strong>，端到端加速<strong>10.1倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>CoLT</strong>为多模态推理加速提供了高效方案，证明了潜空间推理可以超越文本CoT的性能。对于<strong>AI推理与服务加速</strong>，该方法可显著降低推理延迟和成本。对于核心网中的AI应用（如智能运维），类似技术可加速实时决策。但当前仅验证了<strong>8B</strong>模型，更大模型效果待验证。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651044420&amp;amp;idx=3&amp;amp;sn=df13d7f8f1e20f5078af81241e87ae5f&amp;amp;chksm=857a186d435912d7cb744764199cde2d2467ee423177898956c11ffe745aae402cb965c5d98a&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81404">2、JoLT：基于联合Tucker分解与JL残差分配的LLM KV缓存近无损压缩方法</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">KV缓存压缩+Tucker分解+JL残差分配</span> <span class="md-tag">LLM推理加速+内存优化</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Transformer推理中KV缓存已成为主要内存瓶颈，尤其在长上下文场景下限制吞吐量。现有低秩分解和量化方法仅利用二维冗余，未考虑缓存天然的三阶张量结构（头、token、特征轴）。JoLT方法将每层KV缓存建模为三阶张量，对token和特征轴进行部分Tucker分解，保留头和层轴完整，再通过Johnson-Lindenstrauss旋转的低比特残差恢复截断能量，并由拉格朗日对偶统一分配Tucker秩和残差位宽。在Mistral-<strong>7B</strong>（分组查询注意力）和LLaMA-2-<strong>13B</strong>（多头注意力）上，2-<strong>3倍</strong>压缩后困惑度、GSM8K准确率和RULER检索均与未压缩基线无统计差异；<strong>2倍</strong>压缩时相对Frobenius误差仅0.009（K）和0.006（V），比跨层SVD和4比特量化低一个数量级。FlashJoLT变体通过随机SVD将压缩时间加速5-<strong>13倍</strong>。</p><p>📌 <strong>总结</strong>：JoLT为LLM推理服务提供了一种近无损、高压缩比的KV缓存压缩方案，直接降低长上下文推理的内存成本和token成本，使相同硬件可支持更大批量和更长上下文。该方法不依赖模型权重修改，可集成到vLLM、SGLang等推理引擎中，提升服务吞吐和能效。对于AI基础设施规划师，这意味着在现有GPU集群上可显著提升长上下文任务的并发能力，降低每token推理成本。同时，张量分解思路可推广至其他注意力变体，为未来推理加速芯片的缓存架构设计提供参考。</p><p>来源：<a href="https://arxiv.org/abs/2607.12550" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：A JoLT for the KV Cache: Near-Lossless KV Cache Compression via Joint Tucker and JL-Residual Allocation for LLMs</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81594">3、audio.cpp 0.3 发布，在 RTX 5090 上实现 200 倍以上实时 TTS 推理加速</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">audio.cpp</span> <span class="md-tag">TTS推理加速</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>audio.cpp</strong> 项目于 2026 年 7 月发布 0.3 版本，新增 <strong>Supertonic</strong> 3、<strong>MOSS-</strong>TTS<strong>-Local</strong>、<strong>MOSS-</strong>TTS<strong>-Nano</strong>、<strong>IndexTTS2</strong> 和 <strong>Irodori-TTS</strong> 五个 TTS 模型。其中 <strong>Supertonic</strong> 3 在 <strong>RTX 5090</strong> 上达到 <strong>200 倍</strong>以上实时推理速度，<strong>CPU</strong> 上达到 <strong>6 倍</strong>以上实时，<strong>CUDA</strong> 流式模式下首 token 延迟约 47 毫秒。在演示中，使用《福尔摩斯探案集》作为输入，<strong>3 分钟</strong>生成了约 <strong>10 小时</strong>音频。由于官方 Supertonic 3 实现基于 <strong>ONNX</strong>，部分计算节点被送回 <strong>CPU</strong> 导致 <strong>GPU</strong> 利用率不足，<strong>audio.cpp</strong> 通过逆向推理路径并基于 safetensors 权重重建，在 <strong>CUDA</strong> 上大幅超越 <strong>Python</strong> 版本，CPU 性能持平或略优。<strong>IndexTTS2</strong> 长文本测试中，C++ 版本比 <strong>Python</strong> 快 <strong>5.65 倍</strong>。项目已开始逐步支持 <strong>GGUF</strong> 格式。</p><p>📌 <strong>总结</strong>：<strong>audio.cpp</strong> 0.3 展示了 C++/<strong>GGML</strong> 推理引擎在 <strong>TTS</strong> 场景下的巨大性能优势，<strong>200 倍</strong>以上实时推理能力使得大规模音频内容生成（如有声书、语音助手、客服录音）的延迟和成本大幅下降。对于 AI 推理与服务加速方向，该方案证明了通过底层引擎重写可以突破 <strong>ONNX</strong> 等框架的 <strong>GPU</strong> 利用瓶颈，为边缘端和实时语音应用提供了可复用的高性能开源参考。技术团队可评估将类似优化思路应用于自有 <strong>TTS</strong> 或语音合成服务的可行性，以降低推理基础设施投入。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1uwpvt9/audiocpp_10_hours_of_audio_generated_in_3_minutes/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：[audio.cpp] 10 hours of audio generated in 3 minutes on RTX 5090 (demo included)! C++/GGML based Supertonic 3, MOSS-TTS, IndexTTS2, and Irodori-TTS released</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81589">4、2026年7月，开源项目 lfm-wasm 实现 350M 参数 LLM 纯浏览器端推理：无服务器、无 WebGPU、全 WASM SIMD…</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">lfm-wasm</span> <span class="md-tag">浏览器推理</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>lfm-wasm</strong> 是 <strong>GitHub</strong> 上开源的纯 <strong>WebAssembly</strong> 推理引擎，针对 <strong>LiquidAI</strong> 的 <strong>LFM 2.5-350M</strong> 模型实现了 4-bit 量化（<strong>Q4_0</strong>）和自研 <strong>WASM SIMD</strong> 内核（gemm/gemv、<strong>GQA</strong> attention、conv、<strong>RoPE</strong>），不依赖任何线性代数库。它采用批处理预填充（batched prefill）避免逐 token 处理，并用 Q8 对注意力投影进行量化。项目将 <strong>285MB</strong> 权重托管于 <strong>Hugging Face</strong>，应用本身以静态页面部署在 <strong>GitHub</strong> Pages，加载时自动获取词表和权重，推理过程完全在本地浏览器中运行，无需后端、无需 <strong>WebGPU</strong>、无需网络。<strong>Reddit</strong> 上该帖子获得较高关注，GitHub 仓库已公开。该项目展示了在无 <strong>GPU</strong> 的普通设备上运行 <strong>LLM</strong> 的完整技术路径，包括手写优化内核、量化策略、流式传输与交互 UI，为边缘计算、<strong>IoT</strong> 终端等场景的低成本 AI 部署提供了可复用的工程范式。</p><p>📌 <strong>总结</strong>：从工程复用角度看，<strong>lfm-wasm</strong> 的纯 <strong>WASM</strong> 推理管线可直接移植到浏览器、移动端 <strong>WebView</strong> 或嵌入式 <strong>Jetson</strong> 等环境中，无需修改底层代码，显著降低边缘 <strong>LLM</strong> 部署的服务器依赖和运维成本。其手写 <strong>SIMD</strong> 内核和量化方案为其他小模型（如 <strong>1B</strong> 以下）的浏览器端推理提供了参考实现，尤其适合隐私敏感或网络受限场景（如医疗、工业现场）。该方案还展示了“模型权重托管于 HF + 应用静态部署于 <strong>Pages</strong>”的分发模式，使任何开发者都能快速搭建零服务器推理应用。对通信设备商而言，此技术可应用于核心网运维助手、边缘 <strong>UPF</strong> 的辅助决策等场景，在资源有限的网元上实现本地 AI 推理，减少对中心云端回传的依赖，同时提升数据安全与响应速度。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1uwt03y/no_gpu_ran_a_350m_llm_fully_in_the_browser_pure/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：No GPU? Ran a 350M LLM fully in the browser — pure WASM, 4-bit, zero server</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-81697">1、阿里发布Qwen-Audio-3.0-Realtime实时语音交互模型，综合排名超越GPT-Realtime-2</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Qwen-Audio-3.0</span> <span class="md-tag">语音交互</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，阿里通义实验室发布实时<strong>语音交互</strong>对话模型<strong>Qwen-Audio-3.0</strong>-Realtime（原Fun-<strong>Realtime-AudioChat</strong>），提供Plus（推理更强）和Flash（速度更快）两个版本。模型亮点包括：1）根据语境动态调整语气与情感表达，支持音色克隆；2）内置多模态双工控制模型，支持声纹级背景过滤；3）在Artificial Analysis的Speech Reasoning子项中综合排名第一，超越<strong>OpenAI</strong> <strong>GPT-Realtime-2</strong>；4）支持动态工具调用（FunctionCall标准协议，可接入MCP、<strong>API</strong>、知识库），具备Agentic能力。底层采用On-<strong>Policy</strong> Distillation和多教师蒸馏框架，将文本大模型的推理能力蒸馏至语音模型。在VoiceBench和AudioMultiChallenge等基准测试中表现优异。</p><p>📌 <strong>总结</strong>：<strong>Qwen-Audio-3.0</strong>-Realtime的发布代表阿里在实时<strong>语音交互</strong>领域取得了重要突破，在权威评测中超越GPT-<strong>Realtime-2</strong>，验证了其技术实力。更值得注意的是，该模型不仅具备高表现力的<strong>语音交互</strong>能力，还集成了Agentic能力（工具调用、MCP接入），使语音助手从“对话”升级为“行动”。这对AI应用场景有深远影响：语音交互将不再局限于问答，而是可以直接执行任务（如查天气、订日程、控制智能设备）。对于AI前沿技术预研规划师，该模型的多教师蒸馏框架和双工控制技术值得深入研究。</p><p>来源：<a href="https://mp.weixin.qq.com/s/hFp5rtV8-6KVRrgZoCj03A" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81768">2、PrismML Bonsai-27B 1-bit模型上线Hugging Face，支持本地推理</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Bonsai-27B开源</span> <span class="md-tag">MLX框架</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，PrismML在<strong>Hugging</strong> Face开源了Bonsai-<strong>27B</strong>的1-bit量化模型，模型ID为<strong>prism-ml/Bonsai-</strong>27B<strong>-mlx-1bit</strong>。该模型通过极致低比特技术将<strong>27B</strong>参数压缩至1-bit，支持在<strong>MLX框架</strong>（Apple的机器学习框架）上运行。开发者可通过mlx-lm工具在本地部署，并已支持与Pi <strong>Coding</strong> Agent和Hermes Agent等工具集成，提供OpenAI兼容的API接口。模型采用Qwen3作为基础模型进行量化，<strong>Hugging</strong> Face页面提供了详细的使用教程和示例代码。对于AI前沿技术预研规划师和技术主管，该开源资源降低了端侧<strong>27B</strong>模型的开发门槛。</p><p>📌 <strong>总结</strong>：<strong>Bonsai-</strong>27B<strong> 1-</strong>bit模型在Hugging Face上的开源，为开发者提供了一个可直接在Apple Silicon设备上部署的<strong>27B</strong>大模型方案。其与Pi Agent和Hermes Agent的兼容性进一步扩展了应用场景。对于技术主管，这一开源资源可加快端侧AI Agent的研发周期，无需从零开始训练或量化模型。该模型基于Qwen3，也间接加强了国内模型生态在端侧的影响力。</p><p>来源：<a href="https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：prism-ml/Bonsai-27B-mlx-1bit Text Generation • 2B • Updated about 8 hours ago • 23 • 35</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81631">3、OpenAI、Anthropic、xAI集体转向性价比竞争，大模型进入杰文斯时刻</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">OpenAI/Anthropic/xAI</span> <span class="md-tag">性价比</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Grok 4.5</strong>、<strong>GPT-5.6</strong>、<strong>Claude Sonnet</strong> 5在数天内密集发布。与以往不同，三家公司均将叙事重点从“最强模型”转向<strong>性价比</strong>：xAI强调<strong>Grok 4.5</strong>是“Opus级模型但更快更省token”；OpenAI将<strong>GPT-5.6</strong>目标定为“让每个token产出更多有用工作”，并推出Sol/<strong>Terra</strong>/Luna分层定价；Anthropic的Sonnet 5内置effort机制，允许开发者调节推理强度以控制成本。同时，国内模型如DeepSeek-<strong>V4-Flash</strong>、<strong>Qwen3-</strong>235B<strong>-A22B</strong>、腾讯混元Hy3等均采用MoE架构，以“大参数+小激活”降低单任务成本。这一趋势标志着大模型竞争从能力竞赛转向“单任务经济性”竞争，模型公司开始比拼单位任务的实际成本。</p><p>📌 <strong>总结</strong>：该趋势将深刻影响<strong>AI模型</strong>设计、推理服务和商业策略。对于技术预研规划师，需关注MoE架构优化和推理成本控制技术；对于商业主管，<strong>性价比</strong>竞争将重塑模型定价和生态位，云平台和开发者工具（如Amazon <strong>Bedrock Intelligent Prompt Routing</strong>）的模型路由功能将加速普及。建议进入日报正文。</p><p>来源：<a href="https://www.tmtpost.com/8065636.html" target="_blank" rel="noreferrer">钛媒体</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81461">4、Anthropic量化Claude模型版本与语言差异揭示AI行为随环境切换</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Anthropic</span> <span class="md-tag">人格量化</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong>于2026年7月15日发布一项基于<strong>30万</strong>条匿名真实对话的研究，首次系统性证明Claude模型家族的行为风格随模型版本和使用语言发生稳定变化。研究从<strong>70万</strong>条Claude.ai对话中识别出超3000种价值倾向，提炼出顺从vs谨慎、温暖vs严谨、深度vs简洁、坦诚vs执行四轴量化框架。<strong>Sonnet 4.</strong>6在温暖、顺从、简洁维度突出，更适合情绪陪伴；<strong>Opus 4.</strong>6偏向任务效率；<strong>Opus 4.</strong>7在谨慎、严谨、深度、坦诚四项登顶，更适合复杂分析。语言层面，印地语、阿拉伯语环境下Claude更温和，英语、俄语更严谨，中文语境下风格均衡。</p><p>📌 <strong>总结</strong>：该研究为大模型产品设计提供了明确的量化评估工具，使得开发者可以根据不同使用场景（如代码审查、情绪支持、深度分析）主动选择或微调模型版本，并针对不同语言用户定制交互风格。这标志着AI竞争正从单纯的能力比拼扩展到“人格”适配，可能影响未来模型的训练目标设定、多语言部署策略以及用户满意度优化。对于多语言AI产品（如全球客服、教育、医疗）的本地化体验提升具有直接指导价值。</p><p>来源：<a href="https://www.36kr.com/p/3896356568139652" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-81285">1、清华提出CompactionRL：将上下文压缩纳入强化学习，提升长程智能体性能</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">CompactionRL</span> <span class="md-tag">强化学习</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：清华大学提出<strong>CompactionRL</strong>，将上下文压缩纳入<strong>强化学习</strong>框架，联合优化任务执行与摘要生成。该方法在rollout过程中监控剩余上下文，当接近窗口上限时触发压缩，将历史轨迹压缩为摘要。为解决GRPO在变长轨迹中的权重偏差问题，提出cross-trajectory GAE修正局部优势。在64k峰值窗口、最多三次压缩的设置下，<strong>GLM-4.7-</strong>Flash在SWE-bench Verified上由<strong>50.5%</strong>提升至<strong>56.0%</strong>，在Terminal-<strong>Bench 2.</strong>0上由<strong>13.4%</strong>提升至<strong>20.2%</strong>；<strong>GLM-4.5-</strong>Air在80k×4压缩评测中分别取得<strong>66.8%</strong>和<strong>24.5%</strong>，绝对提升7.0和3.1个百分点。消融实验显示，移除token-level loss后SWE-bench Verified从<strong>66.8%</strong>降至<strong>60.0%</strong>，移除cross-trajectory GAE后降至<strong>63.0%</strong>。</p><p>📌 <strong>总结</strong>：<strong>CompactionRL</strong>揭示了长程智能体的本质瓶颈不在于窗口大小，而在于如何保留决定下一步行动的关键信息。该方法将上下文管理从“推理时压缩”转变为“面向任务回报的可学习决策”，为Agent的长期记忆和上下文管理提供了新的训练范式。对于AI前沿技术预研规划师，该工作为Agent的上下文压缩和<strong>强化学习</strong>训练提供了可复用的方法论，尤其适用于需要长程推理和工具调用的Agent场景。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk3NTQxNTEwNQ==&amp;amp;mid=2247485233&amp;amp;idx=1&amp;amp;sn=dca1147c496c6e3013ecb4e34085e496&amp;amp;chksm=c5984cfdda280c755bb24391b412971daefb1ce5878cf3b1d9fac0b900484ffe83c50711988e&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">MindChain.AI</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-81578">1、OpenAI 首款无屏智能音箱定位 AI 伴侣，多家机构看好其智能家居中枢潜力</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">AI模型+消费硬件+GPT-Live</span> <span class="md-tag">智能音箱 Object Detection</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong>正在将其AI能力从软件服务向消费硬件延伸，其首款硬件产品被定位为一款无屏幕、可移动的智能音箱，内部称为专为AI设计的家庭计算机。该设备内置摄像头和传感器以理解用户环境和语境，搭载GPT-Live系列模型实现类人化语音交互，并计划充当智能家居控制中枢，可播放媒体内容并进行AI聊天式交互。目前该产品仍处于开发阶段，尚未披露支持的智能家居协议、设备品牌或平台兼容性等细节。这一举措表明<strong>OpenAI</strong>试图通过物理硬件入口扩大用户触点，将大模型能力嵌入家庭场景，对既有的智能音箱和智能家居市场形成竞争威胁。</p><p>📌 <strong>总结</strong>：对目标读者的影响体现在三个层面：一是对AI前沿技术预研规划师而言，该设备集成的多模态感知（摄像头+传感器）和GPT-Live实时语音交互，要求推理服务在边缘侧保持低延迟和高可靠性，可能推动端侧推理芯片和模型压缩技术的新需求；二是对核心网架构师和5G/6G标准专家来说，家庭AI伴侣对高带宽低时延的室内连接（如Wi-Fi 7、5G室内小站）和计算与通信融合架构提出了更具体的要求；三是对技术主管和商业主管而言，<strong>OpenAI</strong>以无屏语音交互设备切入家庭市场，可能重新定义智能家居的交互范式和控制中心，带来AI应用产品化的<strong>新收入机会</strong>，同时给现有智能音箱厂商和生态平台带来直接的竞争压力。</p><p>来源：<a href="http://www.geekpark.net/news/367294" target="_blank" rel="noreferrer">极客公园</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-81488">1、豆包与通义千问下线智能体功能，国内首部AI拟人化互动服务新规今施行</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">豆包</span> <span class="md-tag">AI监管</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：字节豆包与阿里通义千问于7月15日下线智能体功能，用户无法新建或调用已有智能体。同日，五部门联合发布的《人工智能拟人化互动服务管理暂行办法》正式施行。新规不搞一刀切，明确智能客服、知识问答等工作助手不适用，重点监管虚拟伴侣、虚拟亲属等具有人格设定和情感陪伴属性的产品。豆包表示基础AI功能不受影响。新规还要求安全评估和算法备案。</p><p>📌 <strong>总结</strong>：该新规为AI拟人化服务设立了明确的监管红线，对企业开发情感类AI产品构成约束。对于通信运营商的数字人客服，若涉及情感陪伴需遵循相同法规。技术规划师应关注合规要求对AI人格化设计的影响，以及如何实现“工具型”AI与“情感型”AI的技术区隔。</p><p>来源：<a href="https://www.aibase.com/zh/news/29605" target="_blank" rel="noreferrer">AI Base 新闻</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-81398">1、Elaheh Hassani等提出FastAlign，稀疏感知最优传输框架实现网络对齐加速</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">FastAlign</span> <span class="md-tag">网络对齐</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Elaheh Hassani</strong>、<strong>Durga Mandarapu</strong>、Qi Yu等提出<strong>FastAlign</strong>，一种可扩展、稀疏感知的最优传输<strong>网络对齐</strong>框架。<strong>FastAlign</strong>保留原始OT公式，将其计算重新解释为一组重复的混合稀疏-稠密操作，结合稀疏感知图计算和领域特定核融合（包括自定义SpMM核）。实验结果表明，FastAlign在保持与最先进OT方法相当的对齐质量的同时，在CPU上实现3.89x-9.45x加速，在GPU上实现2.24x-32.54x加速。代码已开源。</p><p>📌 <strong>总结</strong>：<strong>FastAlign</strong>将最优传输<strong>网络对齐</strong>从高计算成本限制中解放出来，使其可应用于社交网络分析、欺诈检测、知识图谱集成等大规模场景。对于通信网络中的网络拓扑对齐、多域网络关联等任务，该高效对齐框架可提升运维效率。</p><p>来源：<a href="https://arxiv.org/abs/2607.11952" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Scalable Optimal Transport Algorithm for Network Alignment</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81569">2、中兴对RISC-V架构下GLIBC进行向量优化，内存函数性能翻倍</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">中兴</span> <span class="md-tag">GLIBC</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：中兴针对RISC-V架构下的<strong>GLIBC</strong>进行了深度向量优化重构，充分利用RISC-V向量扩展（<strong>RVV</strong>）特性，包括自适应循环、高效尾部处理和内存带宽利用优化。在一款高性能RISC-V处理器平台与同等配置ARM平台上的Benchmark测试显示：memmove性能从0.37提升至0.97（<strong>2.54倍</strong>），memcpy-default从0.53提升至1.0（<strong>1.87倍</strong>），memcmp从0.47提升至0.99（<strong>2.08倍</strong>），memrchr和memchr分别达到1.32和1.23，大幅超越ARM基准。memset-default-zero提升<strong>1.83倍</strong>。</p><p>📌 <strong>总结</strong>：该优化将RISC-V芯片的理论算力转化为实际软件执行效率，使RISC-V平台在内存操作性能上接近甚至超越ARM，为RISC-V进入服务器、数据中心和AI推理等高性能场景提供了关键底层软件支撑。对RISC-V生态发展具有里程碑意义。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1313916.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-81186">1、阿里云 AgentScope Java 在线训练插件发布，实现智能体自我进化</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">阿里云</span> <span class="md-tag">在线训练</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，<strong>阿里云</strong>发布 <strong>AgentScope Java</strong> <strong>在线训练</strong>插件，旨在解决智能体部署后能力静态化的问题。该插件支持使用真实生产数据通过 <strong>Trinity-RFT</strong> 强化学习进行<strong>在线训练</strong>，使智能体能够持续适应业务变化、工具演化和用户行为漂移。插件解决了传统离线训练中模拟环境与生产环境不匹配的问题，并填补了 <strong>Java</strong> 生态在 <strong>RFT</strong> 框架上的空白。</p><p>📌 <strong>总结</strong>：<strong>AgentScope Java</strong> <strong>在线训练</strong>插件将强化学习引入生产环境，使智能体具备自我进化能力，对客服自动化、运维诊断等长期运行场景具有重要价值。该方案降低了训练与部署的环境差异，并扩展了 <strong>Java</strong> 企业级应用在 AI 优化方面的能力。对运营商和设备商而言，可参考此方案设计网络运维 <strong>Agent</strong> 的持续学习机制。</p><p>来源：<a href="https://www.alibabacloud.com/blog/the-more-the-agent-is-used-the-smarter-it-becomes-the-agentscope-java-online-training-plugin-is-here_602866" target="_blank" rel="noreferrer">阿里云博客</a></p><p>原文标题：The More the Agent Is Used, the Smarter It Becomes? The AgentScope Java Online Training Plugin is Here! - Alibaba Cloud Community</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81770">2、阿里云发布Agent运行时ANOLISA v0.3，强化安全与Token管理能力</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">阿里云 ANOLISA</span> <span class="md-tag">Agent安全</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，阿里云技术博客发布了ANOLISA v0.3的详细技术文章。ANOLISA被定位为新一代Agent操作系统（<strong>Agentic OS</strong>），在传统操作系统之上提供一个转化层，更好地支持Agent运行。v0.3版本主要针对三类用户反馈的痛点：安全担忧（恶意Prompt、第三方Skill篡改、误命令）、操作无法恢复、Token消耗不够透明。新功能包括：多层安全防护网络、Token消耗可视化仪表盘、以及即时工作空间回滚能力。阿里云CTO李飞飞在5月20日的阿里云峰会上已将ANOLISA定位为Agent基础设施全景图的计算能力基础层。对于AI前沿技术预研规划师和技术主管，ANOLISA代表了Agent运行时基础设施的重要发展方向。</p><p>📌 <strong>总结</strong>：<strong>ANOLISA</strong> v0.3的发布标志着Agent运行时从专用功能向系统级平台的演进。对于技术主管，该产品提供了在操作系统层面管理<strong>Agent安全</strong>、成本和可恢复性的完整解决方案，可大幅降低企业部署Agent的安全顾虑。其Token消耗可视化功能直接回应了企业对LLM成本的关注。对于核心网架构师，<strong>ANOLISA</strong>的“Agent操作系统”模式与网络功能虚拟化（<strong>NFV</strong>）的思路有相似之处，可作为未来网络Agent运行时的参考架构。</p><p>来源：<a href="https://www.alibabacloud.com/blog/the-more-capable-the-agent-the-less-you-dare-to-let-go-anolisa-gives-it-full-protection_603360" target="_blank" rel="noreferrer">阿里云博客</a></p><p>原文标题：The More Capable the Agent, the Less You Dare to Let Go? ANOLISA Gives It Full Protection - Alibaba Cloud Community</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81705">3、支付宝与OPPO基于AHA协议实现智能体跨端互联，近200项服务可语音调用</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">支付宝阿宝</span> <span class="md-tag">AHA协议</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月15日，支付宝与OPPO宣布正式达成智能体跨端互联合作，基于双方此前共建的AHA（<strong>Agent Hub Access</strong>）协议，OPPO手机用户可通过系统级AI助手“小布”以自然语言指令直接调用支付宝AI助手“阿宝”整合的近200项生活服务，涵盖电影购票、外卖点餐、社保公积金查询等场景。该协议于2025年10月在OPPO开发者大会上首次亮相，旨在实现系统级AI与第三方智能体的高效协同。安全机制上，小布仅负责语音指令接收与传达，不触碰账户信息；阿宝仅执行服务调用，不控制手机系统，涉及资金或隐私的操作须用户亲手确认，支付宝多维风控系统全程保障。目前该功能已在OPPO手机端上线，标志着支付宝AI开放平台“一次接入、多端分发”模式在手机终端的重要落地，未来可扩展至车机、智能眼镜等终端。</p><p>📌 <strong>总结</strong>：支付宝与OPPO的智能体跨端合作，通过<strong>AHA协议</strong>标准化了手机厂商与AI服务之间的互操作接口，为智能体生态的跨设备分发提供了可复用的技术路径。对于技术预研规划师而言，<strong>AHA协议</strong>的设计思路（功能抽象、安全隔离、多端适配）可作为MCP/A2A等协议之外的参考实现。对于5G/6G标准专家，这种跨端智能体协同模式可能影响未来网络API（如CAMARA）的调用范式和QoS需求。商业主管可关注该模式对移动端AI应用入口的争夺，以及支付宝作为超级App向AI服务中台演进的趋势。</p><p>来源：<a href="https://www.ithome.com/0/976/823.htm" target="_blank" rel="noreferrer">AIHot Virxact 新闻资讯热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-80723">1、CoLT：用潜思维链加速多模态推理10倍，仅需3步潜向量</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">CoLT</span> <span class="md-tag">潜思维链</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，南洋理工大学、上海交通大学、南开大学、天津大学联合发表论文《<strong>CoLT</strong>: <strong>Teaching Multi-Modal Models</strong> to <strong>Think</strong> with <strong>Chain</strong> of <strong>Latent Thoughts</strong>》，被ECCV 2026接收。<strong>CoLT</strong>将多模态大模型的推理过程从生成L步显式文本替换为仅K步（默认3）潜思维向量，每一步对应语言模型最后一层隐状态。通过前向解码、后向解码和内部步间预测三重监督，在无约束潜空间中保证语义。在Qwen3-<strong>VL-</strong>8B骨干上，CoLT在八个基准平均<strong>79.1%</strong>，超越Text <strong>CoT</strong>（<strong>75.7%</strong>）和现有潜推理方法，同时生成加速<strong>22.6倍</strong>，端到端加速<strong>10.1倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>CoLT</strong>为多模态推理加速提供了高效方案，证明了潜空间推理可以超越文本CoT的性能。对于<strong>AI推理与服务加速</strong>，该方法可显著降低推理延迟和成本。对于核心网中的AI应用（如智能运维），类似技术可加速实时决策。但当前仅验证了<strong>8B</strong>模型，更大模型效果待验证。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651044420&amp;amp;idx=3&amp;amp;sn=df13d7f8f1e20f5078af81241e87ae5f&amp;amp;chksm=857a186d435912d7cb744764199cde2d2467ee423177898956c11ffe745aae402cb965c5d98a&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81594">2、audio.cpp 0.3 发布，在 RTX 5090 上实现 200 倍以上实时 TTS 推理加速</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">audio.cpp</span> <span class="md-tag">TTS推理加速</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>audio.cpp</strong> 项目于 2026 年 7 月发布 0.3 版本，新增 <strong>Supertonic</strong> 3、<strong>MOSS-</strong>TTS<strong>-Local</strong>、<strong>MOSS-</strong>TTS<strong>-Nano</strong>、<strong>IndexTTS2</strong> 和 <strong>Irodori-TTS</strong> 五个 TTS 模型。其中 <strong>Supertonic</strong> 3 在 <strong>RTX 5090</strong> 上达到 <strong>200 倍</strong>以上实时推理速度，<strong>CPU</strong> 上达到 <strong>6 倍</strong>以上实时，<strong>CUDA</strong> 流式模式下首 token 延迟约 47 毫秒。在演示中，使用《福尔摩斯探案集》作为输入，<strong>3 分钟</strong>生成了约 <strong>10 小时</strong>音频。由于官方 Supertonic 3 实现基于 <strong>ONNX</strong>，部分计算节点被送回 <strong>CPU</strong> 导致 <strong>GPU</strong> 利用率不足，<strong>audio.cpp</strong> 通过逆向推理路径并基于 safetensors 权重重建，在 <strong>CUDA</strong> 上大幅超越 <strong>Python</strong> 版本，CPU 性能持平或略优。<strong>IndexTTS2</strong> 长文本测试中，C++ 版本比 <strong>Python</strong> 快 <strong>5.65 倍</strong>。项目已开始逐步支持 <strong>GGUF</strong> 格式。</p><p>📌 <strong>总结</strong>：<strong>audio.cpp</strong> 0.3 展示了 C++/<strong>GGML</strong> 推理引擎在 <strong>TTS</strong> 场景下的巨大性能优势，<strong>200 倍</strong>以上实时推理能力使得大规模音频内容生成（如有声书、语音助手、客服录音）的延迟和成本大幅下降。对于 AI 推理与服务加速方向，该方案证明了通过底层引擎重写可以突破 <strong>ONNX</strong> 等框架的 <strong>GPU</strong> 利用瓶颈，为边缘端和实时语音应用提供了可复用的高性能开源参考。技术团队可评估将类似优化思路应用于自有 <strong>TTS</strong> 或语音合成服务的可行性，以降低推理基础设施投入。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1uwpvt9/audiocpp_10_hours_of_audio_generated_in_3_minutes/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：[audio.cpp] 10 hours of audio generated in 3 minutes on RTX 5090 (demo included)! C++/GGML based Supertonic 3, MOSS-TTS, IndexTTS2, and Irodori-TTS released</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81589">3、2026年7月，开源项目 lfm-wasm 实现 350M 参数 LLM 纯浏览器端推理：无服务器、无 WebGPU、全 WASM SIMD…</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">lfm-wasm</span> <span class="md-tag">浏览器推理</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>lfm-wasm</strong> 是 <strong>GitHub</strong> 上开源的纯 <strong>WebAssembly</strong> 推理引擎，针对 <strong>LiquidAI</strong> 的 <strong>LFM 2.5-350M</strong> 模型实现了 4-bit 量化（<strong>Q4_0</strong>）和自研 <strong>WASM SIMD</strong> 内核（gemm/gemv、<strong>GQA</strong> attention、conv、<strong>RoPE</strong>），不依赖任何线性代数库。它采用批处理预填充（batched prefill）避免逐 token 处理，并用 Q8 对注意力投影进行量化。项目将 <strong>285MB</strong> 权重托管于 <strong>Hugging Face</strong>，应用本身以静态页面部署在 <strong>GitHub</strong> Pages，加载时自动获取词表和权重，推理过程完全在本地浏览器中运行，无需后端、无需 <strong>WebGPU</strong>、无需网络。<strong>Reddit</strong> 上该帖子获得较高关注，GitHub 仓库已公开。该项目展示了在无 <strong>GPU</strong> 的普通设备上运行 <strong>LLM</strong> 的完整技术路径，包括手写优化内核、量化策略、流式传输与交互 UI，为边缘计算、<strong>IoT</strong> 终端等场景的低成本 AI 部署提供了可复用的工程范式。</p><p>📌 <strong>总结</strong>：从工程复用角度看，<strong>lfm-wasm</strong> 的纯 <strong>WASM</strong> 推理管线可直接移植到浏览器、移动端 <strong>WebView</strong> 或嵌入式 <strong>Jetson</strong> 等环境中，无需修改底层代码，显著降低边缘 <strong>LLM</strong> 部署的服务器依赖和运维成本。其手写 <strong>SIMD</strong> 内核和量化方案为其他小模型（如 <strong>1B</strong> 以下）的浏览器端推理提供了参考实现，尤其适合隐私敏感或网络受限场景（如医疗、工业现场）。该方案还展示了“模型权重托管于 HF + 应用静态部署于 <strong>Pages</strong>”的分发模式，使任何开发者都能快速搭建零服务器推理应用。对通信设备商而言，此技术可应用于核心网运维助手、边缘 <strong>UPF</strong> 的辅助决策等场景，在资源有限的网元上实现本地 AI 推理，减少对中心云端回传的依赖，同时提升数据安全与响应速度。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1uwt03y/no_gpu_ran_a_350m_llm_fully_in_the_browser_pure/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：No GPU? Ran a 350M LLM fully in the browser — pure WASM, 4-bit, zero server</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-81697">1、阿里发布Qwen-Audio-3.0-Realtime实时语音交互模型，综合排名超越GPT-Realtime-2</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Qwen-Audio-3.0</span> <span class="md-tag">语音交互</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，阿里通义实验室发布实时<strong>语音交互</strong>对话模型<strong>Qwen-Audio-3.0</strong>-Realtime（原Fun-<strong>Realtime-AudioChat</strong>），提供Plus（推理更强）和Flash（速度更快）两个版本。模型亮点包括：1）根据语境动态调整语气与情感表达，支持音色克隆；2）内置多模态双工控制模型，支持声纹级背景过滤；3）在Artificial Analysis的Speech Reasoning子项中综合排名第一，超越<strong>OpenAI</strong> <strong>GPT-Realtime-2</strong>；4）支持动态工具调用（FunctionCall标准协议，可接入MCP、<strong>API</strong>、知识库），具备Agentic能力。底层采用On-<strong>Policy</strong> Distillation和多教师蒸馏框架，将文本大模型的推理能力蒸馏至语音模型。在VoiceBench和AudioMultiChallenge等基准测试中表现优异。</p><p>📌 <strong>总结</strong>：<strong>Qwen-Audio-3.0</strong>-Realtime的发布代表阿里在实时<strong>语音交互</strong>领域取得了重要突破，在权威评测中超越GPT-<strong>Realtime-2</strong>，验证了其技术实力。更值得注意的是，该模型不仅具备高表现力的<strong>语音交互</strong>能力，还集成了Agentic能力（工具调用、MCP接入），使语音助手从“对话”升级为“行动”。这对AI应用场景有深远影响：语音交互将不再局限于问答，而是可以直接执行任务（如查天气、订日程、控制智能设备）。对于AI前沿技术预研规划师，该模型的多教师蒸馏框架和双工控制技术值得深入研究。</p><p>来源：<a href="https://mp.weixin.qq.com/s/hFp5rtV8-6KVRrgZoCj03A" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81631">2、OpenAI、Anthropic、xAI集体转向性价比竞争，大模型进入杰文斯时刻</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">OpenAI/Anthropic/xAI</span> <span class="md-tag">性价比</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Grok 4.5</strong>、<strong>GPT-5.6</strong>、<strong>Claude Sonnet</strong> 5在数天内密集发布。与以往不同，三家公司均将叙事重点从“最强模型”转向<strong>性价比</strong>：xAI强调<strong>Grok 4.5</strong>是“Opus级模型但更快更省token”；OpenAI将<strong>GPT-5.6</strong>目标定为“让每个token产出更多有用工作”，并推出Sol/<strong>Terra</strong>/Luna分层定价；Anthropic的Sonnet 5内置effort机制，允许开发者调节推理强度以控制成本。同时，国内模型如DeepSeek-<strong>V4-Flash</strong>、<strong>Qwen3-</strong>235B<strong>-A22B</strong>、腾讯混元Hy3等均采用MoE架构，以“大参数+小激活”降低单任务成本。这一趋势标志着大模型竞争从能力竞赛转向“单任务经济性”竞争，模型公司开始比拼单位任务的实际成本。</p><p>📌 <strong>总结</strong>：该趋势将深刻影响<strong>AI模型</strong>设计、推理服务和商业策略。对于技术预研规划师，需关注MoE架构优化和推理成本控制技术；对于商业主管，<strong>性价比</strong>竞争将重塑模型定价和生态位，云平台和开发者工具（如Amazon <strong>Bedrock Intelligent Prompt Routing</strong>）的模型路由功能将加速普及。建议进入日报正文。</p><p>来源：<a href="https://www.tmtpost.com/8065636.html" target="_blank" rel="noreferrer">钛媒体</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81461">3、Anthropic量化Claude模型版本与语言差异揭示AI行为随环境切换</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Anthropic</span> <span class="md-tag">人格量化</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong>于2026年7月15日发布一项基于<strong>30万</strong>条匿名真实对话的研究，首次系统性证明Claude模型家族的行为风格随模型版本和使用语言发生稳定变化。研究从<strong>70万</strong>条Claude.ai对话中识别出超3000种价值倾向，提炼出顺从vs谨慎、温暖vs严谨、深度vs简洁、坦诚vs执行四轴量化框架。<strong>Sonnet 4.</strong>6在温暖、顺从、简洁维度突出，更适合情绪陪伴；<strong>Opus 4.</strong>6偏向任务效率；<strong>Opus 4.</strong>7在谨慎、严谨、深度、坦诚四项登顶，更适合复杂分析。语言层面，印地语、阿拉伯语环境下Claude更温和，英语、俄语更严谨，中文语境下风格均衡。</p><p>📌 <strong>总结</strong>：该研究为大模型产品设计提供了明确的量化评估工具，使得开发者可以根据不同使用场景（如代码审查、情绪支持、深度分析）主动选择或微调模型版本，并针对不同语言用户定制交互风格。这标志着AI竞争正从单纯的能力比拼扩展到“人格”适配，可能影响未来模型的训练目标设定、多语言部署策略以及用户满意度优化。对于多语言AI产品（如全球客服、教育、医疗）的本地化体验提升具有直接指导价值。</p><p>来源：<a href="https://www.36kr.com/p/3896356568139652" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-81285">1、清华提出CompactionRL：将上下文压缩纳入强化学习，提升长程智能体性能</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">CompactionRL</span> <span class="md-tag">强化学习</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：清华大学提出<strong>CompactionRL</strong>，将上下文压缩纳入<strong>强化学习</strong>框架，联合优化任务执行与摘要生成。该方法在rollout过程中监控剩余上下文，当接近窗口上限时触发压缩，将历史轨迹压缩为摘要。为解决GRPO在变长轨迹中的权重偏差问题，提出cross-trajectory GAE修正局部优势。在64k峰值窗口、最多三次压缩的设置下，<strong>GLM-4.7-</strong>Flash在SWE-bench Verified上由<strong>50.5%</strong>提升至<strong>56.0%</strong>，在Terminal-<strong>Bench 2.</strong>0上由<strong>13.4%</strong>提升至<strong>20.2%</strong>；<strong>GLM-4.5-</strong>Air在80k×4压缩评测中分别取得<strong>66.8%</strong>和<strong>24.5%</strong>，绝对提升7.0和3.1个百分点。消融实验显示，移除token-level loss后SWE-bench Verified从<strong>66.8%</strong>降至<strong>60.0%</strong>，移除cross-trajectory GAE后降至<strong>63.0%</strong>。</p><p>📌 <strong>总结</strong>：<strong>CompactionRL</strong>揭示了长程智能体的本质瓶颈不在于窗口大小，而在于如何保留决定下一步行动的关键信息。该方法将上下文管理从“推理时压缩”转变为“面向任务回报的可学习决策”，为Agent的长期记忆和上下文管理提供了新的训练范式。对于AI前沿技术预研规划师，该工作为Agent的上下文压缩和<strong>强化学习</strong>训练提供了可复用的方法论，尤其适用于需要长程推理和工具调用的Agent场景。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk3NTQxNTEwNQ==&amp;amp;mid=2247485233&amp;amp;idx=1&amp;amp;sn=dca1147c496c6e3013ecb4e34085e496&amp;amp;chksm=c5984cfdda280c755bb24391b412971daefb1ce5878cf3b1d9fac0b900484ffe83c50711988e&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">MindChain.AI</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-81488">1、豆包与通义千问下线智能体功能，国内首部AI拟人化互动服务新规今施行</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">豆包</span> <span class="md-tag">AI监管</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：字节豆包与阿里通义千问于7月15日下线智能体功能，用户无法新建或调用已有智能体。同日，五部门联合发布的《人工智能拟人化互动服务管理暂行办法》正式施行。新规不搞一刀切，明确智能客服、知识问答等工作助手不适用，重点监管虚拟伴侣、虚拟亲属等具有人格设定和情感陪伴属性的产品。豆包表示基础AI功能不受影响。新规还要求安全评估和算法备案。</p><p>📌 <strong>总结</strong>：该新规为AI拟人化服务设立了明确的监管红线，对企业开发情感类AI产品构成约束。对于通信运营商的数字人客服，若涉及情感陪伴需遵循相同法规。技术规划师应关注合规要求对AI人格化设计的影响，以及如何实现“工具型”AI与“情感型”AI的技术区隔。</p><p>来源：<a href="https://www.aibase.com/zh/news/29605" target="_blank" rel="noreferrer">AI Base 新闻</a></p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-81398">1、Elaheh Hassani等提出FastAlign，稀疏感知最优传输框架实现网络对齐加速</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">FastAlign</span> <span class="md-tag">网络对齐</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Elaheh Hassani</strong>、<strong>Durga Mandarapu</strong>、Qi Yu等提出<strong>FastAlign</strong>，一种可扩展、稀疏感知的最优传输<strong>网络对齐</strong>框架。<strong>FastAlign</strong>保留原始OT公式，将其计算重新解释为一组重复的混合稀疏-稠密操作，结合稀疏感知图计算和领域特定核融合（包括自定义SpMM核）。实验结果表明，FastAlign在保持与最先进OT方法相当的对齐质量的同时，在CPU上实现3.89x-9.45x加速，在GPU上实现2.24x-32.54x加速。代码已开源。</p><p>📌 <strong>总结</strong>：<strong>FastAlign</strong>将最优传输<strong>网络对齐</strong>从高计算成本限制中解放出来，使其可应用于社交网络分析、欺诈检测、知识图谱集成等大规模场景。对于通信网络中的网络拓扑对齐、多域网络关联等任务，该高效对齐框架可提升运维效率。</p><p>来源：<a href="https://arxiv.org/abs/2607.11952" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Scalable Optimal Transport Algorithm for Network Alignment</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81569">2、中兴对RISC-V架构下GLIBC进行向量优化，内存函数性能翻倍</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">中兴</span> <span class="md-tag">GLIBC</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：中兴针对RISC-V架构下的<strong>GLIBC</strong>进行了深度向量优化重构，充分利用RISC-V向量扩展（<strong>RVV</strong>）特性，包括自适应循环、高效尾部处理和内存带宽利用优化。在一款高性能RISC-V处理器平台与同等配置ARM平台上的Benchmark测试显示：memmove性能从0.37提升至0.97（<strong>2.54倍</strong>），memcpy-default从0.53提升至1.0（<strong>1.87倍</strong>），memcmp从0.47提升至0.99（<strong>2.08倍</strong>），memrchr和memchr分别达到1.32和1.23，大幅超越ARM基准。memset-default-zero提升<strong>1.83倍</strong>。</p><p>📌 <strong>总结</strong>：该优化将RISC-V芯片的理论算力转化为实际软件执行效率，使RISC-V平台在内存操作性能上接近甚至超越ARM，为RISC-V进入服务器、数据中心和AI推理等高性能场景提供了关键底层软件支撑。对RISC-V生态发展具有里程碑意义。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1313916.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-81404">1、JoLT：基于联合Tucker分解与JL残差分配的LLM KV缓存近无损压缩方法</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">KV缓存压缩+Tucker分解+JL残差分配</span> <span class="md-tag">LLM推理加速+内存优化</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Transformer推理中KV缓存已成为主要内存瓶颈，尤其在长上下文场景下限制吞吐量。现有低秩分解和量化方法仅利用二维冗余，未考虑缓存天然的三阶张量结构（头、token、特征轴）。JoLT方法将每层KV缓存建模为三阶张量，对token和特征轴进行部分Tucker分解，保留头和层轴完整，再通过Johnson-Lindenstrauss旋转的低比特残差恢复截断能量，并由拉格朗日对偶统一分配Tucker秩和残差位宽。在Mistral-<strong>7B</strong>（分组查询注意力）和LLaMA-2-<strong>13B</strong>（多头注意力）上，2-<strong>3倍</strong>压缩后困惑度、GSM8K准确率和RULER检索均与未压缩基线无统计差异；<strong>2倍</strong>压缩时相对Frobenius误差仅0.009（K）和0.006（V），比跨层SVD和4比特量化低一个数量级。FlashJoLT变体通过随机SVD将压缩时间加速5-<strong>13倍</strong>。</p><p>📌 <strong>总结</strong>：JoLT为LLM推理服务提供了一种近无损、高压缩比的KV缓存压缩方案，直接降低长上下文推理的内存成本和token成本，使相同硬件可支持更大批量和更长上下文。该方法不依赖模型权重修改，可集成到vLLM、SGLang等推理引擎中，提升服务吞吐和能效。对于AI基础设施规划师，这意味着在现有GPU集群上可显著提升长上下文任务的并发能力，降低每token推理成本。同时，张量分解思路可推广至其他注意力变体，为未来推理加速芯片的缓存架构设计提供参考。</p><p>来源：<a href="https://arxiv.org/abs/2607.12550" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：A JoLT for the KV Cache: Near-Lossless KV Cache Compression via Joint Tucker and JL-Residual Allocation for LLMs</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-81578">1、OpenAI 首款无屏智能音箱定位 AI 伴侣，多家机构看好其智能家居中枢潜力</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">AI模型+消费硬件+GPT-Live</span> <span class="md-tag">智能音箱 Object Detection</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong>正在将其AI能力从软件服务向消费硬件延伸，其首款硬件产品被定位为一款无屏幕、可移动的智能音箱，内部称为专为AI设计的家庭计算机。该设备内置摄像头和传感器以理解用户环境和语境，搭载GPT-Live系列模型实现类人化语音交互，并计划充当智能家居控制中枢，可播放媒体内容并进行AI聊天式交互。目前该产品仍处于开发阶段，尚未披露支持的智能家居协议、设备品牌或平台兼容性等细节。这一举措表明<strong>OpenAI</strong>试图通过物理硬件入口扩大用户触点，将大模型能力嵌入家庭场景，对既有的智能音箱和智能家居市场形成竞争威胁。</p><p>📌 <strong>总结</strong>：对目标读者的影响体现在三个层面：一是对AI前沿技术预研规划师而言，该设备集成的多模态感知（摄像头+传感器）和GPT-Live实时语音交互，要求推理服务在边缘侧保持低延迟和高可靠性，可能推动端侧推理芯片和模型压缩技术的新需求；二是对核心网架构师和5G/6G标准专家来说，家庭AI伴侣对高带宽低时延的室内连接（如Wi-Fi 7、5G室内小站）和计算与通信融合架构提出了更具体的要求；三是对技术主管和商业主管而言，<strong>OpenAI</strong>以无屏语音交互设备切入家庭市场，可能重新定义智能家居的交互范式和控制中心，带来AI应用产品化的<strong>新收入机会</strong>，同时给现有智能音箱厂商和生态平台带来直接的竞争压力。</p><p>来源：<a href="http://www.geekpark.net/news/367294" target="_blank" rel="noreferrer">极客公园</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-81398">1、Elaheh Hassani等提出FastAlign，稀疏感知最优传输框架实现网络对齐加速</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">FastAlign</span> <span class="md-tag">网络对齐</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Elaheh Hassani</strong>、<strong>Durga Mandarapu</strong>、Qi Yu等提出<strong>FastAlign</strong>，一种可扩展、稀疏感知的最优传输<strong>网络对齐</strong>框架。<strong>FastAlign</strong>保留原始OT公式，将其计算重新解释为一组重复的混合稀疏-稠密操作，结合稀疏感知图计算和领域特定核融合（包括自定义SpMM核）。实验结果表明，FastAlign在保持与最先进OT方法相当的对齐质量的同时，在CPU上实现3.89x-9.45x加速，在GPU上实现2.24x-32.54x加速。代码已开源。</p><p>📌 <strong>总结</strong>：<strong>FastAlign</strong>将最优传输<strong>网络对齐</strong>从高计算成本限制中解放出来，使其可应用于社交网络分析、欺诈检测、知识图谱集成等大规模场景。对于通信网络中的网络拓扑对齐、多域网络关联等任务，该高效对齐框架可提升运维效率。</p><p>来源：<a href="https://arxiv.org/abs/2607.11952" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Scalable Optimal Transport Algorithm for Network Alignment</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-81768">1、PrismML Bonsai-27B 1-bit模型上线Hugging Face，支持本地推理</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Bonsai-27B开源</span> <span class="md-tag">MLX框架</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月15日，PrismML在<strong>Hugging</strong> Face开源了Bonsai-<strong>27B</strong>的1-bit量化模型，模型ID为<strong>prism-ml/Bonsai-</strong>27B<strong>-mlx-1bit</strong>。该模型通过极致低比特技术将<strong>27B</strong>参数压缩至1-bit，支持在<strong>MLX框架</strong>（Apple的机器学习框架）上运行。开发者可通过mlx-lm工具在本地部署，并已支持与Pi <strong>Coding</strong> Agent和Hermes Agent等工具集成，提供OpenAI兼容的API接口。模型采用Qwen3作为基础模型进行量化，<strong>Hugging</strong> Face页面提供了详细的使用教程和示例代码。对于AI前沿技术预研规划师和技术主管，该开源资源降低了端侧<strong>27B</strong>模型的开发门槛。</p><p>📌 <strong>总结</strong>：<strong>Bonsai-</strong>27B<strong> 1-</strong>bit模型在Hugging Face上的开源，为开发者提供了一个可直接在Apple Silicon设备上部署的<strong>27B</strong>大模型方案。其与Pi Agent和Hermes Agent的兼容性进一步扩展了应用场景。对于技术主管，这一开源资源可加快端侧AI Agent的研发周期，无需从零开始训练或量化模型。该模型基于Qwen3，也间接加强了国内模型生态在端侧的影响力。</p><p>来源：<a href="https://huggingface.co/prism-ml/Bonsai-27B-mlx-1bit" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：prism-ml/Bonsai-27B-mlx-1bit Text Generation • 2B • Updated about 8 hours ago • 23 • 35</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81740">1、Airtap iMessage新功能：发条短信让AI替你在手机上操作</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Airtap</span> <span class="md-tag">云手机Agent</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Airtap</strong>推出iMessage新功能，用户只需给美国号码发一条iMessage，其云手机上的AI Agent就能通过视觉模拟点击，替用户完成TikTok刷视频、星巴克点单等操作，无需安装对应App。其架构分为三层：大脑（理解指令）、<strong>AutoPilot</strong>（视觉操控屏幕）、云手机（<strong>24小时</strong>在线）。但支付等敏感操作仍需用户手动完成，信任与授权仍是所有Agent厂商的难题。</p><p>📌 <strong>总结</strong>：<strong>Airtap</strong>的iMessage Agent展示了AI Agent通过云手机和视觉操控实现跨App任务执行的能力，打破了传统App入口逻辑，用户无需安装App即可使用服务。这对移动互联网产品形态可能产生深远影响，但信任和授权问题仍是商业化障碍。对于智能体平台预研，该架构（云手机+视觉操控）是MCP/工具调用之外的另一条路径，值得关注其安全性和用户体验。</p><p>来源：<a href="https://x.com/AYi_AInotes/status/2077217295504490992" target="_blank" rel="noreferrer">AIHot Virxact X 热点</a></p></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>阿里云 AgentScope Java 在线训练插件发布，实现智能体自我进化</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>阿里云发布Agent运行时ANOLISA v0.3，强化安全与Token管理能力</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>支付宝与OPPO基于AHA协议实现智能体跨端互联，近200项服务可语音调用</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Airtap iMessage新功能：发条短信让AI替你在手机上操作</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>CoLT：用潜思维链加速多模态推理10倍，仅需3步潜向量</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>JoLT：基于联合Tucker分解与JL残差分配的LLM KV缓存近无损压缩方法</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>audio.cpp 0.3 发布，在 RTX 5090 上实现 200 倍以上实时 TTS 推理加速</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>2026年7月，开源项目 lfm-wasm 实现 350M 参数 LLM 纯浏览器端推理：无服务器、无 WebGPU、全 WASM SIMD…</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>4</td></tr><tr><td>AI推理与服务加速</td><td>4</td></tr><tr><td>AI模型</td><td>4</td></tr><tr><td>基础竞争力</td><td>2</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>模型评测</td><td>1</td></tr><tr><td>AI安全、可信与治理</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>17</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
