@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-07-15</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-07-15</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-07-14T00:00:00+00:00 ~ 2026-07-15T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-07-15 16:14:57 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年07月15日</strong></p><p><strong>生成时间：2026-07-15 13:01 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：12 个 | 本期条目：18 条 | 覆盖板块：10 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 3 条，AI推理与服务加速 3 条，AI模型 2 条，模型训练 3 条，模型评测 2 条，AI安全、可信与治理 1 条，AI与通算硬件 1 条，标准、协议与产业联盟 1 条，通信设备供应商 1 条，通信服务提供商 1 条，合计 18 条。</li><li>日报内容：今日头条聚焦 <strong>2026年7月，美团与北京大学联合开源Omni-Flow框架，通过三层抽象统一解决多模态推理工作流编排、数据传输与KV缓存共享挑战</strong>，并同步关注Airbnb 技术博客：通过确定性评估和微适配器将 LLM 评测周期从数周缩短至一天；蚂蚁集团开源SingGuard-NSFA 2B模型，Agent安全护栏F1超94%支持边缘部署；Prism ML 发布 Ternary-Bonsai-27B-gguf 模型，支持 2-bit 量化。</li><li>关键亮点：Omni-Flow推动多模态推理架构标准化，ToolAtlas提出提供者侧工具记忆新范式，FastTPS在NPU上实现6倍推理加速，Ant Group开源Agent安全护栏F1超94%。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-79883">2026年7月，美团与北京大学联合开源Omni-Flow框架，通过三层抽象统一解决多模态推理工作流编排、数据传输与KV缓存共享挑战</a></li></ul><ul><li><a href="#event-80979">Airbnb 技术博客：通过确定性评估和微适配器将 LLM 评测周期从数周缩短至一天</a></li></ul><ul><li><a href="#event-80443">蚂蚁集团开源SingGuard-NSFA 2B模型，Agent安全护栏F1超94%支持边缘部署</a></li></ul><ul><li><a href="#event-81180">Prism ML 发布 Ternary-Bonsai-27B-gguf 模型，支持 2-bit 量化</a></li></ul><ul><li><a href="#event-79924">中科大等机构发布AtomWorld基准测试，揭示大模型在原子操作任务中Scaling Law失效</a></li></ul><ul><li><a href="#event-79739">FastTPS在AMD Ryzen AI NPU上实现LLM Token阶段6倍加速，维持93%峰值带宽利用率</a></li></ul><ul><li><a href="#event-79717">UMoE通过修剪-重扩专家池实现MoE领域微调性能提升</a></li></ul><ul><li><a href="#event-79802">ToolAtlas：通过提供者侧工具记忆实现Agent工具调用的一次学习、处处复用，在MCP基准上提升21.61% pass@1</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-79802">1、ToolAtlas：通过提供者侧工具记忆实现Agent工具调用的一次学习、处处复用，在MCP基准上提升21.61% pass@1</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">智能体；工具调用；ToolAtlas</span> <span class="md-tag">提供者侧工具记忆</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>LLM</strong> Agent日益依赖外部工具，但现有方法通过在Agent侧进行参数更新、提示优化或记忆存储来改善工具使用，导致工具知识难以共享且局限于过去任务中观察到的行为。ToolAtlas提出在工具提供者侧构建持久化图结构工具记忆，通过执行验证的探测自动归纳工具能力边界、失败模式及跨工具组合。推理时，Agent通过自适应图遍历查询该记忆。在涵盖8个服务的两个MCP基准测试中，ToolAtlas在pass@1和pass@4上分别取得高达<strong>21.61%</strong>和<strong>18.61%</strong>的相对提升。同一工具记忆还能在不同环境实例和Agent框架间迁移，无需重新训练，迁移后pass@1/pass@4相对增益达<strong>24.16%</strong>/<strong>16.22%</strong>和<strong>17.49%</strong>/<strong>14.27%</strong>。该成果建立起<strong>提供者侧工具记忆</strong>作为有效且可复用的范式，对MCP工具服务器架构设计具有直接参考价值。</p><p>📌 <strong>总结</strong>：ToolAtlas改变了工具调用的架构重心：从Agent端记忆转向提供者侧记忆，显著减少Agent推理时的记忆开销，并避免任务间工具知识的碎片化。对AI工程平台而言，可将该框架集成到MCP工具服务器中，实现工具能力即插即用，无需每个Agent独立维护缓存。对推理服务，提供者侧记忆可集中管理，降低服务端复杂度并提升响应一致性。对模型训练，Agent无需针对新工具进行微调或Prompt工程即可复用已有工具知识，大幅提升研发效率。对评测，ToolAtlas在MCP基准上的跨环境迁移验证，为Agent工具调用能力提供了更可比的评估方法。总体而言，该范式有助于推动Agent工具生态的标准化和互操作性。</p><p>来源：<a href="https://arxiv.org/abs/2607.11126" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：ToolAtlas: Learning Once, Reusing Everywhere with Tool-Side Memory</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-79690">2、ToFu：面向研究者的白盒、Token高效智能体框架</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">智能体框架+Agent Harness+ToFu</span> <span class="md-tag">白盒、token效率、研究工具</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：现有agentic coding工具的性能既依赖大语言模型也依赖编排代码（harness），但现有框架存在token效率低、成本高、不透明等问题。ToFu是一个面向研究者的白盒、token高效智能体框架，能够读取代码库、编辑文件、运行命令并集成开发工具。作为研究助手，ToFu在token效率、成本和多语言能力上优于现有框架，且<strong>MIT</strong>许可支持本地部署；作为研究对象，它提供可检查、可修改的白盒设计，允许研究者深入分析编排逻辑和工具使用行为，同时保持强基准性能和应用级用户体验。</p><p>📌 <strong>总结</strong>：ToFu对Agent系统研发具有直接价值：其白盒特性使研究者能够透明地理解agent行为，加速编排逻辑的迭代与评估；token效率提升显著降低研究成本，支持更多实验探索；多语言能力和本地部署选项扩展了适用场景。该框架有望成为agent研究的标准工具，推动更高效、更可靠的智能体系统设计，并促进agent评测基准的完善。</p><p>来源：<a href="https://arxiv.org/abs/2607.11423" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：ToFu: A White-Box, Token-Efficient Agent Harness for Researchers</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-80133">3、MemOS 2.0发布：面向长程Agent任务的可成长记忆系统</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">MemOS</span> <span class="md-tag">Agent记忆</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：记忆张量发布<strong>MemOS</strong> 2.0，面向长程任务<strong>Agent</strong>进一步扩展。核心思路包括：以用户和<strong>Agent</strong>为中心进行运行状态管理，解决Agent对自身执行状态判断不准确问题；记忆版本化管理与进化，支持状态快照、淘汰、回滚和技能沉淀；持续探索记忆原生基座模型。Agent <strong>Memory</strong>从六维度增强：存储扩展至四类记忆统一管理；多路融合召回；三层漏斗去重（压缩率<strong>75%</strong>）；Mem2Skill技能转化；<strong>Memory</strong> Viewer可视化；团队协作Hub。日调用量超<strong>100万</strong>，社区9.7k star。</p><p>📌 <strong>总结</strong>：<strong>MemOS</strong> 2.0对<strong>Agent记忆</strong>系统提供了系统化解决方案，对智能体平台架构师有直接参考价值。其中去重压缩、技能转化和运行状态管理可降低Agent的token消耗并提升可靠性。对AI前沿技术预研规划师，记忆系统是Agent长期运行的关键瓶颈，该方案值得跟踪。</p><p>来源：<a href="https://www.infoq.cn/article/RivZJwpYltVDJX5imMUX?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-79883">1、2026年7月，美团与北京大学联合开源Omni-Flow框架，通过三层抽象统一解决多模态推理工作流编排、数据传输与KV缓存共享挑战</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Omni-Flow</span> <span class="md-tag">多模态推理</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：美团与北京大学在2026年7月联合开源的<strong>Omni-Flow</strong>框架，是针对多模态大模型推理系统碎片化问题的一个系统级方案。当前<strong>多模态推理</strong>需要异构计算单元（文本编码器、视觉编码器、<strong>LLM</strong>、扩散模型等）协同工作，但现有框架缺乏统一抽象，编排逻辑分散、数据传输与特定模型紧耦合、KV缓存无法跨角色共享，导致每集成一个新模型都需要高昂的改造成本。<strong>Omni-Flow</strong>通过三层抽象系统化解决：控制流层提供声明式DSL定义推理流水线，由框架自动处理调度和数据传输，支持流式逐帧激活和运行时动态分支选择；数据流层以全局参数池为中心，统一管理L1/L2/L3存储层次的KV缓存分配与回收，使任何角色或副本均可相互推送或拉取数据，无需硬编码配对；计算流层让扩散Transformer复用<strong>LLM</strong>推理引擎的执行基础设施（相同的引擎、调度栈、分页KV缓存和权重共享机制），强制两者采用相同并行语义，实现物理权重和KV缓存的直接共享。该项目已在SGLang上实现完整原型，并在DeepSeek-V2纯LLM推理、<strong>LongCat-</strong>Next多模态对话和HunyuanImage-3图像生成三种典型场景上验证了有效性。开源仓库为https://github.com/meituan-longcat/omni-flow.git。</p><p>📌 <strong>总结</strong>：<strong>Omni-Flow</strong>对AI推理基础设施的工程复用价值体现在三个层面。第一，声明式工作流抽象将<strong>多模态推理</strong>流水线的编排逻辑从业务代码中解耦，使集成新模型只需在DSL中声明角色和连接关系，无需修改调度和数据传输代码，显著降低模型拓扑快速演进下的适配成本。第二，统一数据平面通过全局参数池实现KV缓存和中间张量的零拷贝、跨角色、跨机器共享，同一GPU上多个共址角色可复用完全相同物理权重，将GPU内存开销降至接近单个副本水平，对资源受限的单节点部署和多机高性能部署均有直接收益。第三，计算流层强制扩散Transformer复用LLM推理栈，使得vLLM/SGLang等成熟LLM serving框架的优化技术（如PagedAttention、prefix caching、continuous batching）能够无缝应用于多模态生成任务，避免了为扩散模型单独维护一套推理栈的工程负担。对于从事推理系统研发或模型服务化的团队，<strong>Omni-Flow</strong>的设计思路——通过清晰抽象解耦复杂性、通过统一平面实现高效共享——可直接指导下一代<strong>多模态推理</strong>框架的架构选型。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561134&amp;amp;idx=1&amp;amp;sn=574738c448798a8ae5adcfde29ecd44d&amp;amp;chksm=cf267af635d77dafeefad2280bf75a3d45e31d261079b8f09bbfd47c33e1c105cf07fe2d5d17&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-81180">2、Prism ML 发布 Ternary-Bonsai-27B-gguf 模型，支持 2-bit 量化</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Prism ML</span> <span class="md-tag">2-bit量化</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月14日，<strong>Prism ML</strong> 在 <strong>Hugging Face</strong> 发布 <strong>Ternary-Bonsai-</strong>27B<strong>-gguf</strong> 模型，参数规模 <strong>27B</strong>，采用 2-bit 量化（ternary）和混合注意力机制（hybrid-attention），支持 llama.cpp、vLLM 等推理框架，适用于 <strong>CUDA</strong>、<strong>Metal</strong> 和端侧设备。模型许可证为 <strong>Apache-2.0</strong>，已获得 131 个点赞。</p><p>📌 <strong>总结</strong>：<strong>Ternary-Bonsai-27B</strong> 通过 2-bit 量化将 <strong>27B</strong> 模型压缩至极低比特，显著降低显存需求和推理成本，使得大模型在消费级 <strong>GPU</strong> 甚至端侧设备上运行成为可能。该技术路线对 AI 推理服务加速和边缘部署具有重要参考价值，可能推动更多低比特量化方案的研发和应用。</p><p>来源：<a href="https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：prism-ml/Ternary-Bonsai-27B-gguf Text Generation • 4B • Updated about 3 hours ago • 23 • • 131</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-80439">3、腾讯混元Hy3 295B模型推出1bit和4bit量化版，单卡可运行1bit版本</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">腾讯混元Hy3</span> <span class="md-tag">量化</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月14日，腾讯混元团队发布Hy3 <strong>295B</strong>旗舰模型的量化版本。1bit极限量化版本IQ1_M将权重从<strong>598 GB</strong>压缩至85.5 <strong>GiB</strong>，缩小<strong>6.7倍</strong>，单张96<strong>GiB</strong>推理显卡即可部署。4bit版本Q4_K_M体积169.9 GiB，两张显卡可承载。<strong>GPTQ</strong> Int4版本支持<strong>vLLM</strong>部署，天然享受高并发低延迟红利。4bit版本在Agent能力、多语言代码、工具调用、长文理解等任务上成绩贴近满血模型。配合MTP投机解码，1bit版本解码速度提升约<strong>50%</strong>，4bit版本提升近<strong>60%</strong>。所有版本已开源并打包为GGUF格式，适配llama.cpp生态。</p><p>📌 <strong>总结</strong>：Hy3量化版本使得<strong>295B</strong>参数级别的旗舰模型可以在单卡或双卡环境运行，大幅降低了推理部署的硬件成本。对于<strong>AI推理与服务加速</strong>场景，这提供了如何在有限资源下部署超大模型的有效方案。同时开源GGUF格式适配llama.cpp生态，有助于模型在更广泛社区中的传播和二次开发。</p><p>来源：<a href="https://mp.weixin.qq.com/s/Kq30ftirASryPrUtjK2xSw" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-78378">1、德国研究联盟发布开源MoE模型Soofi S30B-A3B，长上下文吞吐达8倍</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Soofi S</span> <span class="md-tag">Mamba-2</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：由德国人工智能协会协调的研究联盟正式发布开源大语言模型<strong>Soofi S</strong>3<strong>0B</strong>-A<strong>3B</strong>，采用混合专家架构，结合<strong>Mamba-2</strong>与标准注意力层，总参数量<strong>316亿</strong>，每个token激活约<strong>32亿</strong>参数。在<strong>4万</strong>token长度的上下文环境下，其生成吞吐量达到同规模传统稠密模型的<strong>8倍</strong>左右，且随上下文增加保持高度稳定性。训练数据具有德语偏好，德语数据占比从第一阶段<strong>7.2%</strong>提升至第二阶段<strong>15.3%</strong>，涵盖报纸、维基百科及专业技术文档。基准测试显示在英语和德语综合测试中超越OLMo<strong>332B</strong>和Apertus<strong>70B</strong>等模型，尤其在代码生成、专业推理及德国区域性知识测试中表现顶尖。整个训练在慕尼黑德国电信工业人工智能云上使用512块Nvidia B200GPU完成，由可再生能源驱动，将开源模型权重、训练评估代码及数据清单。</p><p>📌 <strong>总结</strong>：<strong>Soofi S</strong>的发布标志着欧洲主权AI基础设施建设的重要进展，其MoE+<strong>Mamba-2</strong>架构为长文本高效处理提供了新思路，<strong>8倍</strong>吞吐优势对推理服务成本有显著影响。对于技术预研规划师，该模型在长上下文场景下的架构设计（<strong>Mamba-2</strong>与注意力混合）和德语优化策略可借鉴；对于5G/6G标准专家，欧洲IPCEI-CIS项目背景下的开源AI基础设施为通信网络AI应用提供了可信赖的基座。</p><p>来源：<a href="https://www.aibase.com/zh/news/29563" target="_blank" rel="noreferrer">AI Base 新闻</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-78867">2、Thinking Machines披露未来技术路线，押注可训练权重与原生实时多模态</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Thinking Machines</span> <span class="md-tag">多模态</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：背景：<strong>Thinking Machines</strong>发表博客披露其技术与研究路线，强调通过可训练模型权重、原生实时<strong>多模态</strong>模型和去中心化对齐机制，把人类隐形知识与价值直接写入模型本体。动作：他们提出“interaction models”，在模型内部原生支持语音、视觉等<strong>多模态</strong>与低延迟交互，使智能体可以像人类同事那样边干边同步接受反馈。技术机制：不同于当前主流评估关注模型独立完成任务的时间，他们提出评估应从“人与模型协同增益”出发，并主张去中心化对齐，让不同组织在本地通过修改模型权重表达自身价值。结果：该路线旨在创造一个可被各组织持续微调、与本地业务迭代共演的AI系统，而非统一的“云端人格”。</p><p>📌 <strong>总结</strong>：该技术路线对<strong>AI模型</strong>架构设计具有重要启示：它挑战了当前以中心化API和统一人格为主的模型部署范式，提出了本地可微调、实时<strong>多模态</strong>交互的新方向。对于AI前沿技术预研规划师，这意味着需要关注模型权重的本地化微调技术、实时<strong>多模态</strong>交互架构以及去中心化对齐机制。对于核心网架构师，如果未来AI系统需要部署在边缘，这种可本地微调、低延迟交互的模型架构可能更适合网络边缘场景。</p><p>来源：<a href="https://www.rtecommunity.dev/t/t_GevgE7dUlPTdBE" target="_blank" rel="noreferrer">RTE Community</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-79717">1、UMoE通过修剪-重扩专家池实现MoE领域微调性能提升</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">UMoE</span> <span class="md-tag">MoE领域微调</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Xuefeng</strong> Li和Pengfei Liu提出<strong>UMoE</strong>，一种预算保持的<strong>MoE领域微调</strong>流水线。在微调前，先修剪最低领域对齐显著性的专家，再通过扰动重扩恢复原始专家池大小，最后应用标准SFT。在Qwen3-<strong>30B</strong>-A<strong>3B</strong>和Qwen3.5-<strong>35B</strong>-A<strong>3B</strong>上，覆盖数学、代码、科学、工具使用和Agent编码5个领域共12个基准，数学平均准确率提升3.4分，<strong>SWE-bench</strong> Verified提升6.0分。在强数学数据集上，即使直接SFT已超越Qwen3-<strong>30B</strong>-<strong>A</strong>3B<strong>-Thinking</strong>（82.81 vs 81.06），<strong>UMoE</strong>仍进一步将平均分提升至84.17。数据缩放实验显示增益随训练数据增长持续。</p><p>📌 <strong>总结</strong>：<strong>UMoE</strong>为MoE模型的领域微调提供了一种高效、预算保持的方法，通过重新对齐专家池提升性能而不增加推理成本。对于AI<strong>模型训练</strong>和部署，该方法可直接应用于通信、网络运维等垂直领域的MoE模型微调，提升特定任务的性能，同时保持推理效率。</p><p>来源：<a href="https://arxiv.org/abs/2607.11444" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：UMoE:Unlocking Every Expert in Domain-Specific Training</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-80438">2、小红书3人3天启动AI个人助理，一月全员覆盖，安全与成本优化方案详解</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">小红书</span> <span class="md-tag">AI助理</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>小红书</strong>在AICon上海2026上分享了企业级AI个人助理的构建实践。团队基于开源项目OpenClaw，以3人3天快速推出内测版本，一个月内实现全员覆盖。安全方面构建了专属隔离集群Seal AI <strong>Zone</strong>，每个Agent运行在MicroVM沙箱（<strong>NEX</strong>）中，六层防护确保安全。成本优化通过Self-GC机制使白天平均输入Token下降10-<strong>15%</strong>，Auto模式智能路由系统将<strong>75%</strong>请求路由到高性价比模型，成本降低<strong>69%</strong>。记忆系统采用三层架构（<strong>Session</strong>/<strong>Work Log</strong>/<strong>LLM Wiki</strong>），其中<strong>LLM Wiki</strong>按需召回结构化知识。生态方面推出Skill Hub技能共享平台和Cowork Studio作品发布平台。</p><p>📌 <strong>总结</strong>：<strong>小红书</strong>的实践为AI Agent在企业内部的规模化部署提供了详尽的技术方案，特别是安全隔离、成本控制和记忆增强方面的创新对同类项目有很高的参考价值。对AI应用与产品化场景中的内部AI工具建设、智能体平台方向的Agent安全与成本优化有直接指导意义。</p><p>来源：<a href="https://mp.weixin.qq.com/s/EweW8JDC9gF3datV2HZHRw" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-79764">3、SCOPE-RL通过奖励信号稠密化提升LLM推理，准确率提升11.2pp，推理token减少27.1%</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">SCOPE-RL</span> <span class="md-tag">奖励稠密化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：基于可验证奖励的强化学习（<strong>RLVR</strong>）使用稀疏的最终答案奖励，无法对推理路径提供直接反馈。<strong>SCOPE-RL</strong>提出两阶段框架：自适应脚手架RL在成功前对隐藏答案的子问题链添加前缀分解可验证奖励；质量感知过程RL在成功后应用正确性门控过程形状奖励优化正确轨迹。在Qwen3-<strong>8B</strong>-Instruct上，相比纯结果GRPO，平均准确率提升11.2个百分点，推理token减少<strong>27.1%</strong>。在Qwen3-<strong>0.6B</strong>上也有效，表明奖励信号稠密化与策略更新级<strong>RLVR</strong>进步互补。</p><p>📌 <strong>总结</strong>：<strong>SCOPE-RL</strong>为LLM推理RL训练提供了一种有效的<strong>奖励稠密化</strong>方法，同时提升准确率和效率。对于AI前沿技术预研规划师，该方法可应用于RL后训练流程的改进。对于技术主管，该方法可降低推理成本并提升性能。</p><p>来源：<a href="https://arxiv.org/abs/2607.11506" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：SCOPE-RL: Optimizing Reasoning Paths Before and After Success</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-80979">1、Airbnb 技术博客：通过确定性评估和微适配器将 LLM 评测周期从数周缩短至一天</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Airbnb</span> <span class="md-tag">LLM评价</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 14 日，<strong>Airbnb</strong> 工程师 <strong>Baharak Saberidokht</strong> 发布技术博客，详细介绍了如何通过四层架构将 <strong>LLM</strong> 生产系统的评测迭代周期从数周缩短至一天。核心方法包括：1）确定性评估基础——通过缓存引用和评分结果消除噪声；2）微适配器——使用低秩（&lt;50）<strong>LoRA</strong> 补丁针对特定 bug 进行快速修复，在单 <strong>GPU</strong> 上 <strong>1 小时</strong>内完成训练；3）端到端验证——在代表性子集上运行完整路径，检测组件接缝处的 bug。该方案解决了 <strong>LLM</strong> 评测中模型漂移、法官不一致和引用重复等非确定性挑战。</p><p>📌 <strong>总结</strong>：<strong>Airbnb</strong> 的 <strong>LLM</strong> 评测工程实践对 AI 模型开发团队具有直接参考价值，特别是确定性评估和微适配器方法可应用于核心网 <strong>NWDAF</strong> 分析模型、AI 运维助手的快速迭代。该方案将评测周期从数周压缩到一天，显著提升研发效率，降低模型回归风险。对技术主管和预研规划师而言，是值得借鉴的工程方法论。</p><p>来源：<a href="https://medium.com/airbnb-engineering/from-weeks-to-a-day-how-we-made-llm-evaluation-fast-enough-to-iterate-on-14e2d35198b4?source=rss----53c7c27702d5---4" target="_blank" rel="noreferrer">The Airbnb Tech Blog - Medium</a></p><p>原文标题：From weeks to a day: how we made LLM evaluation fast enough to iterate on</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-79924">2、中科大等机构发布AtomWorld基准测试，揭示大模型在原子操作任务中Scaling Law失效</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">AtomWorld</span> <span class="md-tag">Scaling Law</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年7月14日，由中科大苏州高等研究院、新南威尔士大学等机构联合在ICML 2026发布的<strong>AtomWorld</strong>基准测试，系统评估了主流大模型在材料科学原子操作任务中的能力。测试覆盖Claude <strong>Opus 4.6</strong>、<strong>GPT-5.4</strong>、<strong>Gemini 3.1 Pro</strong>、<strong>Qwen3-</strong>3<strong>2B</strong>等模型，发现模型规模扩大能改善规则清晰的任务（如原子替换、删除），但在需要三维空间理解和几何规划的任务（如绕原子旋转、扩超胞）中表现不稳定。例如，Claude <strong>Opus 4.6</strong>在“绕原子旋转”任务上成功率仅约<strong>12%</strong>。研究指出，当前<strong>Scaling Law</strong>聚焦于文本语料的语言与知识拟合，但材料建模需要的空间理解、几何规划与物理约束行动能力在公开数据中极度缺少高质量训练样本。论文建议AI for Science需转向Action <strong>Scaling</strong>，将可执行动作的数据生成、动作基元拆解、模拟器反馈和物理约束验证系统性地规模化。</p><p>📌 <strong>总结</strong>：<strong>AtomWorld</strong>对AI前沿技术预研规划师具有重要启示：它实证了当前大模型在需要三维空间理解和物理约束执行的任务中的能力边界，直接挑战了“模型越大能力越强”的普遍认知。对于通信设备商和运营商，这一发现提示在自智网络、网络规划等需要空间理解和物理约束的场景中，单纯依赖大模型可能不够，需要结合专用模型、工具调用和物理仿真。研究提出的Action Scaling方向为AI for Science提供了新的技术路线，即通过构建“操作指令-坐标变化”的高质量训练数据和模拟器反馈闭环来提升模型在真实科研操作中的能力。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;amp;mid=2652712964&amp;amp;idx=3&amp;amp;sn=01c5291d1607d258b5a0b38a23d8e263&amp;amp;chksm=f00cec944d3cf73d57bf73ec814aa5a18e1968132b9f9fad5f9547e19d7cc4a89770d0bbb3bd&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">新智元</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-80443">1、蚂蚁集团开源SingGuard-NSFA 2B模型，Agent安全护栏F1超94%支持边缘部署</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">蚂蚁集团</span> <span class="md-tag">SingGuard 2B</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>SingGuard-NSFA</strong> <strong>2B</strong>模型是系列中的中间尺寸版本，基于Qwen3.5 <strong>2B</strong> Base微调，同样支持生成式推理和实时分类双模式。与<strong>0.8B</strong>版本相比，<strong>2B</strong>版本具有更强的骨干网络，生成式推理的链式思考质量更高，同时实时分类模式仍然可运行在单张A100上（约<strong>50ms</strong>）。在NSFA基准测试上F1同样超过<strong>94%</strong>，超过竞品6-12个点。支持133种语言。</p><p>📌 <strong>总结</strong>：<strong>2B</strong>版本提供了检测精度与计算成本的平衡选择，适合作为企业级Agent安全护栏的标准部署选项。对于AI安全领域，多尺寸选择使得不同规模的组织都能找到适合自己资源状况的解决方案。开源生态有助于推动Agent安全标准的形成。</p><p>来源：<a href="https://huggingface.co/inclusionAI/SingGuard-NSFA-2B-GGUF" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><p>原文标题：inclusionAI/SingGuard-NSFA-2B-GGUF</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-79739">1、FastTPS在AMD Ryzen AI NPU上实现LLM Token阶段6倍加速，维持93%峰值带宽利用率</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">FastTPS</span> <span class="md-tag">NPU</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：LLM推理的Token阶段因顺序处理导致低并行度和内存瓶颈。<strong>FastTPS</strong>提出三种关键组件：基于AI加速器的免重载KV Cache拼接，减少内存访问开销并实现Attention全融合；基于tiling优化FLAT的高效高精度RoPE注意力；以及细粒度流水线调度的融合MLP。在AMD <strong>Ryzen AI</strong> 300系列<strong>NPU</strong>上，BF16精度下Phi3-mini-4k-instruct推理实现<strong>6倍</strong>加速（相比无融合），峰值内存带宽利用率达<strong>93%</strong>。</p><p>📌 <strong>总结</strong>：<strong>FastTPS</strong>为端侧AI加速器上的LLM推理Token阶段提供了高效的优化方案，显著提升了吞吐和计算单元利用率。对于AI前沿技术预研规划师，该方法可指导未来端侧推理加速器的设计。对于<strong>AI与通算硬件</strong>团队，该工作展示了<strong>NPU</strong>上KV Cache和Attention融合的具体实现路径，具有工程参考价值。</p><p>来源：<a href="https://arxiv.org/abs/2607.11211" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：FastTPS: An Optimized Method for LLM Token Phase for AI accelerators</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-80243">1、Linux基金会宣布x402基金会正式运营，标准化AI Agent互联网原生支付</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">x402基金会</span> <span class="md-tag">AI Agent支付</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月14日，Linux基金会宣布<strong>x402基金会</strong>正式运营，并完成<strong>Coinbase</strong>对x402协议的贡献。x402协议是一个开放标准，将安全支付能力直接嵌入HTTP交互，使AI <strong>Agent</strong>、API和应用程序能够像交换数据一样无缝发送和接收支付，支持从传统卡到稳定币等多种支付类型。创始成员包括Adyen、<strong>AWS</strong>、<strong>American Express</strong>、<strong>Circle</strong>、<strong>Cloudflare</strong>、<strong>Coinbase</strong>、<strong>Google</strong>、<strong>Mastercard</strong>、<strong>Stripe</strong>、Visa等40家组织。</p><p>📌 <strong>总结</strong>：x402协议为AI Agent提供了标准化的支付层，解决了Agent经济中机器对机器支付的关键基础设施问题。该协议在Linux基金会的中立治理下开发，避免了供应商锁定，可能成为Agent互联网支付的事实标准，对智能体平台和商业生态有重大影响。</p><p>来源：<a href="https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications" target="_blank" rel="noreferrer">Linux Foundation Press</a></p><p>原文标题：Linux Foundation Announces Operational Launch of x402 Foundation to Standardize Internet-Native Payments for AI Agents and Applications</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-79908">1、华为联合产业伙伴发布A2A-T电信智能体通信协议，定义多智能体协作底层架构</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">华为</span> <span class="md-tag">A2A-T</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月14日，在TM Forum数字化转型全球峰会（<strong>DTW 2026</strong>）上，华为常务董事、<strong>ICT BG</strong> CEO杨超斌提出<strong>A2A-T</strong>（电信领域智能体间<strong>Agent</strong>-to-<strong>Agent</strong> for Telecoms通信协议）愿景。该协议由华为、中国移动、<strong>Orange</strong>、AIS等产业伙伴联合发布，旨在定义未来成千上万个智能体如何通信、协同与协作的底层架构。<strong>A2A-T</strong>提供框架使智能体能够交换意图、目标与决策，并内置协商、调解与冲突解决机制，被比作高阶版的以太网CSMA/CD协议。中国移动已在福建移动等现网试点验证了<strong>A2A-</strong>T在故障诊断场景下的应用，无线工单数量压降<strong>30%</strong>，平均修复时间从<strong>3小时</strong>缩短至<strong>2.03小时</strong>。此外，中国移动携手华为、中兴等在Linux网络基金会（<strong>LFN</strong>）正式发布全球首个通信智能体协同开源项目OpenAN，核心是对<strong>A2A-</strong>T协议的实现与增强。</p><p>📌 <strong>总结</strong>：<strong>A2A-T</strong>协议的发布对通信设备商和运营商具有里程碑意义：它首次为自智网络中的多供应商、多域智能体协作定义了标准通信协议，解决了“混沌智能体理论”中描述的智能体间决策冲突问题。对于设备商，参与<strong>A2A-T</strong>标准制定意味着在自智网络生态中占据有利位置；对于运营商，<strong>A2A-</strong>T和OpenAN开源项目提供了可落地的多智能体协作框架，有望加速自智网络从L3向L4/L5的演进。中国移动的现网验证数据（工单量压降<strong>30%</strong>、修复时间缩短<strong>32%</strong>）为协议的有效性提供了初步证据。建议关注<strong>A2A-</strong>T在TM Forum和3GPP中的标准化进展。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzEzMTY0MA==&amp;amp;mid=2652090670&amp;amp;idx=1&amp;amp;sn=8c6881f2703bdf2263df83b2dd50ac87&amp;amp;chksm=bc1291ce5dc9c9c2721b815f64055ec896a9a4d02453a6d1a0e322f50b8441d3130f4705cc1d&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">C114通信网</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-80714">1、Deutsche Telekom与OpenAI合作从试点扩展到全面生产</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">Deutsche Telekom</span> <span class="md-tag">OpenAI</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月14日，<strong>RCR</strong> Wireless报道<strong>Deutsche Telekom</strong>与<strong>OpenAI</strong>的合作已从2025年12月宣布的多年合作进入全面生产阶段。AI嵌入实时网络管理、语音呼叫、客户服务和<strong>20万</strong>员工内部工具。关键技术包括：<strong>Magenta AI Call Assistant</strong>（网络侧翻译、笔记、摘要，不依赖手机）、AI事件系统在2024年自动解决约<strong>70%</strong>网络事件，目标提升至<strong>90%</strong>。DT获得<strong>OpenAI</strong>早期研究访问权限，包括alpha版本，用于定制电信特定工具。该部署使DT在欧洲运营商中领先，<strong>Orange</strong>、Telefónica、Vodafone等尚未达到同等规模。但仍存在幻觉风险、<strong>50%</strong>的遏制率、呼叫记录隐私等问题。</p><p>📌 <strong>总结</strong>：该案例是运营商大规模AI部署的标杆，展示了AI在核心网运维、客户服务和内部效率方面的实际应用。对于核心网设备供应商，该案例表明AI原生架构的可行性，以及运营商对AI自动化的强烈需求。同时，也暴露了AI幻觉、隐私和劳动力影响等风险。对5G/6G标准专家，网络AI成为标准演进方向。</p><p>来源：<a href="https://www.rcrwireless.com/20260714/tech/deutsche-telekoms-openai" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：Deutsche Telekom’s OpenAI partnership has scaled from pilot to full production</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-80133">1、MemOS 2.0发布：面向长程Agent任务的可成长记忆系统</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">MemOS</span> <span class="md-tag">Agent记忆</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：记忆张量发布<strong>MemOS</strong> 2.0，面向长程任务<strong>Agent</strong>进一步扩展。核心思路包括：以用户和<strong>Agent</strong>为中心进行运行状态管理，解决Agent对自身执行状态判断不准确问题；记忆版本化管理与进化，支持状态快照、淘汰、回滚和技能沉淀；持续探索记忆原生基座模型。Agent <strong>Memory</strong>从六维度增强：存储扩展至四类记忆统一管理；多路融合召回；三层漏斗去重（压缩率<strong>75%</strong>）；Mem2Skill技能转化；<strong>Memory</strong> Viewer可视化；团队协作Hub。日调用量超<strong>100万</strong>，社区9.7k star。</p><p>📌 <strong>总结</strong>：<strong>MemOS</strong> 2.0对<strong>Agent记忆</strong>系统提供了系统化解决方案，对智能体平台架构师有直接参考价值。其中去重压缩、技能转化和运行状态管理可降低Agent的token消耗并提升可靠性。对AI前沿技术预研规划师，记忆系统是Agent长期运行的关键瓶颈，该方案值得跟踪。</p><p>来源：<a href="https://www.infoq.cn/article/RivZJwpYltVDJX5imMUX?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-79883">1、2026年7月，美团与北京大学联合开源Omni-Flow框架，通过三层抽象统一解决多模态推理工作流编排、数据传输与KV缓存共享挑战</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Omni-Flow</span> <span class="md-tag">多模态推理</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：美团与北京大学在2026年7月联合开源的<strong>Omni-Flow</strong>框架，是针对多模态大模型推理系统碎片化问题的一个系统级方案。当前<strong>多模态推理</strong>需要异构计算单元（文本编码器、视觉编码器、<strong>LLM</strong>、扩散模型等）协同工作，但现有框架缺乏统一抽象，编排逻辑分散、数据传输与特定模型紧耦合、KV缓存无法跨角色共享，导致每集成一个新模型都需要高昂的改造成本。<strong>Omni-Flow</strong>通过三层抽象系统化解决：控制流层提供声明式DSL定义推理流水线，由框架自动处理调度和数据传输，支持流式逐帧激活和运行时动态分支选择；数据流层以全局参数池为中心，统一管理L1/L2/L3存储层次的KV缓存分配与回收，使任何角色或副本均可相互推送或拉取数据，无需硬编码配对；计算流层让扩散Transformer复用<strong>LLM</strong>推理引擎的执行基础设施（相同的引擎、调度栈、分页KV缓存和权重共享机制），强制两者采用相同并行语义，实现物理权重和KV缓存的直接共享。该项目已在SGLang上实现完整原型，并在DeepSeek-V2纯LLM推理、<strong>LongCat-</strong>Next多模态对话和HunyuanImage-3图像生成三种典型场景上验证了有效性。开源仓库为https://github.com/meituan-longcat/omni-flow.git。</p><p>📌 <strong>总结</strong>：<strong>Omni-Flow</strong>对AI推理基础设施的工程复用价值体现在三个层面。第一，声明式工作流抽象将<strong>多模态推理</strong>流水线的编排逻辑从业务代码中解耦，使集成新模型只需在DSL中声明角色和连接关系，无需修改调度和数据传输代码，显著降低模型拓扑快速演进下的适配成本。第二，统一数据平面通过全局参数池实现KV缓存和中间张量的零拷贝、跨角色、跨机器共享，同一GPU上多个共址角色可复用完全相同物理权重，将GPU内存开销降至接近单个副本水平，对资源受限的单节点部署和多机高性能部署均有直接收益。第三，计算流层强制扩散Transformer复用LLM推理栈，使得vLLM/SGLang等成熟LLM serving框架的优化技术（如PagedAttention、prefix caching、continuous batching）能够无缝应用于多模态生成任务，避免了为扩散模型单独维护一套推理栈的工程负担。对于从事推理系统研发或模型服务化的团队，<strong>Omni-Flow</strong>的设计思路——通过清晰抽象解耦复杂性、通过统一平面实现高效共享——可直接指导下一代<strong>多模态推理</strong>框架的架构选型。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561134&amp;amp;idx=1&amp;amp;sn=574738c448798a8ae5adcfde29ecd44d&amp;amp;chksm=cf267af635d77dafeefad2280bf75a3d45e31d261079b8f09bbfd47c33e1c105cf07fe2d5d17&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-80439">2、腾讯混元Hy3 295B模型推出1bit和4bit量化版，单卡可运行1bit版本</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">腾讯混元Hy3</span> <span class="md-tag">量化</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月14日，腾讯混元团队发布Hy3 <strong>295B</strong>旗舰模型的量化版本。1bit极限量化版本IQ1_M将权重从<strong>598 GB</strong>压缩至85.5 <strong>GiB</strong>，缩小<strong>6.7倍</strong>，单张96<strong>GiB</strong>推理显卡即可部署。4bit版本Q4_K_M体积169.9 GiB，两张显卡可承载。<strong>GPTQ</strong> Int4版本支持<strong>vLLM</strong>部署，天然享受高并发低延迟红利。4bit版本在Agent能力、多语言代码、工具调用、长文理解等任务上成绩贴近满血模型。配合MTP投机解码，1bit版本解码速度提升约<strong>50%</strong>，4bit版本提升近<strong>60%</strong>。所有版本已开源并打包为GGUF格式，适配llama.cpp生态。</p><p>📌 <strong>总结</strong>：Hy3量化版本使得<strong>295B</strong>参数级别的旗舰模型可以在单卡或双卡环境运行，大幅降低了推理部署的硬件成本。对于<strong>AI推理与服务加速</strong>场景，这提供了如何在有限资源下部署超大模型的有效方案。同时开源GGUF格式适配llama.cpp生态，有助于模型在更广泛社区中的传播和二次开发。</p><p>来源：<a href="https://mp.weixin.qq.com/s/Kq30ftirASryPrUtjK2xSw" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-78378">1、德国研究联盟发布开源MoE模型Soofi S30B-A3B，长上下文吞吐达8倍</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Soofi S</span> <span class="md-tag">Mamba-2</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：由德国人工智能协会协调的研究联盟正式发布开源大语言模型<strong>Soofi S</strong>3<strong>0B</strong>-A<strong>3B</strong>，采用混合专家架构，结合<strong>Mamba-2</strong>与标准注意力层，总参数量<strong>316亿</strong>，每个token激活约<strong>32亿</strong>参数。在<strong>4万</strong>token长度的上下文环境下，其生成吞吐量达到同规模传统稠密模型的<strong>8倍</strong>左右，且随上下文增加保持高度稳定性。训练数据具有德语偏好，德语数据占比从第一阶段<strong>7.2%</strong>提升至第二阶段<strong>15.3%</strong>，涵盖报纸、维基百科及专业技术文档。基准测试显示在英语和德语综合测试中超越OLMo<strong>332B</strong>和Apertus<strong>70B</strong>等模型，尤其在代码生成、专业推理及德国区域性知识测试中表现顶尖。整个训练在慕尼黑德国电信工业人工智能云上使用512块Nvidia B200GPU完成，由可再生能源驱动，将开源模型权重、训练评估代码及数据清单。</p><p>📌 <strong>总结</strong>：<strong>Soofi S</strong>的发布标志着欧洲主权AI基础设施建设的重要进展，其MoE+<strong>Mamba-2</strong>架构为长文本高效处理提供了新思路，<strong>8倍</strong>吞吐优势对推理服务成本有显著影响。对于技术预研规划师，该模型在长上下文场景下的架构设计（<strong>Mamba-2</strong>与注意力混合）和德语优化策略可借鉴；对于5G/6G标准专家，欧洲IPCEI-CIS项目背景下的开源AI基础设施为通信网络AI应用提供了可信赖的基座。</p><p>来源：<a href="https://www.aibase.com/zh/news/29563" target="_blank" rel="noreferrer">AI Base 新闻</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-78867">2、Thinking Machines披露未来技术路线，押注可训练权重与原生实时多模态</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Thinking Machines</span> <span class="md-tag">多模态</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：背景：<strong>Thinking Machines</strong>发表博客披露其技术与研究路线，强调通过可训练模型权重、原生实时<strong>多模态</strong>模型和去中心化对齐机制，把人类隐形知识与价值直接写入模型本体。动作：他们提出“interaction models”，在模型内部原生支持语音、视觉等<strong>多模态</strong>与低延迟交互，使智能体可以像人类同事那样边干边同步接受反馈。技术机制：不同于当前主流评估关注模型独立完成任务的时间，他们提出评估应从“人与模型协同增益”出发，并主张去中心化对齐，让不同组织在本地通过修改模型权重表达自身价值。结果：该路线旨在创造一个可被各组织持续微调、与本地业务迭代共演的AI系统，而非统一的“云端人格”。</p><p>📌 <strong>总结</strong>：该技术路线对<strong>AI模型</strong>架构设计具有重要启示：它挑战了当前以中心化API和统一人格为主的模型部署范式，提出了本地可微调、实时<strong>多模态</strong>交互的新方向。对于AI前沿技术预研规划师，这意味着需要关注模型权重的本地化微调技术、实时<strong>多模态</strong>交互架构以及去中心化对齐机制。对于核心网架构师，如果未来AI系统需要部署在边缘，这种可本地微调、低延迟交互的模型架构可能更适合网络边缘场景。</p><p>来源：<a href="https://www.rtecommunity.dev/t/t_GevgE7dUlPTdBE" target="_blank" rel="noreferrer">RTE Community</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-80438">1、小红书3人3天启动AI个人助理，一月全员覆盖，安全与成本优化方案详解</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">小红书</span> <span class="md-tag">AI助理</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>小红书</strong>在AICon上海2026上分享了企业级AI个人助理的构建实践。团队基于开源项目OpenClaw，以3人3天快速推出内测版本，一个月内实现全员覆盖。安全方面构建了专属隔离集群Seal AI <strong>Zone</strong>，每个Agent运行在MicroVM沙箱（<strong>NEX</strong>）中，六层防护确保安全。成本优化通过Self-GC机制使白天平均输入Token下降10-<strong>15%</strong>，Auto模式智能路由系统将<strong>75%</strong>请求路由到高性价比模型，成本降低<strong>69%</strong>。记忆系统采用三层架构（<strong>Session</strong>/<strong>Work Log</strong>/<strong>LLM Wiki</strong>），其中<strong>LLM Wiki</strong>按需召回结构化知识。生态方面推出Skill Hub技能共享平台和Cowork Studio作品发布平台。</p><p>📌 <strong>总结</strong>：<strong>小红书</strong>的实践为AI Agent在企业内部的规模化部署提供了详尽的技术方案，特别是安全隔离、成本控制和记忆增强方面的创新对同类项目有很高的参考价值。对AI应用与产品化场景中的内部AI工具建设、智能体平台方向的Agent安全与成本优化有直接指导意义。</p><p>来源：<a href="https://mp.weixin.qq.com/s/EweW8JDC9gF3datV2HZHRw" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-80979">1、Airbnb 技术博客：通过确定性评估和微适配器将 LLM 评测周期从数周缩短至一天</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Airbnb</span> <span class="md-tag">LLM评价</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 14 日，<strong>Airbnb</strong> 工程师 <strong>Baharak Saberidokht</strong> 发布技术博客，详细介绍了如何通过四层架构将 <strong>LLM</strong> 生产系统的评测迭代周期从数周缩短至一天。核心方法包括：1）确定性评估基础——通过缓存引用和评分结果消除噪声；2）微适配器——使用低秩（&lt;50）<strong>LoRA</strong> 补丁针对特定 bug 进行快速修复，在单 <strong>GPU</strong> 上 <strong>1 小时</strong>内完成训练；3）端到端验证——在代表性子集上运行完整路径，检测组件接缝处的 bug。该方案解决了 <strong>LLM</strong> 评测中模型漂移、法官不一致和引用重复等非确定性挑战。</p><p>📌 <strong>总结</strong>：<strong>Airbnb</strong> 的 <strong>LLM</strong> 评测工程实践对 AI 模型开发团队具有直接参考价值，特别是确定性评估和微适配器方法可应用于核心网 <strong>NWDAF</strong> 分析模型、AI 运维助手的快速迭代。该方案将评测周期从数周压缩到一天，显著提升研发效率，降低模型回归风险。对技术主管和预研规划师而言，是值得借鉴的工程方法论。</p><p>来源：<a href="https://medium.com/airbnb-engineering/from-weeks-to-a-day-how-we-made-llm-evaluation-fast-enough-to-iterate-on-14e2d35198b4?source=rss----53c7c27702d5---4" target="_blank" rel="noreferrer">The Airbnb Tech Blog - Medium</a></p><p>原文标题：From weeks to a day: how we made LLM evaluation fast enough to iterate on</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-79924">2、中科大等机构发布AtomWorld基准测试，揭示大模型在原子操作任务中Scaling Law失效</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">AtomWorld</span> <span class="md-tag">Scaling Law</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年7月14日，由中科大苏州高等研究院、新南威尔士大学等机构联合在ICML 2026发布的<strong>AtomWorld</strong>基准测试，系统评估了主流大模型在材料科学原子操作任务中的能力。测试覆盖Claude <strong>Opus 4.6</strong>、<strong>GPT-5.4</strong>、<strong>Gemini 3.1 Pro</strong>、<strong>Qwen3-</strong>3<strong>2B</strong>等模型，发现模型规模扩大能改善规则清晰的任务（如原子替换、删除），但在需要三维空间理解和几何规划的任务（如绕原子旋转、扩超胞）中表现不稳定。例如，Claude <strong>Opus 4.6</strong>在“绕原子旋转”任务上成功率仅约<strong>12%</strong>。研究指出，当前<strong>Scaling Law</strong>聚焦于文本语料的语言与知识拟合，但材料建模需要的空间理解、几何规划与物理约束行动能力在公开数据中极度缺少高质量训练样本。论文建议AI for Science需转向Action <strong>Scaling</strong>，将可执行动作的数据生成、动作基元拆解、模拟器反馈和物理约束验证系统性地规模化。</p><p>📌 <strong>总结</strong>：<strong>AtomWorld</strong>对AI前沿技术预研规划师具有重要启示：它实证了当前大模型在需要三维空间理解和物理约束执行的任务中的能力边界，直接挑战了“模型越大能力越强”的普遍认知。对于通信设备商和运营商，这一发现提示在自智网络、网络规划等需要空间理解和物理约束的场景中，单纯依赖大模型可能不够，需要结合专用模型、工具调用和物理仿真。研究提出的Action Scaling方向为AI for Science提供了新的技术路线，即通过构建“操作指令-坐标变化”的高质量训练数据和模拟器反馈闭环来提升模型在真实科研操作中的能力。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzI3MTA0MTk1MA==&amp;amp;mid=2652712964&amp;amp;idx=3&amp;amp;sn=01c5291d1607d258b5a0b38a23d8e263&amp;amp;chksm=f00cec944d3cf73d57bf73ec814aa5a18e1968132b9f9fad5f9547e19d7cc4a89770d0bbb3bd&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">新智元</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-80443">1、蚂蚁集团开源SingGuard-NSFA 2B模型，Agent安全护栏F1超94%支持边缘部署</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">蚂蚁集团</span> <span class="md-tag">SingGuard 2B</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>SingGuard-NSFA</strong> <strong>2B</strong>模型是系列中的中间尺寸版本，基于Qwen3.5 <strong>2B</strong> Base微调，同样支持生成式推理和实时分类双模式。与<strong>0.8B</strong>版本相比，<strong>2B</strong>版本具有更强的骨干网络，生成式推理的链式思考质量更高，同时实时分类模式仍然可运行在单张A100上（约<strong>50ms</strong>）。在NSFA基准测试上F1同样超过<strong>94%</strong>，超过竞品6-12个点。支持133种语言。</p><p>📌 <strong>总结</strong>：<strong>2B</strong>版本提供了检测精度与计算成本的平衡选择，适合作为企业级Agent安全护栏的标准部署选项。对于AI安全领域，多尺寸选择使得不同规模的组织都能找到适合自己资源状况的解决方案。开源生态有助于推动Agent安全标准的形成。</p><p>来源：<a href="https://huggingface.co/inclusionAI/SingGuard-NSFA-2B-GGUF" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><p>原文标题：inclusionAI/SingGuard-NSFA-2B-GGUF</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-79908">1、华为联合产业伙伴发布A2A-T电信智能体通信协议，定义多智能体协作底层架构</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">华为</span> <span class="md-tag">A2A-T</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月14日，在TM Forum数字化转型全球峰会（<strong>DTW 2026</strong>）上，华为常务董事、<strong>ICT BG</strong> CEO杨超斌提出<strong>A2A-T</strong>（电信领域智能体间<strong>Agent</strong>-to-<strong>Agent</strong> for Telecoms通信协议）愿景。该协议由华为、中国移动、<strong>Orange</strong>、AIS等产业伙伴联合发布，旨在定义未来成千上万个智能体如何通信、协同与协作的底层架构。<strong>A2A-T</strong>提供框架使智能体能够交换意图、目标与决策，并内置协商、调解与冲突解决机制，被比作高阶版的以太网CSMA/CD协议。中国移动已在福建移动等现网试点验证了<strong>A2A-</strong>T在故障诊断场景下的应用，无线工单数量压降<strong>30%</strong>，平均修复时间从<strong>3小时</strong>缩短至<strong>2.03小时</strong>。此外，中国移动携手华为、中兴等在Linux网络基金会（<strong>LFN</strong>）正式发布全球首个通信智能体协同开源项目OpenAN，核心是对<strong>A2A-</strong>T协议的实现与增强。</p><p>📌 <strong>总结</strong>：<strong>A2A-T</strong>协议的发布对通信设备商和运营商具有里程碑意义：它首次为自智网络中的多供应商、多域智能体协作定义了标准通信协议，解决了“混沌智能体理论”中描述的智能体间决策冲突问题。对于设备商，参与<strong>A2A-T</strong>标准制定意味着在自智网络生态中占据有利位置；对于运营商，<strong>A2A-</strong>T和OpenAN开源项目提供了可落地的多智能体协作框架，有望加速自智网络从L3向L4/L5的演进。中国移动的现网验证数据（工单量压降<strong>30%</strong>、修复时间缩短<strong>32%</strong>）为协议的有效性提供了初步证据。建议关注<strong>A2A-</strong>T在TM Forum和3GPP中的标准化进展。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzEzMTY0MA==&amp;amp;mid=2652090670&amp;amp;idx=1&amp;amp;sn=8c6881f2703bdf2263df83b2dd50ac87&amp;amp;chksm=bc1291ce5dc9c9c2721b815f64055ec896a9a4d02453a6d1a0e322f50b8441d3130f4705cc1d&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">C114通信网</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-80714">1、Deutsche Telekom与OpenAI合作从试点扩展到全面生产</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">Deutsche Telekom</span> <span class="md-tag">OpenAI</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月14日，<strong>RCR</strong> Wireless报道<strong>Deutsche Telekom</strong>与<strong>OpenAI</strong>的合作已从2025年12月宣布的多年合作进入全面生产阶段。AI嵌入实时网络管理、语音呼叫、客户服务和<strong>20万</strong>员工内部工具。关键技术包括：<strong>Magenta AI Call Assistant</strong>（网络侧翻译、笔记、摘要，不依赖手机）、AI事件系统在2024年自动解决约<strong>70%</strong>网络事件，目标提升至<strong>90%</strong>。DT获得<strong>OpenAI</strong>早期研究访问权限，包括alpha版本，用于定制电信特定工具。该部署使DT在欧洲运营商中领先，<strong>Orange</strong>、Telefónica、Vodafone等尚未达到同等规模。但仍存在幻觉风险、<strong>50%</strong>的遏制率、呼叫记录隐私等问题。</p><p>📌 <strong>总结</strong>：该案例是运营商大规模AI部署的标杆，展示了AI在核心网运维、客户服务和内部效率方面的实际应用。对于核心网设备供应商，该案例表明AI原生架构的可行性，以及运营商对AI自动化的强烈需求。同时，也暴露了AI幻觉、隐私和劳动力影响等风险。对5G/6G标准专家，网络AI成为标准演进方向。</p><p>来源：<a href="https://www.rcrwireless.com/20260714/tech/deutsche-telekoms-openai" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：Deutsche Telekom’s OpenAI partnership has scaled from pilot to full production</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-79802">1、ToolAtlas：通过提供者侧工具记忆实现Agent工具调用的一次学习、处处复用，在MCP基准上提升21.61% pass@1</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">智能体；工具调用；ToolAtlas</span> <span class="md-tag">提供者侧工具记忆</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>LLM</strong> Agent日益依赖外部工具，但现有方法通过在Agent侧进行参数更新、提示优化或记忆存储来改善工具使用，导致工具知识难以共享且局限于过去任务中观察到的行为。ToolAtlas提出在工具提供者侧构建持久化图结构工具记忆，通过执行验证的探测自动归纳工具能力边界、失败模式及跨工具组合。推理时，Agent通过自适应图遍历查询该记忆。在涵盖8个服务的两个MCP基准测试中，ToolAtlas在pass@1和pass@4上分别取得高达<strong>21.61%</strong>和<strong>18.61%</strong>的相对提升。同一工具记忆还能在不同环境实例和Agent框架间迁移，无需重新训练，迁移后pass@1/pass@4相对增益达<strong>24.16%</strong>/<strong>16.22%</strong>和<strong>17.49%</strong>/<strong>14.27%</strong>。该成果建立起<strong>提供者侧工具记忆</strong>作为有效且可复用的范式，对MCP工具服务器架构设计具有直接参考价值。</p><p>📌 <strong>总结</strong>：ToolAtlas改变了工具调用的架构重心：从Agent端记忆转向提供者侧记忆，显著减少Agent推理时的记忆开销，并避免任务间工具知识的碎片化。对AI工程平台而言，可将该框架集成到MCP工具服务器中，实现工具能力即插即用，无需每个Agent独立维护缓存。对推理服务，提供者侧记忆可集中管理，降低服务端复杂度并提升响应一致性。对模型训练，Agent无需针对新工具进行微调或Prompt工程即可复用已有工具知识，大幅提升研发效率。对评测，ToolAtlas在MCP基准上的跨环境迁移验证，为Agent工具调用能力提供了更可比的评估方法。总体而言，该范式有助于推动Agent工具生态的标准化和互操作性。</p><p>来源：<a href="https://arxiv.org/abs/2607.11126" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：ToolAtlas: Learning Once, Reusing Everywhere with Tool-Side Memory</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-79690">2、ToFu：面向研究者的白盒、Token高效智能体框架</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">智能体框架+Agent Harness+ToFu</span> <span class="md-tag">白盒、token效率、研究工具</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：现有agentic coding工具的性能既依赖大语言模型也依赖编排代码（harness），但现有框架存在token效率低、成本高、不透明等问题。ToFu是一个面向研究者的白盒、token高效智能体框架，能够读取代码库、编辑文件、运行命令并集成开发工具。作为研究助手，ToFu在token效率、成本和多语言能力上优于现有框架，且<strong>MIT</strong>许可支持本地部署；作为研究对象，它提供可检查、可修改的白盒设计，允许研究者深入分析编排逻辑和工具使用行为，同时保持强基准性能和应用级用户体验。</p><p>📌 <strong>总结</strong>：ToFu对Agent系统研发具有直接价值：其白盒特性使研究者能够透明地理解agent行为，加速编排逻辑的迭代与评估；token效率提升显著降低研究成本，支持更多实验探索；多语言能力和本地部署选项扩展了适用场景。该框架有望成为agent研究的标准工具，推动更高效、更可靠的智能体系统设计，并促进agent评测基准的完善。</p><p>来源：<a href="https://arxiv.org/abs/2607.11423" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：ToFu: A White-Box, Token-Efficient Agent Harness for Researchers</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-79717">1、UMoE通过修剪-重扩专家池实现MoE领域微调性能提升</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">UMoE</span> <span class="md-tag">MoE领域微调</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Xuefeng</strong> Li和Pengfei Liu提出<strong>UMoE</strong>，一种预算保持的<strong>MoE领域微调</strong>流水线。在微调前，先修剪最低领域对齐显著性的专家，再通过扰动重扩恢复原始专家池大小，最后应用标准SFT。在Qwen3-<strong>30B</strong>-A<strong>3B</strong>和Qwen3.5-<strong>35B</strong>-A<strong>3B</strong>上，覆盖数学、代码、科学、工具使用和Agent编码5个领域共12个基准，数学平均准确率提升3.4分，<strong>SWE-bench</strong> Verified提升6.0分。在强数学数据集上，即使直接SFT已超越Qwen3-<strong>30B</strong>-<strong>A</strong>3B<strong>-Thinking</strong>（82.81 vs 81.06），<strong>UMoE</strong>仍进一步将平均分提升至84.17。数据缩放实验显示增益随训练数据增长持续。</p><p>📌 <strong>总结</strong>：<strong>UMoE</strong>为MoE模型的领域微调提供了一种高效、预算保持的方法，通过重新对齐专家池提升性能而不增加推理成本。对于AI<strong>模型训练</strong>和部署，该方法可直接应用于通信、网络运维等垂直领域的MoE模型微调，提升特定任务的性能，同时保持推理效率。</p><p>来源：<a href="https://arxiv.org/abs/2607.11444" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：UMoE:Unlocking Every Expert in Domain-Specific Training</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-79764">2、SCOPE-RL通过奖励信号稠密化提升LLM推理，准确率提升11.2pp，推理token减少27.1%</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">SCOPE-RL</span> <span class="md-tag">奖励稠密化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：基于可验证奖励的强化学习（<strong>RLVR</strong>）使用稀疏的最终答案奖励，无法对推理路径提供直接反馈。<strong>SCOPE-RL</strong>提出两阶段框架：自适应脚手架RL在成功前对隐藏答案的子问题链添加前缀分解可验证奖励；质量感知过程RL在成功后应用正确性门控过程形状奖励优化正确轨迹。在Qwen3-<strong>8B</strong>-Instruct上，相比纯结果GRPO，平均准确率提升11.2个百分点，推理token减少<strong>27.1%</strong>。在Qwen3-<strong>0.6B</strong>上也有效，表明奖励信号稠密化与策略更新级<strong>RLVR</strong>进步互补。</p><p>📌 <strong>总结</strong>：<strong>SCOPE-RL</strong>为LLM推理RL训练提供了一种有效的<strong>奖励稠密化</strong>方法，同时提升准确率和效率。对于AI前沿技术预研规划师，该方法可应用于RL后训练流程的改进。对于技术主管，该方法可降低推理成本并提升性能。</p><p>来源：<a href="https://arxiv.org/abs/2607.11506" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：SCOPE-RL: Optimizing Reasoning Paths Before and After Success</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-79739">1、FastTPS在AMD Ryzen AI NPU上实现LLM Token阶段6倍加速，维持93%峰值带宽利用率</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">FastTPS</span> <span class="md-tag">NPU</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：LLM推理的Token阶段因顺序处理导致低并行度和内存瓶颈。<strong>FastTPS</strong>提出三种关键组件：基于AI加速器的免重载KV Cache拼接，减少内存访问开销并实现Attention全融合；基于tiling优化FLAT的高效高精度RoPE注意力；以及细粒度流水线调度的融合MLP。在AMD <strong>Ryzen AI</strong> 300系列<strong>NPU</strong>上，BF16精度下Phi3-mini-4k-instruct推理实现<strong>6倍</strong>加速（相比无融合），峰值内存带宽利用率达<strong>93%</strong>。</p><p>📌 <strong>总结</strong>：<strong>FastTPS</strong>为端侧AI加速器上的LLM推理Token阶段提供了高效的优化方案，显著提升了吞吐和计算单元利用率。对于AI前沿技术预研规划师，该方法可指导未来端侧推理加速器的设计。对于<strong>AI与通算硬件</strong>团队，该工作展示了<strong>NPU</strong>上KV Cache和Attention融合的具体实现路径，具有工程参考价值。</p><p>来源：<a href="https://arxiv.org/abs/2607.11211" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：FastTPS: An Optimized Method for LLM Token Phase for AI accelerators</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-81180">1、Prism ML 发布 Ternary-Bonsai-27B-gguf 模型，支持 2-bit 量化</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Prism ML</span> <span class="md-tag">2-bit量化</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月14日，<strong>Prism ML</strong> 在 <strong>Hugging Face</strong> 发布 <strong>Ternary-Bonsai-</strong>27B<strong>-gguf</strong> 模型，参数规模 <strong>27B</strong>，采用 2-bit 量化（ternary）和混合注意力机制（hybrid-attention），支持 llama.cpp、vLLM 等推理框架，适用于 <strong>CUDA</strong>、<strong>Metal</strong> 和端侧设备。模型许可证为 <strong>Apache-2.0</strong>，已获得 131 个点赞。</p><p>📌 <strong>总结</strong>：<strong>Ternary-Bonsai-27B</strong> 通过 2-bit 量化将 <strong>27B</strong> 模型压缩至极低比特，显著降低显存需求和推理成本，使得大模型在消费级 <strong>GPU</strong> 甚至端侧设备上运行成为可能。该技术路线对 AI 推理服务加速和边缘部署具有重要参考价值，可能推动更多低比特量化方案的研发和应用。</p><p>来源：<a href="https://huggingface.co/prism-ml/Ternary-Bonsai-27B-gguf" target="_blank" rel="noreferrer">Hugging Face Models</a></p><p>原文标题：prism-ml/Ternary-Bonsai-27B-gguf Text Generation • 4B • Updated about 3 hours ago • 23 • • 131</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-80243">1、Linux基金会宣布x402基金会正式运营，标准化AI Agent互联网原生支付</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">x402基金会</span> <span class="md-tag">AI Agent支付</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月14日，Linux基金会宣布<strong>x402基金会</strong>正式运营，并完成<strong>Coinbase</strong>对x402协议的贡献。x402协议是一个开放标准，将安全支付能力直接嵌入HTTP交互，使AI <strong>Agent</strong>、API和应用程序能够像交换数据一样无缝发送和接收支付，支持从传统卡到稳定币等多种支付类型。创始成员包括Adyen、<strong>AWS</strong>、<strong>American Express</strong>、<strong>Circle</strong>、<strong>Cloudflare</strong>、<strong>Coinbase</strong>、<strong>Google</strong>、<strong>Mastercard</strong>、<strong>Stripe</strong>、Visa等40家组织。</p><p>📌 <strong>总结</strong>：x402协议为AI Agent提供了标准化的支付层，解决了Agent经济中机器对机器支付的关键基础设施问题。该协议在Linux基金会的中立治理下开发，避免了供应商锁定，可能成为Agent互联网支付的事实标准，对智能体平台和商业生态有重大影响。</p><p>来源：<a href="https://www.linuxfoundation.org/press/linux-foundation-announces-operational-launch-of-x402-foundation-to-standardize-internet-native-payments-for-ai-agents-and-applications" target="_blank" rel="noreferrer">Linux Foundation Press</a></p><p>原文标题：Linux Foundation Announces Operational Launch of x402 Foundation to Standardize Internet-Native Payments for AI Agents and Applications</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>MemOS 2.0发布：面向长程Agent任务的可成长记忆系统</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>2026年7月，美团与北京大学联合开源Omni-Flow框架，通过三层抽象统一解决多模态推理工作流编排、数据传输与KV缓存共享挑战</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Prism ML 发布 Ternary-Bonsai-27B-gguf 模型，支持 2-bit 量化</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>腾讯混元Hy3 295B模型推出1bit和4bit量化版，单卡可运行1bit版本</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>德国研究联盟发布开源MoE模型Soofi S30B-A3B，长上下文吞吐达8倍</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Thinking Machines披露未来技术路线，押注可训练权重与原生实时多模态</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>UMoE通过修剪-重扩专家池实现MoE领域微调性能提升</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>SCOPE-RL通过奖励信号稠密化提升LLM推理，准确率提升11.2pp，推理token减少27.1%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>3</td></tr><tr><td>AI推理与服务加速</td><td>3</td></tr><tr><td>模型训练</td><td>3</td></tr><tr><td>AI模型</td><td>2</td></tr><tr><td>模型评测</td><td>2</td></tr><tr><td>AI安全、可信与治理</td><td>1</td></tr><tr><td>AI与通算硬件</td><td>1</td></tr><tr><td>标准、协议与产业联盟</td><td>1</td></tr><tr><td>通信设备供应商</td><td>1</td></tr><tr><td>通信服务提供商</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>18</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
