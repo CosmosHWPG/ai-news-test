@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-07-25</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-07-25</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-07-24T00:00:00+00:00 ~ 2026-07-25T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-07-25 12:51:33 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年07月25日</strong></p><p><strong>生成时间：2026-07-25 12:51 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：15 个 | 本期条目：21 条 | 覆盖板块：8 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 5 条，AI推理与服务加速 5 条，AI模型 4 条，模型评测 2 条，AI与通算硬件 1 条，标准、协议与产业联盟 1 条，基础竞争力 2 条，通信服务提供商 1 条，合计 21 条。</li><li>日报内容：今日头条聚焦 <strong>北大、阿里云提出 SAC 系统：基于 CXL 的稀疏注意力 KV 缓存方案，吞吐量达 RDMA 的 2.1 倍</strong>，并同步关注腾讯混元团队提出E-GRM让模型按需推理，延迟降低62%准确率反升；IST-DASLab提出统计无损量化方法SLQ，实现3.3比特参数下任务无损压缩；心洲科技Mind Lab开源Macaron-V1模型：基于GLM-5.2的MoL架构支持持续学习。</li><li>关键亮点：腾讯混元E-GRM通过动态CoT触发延迟降低62%且准确率反升；IST-DASLab提出SLQ在3.3比特实现任务无损；AT&amp;T发布开源电信模型OTel 2.0登顶排行榜；端侧AI三条技术曲线成熟即将规模化。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-94481">北大、阿里云提出 SAC 系统：基于 CXL 的稀疏注意力 KV 缓存方案，吞吐量达 RDMA 的 2.1 倍</a></li></ul><ul><li><a href="#event-94579">腾讯混元团队提出E-GRM让模型按需推理，延迟降低62%准确率反升</a></li></ul><ul><li><a href="#event-95829">IST-DASLab提出统计无损量化方法SLQ，实现3.3比特参数下任务无损压缩</a></li></ul><ul><li><a href="#event-94526">心洲科技Mind Lab开源Macaron-V1模型：基于GLM-5.2的MoL架构支持持续学习</a></li></ul><ul><li><a href="#event-95270">星环科技发布全球首个GPU原生认知数据库，AI Agent查询性能提升70倍</a></li></ul><ul><li><a href="#event-94530">腾讯微信SkillHone：通过持久决策历史实现Agent技能持续进化</a></li></ul><ul><li><a href="#event-94779">端侧AI规模化落地条件成熟：模型密度每百天翻倍，百TOPS芯片铺开，备案开放</a></li></ul><ul><li><a href="#event-94474">AT&amp;T 发布 OTel 2.0 开源电信模型，基于 Gemma 4 后训练并登顶 Open Telco AI 排行榜</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-94880">1、开源多模型路由网关OmniRoute持续火热，GitHub趋势榜日增1929星</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">OmniRoute</span> <span class="md-tag">多模型路由</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：开源项目diegosouzapw/<strong>OmniRoute</strong>在2026年7月24日早间GitHub趋势榜上日增1929星，总星数达27,146。该项目提供统一API端点接入290+模型提供商（90+免费），支持MCP/A2A协议、配额感知自动回退、<strong>RTK+</strong>Caveman压缩节省15-<strong>95%</strong>的token成本。兼容Claude <strong>Code</strong>、<strong>Code</strong>x、Cursor等工具，由500+贡献者构建。</p><p>📌 <strong>总结</strong>：<strong>OmniRoute</strong>的持续热度反映了开发者对<strong>多模型路由</strong>和成本优化的强烈需求。其开源架构可作为企业构建内部AI网关的参考，降低模型调用成本并提升灵活性。对技术预研规划师，关注其自动回退和压缩算法；对商业主管，开源社区活跃度预示着模型路由层可能成为标准化基础设施。</p><p>来源：<a href="https://trendingai.cn/?date=2026-07-24&amp;amp;batch=am" target="_blank" rel="noreferrer">GitHub Trending</a></p><p>原文标题：2026-07-24 AM · GitHub Trending</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94530">2、腾讯微信SkillHone：通过持久决策历史实现Agent技能持续进化</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">腾讯微信 SkillHone</span> <span class="md-tag">技能进化</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，腾讯微信团队在论文SkillHone中提出面向持续Agent<strong>技能进化</strong>的开发框架。核心创新：将每轮优化中的问题诊断、候选修订、评估证据和最终决定组织成持久决策历史，使后续Agent可理解每次修改的原因，实现精准回退而非整份丢弃。同时，优化对象从单个SKILL.md文件扩展为完整Skill repo（包括脚本、模板等）。系统设置优化侧和评估侧角色隔离，避免作弊。在GAIA和WebWalkerQA-EN基准上，使用Qwen3.6-<strong>35B</strong>-A<strong>3B</strong>作为执行模型，SkillHone分别达到<strong>64.6%</strong>和<strong>66.4%</strong>，比Hermes-SE高14.2和13.4个百分点。优化后的技能包直接迁移到Claude <strong>Sonnet 4.</strong>6后GAIA升至<strong>72.4%</strong>，无需重新优化。消融实验显示，去掉决策历史后成绩下降13.4和10.9个百分点。</p><p>📌 <strong>总结</strong>：SkillHone将Agent技能迭代从“黑盒优化”转向“透明决策过程”，显著提升了多轮优化的效率和效果。其跨模型迁移能力意味着积累的技能资产可复用，降低模型升级后的适配成本。对通信设备商和运营商构建Agent运维技能库而言，SkillHone提供了一种可追溯、可回滚、可复用的工程框架，有助于将网络运维专家经验逐步沉淀为可进化的Agent技能。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-07-24-2?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95295">3、Grok Build新增Workflows功能，支持并行Agent工作流自动执行复杂任务</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Grok Build</span> <span class="md-tag">Workflows</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>Grok Build</strong>推出<strong>Workflows</strong>功能。用户可以用自然语言描述大型任务，<strong>Grok</strong>自动规划并分派给最多128个并行Agent在后台执行，最终汇总报告。每个Agent拥有独立上下文，支持多阶段执行（如上下文获取、专业审查、对抗验证、综合报告），进度可实时查看，支持暂停和恢复。保存的工作流可复用为自定义命令（如/pr-review 5137）。内置/deep-research命令，可将研究问题分派给并行调查员，验证每个声明并返回带引用的报告。</p><p>📌 <strong>总结</strong>：<strong>Grok Build</strong> <strong>Workflows</strong>将AI编程工具从单轮对话升级为多Agent并行工作流系统，大幅提升复杂任务的执行效率。128个并行Agent的能力使代码审查、问题分类、安全审计等任务可以大规模并行化，且保存复用机制降低了重复工作。对于AI应用产品化场景，该功能展示了多Agent协作在编程领域的实际应用，对开发团队提升效率具有直接参考价值。</p><p>来源：<a href="https://x.ai/news/workflows" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><p>原文标题：Workflows in Grok Build</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95119">4、基于艾宾浩斯遗忘曲线的AI代理记忆引擎：使用强化驱动的衰减提升长期记忆</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">AI代理记忆</span> <span class="md-tag">遗忘曲线</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月24日，<strong>Emmimal</strong> P Alexander在Towards <strong>Data</strong> Science发表文章，介绍其构建的<strong>AI代理记忆</strong>引擎。不同于传统滑动窗口（仅保留最近N条信息），该引擎使用艾宾浩斯<strong>遗忘曲线</strong>，每次回忆会增强记忆稳定性，推迟驱逐时间。在50个150轮会话的基准测试中，基础事实召回率<strong>100%</strong>（基线<strong>0%</strong>），且对噪声不敏感。该引擎完全确定性，基于轮次计数器而非时钟时间。文章还揭示了两个关键bug（初始稳定性过低导致过早驱逐，随机召回调度导致基准不可通过），并进行了敏感性分析。代码开源在GitHub。</p><p>📌 <strong>总结</strong>：该记忆引擎对智能体平台的长会话记忆管理有直接影响，可应用于客服、编程助手等场景。对于通信设备商，网络运维Agent需要长期上下文记忆，该方案可提升关键配置和故障信息的保留率。建议纳入日报正文。</p><p>来源：<a href="https://towardsdatascience.com/context-windows-forget-what-matters-i-used-a-140-year-old-psychology-paper-to-fix-ai-memory/" target="_blank" rel="noreferrer">Towards Data Science - Medium</a></p><p>原文标题：Context Windows Forget What Matters — I Built a Usage-Reinforced Decay Engine for AI Agent Memory</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94617">5、Workload-Aware Caching策略将多智能体系统延迟降低64.7%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Workload-Aware Caching</span> <span class="md-tag">缓存驱逐</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：多智能体系统将复杂任务分解为DAG，中间结果缓存可减少重复计算，但现有驱逐策略忽视结构和工作负载信号。2026年7月，arxiv预印本提出一种工作负载感知的<strong>缓存驱逐</strong>策略，综合重计算成本、DAG依赖计数和代理调用频率，在三个多智能体基准上延迟降低<strong>64.7%</strong>，平均比次优有限容量基线低<strong>31.1%</strong>，并接近无限缓存性能，且准确率持平或更高。该策略与计划级缓存和并行执行互补。</p><p>📌 <strong>总结</strong>：该缓存优化方法可直接应用于多智能体系统的推理服务，降低延迟和计算成本，对智能体平台架构师和技术主管具有实用价值。可与现有系统集成，提升智能体应用的响应速度，但需要适配具体框架。</p><p>来源：<a href="https://arxiv.org/abs/2607.20495" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Workload-Aware Caching for Multi-Agent Systems</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-94481">1、北大、阿里云提出 SAC 系统：基于 CXL 的稀疏注意力 KV 缓存方案，吞吐量达 RDMA 的 2.1 倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SAC</span> <span class="md-tag">CXL</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：北京大学、阿里巴巴云和中国人民大学的研究团队于2026年7月24日发布 <strong>SAC</strong> 系统论文。该研究指出，在 <strong>DeepSeek-V3.2</strong> 等稀疏注意力模型中，处理128K上下文时实际被访问的 KV 缓存仅占<strong>21%</strong>，但传统 <strong>RDMA</strong> 方案仍需全量预取，导致巨大的传输带宽浪费。<strong>SAC</strong> 系统利用 <strong>CXL</strong> 的低延迟、缓存行粒度加载/存储语义，在推理过程中仅按需获取所需的 <strong>Top-k KV</strong> 条目。实验基于 <strong>DeepSeek-V3.2</strong> 模型（<strong>AWQ</strong> 4位量化）在8卡 <strong>H20 GPU</strong> 服务器和<strong>2TB</strong> <strong>CXL</strong> 内存池环境下进行，结果显示：SAC 的平均吞吐量是 <strong>RDMA</strong> 基线的 <strong>2.1 倍</strong>，RDMA 的 <strong>TTFT</strong> 比 SAC 高出 <strong>9.7 倍</strong>，SAC 的性能达到本地 <strong>DRAM</strong> 基线的 <strong>91%</strong>。在128K上下文下，SAC 的吞吐量最高可达 RDMA 系统的 <strong>3.1 倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>SAC</strong> 系统为稀疏注意力大模型的分离式推理提供了新的架构范式，对于 AI 前沿技术预研规划师和 AI 推理与服务加速专家而言，<strong>CXL</strong> 替代 <strong>RDMA</strong> 作为 KV 缓存互联方案，有望显著降低长上下文推理的延迟和成本。随着 <strong>DeepSeek-V4</strong> 等模型继续向更高稀疏度和更长上下文演进，基于 <strong>CXL</strong> 的分离式内存架构可能成为下一代大模型服务基础设施的关键技术路线。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561390&amp;amp;idx=1&amp;amp;sn=60fc561f3fec9d5b24fb06f0bb7ecb73&amp;amp;chksm=cf78ab144846e74fb606dd333b9f78669aa45425dc042887719188ec3a09ce9e06685d44aaf9&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94579">2、腾讯混元团队提出E-GRM让模型按需推理，延迟降低62%准确率反升</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">E-GRM</span> <span class="md-tag">动态CoT</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：腾讯混元团队联合新南威尔士大学在ACL 2026发表<strong>E-GRM</strong>（Efficient <strong>GRM</strong>），核心是<strong>动态CoT</strong>触发：对输入进行5次并行解码，如果答案一致性≥0.8则直接输出，否则触发CoT并引入判别评分器评估推理路径质量。评分器采用混合损失（Huber回归+Hinge排序）。在RM-<strong>Bench</strong>、RMB和Reward<strong>Bench</strong>上，约<strong>58%</strong>样本被路由到直接回答，延迟降低<strong>62%</strong>，准确率同时上升。训练阶段采用SFT混合短答/长CoT和GRPO偏好优化。</p><p>📌 <strong>总结</strong>：该工作挑战了“推理链越长越好”的默认假设，提出基于模型预测不确定性的自适应推理调度。对于部署成本敏感的场景，可大幅减少无用推理开销。技术规划师可考虑将该机制集成到服务系统中，降低推理成本而不牺牲质量。同时，对简单问题强制CoT可能引入噪声，这一发现对提示设计和训练数据策略有启示。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;amp;mid=2247907132&amp;amp;idx=3&amp;amp;sn=be58f881975eb34a690613b0f9c7de4b&amp;amp;chksm=e927664ea077418d64feae46cd22657fede204f6111a721c64a91a67465064f378b0e148a5c6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">量子位</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95829">3、IST-DASLab提出统计无损量化方法SLQ，实现3.3比特参数下任务无损压缩</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">IST-DASLab</span> <span class="md-tag">统计无损量化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>IST-DASLab</strong>（奥地利科学技术研究所）在arXiv发表论文，提出<strong>统计无损量化</strong>方法SLQ。该方法通过层间非均匀标量量化和宽比特搜索，在3.3比特/参数下实现任务无损压缩（保持零样本基准精度），在5-6比特/参数下实现分布无损压缩（下一token分布与原始模型不可区分）。SLQ在优化内核下实现1.7-<strong>3.6倍</strong>的推理加速（相对FP16），并提出了期望接受率（<strong>EAR</strong>）作为保真度指标。</p><p>📌 <strong>总结</strong>：SLQ方法在极低比特率下同时实现任务无损和推理加速，突破了传统量化方法在压缩率与性能之间的权衡。该技术路线有望降低LLM部署的硬件成本和能耗，对边缘端和资源受限场景的模型落地具有重要价值。技术预研规划师应关注其与现有量化框架（如GPTQ、<strong>AWQ</strong>）的兼容性及工程化潜力。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1v5j35f/paper_statisticallylossless_quantization_of_large/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：[Paper] Statistically-Lossless Quantization of Large Language Models</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94653">4、MiniCache以可重用程序缓存降低LLM推理延迟3.1倍、提升吞吐2.8倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">MiniCache</span> <span class="md-tag">程序缓存</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：LLM在程序辅助推理、智能体决策等场景中频繁调用大模型，推理成本高昂。<strong>MiniCache</strong>提出一个可重用<strong>程序缓存</strong>框架，将Program-of-<strong>Thought</strong>（<strong>PoT</strong>）程序转化为参数化缓存对象，使结构相似的请求可复用计算结果。其核心创新是复用同一小模型进行缓存命中时的语义变量提取和缓存未命中时的投机验证，从而减少大模型唤醒次数。在购物类请求、<strong>WebShop</strong>、Formula和CodeTAT-QA等数据集上，<strong>MiniCache</strong>在并行服务下实现最高<strong>3.1倍</strong>延迟降低和<strong>2.8倍</strong>吞吐提升，且不影响任务质量。实验表明小模型更适合作为轻量级接口而非大模型替代品。</p><p>📌 <strong>总结</strong>：<strong>MiniCache</strong>提供了一个低成本的推理加速方案，尤其适合具有结构相似请求的在线服务场景（如电商、代码助手、智能客服）。对<strong>AI推理与服务加速</strong>板块的技术主管而言，该缓存机制可直接集成到现有serving系统中，显著降低token消耗和延迟。同时，其“小模型作为接口”的设计思路启发了一种新的推理架构范式，可减少对大模型的高频调用，平衡成本与质量。预研规划师可关注将其扩展到Agent工作流和多轮对话缓存的可能性。</p><p>来源：<a href="https://arxiv.org/abs/2607.20507" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：MiniCache: Reusable Program Caching with Small Model Interfaces for Efficient LLM Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95011">5、audio.cpp 0.4发布：支持Higgs Audio TTS和Fish Audio S2 Pro，实现10倍实时推理</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">audio.cpp</span> <span class="md-tag">TTS</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月24日，<strong>audio.cpp</strong>发布0.4版本，新增Higgs <strong>Audio</strong> v3 <strong>TTS</strong> <strong>4B</strong>、Fish <strong>Audio</strong> S2 Pro、<strong>Voxtral Realtime</strong> ASR以及两个社区模型，现支持35个模型家族。所有模型家族均支持GGUF格式，并提供预构建GGUF包。在RTX 5090上测试：<strong>Higgs Audio</strong> <strong>TTS</strong>预热请求比实时快8.8-<strong>10.1倍</strong>，长文本生成快<strong>8.5倍</strong>；<strong>Fish Audio S2 Pro</strong>预热请求快3.1-<strong>3.4倍</strong>；<strong>Voxtral</strong> ASR离线快<strong>15.7倍</strong>，流式TTFT约<strong>171ms</strong>。与16位GGUF相比，Q8量化在部分路径上可提升速度达<strong>1.5倍</strong>，峰值VRAM降低最多<strong>37%</strong>。</p><p>📌 <strong>总结</strong>：<strong>audio.cpp</strong> 0.4通过GGUF原生支持和Q8量化优化，使高质量语音合成和识别模型在消费级GPU上实现实时甚至超实时推理，极大降低了部署成本。对于核心网设备供应商，可用于构建实时语音交互系统（如AI客服、语音导航），提升运维效率。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1v4w5cj/audiocpp_release_04_higgs_audio_v3_tts_4b_10x/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：[audio.cpp] Release 0.4: Higgs Audio v3 TTS 4B (10x real time)+ Fish Audio S2 Pro in C++/GGML, full GGUF loading, Q8 speed and VRAM gains</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-94601">1、AREX提出递归自改进深度研究智能体，4B模型与122B MoE模型在多个基准上超越同类</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">AREX</span> <span class="md-tag">递归自改进</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>AREX</strong>（<strong>Recursively Self-Improving Agent</strong> for <strong>Deep Research</strong>）是一系列<strong>递归自改进</strong>深度研究智能体。其核心思想是利用发现-验证不对称性：发现答案成本高，但验证可分解为约束检查。<strong>AREX</strong>交替进行内部研究循环（收集证据、构建临时答案）和外部自改进循环（逐约束审计、识别未解决主张、发起针对性后续研究）。为了维持长程递归，AREX学习自主上下文更新工具，压缩交互历史为紧凑改进状态。通过智能体中期训练和长程强化学习训练，在BrowseComp、<strong>WideSearch</strong>、<strong>DeepSearchQA</strong>、<strong>Humanity</strong>&#x27;s <strong>Last</strong> Exam等基准上，AREX的<strong>4B</strong>和<strong>122B</strong>-<strong>A10B</strong> MoE模型大幅超越可比较的基线，并保持与使用更多激活参数的模型竞争。</p><p>📌 <strong>总结</strong>：<strong>AREX</strong>展示了<strong>递归自改进</strong>机制在深度研究场景中的巨大潜力，使小模型也能达到接近大模型的表现。这对于需要长程推理和信息综合的AI应用（如技术预研、报告生成）具有重要价值。同时，其自主上下文更新工具的设计可减少对长上下文的依赖，降低推理成本，为智能体在有限资源下运行提供了可行方案。</p><p>来源：<a href="https://arxiv.org/abs/2607.21461" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：AREX: Towards a Recursively Self-Improving Agent for Deep Research</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94474">2、AT&amp;T 发布 OTel 2.0 开源电信模型，基于 Gemma 4 后训练并登顶 Open Telco AI 排行榜</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">AT&amp;T</span> <span class="md-tag">电信模型</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>AT&amp;T</strong> 于2026年7月24日发布 <strong>OTel 2.0</strong>，这是目前最大且性能最佳的开源电信行业专用模型。该模型基于 <strong>Gemma</strong> 4 <strong>31B</strong>-IT 进行后训练，使用了从超过<strong>1万</strong>亿 token 中精选的<strong>4000亿</strong>电信专用 token。训练数据来源包括 <strong>GSMA</strong> 提供的来自3GPP、<strong>ETSI</strong>、<strong>GSMA</strong>、<strong>CAMARA</strong>、<strong>ITU</strong>、<strong>O-RAN</strong> 和 TM <strong>Forum</strong> 等七个标准开发组织的文档，以及 GSMA 与 <strong>Pleias</strong> 联合发布的 <strong>Telco Corpus</strong> 数据集（约<strong>100亿</strong> token），并结合了 <strong>AT&amp;T</strong> 与 <strong>Red Hat</strong>、<strong>Dell</strong>、<strong>Microsoft Azure</strong> 和 <strong>AMD</strong> 合作补充的数据。<strong>OTel 2.0</strong> 目前在 <strong>Open Telco AI</strong> 排行榜上位列第一，验证了领域适配模型在电信网络故障排查、产品开发和网络配置等场景中的高准确性。</p><p>📌 <strong>总结</strong>：<strong>OTel 2.0</strong> 的发布标志着电信行业 AI 从通用模型向领域专用模型的重要转变。对于 AI 前沿技术预研规划师和 5G/6G 标准专家而言，该模型证明了通过大规模电信领域数据后训练，可以在较小模型上实现超越通用大模型的电信任务性能，为运营商和设备商提供了低成本、高精度的 AI 部署路径。同时，开源策略有助于构建电信 AI 开放生态，可能影响未来网络运维和标准制定的 AI 工具链选择。</p><p>来源：<a href="https://www.gsma.com/newsroom/article/atts-otel-2-0-is-now-live-the-largest-and-best-performing-open-source-model-built-for-telecoms/" target="_blank" rel="noreferrer">GSMA Newsroom</a></p><p>原文标题：AT&amp;T’s OTel 2.0 is now live: the largest and best performing open-source model built for telecoms</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94526">3、心洲科技Mind Lab开源Macaron-V1模型：基于GLM-5.2的MoL架构支持持续学习</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Mind Lab Macaron-V1</span> <span class="md-tag">持续学习</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，心洲科技旗下<strong>Mind</strong> Lab开源Macaron-V1系列模型。旗舰版Venti总参<strong>748B</strong>（<strong>744B</strong> <strong>GLM-5.</strong>2基座+四个<strong>1B</strong> <strong>LoRA</strong>专家：<strong>Chat</strong>、<strong>Agent</strong>、<strong>Coding</strong>、<strong>GenUI</strong>），基于Qwen3.6的Tall版本<strong>50B</strong>。核心架构Mixture-of-<strong>LoRA</strong>（<strong>MoL</strong>）将技能按任务类型分配到不同LoRA，可插拔、可组合，支持<strong>持续学习</strong>。在UI4A前端设计基准上以87.7大幅领先Claude <strong>Opus 4.8</strong>。实验表明，在相近RL预算下，<strong>32B</strong>模型用r=8 LoRA的增益（<strong>20.61%</strong>）超过<strong>1.5B</strong>全参数RL（<strong>8.33%</strong>）。<strong>Mind</strong> Lab还开源了MinT后训练平台和MindForge强化学习框架，支持百万级别Adapter目录和长上下文RL训练（LongStraw实现2M token RL）。</p><p>📌 <strong>总结</strong>：<strong>Macaron-</strong>V1将<strong>持续学习</strong>和群体智能从理论推进到开源可复现，其MoL架构为模型在使用中持续进化提供了工程可行路径。对通信设备商和运营商而言，可借鉴此方法将网络运维经验通过LoRA持续注入模型，避免每次升级需要全量微调。同时，MinT平台支持百万Adapter的概念为“一人一模型”的个性化服务奠定基础，可能改变AI服务的交付模式。但需关注<strong>持续学习</strong>带来的模型稳定性问题。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-07-24-6?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94597">4、EmoAgent-R1提出基于强化学习的动态智能体特化框架，提升多模态情感识别</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">EmoAgent-R1</span> <span class="md-tag">情感识别</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>EmoAgent-R1</strong>是一个基于强化学习的动态智能体特化框架，旨在优化多模态大模型的<strong>情感识别</strong>、推理和泛化能力。该框架首先采用冷启动策略，通过合成答案链式思维数据和智能体路由数据赋予模型初步能力；然后通过强化学习训练，在智能体选择与特化的两步工作流中感知情感。为了有效训练，提出了渐进式组相对策略优化(<strong>P-GRPO</strong>)，结合基于组的相对优势与PMI启发的渐进式令牌级调制，将稀疏奖励转化为细粒度学习信号，缓解GRPO中的粗粒度均匀信用分配问题。在多模态<strong>情感识别</strong>基准上的实验表明，<strong>EmoAgent-R1</strong>在情感推理性能和优化稳定性方面具有优势。</p><p>📌 <strong>总结</strong>：该工作为多模态<strong>情感识别</strong>任务提供了一种新的强化学习训练范式，通过动态智能体特化和改进的GRPO算法，提升了模型在复杂情感理解场景中的表现。对于AI应用中的情感交互（如客服、心理健康助手），该技术可增强系统对用户情绪的理解和响应能力。同时，P-GRPO算法对稀疏奖励场景的改进具有通用性，可应用于其他需要细粒度信用分配的强化学习任务。</p><p>来源：<a href="https://arxiv.org/abs/2607.21013" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：EmoAgent-R1: Towards Multimodal Emotion Understanding with Reinforcement Learning-based Dynamic Agent Specialization</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-94591">1、CANN Bench发布针对华为昇腾NPU的AI算子生成基准，覆盖53个算子及1060个测试用例</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">CANN Bench</span> <span class="md-tag">昇腾NPU</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>CANN Bench</strong>是首个针对华为<strong>昇腾NPU</strong>的AI生成算子代码的开源基准，由论文团队提出。当前基准主要聚焦CUDA和Triton，而昇腾等编程模型不够开放的硬件生态系统缺乏统一评估基线。<strong>CANN Bench</strong>覆盖53个算子、1060个测试用例，分为四个难度层级（从简单元素级到MoE调度和FlashAttention），支持FP16、<strong>BF16</strong>、FP32和INT8精度。评估采用三维加权复合评分，将编译、功能正确性和性能作为独立维度，为算子生成智能体提供原则性奖励信号。性能评分基于开箱即用的PyTorch-on-Ascend基线和每个用例的硬件锚定性能极限，确保分数反映真实优化空间而非测量伪影。该基准已纳入官方<strong>CANN</strong>仓库，支持长期社区共建。</p><p>📌 <strong>总结</strong>：<strong>CANN Bench</strong>为<strong>昇腾NPU</strong>生态提供了量化、可复现且可持续维护的算子生成能力评估标准，使AI算子生成智能体在昇腾平台上的优化效果可被客观衡量。对于通信设备供应商（如华为）和AI基础设施提供商，这有助于推动昇腾生态的算子自动生成技术发展，提升AI推理与训练效率。同时，该基准可能成为<strong>模型评测</strong>领域的重要补充，影响未来AI芯片的算子生成工具链评估标准。研发团队可基于此基准优化算子生成策略，降低对手动调优的依赖，加速<strong>昇腾NPU</strong>在AI应用中的部署。</p><p>来源：<a href="https://arxiv.org/abs/2607.20518" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：CANN Bench: Benchmarking Agent Generated Kernels against Real NPU and Algorithmic Limits</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94517">2、Token云服务效值阵第二期发布：阿里百炼与腾讯混元领跑，天翼星辰跨城调度最优</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Token云服务效值阵</span> <span class="md-tag">跨区域调度</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年7月，中国信通院<strong>云计算开源产业联盟</strong>发布<strong>Token云服务效值阵</strong>第二期报告。以<strong>DeepSeek</strong>-<strong>V4-</strong>Flash为测试模型，在上海、广州、成都、北京四城，分上午、下午、夜间三个时段，测试短对话、长摘要、代码生成、Agent工具调用四个场景，并发梯度1/5/10/15。构建P（响应性能）×R（模型丰富度）×S（<strong>跨区域调度</strong>能力）三维评价框架。结果：阿里百炼（P=88.80, R=94.00, S=85.12）和腾讯混元（P=93.80, R=75.34, S=76.70）为领导者；天翼星辰跨城调度能力S=86.36全场最高，TTFT扣RTT P50仅<strong>0.49秒</strong>；硅基流动和移动MoMA性能偏低；所有平台最优城市均为上海。并发场景下腾讯混元和阿里百炼表现稳定，天翼星辰在高并发时延迟增幅较大。</p><p>📌 <strong>总结</strong>：该评测为AI推理服务选型提供了跨区域、多场景、多时段的量化比较，对运营商和云服务商评估自身平台竞争力有直接参考价值。核心发现：<strong>跨区域调度</strong>能力已成为差异化关键，天翼星辰在调度一致性上领先但模型丰富度不足；上海网络基础设施优势普遍存在，其他城市需加强边缘节点部署。对通信设备商而言，可参考此评测体系设计面向AI推理的端到端服务质量保障方案。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk0NDYwMzY1NA==&amp;amp;mid=2247560410&amp;amp;idx=3&amp;amp;sn=a4aabaca0e977ffebce5e076638a3480&amp;amp;chksm=c21d65434f251aded120fabd18bb5c2d3a9274b4eb8992785e94a23b4e0b1c656c49f3321252&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">云计算开源产业联盟</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-94779">1、端侧AI规模化落地条件成熟：模型密度每百天翻倍，百TOPS芯片铺开，备案开放</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">端侧AI</span> <span class="md-tag">算力芯片</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>端侧AI</strong>规模化落地的三条技术曲线同时成熟：一是模型能力密度每100天翻倍（清华团队提出），MiniCPM5仅<strong>1B</strong>参数效果超越Qwen3.5-<strong>2B</strong>；二是高通骁龙8 <strong>Elite</strong> Gen5和联发科天玑9500 NPU算力达100 <strong>TOPS</strong>，功耗砍半；三是国家网信办首次为7款手机<strong>端侧AI</strong>服务完成备案，苹果Apple Intelligence在中国市场等待两年半后获准。但实际瓶颈在于内存容量和带宽，手机<strong>6GB</strong>内存仅能安全运行<strong>3B</strong>-<strong>4B</strong>模型，且端侧上下文长度通常限制在512-2048。此外，合规备案制度要求模型修改需重新备案，限制了端侧个性化能力。</p><p>📌 <strong>总结</strong>：<strong>端侧AI</strong>规模化对通信行业有深远影响：运营商可在终端侧部署AI用于网络优化、信号增强等场景，降低对云端依赖。同时，端侧模型的内存限制和功耗约束要求网络侧提供高效的边缘计算协同。合规备案制度意味着运营商在推广自有AI终端时需提前完成模型备案，并优先选择已持牌的大模型供应商。面壁MiniCPM的<strong>1.3B</strong>模型在<strong>6GB</strong>手机运行的成功案例，为运营商在低端终端部署AI提供了可行路径。</p><p>来源：<a href="https://www.36kr.com/p/3909363449451649" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-95024">1、3GPP发布Version 19标准，推动5G-Advanced与6G技术演进</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">3GPP</span> <span class="md-tag">Release 19</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月24日，<strong>3GPP</strong>通过官方网站正式发布Version 19（<strong>Release 19</strong>）标准。该版本是5G-Advanced的第二个完整版本，主要包含：增强型网络切片、AI/ML在5G网络中的应用框架、边缘计算能力提升、以及面向6G的初始研究项目。在核心网方面，<strong>Release 19</strong>进一步规范了NWDAF（网络数据分析功能）的AI模型生命周期管理，支持基于意图的网络管理，并引入新的服务化接口（<strong>SBI</strong>）增强。同时，该版本启动了6G核心网架构的Study <strong>Item</strong>，预计将在后续版本中定义6G核心网的关键需求。</p><p>📌 <strong>总结</strong>：<strong>3GPP</strong> <strong>Release 19</strong>的发布直接影响了核心网设备供应商的产品路线图：华为、爱立信、诺基亚等需在2027年前完成支持<strong>Release 19</strong>的产品升级。对于AI前沿技术预研规划师，<strong>Release</strong> 19中对AI/ML in 5G的标准化意味着AI与通信网络的深度融合进入新阶段，NWDAF的AI模型管理框架为运营商部署智能运维提供了标准接口。建议重点关注<strong>Release</strong> 19中关于AI/ML的规范（如TS 23.288增强），以及6G核心网研究项目的进展。</p><p>来源：<a href="https://www.3gpp.org/specifications-technologies/releases/release-19" target="_blank" rel="noreferrer">Hacker</a></p><p>原文标题：3GPP Version 19</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-95270">1、星环科技发布全球首个GPU原生认知数据库，AI Agent查询性能提升70倍</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">星环科技</span> <span class="md-tag">GPU原生数据库</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年WAIC上，<strong>星环科技</strong>推出全球首个完整GPU原生认知数据库，针对AI Agent多步骤循环工作模式设计。传统CPU数据库并行度低（百级核心）、内存带宽约<strong>400GB</strong>/s，而GPU拥有万级核心和数TB/s显存带宽。数据在CPU与GPU间反复搬运导致GPU利用率降至30-<strong>40%</strong>。<strong>星环科技</strong>将存储层、计算层、编译层和执行引擎全部围绕GPU重写，实现GIDS（<strong>GPU-Initiated Direct Storage</strong>）——GPU直接发起存储访问，完全绕过CPU和主机内存。在TPC-DS SF1000基准测试中，完成99项查询测试，相比DuckDB获得<strong>70倍</strong>加速。在复杂企业知识问答场景中，文档解析与知识入库性能提升约<strong>10倍</strong>，数据检索性能提升约<strong>20倍</strong>，单题端到端推理性能提升约<strong>6倍</strong>，准确率达<strong>79.3%</strong>。</p><p>📌 <strong>总结</strong>：<strong>星环科技</strong>GPU原生认知数据库的发布，标志着AI Agent时代数据底座架构的重大转变。该方案将数据库从CPU迁移到GPU，本质上解决了Agent反复调用数据时CPU瓶颈和GPU闲置问题，使单位任务成本出现拐点——当性能提升数十倍至上百倍时，即使GPU成本高于CPU，经济性已可接受。这一架构对AI推理系统、Agent基础设施和数据处理平台的设计具有直接参考价值：未来数据库不再只是存储容器，而是能理解语义、管理长期记忆、主动供给上下文的认知基础设施。对于技术预研规划师和架构师，该方案提出了在Agent场景下重新评估数据架构的必要性。</p><p>来源：<a href="https://zhidx.com/p/579046.html" target="_blank" rel="noreferrer">智东西 - 人工智能专题</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94801">2、中兴通讯完成OpenJDK RISC-V向量优化，SPECJVM性能提升最高10.22%</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">中兴通讯</span> <span class="md-tag">OpenJDK</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>中兴通讯</strong>发布<strong>OpenJDK</strong> <strong>RISC-</strong>V优化实践成果。针对商用JDK21 LTS版本，筛选40+社区关键PR，合入<strong>1万</strong>+行代码，新增5类<strong>RISC-</strong>V ISA扩展、7种硬件加解密优化，SPECJVM性能提升<strong>4.74%</strong>。针对master主线，自研10+项RISC-V专属优化，重点实现冗余vset指令消除，通过块内清理、跨块传播、循环外提三层优化体系，在K1环境下向量密集场景性能中位数提升<strong>49.1%</strong>，SPECJVM基准几何平均性能提升<strong>9.45%</strong>。该方案已在K1、QEMU环境通过全量jtreg向量测试用例。</p><p>📌 <strong>总结</strong>：<strong>中兴通讯</strong>的<strong>OpenJDK</strong>优化工作显著提升了RISC-V服务器在Java生态中的性能表现，特别是解决了RVV向量性能损耗的核心问题。对于依赖Java中间件（如Spring <strong>Boot</strong>、<strong>Flink</strong>、<strong>Kafka</strong>）的通信设备供应商和云基础设施厂商，这意味着RISC-V服务器在数据中心场景的商用化进程可能加速。建议关注RISC-V服务器芯片的成熟度以及<strong>OpenJDK</strong>社区后续的版本支持情况。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1314669.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-94584">1、工信部等八部门发布工业互联网高质量发展实施意见，设2030年核心产业目标2.5万亿元</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">工信部</span> <span class="md-tag">工业互联网</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>工信部</strong>等8部门近日印发《关于推动<strong>工业互联网</strong>高质量发展的实施意见》，部署基础设施、技术创新、融合应用、安全保障、产业生态5方面18项具体任务，从“点—线—面”三层推进规模化应用，推动IT/CT/OT/DT“<strong>4T</strong>融合”。目标到2030年建设<strong>5万</strong>张工业5G专网，打造5个左右具有国际影响力的综合型平台。在2026<strong>工业互联网</strong>大会上，中国移动发布“移动天工”品牌，以5G专网、卫星互联网、工业PON、无源物联为连接，AI为引擎；浪潮云洲发布“智能底座+大模型平台+智能体服务”架构及大模型工匠工厂模式，赋能制造业数智化转型。</p><p>📌 <strong>总结</strong>：该实施意见为<strong>工业互联网</strong>设置了明确的产业规模和网络部署目标，直接指导运营商在5G专网、边缘计算和网络切片上的投资方向。中国移动“移动天工”和浪潮云洲大模型工匠工厂的落地，表明运营商和设备商正加速将AI大模型与工业现场控制相结合，形成可复用的工业智能体方案。对于5G/6G标准专家，该政策强化了<strong>工业互联网</strong>作为核心网新型应用场景的地位，可能影响R18后网络切片、URLLC增强标准方向；对于AI预研人员，工业智能体的集群协同和具身智能需求将推动多智能体框架与确定性网络的融合。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzU0NjMwNQ==&amp;amp;mid=2650870274&amp;amp;idx=1&amp;amp;sn=ff8eeca3672d944167eeee774fb9978d&amp;amp;chksm=bcd5e6165d62a27c84f0ff1af4105ca261ca0a511a8f71c5d93e4c313165e75611256b5e23e1&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">中国信通院CAICT</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-94530">1、腾讯微信SkillHone：通过持久决策历史实现Agent技能持续进化</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">腾讯微信 SkillHone</span> <span class="md-tag">技能进化</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，腾讯微信团队在论文SkillHone中提出面向持续Agent<strong>技能进化</strong>的开发框架。核心创新：将每轮优化中的问题诊断、候选修订、评估证据和最终决定组织成持久决策历史，使后续Agent可理解每次修改的原因，实现精准回退而非整份丢弃。同时，优化对象从单个SKILL.md文件扩展为完整Skill repo（包括脚本、模板等）。系统设置优化侧和评估侧角色隔离，避免作弊。在GAIA和WebWalkerQA-EN基准上，使用Qwen3.6-<strong>35B</strong>-A<strong>3B</strong>作为执行模型，SkillHone分别达到<strong>64.6%</strong>和<strong>66.4%</strong>，比Hermes-SE高14.2和13.4个百分点。优化后的技能包直接迁移到Claude <strong>Sonnet 4.</strong>6后GAIA升至<strong>72.4%</strong>，无需重新优化。消融实验显示，去掉决策历史后成绩下降13.4和10.9个百分点。</p><p>📌 <strong>总结</strong>：SkillHone将Agent技能迭代从“黑盒优化”转向“透明决策过程”，显著提升了多轮优化的效率和效果。其跨模型迁移能力意味着积累的技能资产可复用，降低模型升级后的适配成本。对通信设备商和运营商构建Agent运维技能库而言，SkillHone提供了一种可追溯、可回滚、可复用的工程框架，有助于将网络运维专家经验逐步沉淀为可进化的Agent技能。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-07-24-2?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95295">2、Grok Build新增Workflows功能，支持并行Agent工作流自动执行复杂任务</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Grok Build</span> <span class="md-tag">Workflows</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>Grok Build</strong>推出<strong>Workflows</strong>功能。用户可以用自然语言描述大型任务，<strong>Grok</strong>自动规划并分派给最多128个并行Agent在后台执行，最终汇总报告。每个Agent拥有独立上下文，支持多阶段执行（如上下文获取、专业审查、对抗验证、综合报告），进度可实时查看，支持暂停和恢复。保存的工作流可复用为自定义命令（如/pr-review 5137）。内置/deep-research命令，可将研究问题分派给并行调查员，验证每个声明并返回带引用的报告。</p><p>📌 <strong>总结</strong>：<strong>Grok Build</strong> <strong>Workflows</strong>将AI编程工具从单轮对话升级为多Agent并行工作流系统，大幅提升复杂任务的执行效率。128个并行Agent的能力使代码审查、问题分类、安全审计等任务可以大规模并行化，且保存复用机制降低了重复工作。对于AI应用产品化场景，该功能展示了多Agent协作在编程领域的实际应用，对开发团队提升效率具有直接参考价值。</p><p>来源：<a href="https://x.ai/news/workflows" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><p>原文标题：Workflows in Grok Build</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95119">3、基于艾宾浩斯遗忘曲线的AI代理记忆引擎：使用强化驱动的衰减提升长期记忆</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">AI代理记忆</span> <span class="md-tag">遗忘曲线</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月24日，<strong>Emmimal</strong> P Alexander在Towards <strong>Data</strong> Science发表文章，介绍其构建的<strong>AI代理记忆</strong>引擎。不同于传统滑动窗口（仅保留最近N条信息），该引擎使用艾宾浩斯<strong>遗忘曲线</strong>，每次回忆会增强记忆稳定性，推迟驱逐时间。在50个150轮会话的基准测试中，基础事实召回率<strong>100%</strong>（基线<strong>0%</strong>），且对噪声不敏感。该引擎完全确定性，基于轮次计数器而非时钟时间。文章还揭示了两个关键bug（初始稳定性过低导致过早驱逐，随机召回调度导致基准不可通过），并进行了敏感性分析。代码开源在GitHub。</p><p>📌 <strong>总结</strong>：该记忆引擎对智能体平台的长会话记忆管理有直接影响，可应用于客服、编程助手等场景。对于通信设备商，网络运维Agent需要长期上下文记忆，该方案可提升关键配置和故障信息的保留率。建议纳入日报正文。</p><p>来源：<a href="https://towardsdatascience.com/context-windows-forget-what-matters-i-used-a-140-year-old-psychology-paper-to-fix-ai-memory/" target="_blank" rel="noreferrer">Towards Data Science - Medium</a></p><p>原文标题：Context Windows Forget What Matters — I Built a Usage-Reinforced Decay Engine for AI Agent Memory</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-94481">1、北大、阿里云提出 SAC 系统：基于 CXL 的稀疏注意力 KV 缓存方案，吞吐量达 RDMA 的 2.1 倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SAC</span> <span class="md-tag">CXL</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：北京大学、阿里巴巴云和中国人民大学的研究团队于2026年7月24日发布 <strong>SAC</strong> 系统论文。该研究指出，在 <strong>DeepSeek-V3.2</strong> 等稀疏注意力模型中，处理128K上下文时实际被访问的 KV 缓存仅占<strong>21%</strong>，但传统 <strong>RDMA</strong> 方案仍需全量预取，导致巨大的传输带宽浪费。<strong>SAC</strong> 系统利用 <strong>CXL</strong> 的低延迟、缓存行粒度加载/存储语义，在推理过程中仅按需获取所需的 <strong>Top-k KV</strong> 条目。实验基于 <strong>DeepSeek-V3.2</strong> 模型（<strong>AWQ</strong> 4位量化）在8卡 <strong>H20 GPU</strong> 服务器和<strong>2TB</strong> <strong>CXL</strong> 内存池环境下进行，结果显示：SAC 的平均吞吐量是 <strong>RDMA</strong> 基线的 <strong>2.1 倍</strong>，RDMA 的 <strong>TTFT</strong> 比 SAC 高出 <strong>9.7 倍</strong>，SAC 的性能达到本地 <strong>DRAM</strong> 基线的 <strong>91%</strong>。在128K上下文下，SAC 的吞吐量最高可达 RDMA 系统的 <strong>3.1 倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>SAC</strong> 系统为稀疏注意力大模型的分离式推理提供了新的架构范式，对于 AI 前沿技术预研规划师和 AI 推理与服务加速专家而言，<strong>CXL</strong> 替代 <strong>RDMA</strong> 作为 KV 缓存互联方案，有望显著降低长上下文推理的延迟和成本。随着 <strong>DeepSeek-V4</strong> 等模型继续向更高稀疏度和更长上下文演进，基于 <strong>CXL</strong> 的分离式内存架构可能成为下一代大模型服务基础设施的关键技术路线。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561390&amp;amp;idx=1&amp;amp;sn=60fc561f3fec9d5b24fb06f0bb7ecb73&amp;amp;chksm=cf78ab144846e74fb606dd333b9f78669aa45425dc042887719188ec3a09ce9e06685d44aaf9&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94579">2、腾讯混元团队提出E-GRM让模型按需推理，延迟降低62%准确率反升</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">E-GRM</span> <span class="md-tag">动态CoT</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：腾讯混元团队联合新南威尔士大学在ACL 2026发表<strong>E-GRM</strong>（Efficient <strong>GRM</strong>），核心是<strong>动态CoT</strong>触发：对输入进行5次并行解码，如果答案一致性≥0.8则直接输出，否则触发CoT并引入判别评分器评估推理路径质量。评分器采用混合损失（Huber回归+Hinge排序）。在RM-<strong>Bench</strong>、RMB和Reward<strong>Bench</strong>上，约<strong>58%</strong>样本被路由到直接回答，延迟降低<strong>62%</strong>，准确率同时上升。训练阶段采用SFT混合短答/长CoT和GRPO偏好优化。</p><p>📌 <strong>总结</strong>：该工作挑战了“推理链越长越好”的默认假设，提出基于模型预测不确定性的自适应推理调度。对于部署成本敏感的场景，可大幅减少无用推理开销。技术规划师可考虑将该机制集成到服务系统中，降低推理成本而不牺牲质量。同时，对简单问题强制CoT可能引入噪声，这一发现对提示设计和训练数据策略有启示。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;amp;mid=2247907132&amp;amp;idx=3&amp;amp;sn=be58f881975eb34a690613b0f9c7de4b&amp;amp;chksm=e927664ea077418d64feae46cd22657fede204f6111a721c64a91a67465064f378b0e148a5c6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">量子位</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95829">3、IST-DASLab提出统计无损量化方法SLQ，实现3.3比特参数下任务无损压缩</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">IST-DASLab</span> <span class="md-tag">统计无损量化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>IST-DASLab</strong>（奥地利科学技术研究所）在arXiv发表论文，提出<strong>统计无损量化</strong>方法SLQ。该方法通过层间非均匀标量量化和宽比特搜索，在3.3比特/参数下实现任务无损压缩（保持零样本基准精度），在5-6比特/参数下实现分布无损压缩（下一token分布与原始模型不可区分）。SLQ在优化内核下实现1.7-<strong>3.6倍</strong>的推理加速（相对FP16），并提出了期望接受率（<strong>EAR</strong>）作为保真度指标。</p><p>📌 <strong>总结</strong>：SLQ方法在极低比特率下同时实现任务无损和推理加速，突破了传统量化方法在压缩率与性能之间的权衡。该技术路线有望降低LLM部署的硬件成本和能耗，对边缘端和资源受限场景的模型落地具有重要价值。技术预研规划师应关注其与现有量化框架（如GPTQ、<strong>AWQ</strong>）的兼容性及工程化潜力。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1v5j35f/paper_statisticallylossless_quantization_of_large/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：[Paper] Statistically-Lossless Quantization of Large Language Models</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-95011">4、audio.cpp 0.4发布：支持Higgs Audio TTS和Fish Audio S2 Pro，实现10倍实时推理</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">audio.cpp</span> <span class="md-tag">TTS</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月24日，<strong>audio.cpp</strong>发布0.4版本，新增Higgs <strong>Audio</strong> v3 <strong>TTS</strong> <strong>4B</strong>、Fish <strong>Audio</strong> S2 Pro、<strong>Voxtral Realtime</strong> ASR以及两个社区模型，现支持35个模型家族。所有模型家族均支持GGUF格式，并提供预构建GGUF包。在RTX 5090上测试：<strong>Higgs Audio</strong> <strong>TTS</strong>预热请求比实时快8.8-<strong>10.1倍</strong>，长文本生成快<strong>8.5倍</strong>；<strong>Fish Audio S2 Pro</strong>预热请求快3.1-<strong>3.4倍</strong>；<strong>Voxtral</strong> ASR离线快<strong>15.7倍</strong>，流式TTFT约<strong>171ms</strong>。与16位GGUF相比，Q8量化在部分路径上可提升速度达<strong>1.5倍</strong>，峰值VRAM降低最多<strong>37%</strong>。</p><p>📌 <strong>总结</strong>：<strong>audio.cpp</strong> 0.4通过GGUF原生支持和Q8量化优化，使高质量语音合成和识别模型在消费级GPU上实现实时甚至超实时推理，极大降低了部署成本。对于核心网设备供应商，可用于构建实时语音交互系统（如AI客服、语音导航），提升运维效率。</p><p>来源：<a href="https://www.reddit.com/r/LocalLLaMA/comments/1v4w5cj/audiocpp_release_04_higgs_audio_v3_tts_4b_10x/" target="_blank" rel="noreferrer">LocalLLama</a></p><p>原文标题：[audio.cpp] Release 0.4: Higgs Audio v3 TTS 4B (10x real time)+ Fish Audio S2 Pro in C++/GGML, full GGUF loading, Q8 speed and VRAM gains</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-94474">1、AT&amp;T 发布 OTel 2.0 开源电信模型，基于 Gemma 4 后训练并登顶 Open Telco AI 排行榜</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">AT&amp;T</span> <span class="md-tag">电信模型</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>AT&amp;T</strong> 于2026年7月24日发布 <strong>OTel 2.0</strong>，这是目前最大且性能最佳的开源电信行业专用模型。该模型基于 <strong>Gemma</strong> 4 <strong>31B</strong>-IT 进行后训练，使用了从超过<strong>1万</strong>亿 token 中精选的<strong>4000亿</strong>电信专用 token。训练数据来源包括 <strong>GSMA</strong> 提供的来自3GPP、<strong>ETSI</strong>、<strong>GSMA</strong>、<strong>CAMARA</strong>、<strong>ITU</strong>、<strong>O-RAN</strong> 和 TM <strong>Forum</strong> 等七个标准开发组织的文档，以及 GSMA 与 <strong>Pleias</strong> 联合发布的 <strong>Telco Corpus</strong> 数据集（约<strong>100亿</strong> token），并结合了 <strong>AT&amp;T</strong> 与 <strong>Red Hat</strong>、<strong>Dell</strong>、<strong>Microsoft Azure</strong> 和 <strong>AMD</strong> 合作补充的数据。<strong>OTel 2.0</strong> 目前在 <strong>Open Telco AI</strong> 排行榜上位列第一，验证了领域适配模型在电信网络故障排查、产品开发和网络配置等场景中的高准确性。</p><p>📌 <strong>总结</strong>：<strong>OTel 2.0</strong> 的发布标志着电信行业 AI 从通用模型向领域专用模型的重要转变。对于 AI 前沿技术预研规划师和 5G/6G 标准专家而言，该模型证明了通过大规模电信领域数据后训练，可以在较小模型上实现超越通用大模型的电信任务性能，为运营商和设备商提供了低成本、高精度的 AI 部署路径。同时，开源策略有助于构建电信 AI 开放生态，可能影响未来网络运维和标准制定的 AI 工具链选择。</p><p>来源：<a href="https://www.gsma.com/newsroom/article/atts-otel-2-0-is-now-live-the-largest-and-best-performing-open-source-model-built-for-telecoms/" target="_blank" rel="noreferrer">GSMA Newsroom</a></p><p>原文标题：AT&amp;T’s OTel 2.0 is now live: the largest and best performing open-source model built for telecoms</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94526">2、心洲科技Mind Lab开源Macaron-V1模型：基于GLM-5.2的MoL架构支持持续学习</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Mind Lab Macaron-V1</span> <span class="md-tag">持续学习</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，心洲科技旗下<strong>Mind</strong> Lab开源Macaron-V1系列模型。旗舰版Venti总参<strong>748B</strong>（<strong>744B</strong> <strong>GLM-5.</strong>2基座+四个<strong>1B</strong> <strong>LoRA</strong>专家：<strong>Chat</strong>、<strong>Agent</strong>、<strong>Coding</strong>、<strong>GenUI</strong>），基于Qwen3.6的Tall版本<strong>50B</strong>。核心架构Mixture-of-<strong>LoRA</strong>（<strong>MoL</strong>）将技能按任务类型分配到不同LoRA，可插拔、可组合，支持<strong>持续学习</strong>。在UI4A前端设计基准上以87.7大幅领先Claude <strong>Opus 4.8</strong>。实验表明，在相近RL预算下，<strong>32B</strong>模型用r=8 LoRA的增益（<strong>20.61%</strong>）超过<strong>1.5B</strong>全参数RL（<strong>8.33%</strong>）。<strong>Mind</strong> Lab还开源了MinT后训练平台和MindForge强化学习框架，支持百万级别Adapter目录和长上下文RL训练（LongStraw实现2M token RL）。</p><p>📌 <strong>总结</strong>：<strong>Macaron-</strong>V1将<strong>持续学习</strong>和群体智能从理论推进到开源可复现，其MoL架构为模型在使用中持续进化提供了工程可行路径。对通信设备商和运营商而言，可借鉴此方法将网络运维经验通过LoRA持续注入模型，避免每次升级需要全量微调。同时，MinT平台支持百万Adapter的概念为“一人一模型”的个性化服务奠定基础，可能改变AI服务的交付模式。但需关注<strong>持续学习</strong>带来的模型稳定性问题。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-07-24-6?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-94517">1、Token云服务效值阵第二期发布：阿里百炼与腾讯混元领跑，天翼星辰跨城调度最优</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Token云服务效值阵</span> <span class="md-tag">跨区域调度</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年7月，中国信通院<strong>云计算开源产业联盟</strong>发布<strong>Token云服务效值阵</strong>第二期报告。以<strong>DeepSeek</strong>-<strong>V4-</strong>Flash为测试模型，在上海、广州、成都、北京四城，分上午、下午、夜间三个时段，测试短对话、长摘要、代码生成、Agent工具调用四个场景，并发梯度1/5/10/15。构建P（响应性能）×R（模型丰富度）×S（<strong>跨区域调度</strong>能力）三维评价框架。结果：阿里百炼（P=88.80, R=94.00, S=85.12）和腾讯混元（P=93.80, R=75.34, S=76.70）为领导者；天翼星辰跨城调度能力S=86.36全场最高，TTFT扣RTT P50仅<strong>0.49秒</strong>；硅基流动和移动MoMA性能偏低；所有平台最优城市均为上海。并发场景下腾讯混元和阿里百炼表现稳定，天翼星辰在高并发时延迟增幅较大。</p><p>📌 <strong>总结</strong>：该评测为AI推理服务选型提供了跨区域、多场景、多时段的量化比较，对运营商和云服务商评估自身平台竞争力有直接参考价值。核心发现：<strong>跨区域调度</strong>能力已成为差异化关键，天翼星辰在调度一致性上领先但模型丰富度不足；上海网络基础设施优势普遍存在，其他城市需加强边缘节点部署。对通信设备商而言，可参考此评测体系设计面向AI推理的端到端服务质量保障方案。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk0NDYwMzY1NA==&amp;amp;mid=2247560410&amp;amp;idx=3&amp;amp;sn=a4aabaca0e977ffebce5e076638a3480&amp;amp;chksm=c21d65434f251aded120fabd18bb5c2d3a9274b4eb8992785e94a23b4e0b1c656c49f3321252&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">云计算开源产业联盟</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-94779">1、端侧AI规模化落地条件成熟：模型密度每百天翻倍，百TOPS芯片铺开，备案开放</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">端侧AI</span> <span class="md-tag">算力芯片</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>端侧AI</strong>规模化落地的三条技术曲线同时成熟：一是模型能力密度每100天翻倍（清华团队提出），MiniCPM5仅<strong>1B</strong>参数效果超越Qwen3.5-<strong>2B</strong>；二是高通骁龙8 <strong>Elite</strong> Gen5和联发科天玑9500 NPU算力达100 <strong>TOPS</strong>，功耗砍半；三是国家网信办首次为7款手机<strong>端侧AI</strong>服务完成备案，苹果Apple Intelligence在中国市场等待两年半后获准。但实际瓶颈在于内存容量和带宽，手机<strong>6GB</strong>内存仅能安全运行<strong>3B</strong>-<strong>4B</strong>模型，且端侧上下文长度通常限制在512-2048。此外，合规备案制度要求模型修改需重新备案，限制了端侧个性化能力。</p><p>📌 <strong>总结</strong>：<strong>端侧AI</strong>规模化对通信行业有深远影响：运营商可在终端侧部署AI用于网络优化、信号增强等场景，降低对云端依赖。同时，端侧模型的内存限制和功耗约束要求网络侧提供高效的边缘计算协同。合规备案制度意味着运营商在推广自有AI终端时需提前完成模型备案，并优先选择已持牌的大模型供应商。面壁MiniCPM的<strong>1.3B</strong>模型在<strong>6GB</strong>手机运行的成功案例，为运营商在低端终端部署AI提供了可行路径。</p><p>来源：<a href="https://www.36kr.com/p/3909363449451649" target="_blank" rel="noreferrer">36氪</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-95270">1、星环科技发布全球首个GPU原生认知数据库，AI Agent查询性能提升70倍</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">星环科技</span> <span class="md-tag">GPU原生数据库</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年WAIC上，<strong>星环科技</strong>推出全球首个完整GPU原生认知数据库，针对AI Agent多步骤循环工作模式设计。传统CPU数据库并行度低（百级核心）、内存带宽约<strong>400GB</strong>/s，而GPU拥有万级核心和数TB/s显存带宽。数据在CPU与GPU间反复搬运导致GPU利用率降至30-<strong>40%</strong>。<strong>星环科技</strong>将存储层、计算层、编译层和执行引擎全部围绕GPU重写，实现GIDS（<strong>GPU-Initiated Direct Storage</strong>）——GPU直接发起存储访问，完全绕过CPU和主机内存。在TPC-DS SF1000基准测试中，完成99项查询测试，相比DuckDB获得<strong>70倍</strong>加速。在复杂企业知识问答场景中，文档解析与知识入库性能提升约<strong>10倍</strong>，数据检索性能提升约<strong>20倍</strong>，单题端到端推理性能提升约<strong>6倍</strong>，准确率达<strong>79.3%</strong>。</p><p>📌 <strong>总结</strong>：<strong>星环科技</strong>GPU原生认知数据库的发布，标志着AI Agent时代数据底座架构的重大转变。该方案将数据库从CPU迁移到GPU，本质上解决了Agent反复调用数据时CPU瓶颈和GPU闲置问题，使单位任务成本出现拐点——当性能提升数十倍至上百倍时，即使GPU成本高于CPU，经济性已可接受。这一架构对AI推理系统、Agent基础设施和数据处理平台的设计具有直接参考价值：未来数据库不再只是存储容器，而是能理解语义、管理长期记忆、主动供给上下文的认知基础设施。对于技术预研规划师和架构师，该方案提出了在Agent场景下重新评估数据架构的必要性。</p><p>来源：<a href="https://zhidx.com/p/579046.html" target="_blank" rel="noreferrer">智东西 - 人工智能专题</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94801">2、中兴通讯完成OpenJDK RISC-V向量优化，SPECJVM性能提升最高10.22%</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">中兴通讯</span> <span class="md-tag">OpenJDK</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>中兴通讯</strong>发布<strong>OpenJDK</strong> <strong>RISC-</strong>V优化实践成果。针对商用JDK21 LTS版本，筛选40+社区关键PR，合入<strong>1万</strong>+行代码，新增5类<strong>RISC-</strong>V ISA扩展、7种硬件加解密优化，SPECJVM性能提升<strong>4.74%</strong>。针对master主线，自研10+项RISC-V专属优化，重点实现冗余vset指令消除，通过块内清理、跨块传播、循环外提三层优化体系，在K1环境下向量密集场景性能中位数提升<strong>49.1%</strong>，SPECJVM基准几何平均性能提升<strong>9.45%</strong>。该方案已在K1、QEMU环境通过全量jtreg向量测试用例。</p><p>📌 <strong>总结</strong>：<strong>中兴通讯</strong>的<strong>OpenJDK</strong>优化工作显著提升了RISC-V服务器在Java生态中的性能表现，特别是解决了RVV向量性能损耗的核心问题。对于依赖Java中间件（如Spring <strong>Boot</strong>、<strong>Flink</strong>、<strong>Kafka</strong>）的通信设备供应商和云基础设施厂商，这意味着RISC-V服务器在数据中心场景的商用化进程可能加速。建议关注RISC-V服务器芯片的成熟度以及<strong>OpenJDK</strong>社区后续的版本支持情况。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1314669.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-94584">1、工信部等八部门发布工业互联网高质量发展实施意见，设2030年核心产业目标2.5万亿元</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">工信部</span> <span class="md-tag">工业互联网</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>工信部</strong>等8部门近日印发《关于推动<strong>工业互联网</strong>高质量发展的实施意见》，部署基础设施、技术创新、融合应用、安全保障、产业生态5方面18项具体任务，从“点—线—面”三层推进规模化应用，推动IT/CT/OT/DT“<strong>4T</strong>融合”。目标到2030年建设<strong>5万</strong>张工业5G专网，打造5个左右具有国际影响力的综合型平台。在2026<strong>工业互联网</strong>大会上，中国移动发布“移动天工”品牌，以5G专网、卫星互联网、工业PON、无源物联为连接，AI为引擎；浪潮云洲发布“智能底座+大模型平台+智能体服务”架构及大模型工匠工厂模式，赋能制造业数智化转型。</p><p>📌 <strong>总结</strong>：该实施意见为<strong>工业互联网</strong>设置了明确的产业规模和网络部署目标，直接指导运营商在5G专网、边缘计算和网络切片上的投资方向。中国移动“移动天工”和浪潮云洲大模型工匠工厂的落地，表明运营商和设备商正加速将AI大模型与工业现场控制相结合，形成可复用的工业智能体方案。对于5G/6G标准专家，该政策强化了<strong>工业互联网</strong>作为核心网新型应用场景的地位，可能影响R18后网络切片、URLLC增强标准方向；对于AI预研人员，工业智能体的集群协同和具身智能需求将推动多智能体框架与确定性网络的融合。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzU0NjMwNQ==&amp;amp;mid=2650870274&amp;amp;idx=1&amp;amp;sn=ff8eeca3672d944167eeee774fb9978d&amp;amp;chksm=bcd5e6165d62a27c84f0ff1af4105ca261ca0a511a8f71c5d93e4c313165e75611256b5e23e1&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">中国信通院CAICT</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-94617">1、Workload-Aware Caching策略将多智能体系统延迟降低64.7%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Workload-Aware Caching</span> <span class="md-tag">缓存驱逐</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：多智能体系统将复杂任务分解为DAG，中间结果缓存可减少重复计算，但现有驱逐策略忽视结构和工作负载信号。2026年7月，arxiv预印本提出一种工作负载感知的<strong>缓存驱逐</strong>策略，综合重计算成本、DAG依赖计数和代理调用频率，在三个多智能体基准上延迟降低<strong>64.7%</strong>，平均比次优有限容量基线低<strong>31.1%</strong>，并接近无限缓存性能，且准确率持平或更高。该策略与计划级缓存和并行执行互补。</p><p>📌 <strong>总结</strong>：该缓存优化方法可直接应用于多智能体系统的推理服务，降低延迟和计算成本，对智能体平台架构师和技术主管具有实用价值。可与现有系统集成，提升智能体应用的响应速度，但需要适配具体框架。</p><p>来源：<a href="https://arxiv.org/abs/2607.20495" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Workload-Aware Caching for Multi-Agent Systems</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-94653">1、MiniCache以可重用程序缓存降低LLM推理延迟3.1倍、提升吞吐2.8倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">MiniCache</span> <span class="md-tag">程序缓存</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：LLM在程序辅助推理、智能体决策等场景中频繁调用大模型，推理成本高昂。<strong>MiniCache</strong>提出一个可重用<strong>程序缓存</strong>框架，将Program-of-<strong>Thought</strong>（<strong>PoT</strong>）程序转化为参数化缓存对象，使结构相似的请求可复用计算结果。其核心创新是复用同一小模型进行缓存命中时的语义变量提取和缓存未命中时的投机验证，从而减少大模型唤醒次数。在购物类请求、<strong>WebShop</strong>、Formula和CodeTAT-QA等数据集上，<strong>MiniCache</strong>在并行服务下实现最高<strong>3.1倍</strong>延迟降低和<strong>2.8倍</strong>吞吐提升，且不影响任务质量。实验表明小模型更适合作为轻量级接口而非大模型替代品。</p><p>📌 <strong>总结</strong>：<strong>MiniCache</strong>提供了一个低成本的推理加速方案，尤其适合具有结构相似请求的在线服务场景（如电商、代码助手、智能客服）。对<strong>AI推理与服务加速</strong>板块的技术主管而言，该缓存机制可直接集成到现有serving系统中，显著降低token消耗和延迟。同时，其“小模型作为接口”的设计思路启发了一种新的推理架构范式，可减少对大模型的高频调用，平衡成本与质量。预研规划师可关注将其扩展到Agent工作流和多轮对话缓存的可能性。</p><p>来源：<a href="https://arxiv.org/abs/2607.20507" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：MiniCache: Reusable Program Caching with Small Model Interfaces for Efficient LLM Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-94601">1、AREX提出递归自改进深度研究智能体，4B模型与122B MoE模型在多个基准上超越同类</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">AREX</span> <span class="md-tag">递归自改进</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>AREX</strong>（<strong>Recursively Self-Improving Agent</strong> for <strong>Deep Research</strong>）是一系列<strong>递归自改进</strong>深度研究智能体。其核心思想是利用发现-验证不对称性：发现答案成本高，但验证可分解为约束检查。<strong>AREX</strong>交替进行内部研究循环（收集证据、构建临时答案）和外部自改进循环（逐约束审计、识别未解决主张、发起针对性后续研究）。为了维持长程递归，AREX学习自主上下文更新工具，压缩交互历史为紧凑改进状态。通过智能体中期训练和长程强化学习训练，在BrowseComp、<strong>WideSearch</strong>、<strong>DeepSearchQA</strong>、<strong>Humanity</strong>&#x27;s <strong>Last</strong> Exam等基准上，AREX的<strong>4B</strong>和<strong>122B</strong>-<strong>A10B</strong> MoE模型大幅超越可比较的基线，并保持与使用更多激活参数的模型竞争。</p><p>📌 <strong>总结</strong>：<strong>AREX</strong>展示了<strong>递归自改进</strong>机制在深度研究场景中的巨大潜力，使小模型也能达到接近大模型的表现。这对于需要长程推理和信息综合的AI应用（如技术预研、报告生成）具有重要价值。同时，其自主上下文更新工具的设计可减少对长上下文的依赖，降低推理成本，为智能体在有限资源下运行提供了可行方案。</p><p>来源：<a href="https://arxiv.org/abs/2607.21461" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：AREX: Towards a Recursively Self-Improving Agent for Deep Research</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94597">2、EmoAgent-R1提出基于强化学习的动态智能体特化框架，提升多模态情感识别</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">EmoAgent-R1</span> <span class="md-tag">情感识别</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>EmoAgent-R1</strong>是一个基于强化学习的动态智能体特化框架，旨在优化多模态大模型的<strong>情感识别</strong>、推理和泛化能力。该框架首先采用冷启动策略，通过合成答案链式思维数据和智能体路由数据赋予模型初步能力；然后通过强化学习训练，在智能体选择与特化的两步工作流中感知情感。为了有效训练，提出了渐进式组相对策略优化(<strong>P-GRPO</strong>)，结合基于组的相对优势与PMI启发的渐进式令牌级调制，将稀疏奖励转化为细粒度学习信号，缓解GRPO中的粗粒度均匀信用分配问题。在多模态<strong>情感识别</strong>基准上的实验表明，<strong>EmoAgent-R1</strong>在情感推理性能和优化稳定性方面具有优势。</p><p>📌 <strong>总结</strong>：该工作为多模态<strong>情感识别</strong>任务提供了一种新的强化学习训练范式，通过动态智能体特化和改进的GRPO算法，提升了模型在复杂情感理解场景中的表现。对于AI应用中的情感交互（如客服、心理健康助手），该技术可增强系统对用户情绪的理解和响应能力。同时，P-GRPO算法对稀疏奖励场景的改进具有通用性，可应用于其他需要细粒度信用分配的强化学习任务。</p><p>来源：<a href="https://arxiv.org/abs/2607.21013" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：EmoAgent-R1: Towards Multimodal Emotion Understanding with Reinforcement Learning-based Dynamic Agent Specialization</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-94591">1、CANN Bench发布针对华为昇腾NPU的AI算子生成基准，覆盖53个算子及1060个测试用例</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">CANN Bench</span> <span class="md-tag">昇腾NPU</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>CANN Bench</strong>是首个针对华为<strong>昇腾NPU</strong>的AI生成算子代码的开源基准，由论文团队提出。当前基准主要聚焦CUDA和Triton，而昇腾等编程模型不够开放的硬件生态系统缺乏统一评估基线。<strong>CANN Bench</strong>覆盖53个算子、1060个测试用例，分为四个难度层级（从简单元素级到MoE调度和FlashAttention），支持FP16、<strong>BF16</strong>、FP32和INT8精度。评估采用三维加权复合评分，将编译、功能正确性和性能作为独立维度，为算子生成智能体提供原则性奖励信号。性能评分基于开箱即用的PyTorch-on-Ascend基线和每个用例的硬件锚定性能极限，确保分数反映真实优化空间而非测量伪影。该基准已纳入官方<strong>CANN</strong>仓库，支持长期社区共建。</p><p>📌 <strong>总结</strong>：<strong>CANN Bench</strong>为<strong>昇腾NPU</strong>生态提供了量化、可复现且可持续维护的算子生成能力评估标准，使AI算子生成智能体在昇腾平台上的优化效果可被客观衡量。对于通信设备供应商（如华为）和AI基础设施提供商，这有助于推动昇腾生态的算子自动生成技术发展，提升AI推理与训练效率。同时，该基准可能成为<strong>模型评测</strong>领域的重要补充，影响未来AI芯片的算子生成工具链评估标准。研发团队可基于此基准优化算子生成策略，降低对手动调优的依赖，加速<strong>昇腾NPU</strong>在AI应用中的部署。</p><p>来源：<a href="https://arxiv.org/abs/2607.20518" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：CANN Bench: Benchmarking Agent Generated Kernels against Real NPU and Algorithmic Limits</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-94880">1、开源多模型路由网关OmniRoute持续火热，GitHub趋势榜日增1929星</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">OmniRoute</span> <span class="md-tag">多模型路由</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：开源项目diegosouzapw/<strong>OmniRoute</strong>在2026年7月24日早间GitHub趋势榜上日增1929星，总星数达27,146。该项目提供统一API端点接入290+模型提供商（90+免费），支持MCP/A2A协议、配额感知自动回退、<strong>RTK+</strong>Caveman压缩节省15-<strong>95%</strong>的token成本。兼容Claude <strong>Code</strong>、<strong>Code</strong>x、Cursor等工具，由500+贡献者构建。</p><p>📌 <strong>总结</strong>：<strong>OmniRoute</strong>的持续热度反映了开发者对<strong>多模型路由</strong>和成本优化的强烈需求。其开源架构可作为企业构建内部AI网关的参考，降低模型调用成本并提升灵活性。对技术预研规划师，关注其自动回退和压缩算法；对商业主管，开源社区活跃度预示着模型路由层可能成为标准化基础设施。</p><p>来源：<a href="https://trendingai.cn/?date=2026-07-24&amp;amp;batch=am" target="_blank" rel="noreferrer">GitHub Trending</a></p><p>原文标题：2026-07-24 AM · GitHub Trending</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>腾讯微信SkillHone：通过持久决策历史实现Agent技能持续进化</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Grok Build新增Workflows功能，支持并行Agent工作流自动执行复杂任务</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>北大、阿里云提出 SAC 系统：基于 CXL 的稀疏注意力 KV 缓存方案，吞吐量达 RDMA 的 2.1 倍</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>腾讯混元团队提出E-GRM让模型按需推理，延迟降低62%准确率反升</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>IST-DASLab提出统计无损量化方法SLQ，实现3.3比特参数下任务无损压缩</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>MiniCache以可重用程序缓存降低LLM推理延迟3.1倍、提升吞吐2.8倍</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>audio.cpp 0.4发布：支持Higgs Audio TTS和Fish Audio S2 Pro，实现10倍实时推理</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>AREX提出递归自改进深度研究智能体，4B模型与122B MoE模型在多个基准上超越同类</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>5</td></tr><tr><td>AI推理与服务加速</td><td>5</td></tr><tr><td>AI模型</td><td>4</td></tr><tr><td>模型评测</td><td>2</td></tr><tr><td>基础竞争力</td><td>2</td></tr><tr><td>AI与通算硬件</td><td>1</td></tr><tr><td>标准、协议与产业联盟</td><td>1</td></tr><tr><td>通信服务提供商</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>21</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
