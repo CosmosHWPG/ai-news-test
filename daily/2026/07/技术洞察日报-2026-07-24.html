@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-07-24</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-07-24</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-07-23T00:00:00+00:00 ~ 2026-07-24T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-07-25 12:02:24 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年07月24日</strong></p><p><strong>生成时间：2026-07-25 11:52 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：15 个 | 本期条目：22 条 | 覆盖板块：10 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：AI应用与产品化场景 1 条，智能体平台、协议与执行系统 6 条，AI推理与服务加速 3 条，AI模型 1 条，云与AI基础设施 1 条，AI与通算硬件 3 条，标准、协议与产业联盟 3 条，基础竞争力 2 条，通信设备供应商 1 条，通信服务提供商 1 条，合计 22 条。</li><li>日报内容：今日头条聚焦 <strong>谷歌发布Agentic Resource Discovery（ARD）开放规范，补齐智能体能力发现与验证机制</strong>，并同步关注小红书引擎团队在OSDI 2026发表HELMSMAN系统，全闪存服务器实现向量检索硬件成本降低超90%；微软联合高校提出 Resource2Skill，从视频教程蒸馏可执行技能供软件智能体使用；vLLM发布AFD插件，分离Attention与FFN实现MoE灵活服务。</li><li>关键亮点：vLLM发布AFD插件分离Attention与FFN实现MoE灵活服务，Meta与Google合作推出Helion TPU后端使Flash Attention达79%计算利用率，以及北京智能体新政首次将Harness Engineering和Token价值计费写入政策。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-92995">谷歌发布Agentic Resource Discovery（ARD）开放规范，补齐智能体能力发现与验证机制</a></li></ul><ul><li><a href="#event-93333">小红书引擎团队在OSDI 2026发表HELMSMAN系统，全闪存服务器实现向量检索硬件成本降低超90%</a></li></ul><ul><li><a href="#event-93735">微软联合高校提出 Resource2Skill，从视频教程蒸馏可执行技能供软件智能体使用</a></li></ul><ul><li><a href="#event-93750">vLLM发布AFD插件，分离Attention与FFN实现MoE灵活服务</a></li></ul><ul><li><a href="#event-92752">2026年开源ASR模型全面对比：Cohere、IBM、ARK等WER差异小于1点，选型需关注许可证和吞吐量</a></li></ul><ul><li><a href="#event-93786">Meta与Google合作推出Helion TPU后端，Flash Attention达79%计算利用率</a></li></ul><ul><li><a href="#event-92816">2026中国AI智能体大会：自进化Agent、专用芯片、记忆系统成焦点</a></li></ul><ul><li><a href="#event-93884">DeepSeek梁文锋称华为950超节点可平替英伟达GB300，国产算力生态加速成熟</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI应用与产品化场景</h2><h3 id="event-94227">1、Runway发布Media Router：首个生成式媒体模型路由器</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">Runway</span> <span class="md-tag">模型路由</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>Runway</strong>于2026年7月23日发布Media <strong>Router</strong>，号称全球首个生成式媒体<strong>模型路由</strong>器。该工具集成在<strong>Runway</strong> Dev平台中，可根据用户设定的成本、质量、延迟偏好，自动从Runway自有模型（<strong>Gen-4.5</strong>、<strong>Aleph 2.</strong>0等）和第三方模型（<strong>Seedance</strong>、<strong>GPT Image</strong> 2、ElevenLabs等）中选择最优模型。用户只需配置一次偏好，调用统一端点即可获得最佳模型生成结果，并返回所用模型元数据。</p><p>📌 <strong>总结</strong>：<strong>Media</strong> Router解决了生成式媒体领域模型选择碎片化的问题，将LLM领域成熟的智能路由理念引入视频、图像、音频生成。对于企业用户，可显著降低模型评估和集成成本，实现成本-质量-延迟的自动优化。该产品可能推动媒体生成服务的标准化，并对其他AI平台形成竞争压力。</p><p>来源：<a href="https://runwayml.com/news/company-news/introducing-runway-media-router" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><p>原文标题：Introducing Runway Media Router</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-92626">1、清华与华为提出HiSME层次化技能元演化框架，让Agent在测试时自动优化技能生成策略</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">清华大学与华为</span> <span class="md-tag">HiSME</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>清华大学与华为</strong>基础模型部联合发布论文《<strong>You Live More Than</strong> <strong>Once</strong>: <strong>Towards Hierarchical Skill Meta-Evolving</strong>》，提出<strong>HiSME</strong>框架，将Agent的测试时学习分为三层：轨迹层、技能层和元技能层。<strong>HiSME</strong>在不更新底层LLM参数的情况下，在文本空间中同时优化技能和元技能。技能演化包括extractor从轨迹中抽取候选技能、refactorer从多条轨迹中抽象共享结构、bundle tester和credit assigner评估技能有效性；元技能演化通过meta refiner从技能反馈中总结规则，写回extractor/refactorer/refiner的prompt中。在BFCL-v3 multi-turn base和MineDojo实验上，HiSME显著优于无技能基线、静态演化基线SkillX以及AWM、Memento等test-time learning基线。消融实验显示refactorer是关键组件；元技能可用于初始化新的静态演化过程，接近完整HiSME性能。在MineDojo长程交互任务上，HiSME通过高质量技能减少无效探索，token开销更低。</p><p>📌 <strong>总结</strong>：<strong>HiSME</strong>首次提出对Agent技能生成算法本身进行测试时演化，将Agent系统的优化从静态经验库扩展为可自适应的元学习框架。这一范式对Agent系统架构设计有重要影响：未来的Agent可能不再需要人工精心设计提示词、工具路由或记忆策略，而是通过测试时反馈自动调整这些组件。对于通信设备商和运营商，在网络运维Agent、智能客服等场景中，<strong>HiSME</strong>提供了一种不需要更新模型参数就能持续提升Agent表现的方法，降低部署后维护成本。但当前元技能以文本规则形式存在，与轻量参数学习的结合将是下一步方向。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651046305&amp;amp;idx=3&amp;amp;sn=0d47144d424c092f019369befff39627&amp;amp;chksm=85dd76c38a8fdb08e800059c8acf90da911ec851b44a658b8af983204871b13ca3cc8b842d95&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-93735">2、微软联合高校提出 Resource2Skill，从视频教程蒸馏可执行技能供软件智能体使用</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">微软研究院</span> <span class="md-tag">Resource2Skill</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 23 日，<strong>微软研究院</strong>联合加州大学圣克鲁兹分校和上海交通大学在 arXiv 发表论文 <strong>Resource2Skill</strong>，提出从多模态人类创作资源（教程视频、代码仓库、文章、参考作品）中自动提炼可执行技能并组织成层次化技能维基的框架。该框架通过多模态提炼器将资源映射为技能，采用 <strong>MetaBrowse</strong> 两阶段选择策略，并通过 <strong>MCP</strong> 接口执行。在 7 个创意软件领域（幻灯片设计、网页生成、<strong>Excel</strong>、<strong>Blender</strong>、<strong>CAD</strong>、<strong>UE5</strong>、音乐制作）上，使用技能库的智能体平均得分从 <strong>45.0%</strong> 提升至 <strong>56.8%</strong>（+11.9pp），视频资源被证明不可替代。</p><p>📌 <strong>总结</strong>：该研究为智能体技能库的构建提供了可复用的方法论，直接解决了智能体从教程视频中学习程序性知识的难题。对于智能体平台和协议领域，<strong>Resource2Skill</strong> 的层次化多模态技能表示与 <strong>MCP</strong> 工具接口的结合，为构建更强大的软件智能体提供了参考架构。技术预研规划师可关注其技能库规模效应（约 200 个技能后饱和）和在线获取能力，评估其应用于网络运维智能体的可能性。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561384&amp;amp;idx=1&amp;amp;sn=9763003630326958d800ee8e6751a7e6&amp;amp;chksm=cf0a358858aebe62e2fb50d95a8562429ce5d80206a312224900140461d45c780c5f5375fdeb&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92995">3、谷歌发布Agentic Resource Discovery（ARD）开放规范，补齐智能体能力发现与验证机制</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Agentic Resource Discov…</span> <span class="md-tag">能力发现与验证</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年07月23日，谷歌发布<strong>Agent</strong>ic <strong>Resource Discovery</strong>（<strong>ARD</strong>）。该规范不是 <strong>Gemini</strong> 模型发布，也不是编码 <strong>Agent</strong> 工作流发布，而是面向智能体生态的能力发现与信任验证机制：服务方在自有域名托管 catalog 描述工具、技能和智能体能力，registry 像搜索引擎一样索引 catalog 并响应发现请求，客户端在调用前可验证发布者身份。</p><p>📌 <strong>总结</strong>：<strong>ARD</strong> 的价值在于给 <strong>MCP</strong>、<strong>A2A</strong>、技能和企业 <strong>Agent Registry</strong> 提供上层发现与治理机制，把“工具预先配置”扩展为“运行时发现、验证后调用”。对智能体平台规划而言，它直接影响工具目录、权限边界、跨组织协作和企业级 <strong>Agent</strong> 能力市场的架构设计。</p><p>来源：<a href="https://www.infoq.cn/article/9sEaQuLww0wAu016qH5R?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92816">4、2026中国AI智能体大会：自进化Agent、专用芯片、记忆系统成焦点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">AI智能体大会</span> <span class="md-tag">自进化Agent</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，2026中国<strong>AI智能体大会</strong>在杭州举行，由智东西与智猩猩主办，64位嘉宾发表61场演讲。核心观点包括：1）复旦大学肖仰华认为没有自进化能力的Agent是“老古董”，其通用Agent token消耗仅为同类1/3-1/10；2）原粒半导体发布全球首款Agentic <strong>CPU</strong>“螯芯”；3）蚂蚁百灵强调token效率是Agent落地前提，其模型token消耗仅为对标模型的1/10；4）腾讯云推出Agent Engine分布式托管架构；5）MemTensor展示MemOS五层记忆架构，接入OpenClaw后回答质量提升<strong>18%</strong>、token消耗降低<strong>49.1%</strong>。</p><p>📌 <strong>总结</strong>：大会反映了中国Agent产业从概念到落地的全栈进展，特别在自进化、专用芯片、记忆系统、分布式托管等方向有实质性突破。对技术预研规划师和架构师有重要参考价值，企业和研究机构可借鉴其中的工程架构和训练方法。</p><p>来源：<a href="https://www.c114.com.cn/expo/13/a1314606.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-93938">5、腾讯云发布流程原生研发智能体CodeBuddy NPC，Token成本降低超90%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">腾讯云</span> <span class="md-tag">CodeBuddy</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>腾讯云</strong>发布面向研发流程的云端智能体<strong>CodeBuddy</strong> <strong>NPC</strong>，让AI直接融入企业现有研发流程。<strong>CodeBuddy</strong> <strong>NPC</strong>打通了从需求到交付的关键链路，首轮Token消耗从<strong>2万</strong>+优化到约2千，成本降低超过<strong>90%</strong>。底层深度融入<strong>腾讯云</strong>原生构建CNB平台，支持多角色NPC工程化协作。</p><p>📌 <strong>总结</strong>：<strong>腾讯云</strong>CodeBuddy NPC对AI辅助研发工具有重要参考价值：流程原生设计使AI融入现有研发流程而非替代；Token成本降低超<strong>90%</strong>大幅降低使用门槛；多角色NPC协作支持复杂功能迭代的全链路交付。</p><p>来源：<a href="https://www.infoq.cn/article/w6DHDb3QUYPLC1vaU8z1?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92842">6、中兴通讯Co-Claw智能体平台入选信通院标杆案例，自智网络跨域故障定界准确率提升至90%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">中兴通讯Co-Claw平台</span> <span class="md-tag">A2A协议</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年世界人工智能大会期间，中国信通院发布《智能体创新实践汇编》，中兴通讯及旗下兴云数科联合青岛地铁、南通市政设施管理处等客户的多项目入选标杆案例，覆盖企业级智能体平台Co-<strong>Claw</strong>、安全治理产品Co-<strong>Claw</strong>Sec、自智网络故障端到端智能体协同、城轨MetroClaw智办助手及液化气场站视觉自动巡检智能体。其中，自智网络场景基于资源拓扑图谱和告警传播图谱，采用“知识图谱+大模型推理”技术，通过<strong>A2A协议</strong>实现跨域多智能体协同，将跨域故障定界准确率从<strong>70%</strong>提升至<strong>90%</strong>以上，无线小区退服场景平均修复时间缩短<strong>20%</strong>；<strong>Co-</strong>Claw平台实现端云协同双形态部署与标准化Skill生态，内部已覆盖营销、研发、供应链等核心流程，对外已形成面向工业、矿山、冶金、城轨、电力、政务等行业解决方案；Co-<strong>ClawSec</strong>首创六位一体纵深防护体系，覆盖运行环境、平台、交互、供应链、数据、运营六大维度，在中兴通讯万人级组织落地验证。</p><p>📌 <strong>总结</strong>：<strong>中兴通讯</strong>Co-<strong>Claw平台</strong>及其多行业案例的入选，展示了企业级智能体平台在端云协同、标准化Skill生态和<strong>A2A协议</strong>方面的成熟度，为电信运营商和设备商提供了可落地的自智网络智能体协作范式，直接支撑L4级自智网络目标。<strong>Co-</strong>ClawSec安全治理产品首创六位一体纵深防护，解决了智能体全生命周期安全管控难题，有望成为行业安全治理参考框架。同时，这些案例的可复制性（已推广至十余家头部企业）为中兴通讯在智能体生态中的商业拓展和标准话语权奠定了基础，对通信设备商和运营商形成竞争压力，加速行业智能体从单点突破向规模化产业应用跃迁。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1314519.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-93750">1、vLLM发布AFD插件，分离Attention与FFN实现MoE灵活服务</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">vLLM AFD</span> <span class="md-tag">MoE</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>vLLM</strong>发布AFD（<strong>Attention-FFN Disaggregation</strong>）插件，这是一个实验性外部插件，将<strong>MoE</strong>模型中的Attention和FFN分离为独立部署的服务。Attention服务保留<strong>vLLM</strong>的调度器、KV缓存和采样路径，FFN服务作为轻量级连接器守护进程运行。插件支持NVIDIA GPU和Ascend NPU后端，提供同步和异步连接器。在Ascend 910C上的DeepSeek-<strong>V3.2</strong> W8A8基准测试中，64A16F（64个Attention rank、16个FFN rank）配置在16K输入下实现<strong>258.9 token</strong>s/s/die，比EP64的<strong>232.6 token</strong>s/s/die提升<strong>11.3%</strong>；在32K输入下提升<strong>9.0%</strong>。异步AFD在预填阶段将中位TTFT从<strong>15.1秒</strong>降至<strong>8.0秒</strong>（降幅<strong>47%</strong>）。插件当前支持DeepSeek V2/V3系列和GLM <strong>MoE</strong>模型，处于实验阶段。</p><p>📌 <strong>总结</strong>：<strong>vLLM</strong> AFD插件对AI推理服务架构具有重要影响：Attention和FFN的独立扩展能力使系统可以根据工作负载特性分别优化资源分配，Attention容量跟随请求状态和KV缓存压力，专家容量跟随token路由和负载；该架构为异构硬件部署（如Attention在GPU、FFN在NPU）打开了可能性；同步AFD在解码阶段、异步AFD在预填阶段均展示了性能优势。对于<strong>AI推理与服务加速</strong>领域的技术主管，该插件提供了一种新的<strong>MoE</strong>服务范式，但当前仍处于实验阶段，需要更多大规模验证。</p><p>来源：<a href="https://vllm.ai/blog/2026-07-23-vllm-afd-plugin" target="_blank" rel="noreferrer">vLLM</a></p><p>原文标题：Announcing vLLM AFD Plugin: Disaggregating Attention and FFN for Flexible MoE Serving</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92637">2、SmartVL提出联合token-计算自适应推理框架，多模态LLM推理精度-效率帕累托前沿提升</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">自适应推理框架</span> <span class="md-tag">token-计算联合调度</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月，arXiv论文《<strong>Look Less</strong>, <strong>Think Faster</strong>: <strong>Joint Token-Compute Adaptation</strong> for <strong>Multimodal LLMs</strong>》提出SmartVL框架，用于多模态大模型的高效推理。多模态LLM推理成本高，来自大量视觉token和LLM密集计算。先前工作独立优化单维度（如剪枝冗余token或跳过LLM层/头），但忽略了计算资源需跨维度动态分配。SmartVL引入视觉端token控制器选择信息量高的视觉token，LLM端计算控制器自适应调整计算量，两者通过共享预算编码和可微延迟估计器联合训练。实验表明，联合调度在多个多模态基准上持续优于先前自适应方法，达到更优的精度-效率帕累托前沿。</p><p>📌 <strong>总结</strong>：SmartVL为多模态推理部署提供了实用的自适应加速方案，可动态匹配输入复杂度和计算预算。对于AI推理服务加速，该框架可集成到vLLM、SGLang等系统中，降低token成本。对于通信设备商，在MEC上部署多模态AI服务时，可根据网络负载动态调整推理精度和速度。</p><p>来源：<a href="https://arxiv.org/abs/2607.20357" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Look Less, Think Faster: Joint Token-Compute Adaptation for Multimodal LLMs</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92719">3、PyroDash提出token级小大模型协作推理，成本降低96%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">学术论文</span> <span class="md-tag">PyroDash</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月23日，arXiv上的一篇论文提出<strong>PyroDash</strong>，一个成本感知的token级小语言模型-大语言模型协作推理框架。小模型在生成过程中通过发射控制令牌决定是否请求大模型协助，协作引擎将查询和部分推理轨迹发送给冻结的大模型完成单个回合。策略内化于小模型，无需独立路由器或大模型重新训练。在五个数学推理基准上，当λ=0.05时，平均准确率<strong>64.04%</strong>，超过仅用大模型6.36个百分点，同时成本降低<strong>20.4%</strong>；当λ=0.6时，准确率<strong>54.55%</strong>，<strong>LLM</strong> token比率仅<strong>1.90%</strong>，总成本从49.36美元降至1.78美元。</p><p>📌 <strong>总结</strong>：<strong>PyroDash</strong>展示了精细化的推理成本优化方法，可广泛应用于AI服务部署，尤其在需要平衡成本和性能的场景。对通信设备商，可应用于网络故障诊断、智能问答等场景，大幅降低推理成本。</p><p>来源：<a href="https://arxiv.org/abs/2607.20327" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：PyroDash: Cost-Efficient Token-Level Small-Large Language Model Collaborative Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-92752">1、2026年开源ASR模型全面对比：Cohere、IBM、ARK等WER差异小于1点，选型需关注许可证和吞吐量</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">开源ASR模型</span> <span class="md-tag">WER对比</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，MarkTechPost发布文章《<strong>Best Open Speech Recognition</strong> (<strong>ASR</strong>) <strong>Models</strong> in 2026》，详细对比了16个<strong>开源</strong>ASR<strong>模型</strong>。关键发现：<strong>Hugging Face Open ASR</strong> Leaderboard前几名WER差异小于1点，但排名不能直接比较，因为使用的测试集不同（如TED-LIUM被排除在某些模型外）。按相同测试集调整后，<strong>ARK-ASR-</strong>3B以<strong>5.04%</strong> WER领先，<strong>Cohere Transcribe</strong> <strong>2B</strong>为<strong>5.84%</strong>，<strong>IBM </strong>Granite<strong> Speech 4.1</strong> <strong>2B</strong>为<strong>5.65%</strong>。文章从四个维度给出选型建议：许可证（<strong>Apache 2.0</strong>、<strong>MIT</strong>、<strong>CC-BY-4.0</strong>）、语言覆盖（<strong>Cohere</strong> 14种、<strong>Granite</strong> 6种、<strong>Qwen3-ASR</strong> 52种）、流式支持（<strong>Voxtral Realtime</strong> <strong>480ms</strong>延迟、<strong>Kyutai</strong> STT语义VAD）、吞吐量（<strong>Parakeet TDT 0.6B</strong> v3 <strong>RTFx 3332</strong>，<strong>Granite 4.1 </strong>2B<strong>-NAR RTFx</strong> 1820）。特别指出Meta的Omnilingual ASR覆盖1600+语言，但WER不具竞争力。文章还给出了实用选型流程：先检查许可证，再考虑语言覆盖，然后确定流式/批处理，最后用自己的数据测量WER和成本。</p><p>📌 <strong>总结</strong>：该对比为语音AI产品的选型提供了权威参考，特别是对通信设备商和运营商在部署语音助手、客服等场景时有直接帮助。关键结论是：2026年<strong>开源ASR模型</strong>已足够成熟，<strong>2B</strong>参数量的Apache 2.0模型在多数场景下可替代闭源API。选型重点从WER转向许可证、语言覆盖、流式延迟和吞吐量。对于面向多语言场景的运营商，<strong>Qwen3-</strong>ASR的52种语言覆盖是明显优势；对于需要极致吞吐量的场景，<strong>Parakeet</strong> TDT或Granite NAR更合适。建议关注MOSS-<strong>Transcribe-Diarize</strong>，它同时输出说话人标签和时间戳，可简化diarization管线。</p><p>来源：<a href="https://www.marktechpost.com/2026/07/23/best-open-speech-recognition-asr-models-in-2026-wer-languages-latency-and-license-compared/" target="_blank" rel="noreferrer">MarkTechPost - Voice AI</a></p><p>原文标题：Best Open Speech Recognition (ASR) Models in 2026: WER, Languages, Latency, and License Compared</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-93713">1、Cisco 白皮书指出 AI 推理正成为网络问题，智能体 AI 将驱动流量增长 9 倍</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">Cisco</span> <span class="md-tag">AI推理网络</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 23 日，<strong>Cisco</strong> 发布白皮书《A <strong>Day</strong> in the <strong>Life</strong> of a <strong>Prompt</strong>》，系统阐述 AI 推理请求从用户输入到模型返回的完整网络路径，包括认证、路由、调度、<strong>GPU</strong> 通信等阶段。白皮书指出，随着推理硬件加速，token 间延迟下降，但智能体 AI 应用中单个任务可能触发数十次顺序推理，使网络时延成为新瓶颈。<strong>Cisco</strong> 预测，到 2035 年智能体 AI 将使企业 <strong>WAN</strong> 流量增长 <strong>9 倍</strong>，分布式推理和边缘部署将至关重要。</p><p>📌 <strong>总结</strong>：该白皮书为通信设备供应商和运营商提供了明确的 AI 网络演进方向：推理正从集中式数据中心向区域和边缘扩散，网络拓扑、时延、数据驻留和智能流量调度成为 AI 应用设计的一部分。对 5G/6G 核心网架构师而言，这意味着需要重新评估 <strong>UPF</strong> 部署、<strong>MEC</strong> 位置和网络切片策略以支持低时延智能体推理。技术预研规划师应关注其提出的“请求网络”与“<strong>GPU</strong> 网络”双域模型。</p><p>来源：<a href="https://blogs.cisco.com/sp/why-ai-inference-is-becoming-a-networking-issue" target="_blank" rel="noreferrer">Cisco</a></p><p>原文标题：Why AI inference is becoming a networking issue</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-93884">1、DeepSeek梁文锋称华为950超节点可平替英伟达GB300，国产算力生态加速成熟</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">DeepSeek</span> <span class="md-tag">华为950超节点</span> <span class="md-tag">竞争威胁</span></p><p>📋 <strong>要点</strong>：<strong>DeepSeek</strong>创始人梁文锋在2026年7月22日的投资人会议中明确表示，华为最新发布的950超节点在性能和价格上可以完全平替英伟达的GB200和GB300。他认为，英伟达CUDA的护城河正在快速瓦解，原因包括AI可辅助构建生态、专用芯片与CUDA解耦趋势等。今年4月，<strong>DeepSeek</strong>发布V4-<strong>Pro</strong>/<strong>V4-</strong>Flash时，华为同步公告昇腾超节点全系（昇腾950PR、A3超节点）Day0原生支持该模型，双方联合针对MoE架构、MLA注意力、1M超长上下文做了底层调优，这是国内首个万亿参数MoE前沿大模型在国产高端AI芯片实现Day0首发适配。梁文锋指出，国产AI芯片唯一的问题是产能不够，未来一年内生态问题将被事实扭转。</p><p>📌 <strong>总结</strong>：<strong>DeepSeek</strong>作为国内顶尖AI实验室的明确背书，将极大加速政企、金融等敏感行业对国产算力的采购和部署决策。华为昇腾生态与<strong>DeepSeek</strong>模型的深度绑定，形成了从芯片、软件栈到旗舰大模型的完整国产算力闭环，对英伟达在中国AI芯片市场的领导地位构成实质性<strong>竞争威胁</strong>。AI基础设施规划中，国产化替代的可行性和紧迫性显著提升。</p><p>来源：<a href="https://www.c114.com.cn/news/16/a1314611.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92824">2、英特尔至强6平台支持8000 MT/s RDIMM，内存带宽提升20%缓解AI数据瓶颈</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">英特尔至强处理器</span> <span class="md-tag">RDIMM</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：在AI系统复杂度持续攀升的背景下，英特尔于2026年7月宣布至强6平台（至强6787P特定SKU）率先支持8000 MT/s <strong>RDIMM</strong>，通过UPLR发布和BIOS更新实现。相比当前主流的6400 MT/s <strong>RDIMM</strong>，内存速度提升<strong>25%</strong>、延迟降低<strong>6%</strong>，实测总内存带宽增长高达<strong>20%</strong>。该技术旨在解决AI数据中心中CPU、加速器与存储之间的数据供给瓶颈，确保算力系统满载运转。英特尔计划于2026年8-9月量产，并进一步规划2027年Q1为至强6900P处理器引入8800 MT/s <strong>MRDIMM</strong>，以支撑72-128核高核心平台。</p><p>📌 <strong>总结</strong>：此次内存升级对数据中心基础设施架构产生直接影响：更高的内存带宽使得CPU在AI推理管线中能够更高效地为GPU/NPU供给数据，降低因内存瓶颈导致的性能损失，从而提升整个AI集群的利用率。对于基础竞争力板块而言，内存速度从6400 MT/s提升至8000 MT/s意味着在相同核心数下可承载更大模型或更密集的GPU配置，企业可在不更换平台的前提下获得显著性能增益。同时，英特尔未来M<strong>RDIMM</strong>路线图（8800 MT/s）为长期扩展提供了清晰路径，有助于规划者在2027年前的基础设施选型中提前布局，平衡性能、容量与成本。</p><p>来源：<a href="https://www.c114.com.cn/news/138/a1314562.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94038">3、Geekbench 7发布，更新跨平台性能基准测试</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">Geekbench 7</span> <span class="md-tag">性能基准测试</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Primate</strong> Labs正式发布<strong>Geekbench 7</strong>，这是其跨平台<strong>性能基准测试</strong>工具的重大更新。<strong>Geekbench 7</strong>引入了新的CPU测试负载，包括更复杂的机器学习推理、图像处理和加密任务，以反映现代应用需求。GPU测试部分增加了对光线追踪和AI加速的支持。该工具支持Windows、macOS、<strong>Linux</strong>、Android和iOS平台，能够对从手机到服务器的各类硬件进行统一评分。<strong>Geekbench</strong> 7的发布将为芯片厂商、云服务提供商和AI硬件开发者提供更准确的性能参考。</p><p>📌 <strong>总结</strong>：<strong>Geekbench 7</strong>的更新直接影响了硬件性能评估标准，特别是新增的AI推理和光线追踪负载，使得AI芯片和GPU的性能对比更具参考性。对于<strong>AI与通算硬件</strong>领域的从业者，该基准测试可用于评估新芯片的竞争力；对于云与AI基础设施规划，<strong>Geekbench 7</strong>的跨平台特性有助于服务器选型。该事件属于<strong>标准/生态影响</strong>，建议纳入日报正文。</p><p>来源：<a href="https://www.geekbench.com/blog/2026/07/geekbench-7/" target="_blank" rel="noreferrer">Hacker</a></p><p>原文标题：Geekbench 7</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-92892">1、北京智能体新政十策详解：从Harness Engineering到Token价值计费</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">北京智能体政策</span> <span class="md-tag">Harness Engineering</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月23日，北京市发布《关于加快智能体引领发展的若干措施》十条，深度解读显示该政策首次将<strong>Harness Engineering</strong>（驾驭层工程）、Token经济、<strong>OPC</strong>（一人公司）等前沿概念写入正式政策。文件提出从Token消耗量计费转向价值计费，鼓励TaaS、<strong>AaaS</strong>、RaaS模式；推动智能体嵌入手机、眼镜、汽车等终端；实施“银河算廊”工程，推动算力网络与5G-A、6G、F5G融合。政策还涉及安全治理、开源开放、创新创业和国际合作等十个方面，构建了完整的Agent经济蓝图。</p><p>📌 <strong>总结</strong>：这份政策的出台标志着智能体产业从技术探索进入政策加速期。其核心影响在于：一是明确了<strong>Harness Engineering</strong>作为基础设施层的地位，引导行业关注模型之外的工程框架；二是Token经济从消耗量转向价值计费，可能重塑AI服务的定价模式；三是银河算廊工程与5G-A、6G的融合，对通信网络架构提出新需求，核心网需支持Agent高频并发和低延迟特点。对5G/6G标准专家和核心网架构师而言，需关注政策对网络能力开放和算力路由的技术要求，提前规划演进路线。</p><p>来源：<a href="https://www.aibase.com/zh/news/29839" target="_blank" rel="noreferrer">AI Base 新闻</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92978">2、AI智能体互联国标试点在京启动，18家单位签约推动跨平台协作</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">AI智能体互联标准</span> <span class="md-tag">国标试点</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月，《人工智能 智能体互联》系列标准应用推进会议在北京举行，国内首套覆盖智能体全生命周期的互联标准体系进入试点阶段。标准包括总体架构、身份码、身份管理、智能体描述、发现、交互和工具调用7个部分，针对跨平台身份、能力发现和协作接口不统一的问题。会议同时发布AIP智能体互联协议2.1开源代码，并向首批智能体发放唯一身份码。美团、滴滴、联想、智谱、用友、中科创达等18家企业与机构签约开展试点。北京海淀将开放政务、城市治理、产业科研与民生服务场景，供不同厂商的智能体验证跨系统协作。该标准体系有望为智能体互操作提供基础规范，推动智能体生态从封闭走向开放。</p><p>📌 <strong>总结</strong>：该标准试点的启动标志着国内智能体互联从概念走向落地。对于核心网架构师而言，智能体互联协议可能影响未来网络运维智能体的协作方式；对于标准专家，该标准体系与3GPP、CAMARA等电信网络API标准可能存在协同或竞争关系；对于商业主管，统一身份和协作接口将降低多厂商智能体集成成本，加速智能体在行业场景的部署。建议关注试点进展及后续标准国际化可能性。</p><p>来源：<a href="https://www.ifanr.com/1672820?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=" target="_blank" rel="noreferrer">Alibaba Qwen</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92756">3、中国信通院发布ITU-T AI国际标准深度综述，覆盖大模型评测、智能体、具身智能等九大领域</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">ITU-T</span> <span class="md-tag">AI国际标准</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月23日，中国信通院公众号发布文章《<strong>ITU-T</strong>人工智能国际标准深度综述与未来展望》，作者魏凯、王蕴韬。文章系统介绍了<strong>ITU-T</strong>在AI标准化领域的布局。核心是<strong>SG2</strong>1 Q5（原SG16 Q5），在WTSA-24后职责升级为以AI技术为核心的应用能力标准体系建设，覆盖九大领域：大模型评估与评测（<strong>F.748.44</strong>，涵盖理解、生成、推理、可靠性、鲁棒性五维度）、大模型平台及工程化能力（<strong>F.748.43</strong>、<strong>F.748.</strong>78等）、智能体技术与应用（<strong>F.748.</strong>46区分模型与执行能力、F.AAI规范互操作）、具身智能系统（F.748.66通用框架、<strong>F.TR-</strong>ED数据采集规范）、基础算力与硬件底座基准（<strong>F.748.11</strong>、<strong>F.AII</strong>）、生成式AI与内容处理（<strong>F.748.56</strong> AIGC架构）、虚拟数字人体系（F.748.14等）、联邦学习与分布式AI（F.748.35可信联邦学习）、垂直行业应用与知识工程（F.CETD数据集构建）。Q5与SG13（未来网络ML架构）、<strong>SG17</strong>（AI安全）、<strong>SG2</strong>（运维AI）、<strong>SG5</strong>（绿色计算）等内部协作，并与ISO/<strong>IEC JTC</strong> 1/SC 42、3GPP等外部组织对接。</p><p>📌 <strong>总结</strong>：该综述是中国信通院对<strong>ITU-T</strong> AI标准工作的权威总结，对AI前沿技术预研规划师和5G/6G标准专家具有极高参考价值。<strong>ITU-T</strong>已构建覆盖大模型评测、智能体互操作、具身智能、算力基准等全链路标准，这意味着在3GPP和O-RAN之外，AI应用层标准正在<strong>ITU-</strong>T快速成型。对于通信设备商，参与<strong>ITU-</strong>T Q5的标准制定（如F.AAI智能体互操作、<strong>F.748.</strong>66具身智能框架）将直接影响产品合规性和市场准入。此外，Q5与SG13的协作意味着AI标准与5G/6G网络架构标准的融合正在加速，未来网络智能化将依赖这些标准体系。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzU0NjMwNQ==&amp;amp;mid=2650870257&amp;amp;idx=1&amp;amp;sn=aa6656c5ecebf90bbe32c7d510092815&amp;amp;chksm=bc643c223a6415cd2324d13494fbd1e9cd1b433cdee0f69c5bff031c615eb4e4c645f82b11a0&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">中国信通院CAICT</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-93333">1、小红书引擎团队在OSDI 2026发表HELMSMAN系统，全闪存服务器实现向量检索硬件成本降低超90%</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">小红书HELMSMAN</span> <span class="md-tag">向量检索全闪存</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月23日，小红书引擎架构团队在OSDI 2026发表论文《<strong>The Clustering Strikes Back</strong>》，提出面向全闪存服务器的高性能向量近似最近邻检索系统HELMSMAN。该系统通过聚类式索引设计、基于SPDK的ANNS定制化存储栈、分层学习式搜索剪枝（<strong>LLSP</strong>）以及GPU加速分布式构建流水线，解决了SSD场景下向量检索的核心挑战。在生产负载中，HELMSMAN使用约40台全闪存服务器稳定承载过去约35,000 <strong>CPU</strong> Core和约<strong>350TB</strong> DRAM才能支撑的在线向量检索负载，硬件成本节省超过<strong>90%</strong>。相比DiskANN等DRAM-SSD系统获得2-<strong>16倍</strong>吞吐提升，最高达到纯内存部署<strong>85%</strong>的吞吐能力，同时满足5-<strong>10ms</strong>级平均延迟和严格长尾延迟要求。在构建侧，<strong>10B</strong>规模索引可在4-<strong>7小时</strong>内完成重建。系统已在小红书搜索、推荐、广告等核心业务上线。</p><p>📌 <strong>总结</strong>：HELMSMAN系统为大规模向量检索基础设施提供了一条经济可持续的技术路线，将行业从“内存优先”转向“全闪存优先”。随着PCIe <strong>Gen5</strong>/<strong>Gen6</strong> SSD和HBF闪存的发展，该架构可进一步释放性能。对云服务商和设备商而言，该方案降低了AI基础设施中的向量检索成本，可能影响下一代推荐、搜索、RAG系统的硬件选型。同时，开源地址（github.com/<strong>Red-EAD</strong>/helmsman）的发布也为行业提供了可复用的工程参考。</p><p>来源：<a href="https://mp.weixin.qq.com/s/WCYE6itbTBPU0Q_3BfQxkA" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-93786">2、Meta与Google合作推出Helion TPU后端，Flash Attention达79%计算利用率</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">Helion</span> <span class="md-tag">TPU</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：背景：<strong>Helion</strong>是<strong>PyTorch</strong>的高层DSL，用于编写可移植ML内核。通过与Google合作，新增<strong>TPU</strong>后端将<strong>Helion</strong>编译到Pallas。自动调优器针对不同输入形状选择最优流水线策略：短序列使用unroll预取全部KV（消除计算气泡，892 <strong>TFLOPs</strong>），长序列使用emit_pipeline可扩展至32k上下文。<strong>Flash Attention</strong> workload在<strong>TPU</strong> v7上达838 <strong>TFLOPs</strong>（<strong>79%</strong> <strong>MFU</strong>），相比TorchTPU eager加速<strong>4.45倍</strong>。在多种内核基准上，几何平均比eager快<strong>1.55倍</strong>，比torch.compile快<strong>1.12倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>Helion</strong> <strong>TPU</strong>后端使<strong>PyTorch</strong>用户无需学习Pallas即可高效编写<strong>TPU</strong>内核，降低硬件切换成本。对于通信设备商的AI推理部署，若使用TPU作为加速器，可复用现有GPU上的内核逻辑。同时，自动调优策略为其他硬件（如NPU）的内核优化提供参考。</p><p>来源：<a href="https://pytorch.org/blog/helion-on-tpu-towards-hardware-heterogeneous-kernel-authoring/" target="_blank" rel="noreferrer">PyTorch</a></p><p>原文标题：Helion on TPU: Towards Hardware Heterogeneous Kernel Authoring</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-93710">1、Cisco 与 AMD 联合推出企业级桌面 AI 韧性架构，解决大规模部署难题</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">Cisco</span> <span class="md-tag">桌面AI</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 23 日，<strong>Cisco</strong> 发布博客宣布与 <strong>AMD</strong> 合作，推出面向企业级桌面 AI 的韧性解决方案。该方案基于 <strong>AMD</strong> Ryzen AI Halo 硬件，结合 <strong>Cisco</strong> 的 <strong>Splunk</strong> 智能体观测、AI <strong>Defense</strong> 安全防护和 <strong>Cisco Cloud Control</strong> 统一管理，将本地 AI 推理从单个设备转变为可大规模部署的企业级架构。方案针对网络流量、token 成本优化、智能体行为监控和安全威胁管理四大核心问题，通过 Cisco 网络实现智能体隔离和策略执行。Cisco 预测智能体 AI 将产生比人类操作多 <strong>450%</strong> 的网络流量，需提前布局。</p><p>📌 <strong>总结</strong>：该合作直接挑战了纯云端推理模式，为<strong>通信设备供应商</strong>和运营商提供了新的边缘计算场景。<strong>Cisco</strong> 将网络控制与 AI 推理深度绑定，可能推动企业网络架构向 AI 感知方向演进，对 5G/6G 边缘部署和 <strong>MEC</strong> 策略有参考价值。技术预研规划师需关注桌面 AI 标准化管理方案对智能体生态的影响，以及其在运营商网络运维中的潜在应用。</p><p>来源：<a href="https://blogs.cisco.com/ai/from-one-desk-to-the-whole-enterprise-making-local-ai-resilient" target="_blank" rel="noreferrer">Cisco</a></p><p>原文标题：From One Desk to the Whole Enterprise: Making Local AI Resilient</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-93774">1、Rakuten Mobile以网络信号驱动欺诈检测和RAN自主节能，AI闭环节省约20%能耗</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">Rakuten Mobile</span> <span class="md-tag">自治网络</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>Rakuten Mobile</strong>首席数据与AI官Sachin Verma在接受采访时介绍了公司在Agentic Network方向的实践。在跨领域数据应用方面，<strong>Rakuten Mobile</strong>利用网络层信号特征识别欺诈交易模式，在两周内帮助<strong>Rakuten</strong> Card将高风险交易减少<strong>33%</strong>。同时，通过聚合移动支付洞察识别商户覆盖薄弱区域，指导商户入驻增加收入。在网络内生AI方面，<strong>Rakuten</strong> Mobile与Rakuten Symphony合作的自主节能方案已在实时Open RAN环境中获得TM <strong>Forum Level</strong> 4验证。该方案通过RIC上运行的rApp用机器学习预测无线站点行为并执行闭环操作，实现约<strong>20%</strong>的RAN能耗自主节约，无需人工干预。Verma强调，数据价值在于从检测到决策到商业行动的完整链路。</p><p>📌 <strong>总结</strong>：<strong>Rakuten Mobile</strong>的实践为运营商展示了网络数据作为核心资产的跨领域变现路径。RAN节能<strong>20%</strong>直接降低运维成本，欺诈检测<strong>33%</strong>的提升展现了网络数据在金融场景的商业潜力。对核心网和RAN架构师，该案例证明了RIC+rApp闭环自动化在真实环境中的可行性和TM <strong>Forum Level</strong> 4验证标准。对技术主管，这提供了运营商AI化转型的可量化参考：需打通数据孤岛并建立决策执行链路。商业主管应关注网络数据变现对运营商角色升级的推动。</p><p>来源：<a href="https://www.rcrwireless.com/20260723/carriers/agentic-network-rakuten-mobile" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：The Agentic Network — Rakuten Mobile on turning data into outcomes</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI应用与产品化场景</h2><h3 id="event-94227">1、Runway发布Media Router：首个生成式媒体模型路由器</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">Runway</span> <span class="md-tag">模型路由</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>Runway</strong>于2026年7月23日发布Media <strong>Router</strong>，号称全球首个生成式媒体<strong>模型路由</strong>器。该工具集成在<strong>Runway</strong> Dev平台中，可根据用户设定的成本、质量、延迟偏好，自动从Runway自有模型（<strong>Gen-4.5</strong>、<strong>Aleph 2.</strong>0等）和第三方模型（<strong>Seedance</strong>、<strong>GPT Image</strong> 2、ElevenLabs等）中选择最优模型。用户只需配置一次偏好，调用统一端点即可获得最佳模型生成结果，并返回所用模型元数据。</p><p>📌 <strong>总结</strong>：<strong>Media</strong> Router解决了生成式媒体领域模型选择碎片化的问题，将LLM领域成熟的智能路由理念引入视频、图像、音频生成。对于企业用户，可显著降低模型评估和集成成本，实现成本-质量-延迟的自动优化。该产品可能推动媒体生成服务的标准化，并对其他AI平台形成竞争压力。</p><p>来源：<a href="https://runwayml.com/news/company-news/introducing-runway-media-router" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><p>原文标题：Introducing Runway Media Router</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-92626">1、清华与华为提出HiSME层次化技能元演化框架，让Agent在测试时自动优化技能生成策略</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">清华大学与华为</span> <span class="md-tag">HiSME</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>清华大学与华为</strong>基础模型部联合发布论文《<strong>You Live More Than</strong> <strong>Once</strong>: <strong>Towards Hierarchical Skill Meta-Evolving</strong>》，提出<strong>HiSME</strong>框架，将Agent的测试时学习分为三层：轨迹层、技能层和元技能层。<strong>HiSME</strong>在不更新底层LLM参数的情况下，在文本空间中同时优化技能和元技能。技能演化包括extractor从轨迹中抽取候选技能、refactorer从多条轨迹中抽象共享结构、bundle tester和credit assigner评估技能有效性；元技能演化通过meta refiner从技能反馈中总结规则，写回extractor/refactorer/refiner的prompt中。在BFCL-v3 multi-turn base和MineDojo实验上，HiSME显著优于无技能基线、静态演化基线SkillX以及AWM、Memento等test-time learning基线。消融实验显示refactorer是关键组件；元技能可用于初始化新的静态演化过程，接近完整HiSME性能。在MineDojo长程交互任务上，HiSME通过高质量技能减少无效探索，token开销更低。</p><p>📌 <strong>总结</strong>：<strong>HiSME</strong>首次提出对Agent技能生成算法本身进行测试时演化，将Agent系统的优化从静态经验库扩展为可自适应的元学习框架。这一范式对Agent系统架构设计有重要影响：未来的Agent可能不再需要人工精心设计提示词、工具路由或记忆策略，而是通过测试时反馈自动调整这些组件。对于通信设备商和运营商，在网络运维Agent、智能客服等场景中，<strong>HiSME</strong>提供了一种不需要更新模型参数就能持续提升Agent表现的方法，降低部署后维护成本。但当前元技能以文本规则形式存在，与轻量参数学习的结合将是下一步方向。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651046305&amp;amp;idx=3&amp;amp;sn=0d47144d424c092f019369befff39627&amp;amp;chksm=85dd76c38a8fdb08e800059c8acf90da911ec851b44a658b8af983204871b13ca3cc8b842d95&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-93735">2、微软联合高校提出 Resource2Skill，从视频教程蒸馏可执行技能供软件智能体使用</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">微软研究院</span> <span class="md-tag">Resource2Skill</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 23 日，<strong>微软研究院</strong>联合加州大学圣克鲁兹分校和上海交通大学在 arXiv 发表论文 <strong>Resource2Skill</strong>，提出从多模态人类创作资源（教程视频、代码仓库、文章、参考作品）中自动提炼可执行技能并组织成层次化技能维基的框架。该框架通过多模态提炼器将资源映射为技能，采用 <strong>MetaBrowse</strong> 两阶段选择策略，并通过 <strong>MCP</strong> 接口执行。在 7 个创意软件领域（幻灯片设计、网页生成、<strong>Excel</strong>、<strong>Blender</strong>、<strong>CAD</strong>、<strong>UE5</strong>、音乐制作）上，使用技能库的智能体平均得分从 <strong>45.0%</strong> 提升至 <strong>56.8%</strong>（+11.9pp），视频资源被证明不可替代。</p><p>📌 <strong>总结</strong>：该研究为智能体技能库的构建提供了可复用的方法论，直接解决了智能体从教程视频中学习程序性知识的难题。对于智能体平台和协议领域，<strong>Resource2Skill</strong> 的层次化多模态技能表示与 <strong>MCP</strong> 工具接口的结合，为构建更强大的软件智能体提供了参考架构。技术预研规划师可关注其技能库规模效应（约 200 个技能后饱和）和在线获取能力，评估其应用于网络运维智能体的可能性。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247561384&amp;amp;idx=1&amp;amp;sn=9763003630326958d800ee8e6751a7e6&amp;amp;chksm=cf0a358858aebe62e2fb50d95a8562429ce5d80206a312224900140461d45c780c5f5375fdeb&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92995">3、谷歌发布Agentic Resource Discovery（ARD）开放规范，补齐智能体能力发现与验证机制</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Agentic Resource Discov…</span> <span class="md-tag">能力发现与验证</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年07月23日，谷歌发布<strong>Agent</strong>ic <strong>Resource Discovery</strong>（<strong>ARD</strong>）。该规范不是 <strong>Gemini</strong> 模型发布，也不是编码 <strong>Agent</strong> 工作流发布，而是面向智能体生态的能力发现与信任验证机制：服务方在自有域名托管 catalog 描述工具、技能和智能体能力，registry 像搜索引擎一样索引 catalog 并响应发现请求，客户端在调用前可验证发布者身份。</p><p>📌 <strong>总结</strong>：<strong>ARD</strong> 的价值在于给 <strong>MCP</strong>、<strong>A2A</strong>、技能和企业 <strong>Agent Registry</strong> 提供上层发现与治理机制，把“工具预先配置”扩展为“运行时发现、验证后调用”。对智能体平台规划而言，它直接影响工具目录、权限边界、跨组织协作和企业级 <strong>Agent</strong> 能力市场的架构设计。</p><p>来源：<a href="https://www.infoq.cn/article/9sEaQuLww0wAu016qH5R?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92816">4、2026中国AI智能体大会：自进化Agent、专用芯片、记忆系统成焦点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">AI智能体大会</span> <span class="md-tag">自进化Agent</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月，2026中国<strong>AI智能体大会</strong>在杭州举行，由智东西与智猩猩主办，64位嘉宾发表61场演讲。核心观点包括：1）复旦大学肖仰华认为没有自进化能力的Agent是“老古董”，其通用Agent token消耗仅为同类1/3-1/10；2）原粒半导体发布全球首款Agentic <strong>CPU</strong>“螯芯”；3）蚂蚁百灵强调token效率是Agent落地前提，其模型token消耗仅为对标模型的1/10；4）腾讯云推出Agent Engine分布式托管架构；5）MemTensor展示MemOS五层记忆架构，接入OpenClaw后回答质量提升<strong>18%</strong>、token消耗降低<strong>49.1%</strong>。</p><p>📌 <strong>总结</strong>：大会反映了中国Agent产业从概念到落地的全栈进展，特别在自进化、专用芯片、记忆系统、分布式托管等方向有实质性突破。对技术预研规划师和架构师有重要参考价值，企业和研究机构可借鉴其中的工程架构和训练方法。</p><p>来源：<a href="https://www.c114.com.cn/expo/13/a1314606.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-93938">5、腾讯云发布流程原生研发智能体CodeBuddy NPC，Token成本降低超90%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">腾讯云</span> <span class="md-tag">CodeBuddy</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>腾讯云</strong>发布面向研发流程的云端智能体<strong>CodeBuddy</strong> <strong>NPC</strong>，让AI直接融入企业现有研发流程。<strong>CodeBuddy</strong> <strong>NPC</strong>打通了从需求到交付的关键链路，首轮Token消耗从<strong>2万</strong>+优化到约2千，成本降低超过<strong>90%</strong>。底层深度融入<strong>腾讯云</strong>原生构建CNB平台，支持多角色NPC工程化协作。</p><p>📌 <strong>总结</strong>：<strong>腾讯云</strong>CodeBuddy NPC对AI辅助研发工具有重要参考价值：流程原生设计使AI融入现有研发流程而非替代；Token成本降低超<strong>90%</strong>大幅降低使用门槛；多角色NPC协作支持复杂功能迭代的全链路交付。</p><p>来源：<a href="https://www.infoq.cn/article/w6DHDb3QUYPLC1vaU8z1?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92842">6、中兴通讯Co-Claw智能体平台入选信通院标杆案例，自智网络跨域故障定界准确率提升至90%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">中兴通讯Co-Claw平台</span> <span class="md-tag">A2A协议</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年世界人工智能大会期间，中国信通院发布《智能体创新实践汇编》，中兴通讯及旗下兴云数科联合青岛地铁、南通市政设施管理处等客户的多项目入选标杆案例，覆盖企业级智能体平台Co-<strong>Claw</strong>、安全治理产品Co-<strong>Claw</strong>Sec、自智网络故障端到端智能体协同、城轨MetroClaw智办助手及液化气场站视觉自动巡检智能体。其中，自智网络场景基于资源拓扑图谱和告警传播图谱，采用“知识图谱+大模型推理”技术，通过<strong>A2A协议</strong>实现跨域多智能体协同，将跨域故障定界准确率从<strong>70%</strong>提升至<strong>90%</strong>以上，无线小区退服场景平均修复时间缩短<strong>20%</strong>；<strong>Co-</strong>Claw平台实现端云协同双形态部署与标准化Skill生态，内部已覆盖营销、研发、供应链等核心流程，对外已形成面向工业、矿山、冶金、城轨、电力、政务等行业解决方案；Co-<strong>ClawSec</strong>首创六位一体纵深防护体系，覆盖运行环境、平台、交互、供应链、数据、运营六大维度，在中兴通讯万人级组织落地验证。</p><p>📌 <strong>总结</strong>：<strong>中兴通讯</strong>Co-<strong>Claw平台</strong>及其多行业案例的入选，展示了企业级智能体平台在端云协同、标准化Skill生态和<strong>A2A协议</strong>方面的成熟度，为电信运营商和设备商提供了可落地的自智网络智能体协作范式，直接支撑L4级自智网络目标。<strong>Co-</strong>ClawSec安全治理产品首创六位一体纵深防护，解决了智能体全生命周期安全管控难题，有望成为行业安全治理参考框架。同时，这些案例的可复制性（已推广至十余家头部企业）为中兴通讯在智能体生态中的商业拓展和标准话语权奠定了基础，对通信设备商和运营商形成竞争压力，加速行业智能体从单点突破向规模化产业应用跃迁。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1314519.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-93750">1、vLLM发布AFD插件，分离Attention与FFN实现MoE灵活服务</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">vLLM AFD</span> <span class="md-tag">MoE</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>vLLM</strong>发布AFD（<strong>Attention-FFN Disaggregation</strong>）插件，这是一个实验性外部插件，将<strong>MoE</strong>模型中的Attention和FFN分离为独立部署的服务。Attention服务保留<strong>vLLM</strong>的调度器、KV缓存和采样路径，FFN服务作为轻量级连接器守护进程运行。插件支持NVIDIA GPU和Ascend NPU后端，提供同步和异步连接器。在Ascend 910C上的DeepSeek-<strong>V3.2</strong> W8A8基准测试中，64A16F（64个Attention rank、16个FFN rank）配置在16K输入下实现<strong>258.9 token</strong>s/s/die，比EP64的<strong>232.6 token</strong>s/s/die提升<strong>11.3%</strong>；在32K输入下提升<strong>9.0%</strong>。异步AFD在预填阶段将中位TTFT从<strong>15.1秒</strong>降至<strong>8.0秒</strong>（降幅<strong>47%</strong>）。插件当前支持DeepSeek V2/V3系列和GLM <strong>MoE</strong>模型，处于实验阶段。</p><p>📌 <strong>总结</strong>：<strong>vLLM</strong> AFD插件对AI推理服务架构具有重要影响：Attention和FFN的独立扩展能力使系统可以根据工作负载特性分别优化资源分配，Attention容量跟随请求状态和KV缓存压力，专家容量跟随token路由和负载；该架构为异构硬件部署（如Attention在GPU、FFN在NPU）打开了可能性；同步AFD在解码阶段、异步AFD在预填阶段均展示了性能优势。对于<strong>AI推理与服务加速</strong>领域的技术主管，该插件提供了一种新的<strong>MoE</strong>服务范式，但当前仍处于实验阶段，需要更多大规模验证。</p><p>来源：<a href="https://vllm.ai/blog/2026-07-23-vllm-afd-plugin" target="_blank" rel="noreferrer">vLLM</a></p><p>原文标题：Announcing vLLM AFD Plugin: Disaggregating Attention and FFN for Flexible MoE Serving</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-92752">1、2026年开源ASR模型全面对比：Cohere、IBM、ARK等WER差异小于1点，选型需关注许可证和吞吐量</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">开源ASR模型</span> <span class="md-tag">WER对比</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，MarkTechPost发布文章《<strong>Best Open Speech Recognition</strong> (<strong>ASR</strong>) <strong>Models</strong> in 2026》，详细对比了16个<strong>开源</strong>ASR<strong>模型</strong>。关键发现：<strong>Hugging Face Open ASR</strong> Leaderboard前几名WER差异小于1点，但排名不能直接比较，因为使用的测试集不同（如TED-LIUM被排除在某些模型外）。按相同测试集调整后，<strong>ARK-ASR-</strong>3B以<strong>5.04%</strong> WER领先，<strong>Cohere Transcribe</strong> <strong>2B</strong>为<strong>5.84%</strong>，<strong>IBM </strong>Granite<strong> Speech 4.1</strong> <strong>2B</strong>为<strong>5.65%</strong>。文章从四个维度给出选型建议：许可证（<strong>Apache 2.0</strong>、<strong>MIT</strong>、<strong>CC-BY-4.0</strong>）、语言覆盖（<strong>Cohere</strong> 14种、<strong>Granite</strong> 6种、<strong>Qwen3-ASR</strong> 52种）、流式支持（<strong>Voxtral Realtime</strong> <strong>480ms</strong>延迟、<strong>Kyutai</strong> STT语义VAD）、吞吐量（<strong>Parakeet TDT 0.6B</strong> v3 <strong>RTFx 3332</strong>，<strong>Granite 4.1 </strong>2B<strong>-NAR RTFx</strong> 1820）。特别指出Meta的Omnilingual ASR覆盖1600+语言，但WER不具竞争力。文章还给出了实用选型流程：先检查许可证，再考虑语言覆盖，然后确定流式/批处理，最后用自己的数据测量WER和成本。</p><p>📌 <strong>总结</strong>：该对比为语音AI产品的选型提供了权威参考，特别是对通信设备商和运营商在部署语音助手、客服等场景时有直接帮助。关键结论是：2026年<strong>开源ASR模型</strong>已足够成熟，<strong>2B</strong>参数量的Apache 2.0模型在多数场景下可替代闭源API。选型重点从WER转向许可证、语言覆盖、流式延迟和吞吐量。对于面向多语言场景的运营商，<strong>Qwen3-</strong>ASR的52种语言覆盖是明显优势；对于需要极致吞吐量的场景，<strong>Parakeet</strong> TDT或Granite NAR更合适。建议关注MOSS-<strong>Transcribe-Diarize</strong>，它同时输出说话人标签和时间戳，可简化diarization管线。</p><p>来源：<a href="https://www.marktechpost.com/2026/07/23/best-open-speech-recognition-asr-models-in-2026-wer-languages-latency-and-license-compared/" target="_blank" rel="noreferrer">MarkTechPost - Voice AI</a></p><p>原文标题：Best Open Speech Recognition (ASR) Models in 2026: WER, Languages, Latency, and License Compared</p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-93713">1、Cisco 白皮书指出 AI 推理正成为网络问题，智能体 AI 将驱动流量增长 9 倍</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">Cisco</span> <span class="md-tag">AI推理网络</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 23 日，<strong>Cisco</strong> 发布白皮书《A <strong>Day</strong> in the <strong>Life</strong> of a <strong>Prompt</strong>》，系统阐述 AI 推理请求从用户输入到模型返回的完整网络路径，包括认证、路由、调度、<strong>GPU</strong> 通信等阶段。白皮书指出，随着推理硬件加速，token 间延迟下降，但智能体 AI 应用中单个任务可能触发数十次顺序推理，使网络时延成为新瓶颈。<strong>Cisco</strong> 预测，到 2035 年智能体 AI 将使企业 <strong>WAN</strong> 流量增长 <strong>9 倍</strong>，分布式推理和边缘部署将至关重要。</p><p>📌 <strong>总结</strong>：该白皮书为通信设备供应商和运营商提供了明确的 AI 网络演进方向：推理正从集中式数据中心向区域和边缘扩散，网络拓扑、时延、数据驻留和智能流量调度成为 AI 应用设计的一部分。对 5G/6G 核心网架构师而言，这意味着需要重新评估 <strong>UPF</strong> 部署、<strong>MEC</strong> 位置和网络切片策略以支持低时延智能体推理。技术预研规划师应关注其提出的“请求网络”与“<strong>GPU</strong> 网络”双域模型。</p><p>来源：<a href="https://blogs.cisco.com/sp/why-ai-inference-is-becoming-a-networking-issue" target="_blank" rel="noreferrer">Cisco</a></p><p>原文标题：Why AI inference is becoming a networking issue</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-93884">1、DeepSeek梁文锋称华为950超节点可平替英伟达GB300，国产算力生态加速成熟</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">DeepSeek</span> <span class="md-tag">华为950超节点</span> <span class="md-tag">竞争威胁</span></p><p>📋 <strong>要点</strong>：<strong>DeepSeek</strong>创始人梁文锋在2026年7月22日的投资人会议中明确表示，华为最新发布的950超节点在性能和价格上可以完全平替英伟达的GB200和GB300。他认为，英伟达CUDA的护城河正在快速瓦解，原因包括AI可辅助构建生态、专用芯片与CUDA解耦趋势等。今年4月，<strong>DeepSeek</strong>发布V4-<strong>Pro</strong>/<strong>V4-</strong>Flash时，华为同步公告昇腾超节点全系（昇腾950PR、A3超节点）Day0原生支持该模型，双方联合针对MoE架构、MLA注意力、1M超长上下文做了底层调优，这是国内首个万亿参数MoE前沿大模型在国产高端AI芯片实现Day0首发适配。梁文锋指出，国产AI芯片唯一的问题是产能不够，未来一年内生态问题将被事实扭转。</p><p>📌 <strong>总结</strong>：<strong>DeepSeek</strong>作为国内顶尖AI实验室的明确背书，将极大加速政企、金融等敏感行业对国产算力的采购和部署决策。华为昇腾生态与<strong>DeepSeek</strong>模型的深度绑定，形成了从芯片、软件栈到旗舰大模型的完整国产算力闭环，对英伟达在中国AI芯片市场的领导地位构成实质性<strong>竞争威胁</strong>。AI基础设施规划中，国产化替代的可行性和紧迫性显著提升。</p><p>来源：<a href="https://www.c114.com.cn/news/16/a1314611.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92824">2、英特尔至强6平台支持8000 MT/s RDIMM，内存带宽提升20%缓解AI数据瓶颈</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">英特尔至强处理器</span> <span class="md-tag">RDIMM</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：在AI系统复杂度持续攀升的背景下，英特尔于2026年7月宣布至强6平台（至强6787P特定SKU）率先支持8000 MT/s <strong>RDIMM</strong>，通过UPLR发布和BIOS更新实现。相比当前主流的6400 MT/s <strong>RDIMM</strong>，内存速度提升<strong>25%</strong>、延迟降低<strong>6%</strong>，实测总内存带宽增长高达<strong>20%</strong>。该技术旨在解决AI数据中心中CPU、加速器与存储之间的数据供给瓶颈，确保算力系统满载运转。英特尔计划于2026年8-9月量产，并进一步规划2027年Q1为至强6900P处理器引入8800 MT/s <strong>MRDIMM</strong>，以支撑72-128核高核心平台。</p><p>📌 <strong>总结</strong>：此次内存升级对数据中心基础设施架构产生直接影响：更高的内存带宽使得CPU在AI推理管线中能够更高效地为GPU/NPU供给数据，降低因内存瓶颈导致的性能损失，从而提升整个AI集群的利用率。对于基础竞争力板块而言，内存速度从6400 MT/s提升至8000 MT/s意味着在相同核心数下可承载更大模型或更密集的GPU配置，企业可在不更换平台的前提下获得显著性能增益。同时，英特尔未来M<strong>RDIMM</strong>路线图（8800 MT/s）为长期扩展提供了清晰路径，有助于规划者在2027年前的基础设施选型中提前布局，平衡性能、容量与成本。</p><p>来源：<a href="https://www.c114.com.cn/news/138/a1314562.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-94038">3、Geekbench 7发布，更新跨平台性能基准测试</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">Geekbench 7</span> <span class="md-tag">性能基准测试</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年7月，<strong>Primate</strong> Labs正式发布<strong>Geekbench 7</strong>，这是其跨平台<strong>性能基准测试</strong>工具的重大更新。<strong>Geekbench 7</strong>引入了新的CPU测试负载，包括更复杂的机器学习推理、图像处理和加密任务，以反映现代应用需求。GPU测试部分增加了对光线追踪和AI加速的支持。该工具支持Windows、macOS、<strong>Linux</strong>、Android和iOS平台，能够对从手机到服务器的各类硬件进行统一评分。<strong>Geekbench</strong> 7的发布将为芯片厂商、云服务提供商和AI硬件开发者提供更准确的性能参考。</p><p>📌 <strong>总结</strong>：<strong>Geekbench 7</strong>的更新直接影响了硬件性能评估标准，特别是新增的AI推理和光线追踪负载，使得AI芯片和GPU的性能对比更具参考性。对于<strong>AI与通算硬件</strong>领域的从业者，该基准测试可用于评估新芯片的竞争力；对于云与AI基础设施规划，<strong>Geekbench 7</strong>的跨平台特性有助于服务器选型。该事件属于<strong>标准/生态影响</strong>，建议纳入日报正文。</p><p>来源：<a href="https://www.geekbench.com/blog/2026/07/geekbench-7/" target="_blank" rel="noreferrer">Hacker</a></p><p>原文标题：Geekbench 7</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-93333">1、小红书引擎团队在OSDI 2026发表HELMSMAN系统，全闪存服务器实现向量检索硬件成本降低超90%</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">小红书HELMSMAN</span> <span class="md-tag">向量检索全闪存</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月23日，小红书引擎架构团队在OSDI 2026发表论文《<strong>The Clustering Strikes Back</strong>》，提出面向全闪存服务器的高性能向量近似最近邻检索系统HELMSMAN。该系统通过聚类式索引设计、基于SPDK的ANNS定制化存储栈、分层学习式搜索剪枝（<strong>LLSP</strong>）以及GPU加速分布式构建流水线，解决了SSD场景下向量检索的核心挑战。在生产负载中，HELMSMAN使用约40台全闪存服务器稳定承载过去约35,000 <strong>CPU</strong> Core和约<strong>350TB</strong> DRAM才能支撑的在线向量检索负载，硬件成本节省超过<strong>90%</strong>。相比DiskANN等DRAM-SSD系统获得2-<strong>16倍</strong>吞吐提升，最高达到纯内存部署<strong>85%</strong>的吞吐能力，同时满足5-<strong>10ms</strong>级平均延迟和严格长尾延迟要求。在构建侧，<strong>10B</strong>规模索引可在4-<strong>7小时</strong>内完成重建。系统已在小红书搜索、推荐、广告等核心业务上线。</p><p>📌 <strong>总结</strong>：HELMSMAN系统为大规模向量检索基础设施提供了一条经济可持续的技术路线，将行业从“内存优先”转向“全闪存优先”。随着PCIe <strong>Gen5</strong>/<strong>Gen6</strong> SSD和HBF闪存的发展，该架构可进一步释放性能。对云服务商和设备商而言，该方案降低了AI基础设施中的向量检索成本，可能影响下一代推荐、搜索、RAG系统的硬件选型。同时，开源地址（github.com/<strong>Red-EAD</strong>/helmsman）的发布也为行业提供了可复用的工程参考。</p><p>来源：<a href="https://mp.weixin.qq.com/s/WCYE6itbTBPU0Q_3BfQxkA" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-93786">2、Meta与Google合作推出Helion TPU后端，Flash Attention达79%计算利用率</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">Helion</span> <span class="md-tag">TPU</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：背景：<strong>Helion</strong>是<strong>PyTorch</strong>的高层DSL，用于编写可移植ML内核。通过与Google合作，新增<strong>TPU</strong>后端将<strong>Helion</strong>编译到Pallas。自动调优器针对不同输入形状选择最优流水线策略：短序列使用unroll预取全部KV（消除计算气泡，892 <strong>TFLOPs</strong>），长序列使用emit_pipeline可扩展至32k上下文。<strong>Flash Attention</strong> workload在<strong>TPU</strong> v7上达838 <strong>TFLOPs</strong>（<strong>79%</strong> <strong>MFU</strong>），相比TorchTPU eager加速<strong>4.45倍</strong>。在多种内核基准上，几何平均比eager快<strong>1.55倍</strong>，比torch.compile快<strong>1.12倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>Helion</strong> <strong>TPU</strong>后端使<strong>PyTorch</strong>用户无需学习Pallas即可高效编写<strong>TPU</strong>内核，降低硬件切换成本。对于通信设备商的AI推理部署，若使用TPU作为加速器，可复用现有GPU上的内核逻辑。同时，自动调优策略为其他硬件（如NPU）的内核优化提供参考。</p><p>来源：<a href="https://pytorch.org/blog/helion-on-tpu-towards-hardware-heterogeneous-kernel-authoring/" target="_blank" rel="noreferrer">PyTorch</a></p><p>原文标题：Helion on TPU: Towards Hardware Heterogeneous Kernel Authoring</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-93710">1、Cisco 与 AMD 联合推出企业级桌面 AI 韧性架构，解决大规模部署难题</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">Cisco</span> <span class="md-tag">桌面AI</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026 年 7 月 23 日，<strong>Cisco</strong> 发布博客宣布与 <strong>AMD</strong> 合作，推出面向企业级桌面 AI 的韧性解决方案。该方案基于 <strong>AMD</strong> Ryzen AI Halo 硬件，结合 <strong>Cisco</strong> 的 <strong>Splunk</strong> 智能体观测、AI <strong>Defense</strong> 安全防护和 <strong>Cisco Cloud Control</strong> 统一管理，将本地 AI 推理从单个设备转变为可大规模部署的企业级架构。方案针对网络流量、token 成本优化、智能体行为监控和安全威胁管理四大核心问题，通过 Cisco 网络实现智能体隔离和策略执行。Cisco 预测智能体 AI 将产生比人类操作多 <strong>450%</strong> 的网络流量，需提前布局。</p><p>📌 <strong>总结</strong>：该合作直接挑战了纯云端推理模式，为<strong>通信设备供应商</strong>和运营商提供了新的边缘计算场景。<strong>Cisco</strong> 将网络控制与 AI 推理深度绑定，可能推动企业网络架构向 AI 感知方向演进，对 5G/6G 边缘部署和 <strong>MEC</strong> 策略有参考价值。技术预研规划师需关注桌面 AI 标准化管理方案对智能体生态的影响，以及其在运营商网络运维中的潜在应用。</p><p>来源：<a href="https://blogs.cisco.com/ai/from-one-desk-to-the-whole-enterprise-making-local-ai-resilient" target="_blank" rel="noreferrer">Cisco</a></p><p>原文标题：From One Desk to the Whole Enterprise: Making Local AI Resilient</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-93774">1、Rakuten Mobile以网络信号驱动欺诈检测和RAN自主节能，AI闭环节省约20%能耗</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">Rakuten Mobile</span> <span class="md-tag">自治网络</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年7月23日，<strong>Rakuten Mobile</strong>首席数据与AI官Sachin Verma在接受采访时介绍了公司在Agentic Network方向的实践。在跨领域数据应用方面，<strong>Rakuten Mobile</strong>利用网络层信号特征识别欺诈交易模式，在两周内帮助<strong>Rakuten</strong> Card将高风险交易减少<strong>33%</strong>。同时，通过聚合移动支付洞察识别商户覆盖薄弱区域，指导商户入驻增加收入。在网络内生AI方面，<strong>Rakuten</strong> Mobile与Rakuten Symphony合作的自主节能方案已在实时Open RAN环境中获得TM <strong>Forum Level</strong> 4验证。该方案通过RIC上运行的rApp用机器学习预测无线站点行为并执行闭环操作，实现约<strong>20%</strong>的RAN能耗自主节约，无需人工干预。Verma强调，数据价值在于从检测到决策到商业行动的完整链路。</p><p>📌 <strong>总结</strong>：<strong>Rakuten Mobile</strong>的实践为运营商展示了网络数据作为核心资产的跨领域变现路径。RAN节能<strong>20%</strong>直接降低运维成本，欺诈检测<strong>33%</strong>的提升展现了网络数据在金融场景的商业潜力。对核心网和RAN架构师，该案例证明了RIC+rApp闭环自动化在真实环境中的可行性和TM <strong>Forum Level</strong> 4验证标准。对技术主管，这提供了运营商AI化转型的可量化参考：需打通数据孤岛并建立决策执行链路。商业主管应关注网络数据变现对运营商角色升级的推动。</p><p>来源：<a href="https://www.rcrwireless.com/20260723/carriers/agentic-network-rakuten-mobile" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：The Agentic Network — Rakuten Mobile on turning data into outcomes</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-92637">1、SmartVL提出联合token-计算自适应推理框架，多模态LLM推理精度-效率帕累托前沿提升</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">自适应推理框架</span> <span class="md-tag">token-计算联合调度</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月，arXiv论文《<strong>Look Less</strong>, <strong>Think Faster</strong>: <strong>Joint Token-Compute Adaptation</strong> for <strong>Multimodal LLMs</strong>》提出SmartVL框架，用于多模态大模型的高效推理。多模态LLM推理成本高，来自大量视觉token和LLM密集计算。先前工作独立优化单维度（如剪枝冗余token或跳过LLM层/头），但忽略了计算资源需跨维度动态分配。SmartVL引入视觉端token控制器选择信息量高的视觉token，LLM端计算控制器自适应调整计算量，两者通过共享预算编码和可微延迟估计器联合训练。实验表明，联合调度在多个多模态基准上持续优于先前自适应方法，达到更优的精度-效率帕累托前沿。</p><p>📌 <strong>总结</strong>：SmartVL为多模态推理部署提供了实用的自适应加速方案，可动态匹配输入复杂度和计算预算。对于AI推理服务加速，该框架可集成到vLLM、SGLang等系统中，降低token成本。对于通信设备商，在MEC上部署多模态AI服务时，可根据网络负载动态调整推理精度和速度。</p><p>来源：<a href="https://arxiv.org/abs/2607.20357" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Look Less, Think Faster: Joint Token-Compute Adaptation for Multimodal LLMs</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-92719">2、PyroDash提出token级小大模型协作推理，成本降低96%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">学术论文</span> <span class="md-tag">PyroDash</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：2026年7月23日，arXiv上的一篇论文提出<strong>PyroDash</strong>，一个成本感知的token级小语言模型-大语言模型协作推理框架。小模型在生成过程中通过发射控制令牌决定是否请求大模型协助，协作引擎将查询和部分推理轨迹发送给冻结的大模型完成单个回合。策略内化于小模型，无需独立路由器或大模型重新训练。在五个数学推理基准上，当λ=0.05时，平均准确率<strong>64.04%</strong>，超过仅用大模型6.36个百分点，同时成本降低<strong>20.4%</strong>；当λ=0.6时，准确率<strong>54.55%</strong>，<strong>LLM</strong> token比率仅<strong>1.90%</strong>，总成本从49.36美元降至1.78美元。</p><p>📌 <strong>总结</strong>：<strong>PyroDash</strong>展示了精细化的推理成本优化方法，可广泛应用于AI服务部署，尤其在需要平衡成本和性能的场景。对通信设备商，可应用于网络故障诊断、智能问答等场景，大幅降低推理成本。</p><p>来源：<a href="https://arxiv.org/abs/2607.20327" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：PyroDash: Cost-Efficient Token-Level Small-Large Language Model Collaborative Inference</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>基础竞争力</h2><h3 id="event-93786">1、Meta与Google合作推出Helion TPU后端，Flash Attention达79%计算利用率</h3><p><span class="md-tag">基础竞争力</span> <span class="md-tag">Helion</span> <span class="md-tag">TPU</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：背景：<strong>Helion</strong>是<strong>PyTorch</strong>的高层DSL，用于编写可移植ML内核。通过与Google合作，新增<strong>TPU</strong>后端将<strong>Helion</strong>编译到Pallas。自动调优器针对不同输入形状选择最优流水线策略：短序列使用unroll预取全部KV（消除计算气泡，892 <strong>TFLOPs</strong>），长序列使用emit_pipeline可扩展至32k上下文。<strong>Flash Attention</strong> workload在<strong>TPU</strong> v7上达838 <strong>TFLOPs</strong>（<strong>79%</strong> <strong>MFU</strong>），相比TorchTPU eager加速<strong>4.45倍</strong>。在多种内核基准上，几何平均比eager快<strong>1.55倍</strong>，比torch.compile快<strong>1.12倍</strong>。</p><p>📌 <strong>总结</strong>：<strong>Helion</strong> <strong>TPU</strong>后端使<strong>PyTorch</strong>用户无需学习Pallas即可高效编写<strong>TPU</strong>内核，降低硬件切换成本。对于通信设备商的AI推理部署，若使用TPU作为加速器，可复用现有GPU上的内核逻辑。同时，自动调优策略为其他硬件（如NPU）的内核优化提供参考。</p><p>来源：<a href="https://pytorch.org/blog/helion-on-tpu-towards-hardware-heterogeneous-kernel-authoring/" target="_blank" rel="noreferrer">PyTorch</a></p><p>原文标题：Helion on TPU: Towards Hardware Heterogeneous Kernel Authoring</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>Runway发布Media Router：首个生成式媒体模型路由器</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>清华与华为提出HiSME层次化技能元演化框架，让Agent在测试时自动优化技能生成策略</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>微软联合高校提出 Resource2Skill，从视频教程蒸馏可执行技能供软件智能体使用</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>谷歌发布Agentic Resource Discovery（ARD）开放规范，补齐智能体能力发现与验证机制</strong>｜爆发增长｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>2026中国AI智能体大会：自进化Agent、专用芯片、记忆系统成焦点</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>腾讯云发布流程原生研发智能体CodeBuddy NPC，Token成本降低超90%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>中兴通讯Co-Claw智能体平台入选信通院标杆案例，自智网络跨域故障定界准确率提升至90%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>vLLM发布AFD插件，分离Attention与FFN实现MoE灵活服务</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>6</td></tr><tr><td>AI推理与服务加速</td><td>3</td></tr><tr><td>AI与通算硬件</td><td>3</td></tr><tr><td>标准、协议与产业联盟</td><td>3</td></tr><tr><td>基础竞争力</td><td>2</td></tr><tr><td>AI应用与产品化场景</td><td>1</td></tr><tr><td>AI模型</td><td>1</td></tr><tr><td>云与AI基础设施</td><td>1</td></tr><tr><td>通信设备供应商</td><td>1</td></tr><tr><td>通信服务提供商</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>22</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
