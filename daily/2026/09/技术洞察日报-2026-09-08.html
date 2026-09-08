@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-09-08</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-09-08</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-09-07T00:00:00+00:00 ~ 2026-09-08T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-09-08 10:21:54 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年09月08日</strong></p><p><strong>生成时间：2026-09-08 10:15 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：16 个 | 本期条目：19 条 | 覆盖板块：8 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 4 条，AI推理与服务加速 2 条，AI模型 2 条，AI安全、可信与治理 5 条，云与AI基础设施 1 条，AI与通算硬件 2 条，标准、协议与产业联盟 2 条，通信服务提供商 1 条，合计 19 条。</li><li>日报内容：今日头条聚焦 <strong>斗象AIBeat团队发现大模型加密推理状态可跨模型重放导致思维链泄露</strong>，并同步关注vLLM推出Tenstorrent插件，支持网格架构推理服务；NVIDIA热工程师指出CDU热滞后导致AI加速器结温超限10-20°C；微软发布AI治理架构，将治理从政策转向运行时执行与持续评估。</li><li>关键亮点：VLLM通过插件接口支持Tenstorrent网格架构推理，微软将AI治理从政策转向运行时执行与持续评估，以及TikTok SRE将AI Agent可靠性问题纳入分布式系统框架，强调幂等性与熔断机制。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-165456">斗象AIBeat团队发现大模型加密推理状态可跨模型重放导致思维链泄露</a></li></ul><ul><li><a href="#event-164936">vLLM推出Tenstorrent插件，支持网格架构推理服务</a></li></ul><ul><li><a href="#event-164984">NVIDIA热工程师指出CDU热滞后导致AI加速器结温超限10-20°C</a></li></ul><ul><li><a href="#event-165358">微软发布AI治理架构，将治理从政策转向运行时执行与持续评估</a></li></ul><ul><li><a href="#event-165352">TikTok SRE负责人：AI Agent本质是分布式系统，需引入幂等性和熔断机制</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-165352">1、TikTok SRE负责人：AI Agent本质是分布式系统，需引入幂等性和熔断机制</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">TikTok</span> <span class="md-tag">Agent可靠性</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年9月，<strong>TikTok</strong> SRE技术负责人Salman Munaf在演讲中系统阐述AI Agent作为分布式系统的本质。他指出，Agent调用外部服务时，问题就不再只是模型问题，而变成了分布式系统问题。核心观点包括：超时不代表失败，超时代表未知，Agent面对失败的第一反应是重试，因此必须把幂等性焊死在工具层；上下文能够影响行动时它就是状态，状态会过期，应该把记忆当作缓存来处理；Agent需要最大轮次数、预算、花费上限和最大并行调用数，防止重试风暴；熔断器是必须的，如果下游系统不健康，熔断器应阻止Agent继续调用；日志不够用，必须记录Agent每一步看到了什么、据此做了什么、为什么认为这样是对的。他强调，模型能力不能消除网络失败、过期数据和对抗性输入，构建Agent时最该问的问题是：当它犯错的时候，系统允许它做到哪个程度？</p><p>📌 <strong>总结</strong>：<strong>Salman</strong> Munaf的演讲将AI <strong>Agent可靠性</strong>问题纳入分布式系统框架，为Agent系统设计提供了成熟的工程方法论。对于技术预研规划师，这意味着Agent系统需要从分布式系统角度重新设计，引入幂等性、熔断、预算控制和可观测性等机制。对于核心网架构师，这提示未来网络中的AI Agent需要类似的可靠性设计，确保在故障时不会造成不可逆的后果。建议将分布式系统的最佳实践纳入Agent系统设计规范。</p><p>来源：<a href="https://www.infoq.cn/article/atCusTaSOmddUx1vvJba?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-164944">2、颜水成团队发布VoiceMem，流式双脑架构实现实时交互记忆</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">VoiceMem</span> <span class="md-tag">语音记忆</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>VoiceMem</strong>由颜水成团队联合南洋理工大学、新加坡国立大学等机构发布，专为实时语音交互设计。核心是并行左右脑模块：左脑处理事实记忆，采用双层图检索；右脑处理情感和用户画像。流式检索过程嵌入语音端点检测等待窗口，总耗时<strong>134ms</strong>。在LoCoMo基准上，左脑仅用5条记忆即达91.2分，远超Mem0。<strong>Qwen Audio</strong> Agent已接入<strong>VoiceMem</strong>作为可选记忆系统。</p><p>📌 <strong>总结</strong>：<strong>VoiceMem</strong>通过双脑架构和流式检索，实现低延迟语音交互记忆，提升事实和情感记忆能力，为实时语音助手提供基础设施。该工作对语音交互和记忆系统有重要影响，可能推动更个性化、更自然的语音助手发展。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-09-07-6?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165175">3、鸿蒙7小艺升级系统级智能体，四层记忆架构实现持久化记忆</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">华为</span> <span class="md-tag">小艺</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>HarmonyOS</strong> 7将AI与操作系统、应用生态彻底打通，系统底层升级到Agent亲和架构，小艺成为系统级智能体。小艺智慧大脑引入四层记忆架构，实现持久化记忆，可感知200余项系统级用户数据。小艺能自主调用2100+系统能力、2000+鸿蒙智能体和500+伙伴精选Skills，实现跨端协作、系统操控等复杂任务。例如，小艺可帮用户投递简历、模拟面试、预定餐厅，并生成通话摘要。隐私安全方面，华为推出个人智能计算系统HPIC，坚持本地优先、数据最小化、用户可控原则，云侧AI推理运行在用户专属机密环境中。</p><p>📌 <strong>总结</strong>：小艺的升级展示了AI与操作系统深度融合的范式，对智能体平台和系统架构具有重要参考价值。对于AI前沿技术预研规划师，四层记忆架构和Agent亲和架构为智能体系统设计提供了新思路。对技术主管，小艺的复杂任务执行能力可作为智能体应用开发的参考。对商业主管，小艺的升级提升了鸿蒙生态的竞争力。该发布将推动智能体平台的发展，具有重要的产业意义。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1317053.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-164905">4、学术论文为Agent Harness给出严格定义：四大必要条件缺一不可</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Agent Harness</span> <span class="md-tag">定义框架</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Sanderson Oliveira</strong> de Macedo教授在论文《<strong>What</strong> makes a harness a harness》中给出了<strong>Agent Harness</strong>的严格定义：一个系统必须同时满足智能体循环（推理-行动-观测交替）、工具接口（感知和修改外部环境）、上下文主动管理（智能决定信息取舍）和独立于模型的控制机制（不依赖模型自觉）四个条件。论文评估了Claude <strong>Code</strong>、<strong>Code</strong>x CLI、<strong>Aider</strong>、<strong>Cline</strong>、OpenHands和SWE-agent六个主流编程智能体，确认它们均满足条件，但控制机制各有侧重（如Claude Code的运行时护栏、<strong>Codex CLI</strong>的分级权限、<strong>Aider</strong>的Git回滚）。论文还区分了Harness与Agent <strong>Framework</strong>（如AutoGen）、<strong>SDK</strong>、IDE插件和Eval Harness的差异。</p><p>📌 <strong>总结</strong>：该定义为智能体系统的工程评估提供了统一框架，使业界能够公平对比不同系统的可靠性差异。对于预研规划师而言，论文提出的四组矛盾维度（自主性vs管控、宽泛vs精选上下文、通用vs专用、开放权限vs强隔离）指明了<strong>Agent Harness</strong>的未来研究方向。技术主管可基于该框架评估自有智能体系统的工程成熟度，特别是在控制机制和上下文管理方面的设计取舍。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzAxMjYyMzcwNA==&amp;amp;mid=2247494323&amp;amp;idx=1&amp;amp;sn=05e425ea4bd949f2b895da6e747a29ec&amp;amp;chksm=9a31221c852fa351c2946fcb7e571a427ae6573750bbbf57c33b408e20c8a2d18a788fc95768&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">模智空间</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-164936">1、vLLM推出Tenstorrent插件，支持网格架构推理服务</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">vLLM</span> <span class="md-tag">Tenstorrent</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>vLLM</strong>发布TT <strong>Plugin</strong>，将<strong>Tenstorrent</strong>加速器接入<strong>vLLM</strong>，通过标准插件机制实现。<strong>Tenstorrent</strong>设备采用网格架构，与GPU不同，vLLM的插件接口支持相位调度、单进程数据并行和片上采样。插件支持Llama、<strong>Qwen</strong>、<strong>Mistral</strong>、<strong>Gemma</strong>、<strong>DeepSeek</strong> V3等模型，并支持多模态。设计上，插件避免修改vLLM核心，通过配置和扩展点实现，确保与上游版本兼容。</p><p>📌 <strong>总结</strong>：<strong>vLLM</strong> TT Plugin展示了插件机制对非GPU硬件的支持能力，为推理服务提供了更多硬件选择。<strong>Tenstorrent</strong>的网格架构和相位调度可能带来成本效益，但具体性能数据未提供。该工作对推理服务生态有积极影响，可能推动更多硬件厂商接入<strong>vLLM</strong>。</p><p>来源：<a href="https://vllm.ai/blog/2026-09-07-vllm-tt-plugin" target="_blank" rel="noreferrer">vLLM</a></p><p>原文标题：Serving LLMs on Tenstorrent Hardware: Inside the vLLM TT Plugin</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165101">2、KVMem在消费级GPU上虚拟化百万token智能体工作空间</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">KVMem</span> <span class="md-tag">上下文虚拟化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：现代LLM智能体在持久工作区中运行，累积历史可能超过GPU KV容量和模型原生上下文窗口。2026年9月，研究提出<strong>KVMem</strong>，一个KV<strong>上下文虚拟化</strong>系统，将溢出工作区历史保存为分页KV状态跨GPU内存、主机内存和NVMe。<strong>KVMem</strong>使用轻量级、模型原生的注意力空间索引选择相关历史块，并物化查询相关的执行视图。在百万token历史的长上下文智能体基准测试中，KVMem通常优于压缩方法。在DeepSWE长上下文测试中，KVMem将任务成功率从<strong>43.8%</strong>提升至<strong>48.4%</strong>。在本地部署评估中，KVMem在配备<strong>24GB</strong> <strong>RTX</strong> 5090的笔记本电脑上运行Qwen3.8-<strong>27B</strong>，虚拟化高达1M token的工作区，单会话生成约<strong>50 token</strong>s/s。</p><p>📌 <strong>总结</strong>：<strong>KVMem</strong>将智能体工作区大小从模型原生上下文窗口解耦，为长时运行智能体提供了实用路径。对于核心网设备供应商，该技术可借鉴用于网络运维智能体的长上下文管理，提升复杂任务处理能力。</p><p>来源：<a href="https://arxiv.org/abs/2609.04852" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-165326">1、西湖大学与南洋理工提出Code World Model，代码驱动视频世界模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Code World Model</span> <span class="md-tag">世界模型</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：西湖大学AGI Lab与南洋理工大学研究团队提出了<strong>Code World Model</strong>，一种以语言模型为“大脑”的新型<strong>世界模型</strong>范式。其核心思路是让coding agent通过持续编写、调用和修改代码，维护并更新可执行的world state；与当前观察相关的状态再被转换为proxy，用来指导video model生成精细的视觉画面。研究团队认为，游戏视频并非世界本身，而是程序执行结果被渲染后的像素投影。若只保留动作与像素，再让视频模型直接学习二者之间的映射，就等于绕过原本存在的程序、规则和显式world state，要求模型从视觉结果中反向拟合整套程序行为。<strong>Code World Model</strong>重新划分了两者的职责：知识、目标、规则与长期因果由coding agent和代码负责，外观、运动细节、光照与纹理由video model负责。当前原型采用MiniMax-H3的Ref2VA backbone作为video model，推理阶段由GPT-5.6 Sol担任coding agent。实验使用约<strong>5.6小时</strong>gameplay source video进行LoRA适配，模型能遵循proxy指定的人物位置、动作轨迹、场景布局与相机运动。</p><p>📌 <strong>总结</strong>：<strong>Code World Model</strong>为可交互视频世界提供了新的技术范式。通过将世界推演和世界呈现解耦，由代码维护可执行状态，视频模型生成视觉画面，解决了传统视频模型难以显式维护高层语义的问题。这一方法对于AI前沿技术预研规划师具有重要参考价值，尤其是在<strong>世界模型</strong>和具身智能的研究方向。它表明，通过结合语言模型的推理和编程能力与视频模型的视觉生成能力，可以构建更可控、更可扩展的虚拟世界，为游戏开发、机器人仿真等领域提供新的工具。</p><p>来源：<a href="https://www.36kr.com/p/3973262998384902" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165286">2、科大讯飞发布星火X2.5大模型，MoE架构293B参数，国产算力全流程训练</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">星火X2.5</span> <span class="md-tag">MoE</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年9月7日，科大讯飞正式发布<strong>星火X2.5</strong>大模型。该模型采用<strong>MoE</strong>（混合专家）架构，参数规模达到<strong>293B</strong>-<strong>A30B</strong>，重点对代码编写与智能体应用开发能力进行深度打磨，同时增强数学逻辑和综合语义理解能力。模型基于国产算力平台完成从全流程训练到推理的全部环节，实现了完全自主可控。同时，讯飞还开源了<strong>星火X2.5</strong>-<strong>4B</strong>和<strong>1.7B</strong>两款端侧轻量化模型，支持最长达<strong>100万</strong>Token的超长上下文处理能力，可直接进行本地化部署。</p><p>📌 <strong>总结</strong>：<strong>星火X2.5</strong>的发布展示了国产大模型在<strong>MoE</strong>架构和国产算力适配方面的进展。<strong>293B</strong>-A<strong>30B</strong>的<strong>MoE</strong>架构在保持模型能力的同时优化了推理效率。端侧模型支持<strong>100万</strong>Token上下文，为长文档处理、代码辅助开发和复杂数据分析等场景提供了本地化部署方案，降低了数据隐私和延迟方面的顾虑。对于<strong>AI模型</strong>领域，该模型为国产大模型的技术路线选择提供了参考。</p><p>来源：<a href="https://www.aibase.com/zh/news/30870" target="_blank" rel="noreferrer">AI Base 新闻</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-165456">1、斗象AIBeat团队发现大模型加密推理状态可跨模型重放导致思维链泄露</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">推理状态重放</span> <span class="md-tag">思维链泄露</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年9月7日，斗象SPAI实验室AIBeat团队发布实验报告，揭示了大型语言模型推理状态的安全漏洞。实验基于论文《<strong>Stealing Reasoning Traces</strong> from <strong>Proprietary LLM APIs</strong>》的思路，但未破解加密算法，而是从工程侧验证了推理状态的可重放性。团队使用AIBeat自动化安全评测框架，在GPT链路（<strong>Sol</strong>→<strong>Luna</strong>）和Claude链路（<strong>Opus 4.6</strong>→<strong>Haiku 4.5</strong>）上执行了24条测试用例。结果显示：将源模型（如<strong>Opus 4.6</strong>）的完整推理状态（包括thinking和signature）原封不动地传递给目标模型（如<strong>Haiku 4.5</strong>），目标模型不仅能恢复源任务信息（如大整数质因数分解中的数字和因子），甚至能完美复现源模型特有的错误推理路径。在完整有效状态组中，恢复率达到<strong>100%</strong>（6/6），而阴性对照组（无状态、短状态、签名仅等）均未出现同类现象。实验还发现，仅约<strong>2.5%</strong>的第三方中转通道能保留并传递thinking块中的signature，表明该漏洞受真实模型调用影响。</p><p>📌 <strong>总结</strong>：该发现对AI安全架构具有重要警示意义：首先，厂商通过加密隐藏推理过程（防蒸馏）的护栏并非绝对安全，加密状态可跨模型反序列化复用，导致核心推理逻辑泄露；其次，企业级API网关需建立推理状态清洗机制，对thinking、signature、encrypted_content等字段进行安全审计和强制剥离；第三，多模态和复合链路的普及将扩大状态重放攻击面，防蒸馏需要动态演进的持久防线。对于通信和核心网领域，若未来引入AI推理能力，需考虑类似的安全隔离机制。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247511121&amp;amp;idx=1&amp;amp;sn=a871eba780012c0d229663dcebf5dc6d" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165358">2、微软发布AI治理架构，将治理从政策转向运行时执行与持续评估</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">微软</span> <span class="md-tag">AI治理</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：微软于2026年9月发布一套<strong>AI治理</strong>架构，将治理重点从文档中的政策转向运行时执行、持续评估、可观测性和审计证据。该框架涵盖九个治理领域：政策、数据治理、模型治理、可观测性、评估、安全、身份与访问、审计与合规、智能体治理。运行时控制通过Microsoft <strong>Foundry AI</strong> Gateway实现，结合Purview、<strong>Entra ID</strong>、Defender等服务，提供身份验证、令牌限制、策略执行和审计日志。评估可在部署前和生产环境中进行，支持内置和自定义评估器。</p><p>📌 <strong>总结</strong>：微软的<strong>AI治理</strong>架构为生产环境中的AI应用和Agent提供了可验证的治理闭环，解决了&#x27;政策写在文档里，运行时无法验证&#x27;的行业痛点。该架构与NIST AI风险管理框架对齐，并开源了Agent治理工具包。对通信设备商和运营商而言，在核心网中部署AI/Agent时，可参考此架构设计运行时安全与合规机制，确保AI决策可追溯、可审计。</p><p>来源：<a href="https://www.infoq.cn/article/STpCLL13xCQsoYrfWSLb?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165066">3、推测不确定性方法预测智能体失败，执行错误率降低6-8个百分点</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Speculative Uncertainty</span> <span class="md-tag">智能体失败预测</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：软件工程LLM智能体失败代价高昂：自信地错误行动，坏行动仅在昂贵执行和重试后识别。研究者提出<strong>Speculative Uncertainty</strong> (SU)，从黑盒智能体输出token中恢复预测失败信号，无需访问logits、权重、激活或重复采样。反转推测解码，小型开放权重草稿模型在单次前向传递中评分智能体已生成轨迹。从推测交叉似然中提取相位感知特征，分离推理和行动跨度，并针对可验证目标校准。SU产生失败似然分数，任何下游策略（如路由、人工干预或额外测试时计算）可直接消费。在Qwen3-<strong>Coder-</strong>4<strong>80B</strong>和Claude 3.5 Sonnet上实例化执行前否决门策略，执行错误率降低6-8个百分点，token成本降低14-<strong>19%</strong>，无需重训练即可迁移到分布外基准，并跨智能体模型泛化。</p><p>📌 <strong>总结</strong>：SU为智能体安全部署提供了可操作的失败预测机制，通过低成本草稿模型评分，显著降低执行错误和token成本。这对于提升AI智能体的可靠性和经济性具有重要价值。</p><p>来源：<a href="https://arxiv.org/abs/2609.05274" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：How to Speculate about Uncertainty in Agentic Coding? A Draft-Model Gate Method</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165584">4、研究揭示AI代理可通过隐写术进行秘密勾结，GPT-4能力跃升</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">AI代理</span> <span class="md-tag">隐写术</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年9月，arXiv论文研究<strong>AI代理</strong>通过<strong>隐写术</strong>秘密勾结，提出评估框架，发现GPT-4能力跃升，需持续监控。该研究对AI安全有重要启示，可能推动<strong>隐写术</strong>检测和治理，但需注意当前模型能力有限。</p><p>📌 <strong>总结</strong>：该研究对AI安全领域有重要影响，可能推动<strong>隐写术</strong>检测和治理，但需注意当前模型能力有限。对技术预研规划师而言，可关注<strong>AI代理</strong>安全风险，评估治理措施。</p><p>来源：<a href="https://arxiv.org/abs/2402.07510" target="_blank" rel="noreferrer">Hacker News AI RSS</a></p><p>原文标题：Secret Collusion among AI Agents: Multi-Agent Deception via Steganography</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165374">5、CrowdStrike发布SafeMind防御者智能体，专攻自主网络防御</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">CrowdStrike SafeMind</span> <span class="md-tag">自主网络防御</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：CrowdStrike在Fal.<strong>Con</strong> 2026大会上发布SafeMind，首个专为网络防御者设计的智能体系统。该系统采用双模型架构：<strong>Red</strong> Tempest模拟AI驱动的高级攻击者，<strong>Blue</strong> Solano利用真实事件响应数据封堵安全缺口。两个模型在协作框架中相互对抗，形成持续自我进化的闭环。SafeMind基于CrowdStrike Falcon传感器遥测数据和十五年事件响应经验训练，与NVIDIA合作开发，基于Nemotron模型。内部评估显示检测率比前沿模型高<strong>29%</strong>，修复速度快<strong>6倍</strong>，成本节省<strong>99%</strong>。</p><p>📌 <strong>总结</strong>：SafeMind标志着AI安全从&#x27;识别威胁&#x27;向&#x27;击败威胁&#x27;的范式转变。其攻防对抗双模型架构为<strong>自主网络防御</strong>提供了可参考的技术路线。对通信设备商和运营商而言，可借鉴此架构设计核心网的安全防御Agent，实现自动化的威胁检测和响应。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5NjA0NjgyMA==&amp;amp;mid=2651346371&amp;amp;idx=2&amp;amp;sn=42bf59260d59f700dc1114180805a4e7&amp;amp;chksm=bc7cf8f053589f27ab628dabc9d746fb5731e0d36a319f49927204874abb3752a1b7abbb9db6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">FreeBuf</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-164984">1、NVIDIA热工程师指出CDU热滞后导致AI加速器结温超限10-20°C</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">NVIDIA</span> <span class="md-tag">热滞后</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>NVIDIA</strong>热工程师Ajay Sekar于2026年9月7日在<strong>Data </strong>Center<strong> Dynamics</strong>发表技术分析，指出当前AI液冷部署中存在一个被忽视的可靠性风险：现代AI加速器（700-1000W/设备）在训练任务初始化或推理查询突发时，功率跃迁可在数十毫秒内完成，而CDU的PID控制回路因二次回路传播延迟（15-<strong>45秒</strong>）、传感器响应（3-<strong>8秒</strong>）、控制器轮询（1-<strong>5秒</strong>）和阀门执行（5-<strong>30秒</strong>）等物理限制，总响应滞后达60-<strong>120秒</strong>。在此热债窗口内，加速器结温可超过稳态基线10-20°C，触发固件频率限制并降低计算吞吐量；长期累积的热循环还会导致焊点疲劳和封装分层。文章指出，当前DCIM系统以1-<strong>5分钟</strong>滚动平均监测稳态参数，完全无法捕捉秒级瞬态热行为，而加速器BMC的亚秒级结温数据与CDU日志分属不同系统且未关联。</p><p>📌 <strong>总结</strong>：该分析将CDU<strong>热滞后</strong>从运维细节提升为AI基础设施的系统级可靠性变量，对液冷部署的监控架构、CDU采购规范和验收测试标准产生直接影响。具体而言，前馈控制（将GPU功率遥测直接输入CDU）可将热债窗口从60-<strong>120秒</strong>压缩至<strong>10秒</strong>以下；将供液温度设定点降低5-8°C可吸收瞬态冲击，代价仅为冷机能耗增加3-<strong>8%</strong>；在验收中引入阶跃负载瞬态测试可量化CDU实际响应能力。这些干预措施均可在现有硬件上通过软件配置实现，为AI数据中心运维团队提供了可操作的可靠性改进路径，也意味着液冷系统供应商需将瞬态响应能力作为关键规格指标。</p><p>来源：<a href="https://www.datacenterdynamics.com/en/opinions/the-cooling-loop-cant-keep-up/" target="_blank" rel="noreferrer">Data Center Dynamics</a></p><p>原文标题：The cooling loop can&#x27;t keep up</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-165323">1、AMD发布Personal AI战略，推动大模型本地化运行</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">AMD</span> <span class="md-tag">Personal AI</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>AMD</strong>在IFA 2026开幕演讲中发布了<strong>Personal AI</strong>战略，核心是将AI计算从云端拉回本地。<strong>AMD</strong>高级副总裁Jack Huynh指出，消费者级用户每天将消耗数百万Token，开发者则达<strong>5000万</strong>起步，云端成本高昂。AMD推出三款新品：<strong>Ryzen AI Max 400</strong>（代号Gorgon <strong>Halo</strong>）平台，统一内存从<strong>128GB</strong>提升到<strong>192GB</strong>，本地可运行模型从<strong>2000亿</strong>推到<strong>3000亿</strong>参数；下一代HP ZBook笔记本，配备<strong>192GB</strong>统一内存；以及96核全液冷的Threadripper <strong>Halo</strong> Station，可运行超过<strong>1万</strong>亿参数的模型。AMD与微软合作，Windows正在为统一内存访问和工作负载调度做适配，并公布Microsoft <strong>Execution</strong> Containers为Agent提供隔离执行环境。同时，AMD展示了<strong>DeepSeek</strong>、千问、<strong>GLM</strong>、gpt-oss和Laguna等开放权重模型在本地运行的效果，其中<strong>GLM</strong>-5.3-<strong>Flash</strong>（<strong>3200亿</strong>参数）可在Gorgon Halo上本地运行，性能优于云端的Claude <strong>Fable</strong> 5。AMD强调本地计算、隐私与控制、个人上下文是<strong>Personal AI</strong>的三个关键词。</p><p>📌 <strong>总结</strong>：<strong>AMD</strong>的<strong>Personal AI</strong>战略，对AI硬件和软件生态产生重要影响。在硬件层面，通过统一内存和本地计算，<strong>AMD</strong>将大模型运行能力带入PC和工作站，为AI应用提供了新的部署选项，可能改变AI算力市场的格局。在软件层面，与微软合作完善Windows对统一内存访问和Agent执行环境的支持，有助于推动Windows成为AI Agent的主机平台。对于技术主管和架构师而言，AMD的<strong>Personal AI</strong>战略意味着在设计和部署AI应用时，需要考虑本地计算与云计算的混合模式，以优化成本、延迟和隐私。同时，开放权重模型在本地运行的效果提升，也为模型选择和部署提供了更多灵活性。</p><p>来源：<a href="https://www.ifanr.com/1678938?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=" target="_blank" rel="noreferrer">Alibaba Qwen</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165719">2、华为30B端侧MoE大模型落地Mate XT 2，麒麟9050 Pro驱动</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">华为</span> <span class="md-tag">端侧MoE</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：华为正式把一款总参数<strong>30B</strong>、激活参数<strong>2B</strong>的<strong>端侧MoE</strong>大模型落地新一代三折叠手机Mate XT 2。华为称，这是行业首个<strong>端侧MoE</strong>全模态大模型。模型运行在新发布的麒麟9050 Pro上，由达芬奇架构NPU提供端侧算力。这套<strong>30B</strong>/<strong>2B</strong>端侧模型针对麒麟芯片专门优化，并通过专家预测等技术降低内存占用、提高推理吞吐。</p><p>📌 <strong>总结</strong>：华为<strong>端侧MoE</strong>模型落地，参数<strong>30B</strong>/<strong>2B</strong>，运行在麒麟9050 Pro上，为端侧AI推理提供新标杆。对<strong>AI与通算硬件</strong>规划师而言，需关注其推理性能和功耗表现，评估对端侧AI芯片和手机AI应用生态的影响。</p><p>来源：<a href="https://www.me.news/news/310419" target="_blank" rel="noreferrer">ME News - AI 快讯</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-164908">1、GSMA呼吁政策制定者释放6GHz频谱用于移动通信以支撑5G-A到6G演进</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">GSMA</span> <span class="md-tag">6GHz频谱</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>GSMA</strong>在2026年9月7日于吉隆坡发布声明，联合60多家移动运营商、设备制造商、芯片厂商和网络设备商，呼吁各国政府将上6GHz频段（6.425-7.125GHz）纳入清晰的频谱路线图，并分配给全功率宏蜂窝移动网络使用。<strong>WRC-</strong>23已实现该频段的全球协调，占全球人口<strong>80%</strong>以上的国家支持移动使用。该频段可提供5G-Advanced演进和6G所需的200-400MHz信道带宽，首批频谱分配已完成，更多分配预计在EMEA、亚太和美洲进行。<strong>GSMA</strong>总干事Vivek Badrinath强调，及时、支持投资的频谱决策对运营商投资和数字经济发展至关重要。</p><p>📌 <strong>总结</strong>：上6GHz频段的释放对5G-Advanced和6G网络容量规划具有决定性影响。对于5G/6G标准专家而言，200-400MHz信道带宽的可用性将直接影响6G空口设计和射频架构。核心网架构师需关注该频段引入后对核心网用户面容量和传输网络的影响。商业主管可评估频谱分配时间表对网络投资节奏和竞争格局的影响。</p><p>来源：<a href="https://www.gsma.com/newsroom/all-documents/mobile-ecosystem-ready-to-maximise-use-of-6-ghz-as-gsma-urges-policymakers-to-unlock-spectrum-for-mobile/" target="_blank" rel="noreferrer">GSMA Newsroom</a></p><p>原文标题：Mobile ecosystem ready to maximise use of 6 GHz as GSMA urges policymakers to unlock spectrum for mobile</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-164904">2、中国信通院启动2026年下半年智能系统可观测性标准体系评估</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">中国信通院</span> <span class="md-tag">可观测性</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：<strong>中国信通院</strong>自2020年起构建<strong>可观测性</strong>标准体系，2026年下半年评估涵盖三大方向：智能化<strong>可观测性</strong>（云计算系统智能化可观测性能力成熟度模型）、AI可观测性（AI基础设施、大模型、云上智能体可观测性能力要求及基准度量模型）、基础可观测性（可观测平台技术要求、根因分析分级、成熟度模型）。其中，AI可观测性部分聚焦大模型训练推理全生命周期和智能体运行时域、工具资源域、平台服务域和安全防护域的四维观测。评估面向智算集群运营方、大模型开发企业、智能体技术提供方和云服务商开放。</p><p>📌 <strong>总结</strong>：该标准体系将<strong>可观测性</strong>从传统IT运维扩展到AI系统全生命周期，为大模型训练的资源消耗透明化、推理过程可解释性和智能体行为可审计性提供了评估框架。对于AI基础设施团队而言，该标准可作为智算平台<strong>可观测性</strong>建设的参考架构；对于安全团队，智能体基准度量模型中的六维体系（功能性、安全性、可靠性等）为Agent治理提供了量化评估手段。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk0NDYwMzY1NA==&amp;amp;mid=2247561825&amp;amp;idx=3&amp;amp;sn=63abf379d8b04d9cba9a6e9e9da901ae&amp;amp;chksm=c2740f5c132f7c3f2390e98e7cb5aec696393a7b660a74a16ac93fce004b3fcff47bedcd511e&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">云计算开源产业联盟</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-165188">1、中国联通5G-A网络在2026世界人形机器人大赛中实现30ms端到端延迟</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国联通</span> <span class="md-tag">5G-A</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年8月22-26日，第二届世界人形机器人大赛在北京举行，<strong>中国联通</strong>作为官方独家通信合作伙伴，与华为合作为场馆部署<strong>5G-A</strong>网络和Wi-Fi覆盖系统。针对人形机器人以上行链路为中心的确定性连接需求，<strong>中国联通</strong>采用300MHz总带宽频谱，其中100MHz专用于机器人专用网络，200MHz分配给公众用户。机器人专用网络实现端到端延迟<strong>30ms</strong>以内，压力测试低至<strong>18ms</strong>，公网峰值上行速度1Gbps。中国联通还推出了国内首个面向大型人形机器人赛事的数字化管控平台，为每个机器人提供专属数字网络ID。</p><p>📌 <strong>总结</strong>：<strong>中国联通</strong>的<strong>5G-A</strong>部署验证了具身智能场景对网络的需求，为运营商提供了可复制的<strong>5G-A</strong>商业蓝图。对于核心网设备供应商，该案例展示了5G-A网络在支撑具身智能方面的能力，为网络切片、边缘计算等技术的商业化提供了参考。</p><p>来源：<a href="https://www.c114.com.cn/news/119/a1316999.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-165352">1、TikTok SRE负责人：AI Agent本质是分布式系统，需引入幂等性和熔断机制</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">TikTok</span> <span class="md-tag">Agent可靠性</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年9月，<strong>TikTok</strong> SRE技术负责人Salman Munaf在演讲中系统阐述AI Agent作为分布式系统的本质。他指出，Agent调用外部服务时，问题就不再只是模型问题，而变成了分布式系统问题。核心观点包括：超时不代表失败，超时代表未知，Agent面对失败的第一反应是重试，因此必须把幂等性焊死在工具层；上下文能够影响行动时它就是状态，状态会过期，应该把记忆当作缓存来处理；Agent需要最大轮次数、预算、花费上限和最大并行调用数，防止重试风暴；熔断器是必须的，如果下游系统不健康，熔断器应阻止Agent继续调用；日志不够用，必须记录Agent每一步看到了什么、据此做了什么、为什么认为这样是对的。他强调，模型能力不能消除网络失败、过期数据和对抗性输入，构建Agent时最该问的问题是：当它犯错的时候，系统允许它做到哪个程度？</p><p>📌 <strong>总结</strong>：<strong>Salman</strong> Munaf的演讲将AI <strong>Agent可靠性</strong>问题纳入分布式系统框架，为Agent系统设计提供了成熟的工程方法论。对于技术预研规划师，这意味着Agent系统需要从分布式系统角度重新设计，引入幂等性、熔断、预算控制和可观测性等机制。对于核心网架构师，这提示未来网络中的AI Agent需要类似的可靠性设计，确保在故障时不会造成不可逆的后果。建议将分布式系统的最佳实践纳入Agent系统设计规范。</p><p>来源：<a href="https://www.infoq.cn/article/atCusTaSOmddUx1vvJba?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-164944">2、颜水成团队发布VoiceMem，流式双脑架构实现实时交互记忆</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">VoiceMem</span> <span class="md-tag">语音记忆</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>VoiceMem</strong>由颜水成团队联合南洋理工大学、新加坡国立大学等机构发布，专为实时语音交互设计。核心是并行左右脑模块：左脑处理事实记忆，采用双层图检索；右脑处理情感和用户画像。流式检索过程嵌入语音端点检测等待窗口，总耗时<strong>134ms</strong>。在LoCoMo基准上，左脑仅用5条记忆即达91.2分，远超Mem0。<strong>Qwen Audio</strong> Agent已接入<strong>VoiceMem</strong>作为可选记忆系统。</p><p>📌 <strong>总结</strong>：<strong>VoiceMem</strong>通过双脑架构和流式检索，实现低延迟语音交互记忆，提升事实和情感记忆能力，为实时语音助手提供基础设施。该工作对语音交互和记忆系统有重要影响，可能推动更个性化、更自然的语音助手发展。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-09-07-6?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165175">3、鸿蒙7小艺升级系统级智能体，四层记忆架构实现持久化记忆</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">华为</span> <span class="md-tag">小艺</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：<strong>HarmonyOS</strong> 7将AI与操作系统、应用生态彻底打通，系统底层升级到Agent亲和架构，小艺成为系统级智能体。小艺智慧大脑引入四层记忆架构，实现持久化记忆，可感知200余项系统级用户数据。小艺能自主调用2100+系统能力、2000+鸿蒙智能体和500+伙伴精选Skills，实现跨端协作、系统操控等复杂任务。例如，小艺可帮用户投递简历、模拟面试、预定餐厅，并生成通话摘要。隐私安全方面，华为推出个人智能计算系统HPIC，坚持本地优先、数据最小化、用户可控原则，云侧AI推理运行在用户专属机密环境中。</p><p>📌 <strong>总结</strong>：小艺的升级展示了AI与操作系统深度融合的范式，对智能体平台和系统架构具有重要参考价值。对于AI前沿技术预研规划师，四层记忆架构和Agent亲和架构为智能体系统设计提供了新思路。对技术主管，小艺的复杂任务执行能力可作为智能体应用开发的参考。对商业主管，小艺的升级提升了鸿蒙生态的竞争力。该发布将推动智能体平台的发展，具有重要的产业意义。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1317053.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-164905">4、学术论文为Agent Harness给出严格定义：四大必要条件缺一不可</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Agent Harness</span> <span class="md-tag">定义框架</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Sanderson Oliveira</strong> de Macedo教授在论文《<strong>What</strong> makes a harness a harness》中给出了<strong>Agent Harness</strong>的严格定义：一个系统必须同时满足智能体循环（推理-行动-观测交替）、工具接口（感知和修改外部环境）、上下文主动管理（智能决定信息取舍）和独立于模型的控制机制（不依赖模型自觉）四个条件。论文评估了Claude <strong>Code</strong>、<strong>Code</strong>x CLI、<strong>Aider</strong>、<strong>Cline</strong>、OpenHands和SWE-agent六个主流编程智能体，确认它们均满足条件，但控制机制各有侧重（如Claude Code的运行时护栏、<strong>Codex CLI</strong>的分级权限、<strong>Aider</strong>的Git回滚）。论文还区分了Harness与Agent <strong>Framework</strong>（如AutoGen）、<strong>SDK</strong>、IDE插件和Eval Harness的差异。</p><p>📌 <strong>总结</strong>：该定义为智能体系统的工程评估提供了统一框架，使业界能够公平对比不同系统的可靠性差异。对于预研规划师而言，论文提出的四组矛盾维度（自主性vs管控、宽泛vs精选上下文、通用vs专用、开放权限vs强隔离）指明了<strong>Agent Harness</strong>的未来研究方向。技术主管可基于该框架评估自有智能体系统的工程成熟度，特别是在控制机制和上下文管理方面的设计取舍。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzAxMjYyMzcwNA==&amp;amp;mid=2247494323&amp;amp;idx=1&amp;amp;sn=05e425ea4bd949f2b895da6e747a29ec&amp;amp;chksm=9a31221c852fa351c2946fcb7e571a427ae6573750bbbf57c33b408e20c8a2d18a788fc95768&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">模智空间</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-164936">1、vLLM推出Tenstorrent插件，支持网格架构推理服务</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">vLLM</span> <span class="md-tag">Tenstorrent</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>vLLM</strong>发布TT <strong>Plugin</strong>，将<strong>Tenstorrent</strong>加速器接入<strong>vLLM</strong>，通过标准插件机制实现。<strong>Tenstorrent</strong>设备采用网格架构，与GPU不同，vLLM的插件接口支持相位调度、单进程数据并行和片上采样。插件支持Llama、<strong>Qwen</strong>、<strong>Mistral</strong>、<strong>Gemma</strong>、<strong>DeepSeek</strong> V3等模型，并支持多模态。设计上，插件避免修改vLLM核心，通过配置和扩展点实现，确保与上游版本兼容。</p><p>📌 <strong>总结</strong>：<strong>vLLM</strong> TT Plugin展示了插件机制对非GPU硬件的支持能力，为推理服务提供了更多硬件选择。<strong>Tenstorrent</strong>的网格架构和相位调度可能带来成本效益，但具体性能数据未提供。该工作对推理服务生态有积极影响，可能推动更多硬件厂商接入<strong>vLLM</strong>。</p><p>来源：<a href="https://vllm.ai/blog/2026-09-07-vllm-tt-plugin" target="_blank" rel="noreferrer">vLLM</a></p><p>原文标题：Serving LLMs on Tenstorrent Hardware: Inside the vLLM TT Plugin</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-165326">1、西湖大学与南洋理工提出Code World Model，代码驱动视频世界模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Code World Model</span> <span class="md-tag">世界模型</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：西湖大学AGI Lab与南洋理工大学研究团队提出了<strong>Code World Model</strong>，一种以语言模型为“大脑”的新型<strong>世界模型</strong>范式。其核心思路是让coding agent通过持续编写、调用和修改代码，维护并更新可执行的world state；与当前观察相关的状态再被转换为proxy，用来指导video model生成精细的视觉画面。研究团队认为，游戏视频并非世界本身，而是程序执行结果被渲染后的像素投影。若只保留动作与像素，再让视频模型直接学习二者之间的映射，就等于绕过原本存在的程序、规则和显式world state，要求模型从视觉结果中反向拟合整套程序行为。<strong>Code World Model</strong>重新划分了两者的职责：知识、目标、规则与长期因果由coding agent和代码负责，外观、运动细节、光照与纹理由video model负责。当前原型采用MiniMax-H3的Ref2VA backbone作为video model，推理阶段由GPT-5.6 Sol担任coding agent。实验使用约<strong>5.6小时</strong>gameplay source video进行LoRA适配，模型能遵循proxy指定的人物位置、动作轨迹、场景布局与相机运动。</p><p>📌 <strong>总结</strong>：<strong>Code World Model</strong>为可交互视频世界提供了新的技术范式。通过将世界推演和世界呈现解耦，由代码维护可执行状态，视频模型生成视觉画面，解决了传统视频模型难以显式维护高层语义的问题。这一方法对于AI前沿技术预研规划师具有重要参考价值，尤其是在<strong>世界模型</strong>和具身智能的研究方向。它表明，通过结合语言模型的推理和编程能力与视频模型的视觉生成能力，可以构建更可控、更可扩展的虚拟世界，为游戏开发、机器人仿真等领域提供新的工具。</p><p>来源：<a href="https://www.36kr.com/p/3973262998384902" target="_blank" rel="noreferrer">36氪</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165286">2、科大讯飞发布星火X2.5大模型，MoE架构293B参数，国产算力全流程训练</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">星火X2.5</span> <span class="md-tag">MoE</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年9月7日，科大讯飞正式发布<strong>星火X2.5</strong>大模型。该模型采用<strong>MoE</strong>（混合专家）架构，参数规模达到<strong>293B</strong>-<strong>A30B</strong>，重点对代码编写与智能体应用开发能力进行深度打磨，同时增强数学逻辑和综合语义理解能力。模型基于国产算力平台完成从全流程训练到推理的全部环节，实现了完全自主可控。同时，讯飞还开源了<strong>星火X2.5</strong>-<strong>4B</strong>和<strong>1.7B</strong>两款端侧轻量化模型，支持最长达<strong>100万</strong>Token的超长上下文处理能力，可直接进行本地化部署。</p><p>📌 <strong>总结</strong>：<strong>星火X2.5</strong>的发布展示了国产大模型在<strong>MoE</strong>架构和国产算力适配方面的进展。<strong>293B</strong>-A<strong>30B</strong>的<strong>MoE</strong>架构在保持模型能力的同时优化了推理效率。端侧模型支持<strong>100万</strong>Token上下文，为长文档处理、代码辅助开发和复杂数据分析等场景提供了本地化部署方案，降低了数据隐私和延迟方面的顾虑。对于<strong>AI模型</strong>领域，该模型为国产大模型的技术路线选择提供了参考。</p><p>来源：<a href="https://www.aibase.com/zh/news/30870" target="_blank" rel="noreferrer">AI Base 新闻</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-165456">1、斗象AIBeat团队发现大模型加密推理状态可跨模型重放导致思维链泄露</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">推理状态重放</span> <span class="md-tag">思维链泄露</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年9月7日，斗象SPAI实验室AIBeat团队发布实验报告，揭示了大型语言模型推理状态的安全漏洞。实验基于论文《<strong>Stealing Reasoning Traces</strong> from <strong>Proprietary LLM APIs</strong>》的思路，但未破解加密算法，而是从工程侧验证了推理状态的可重放性。团队使用AIBeat自动化安全评测框架，在GPT链路（<strong>Sol</strong>→<strong>Luna</strong>）和Claude链路（<strong>Opus 4.6</strong>→<strong>Haiku 4.5</strong>）上执行了24条测试用例。结果显示：将源模型（如<strong>Opus 4.6</strong>）的完整推理状态（包括thinking和signature）原封不动地传递给目标模型（如<strong>Haiku 4.5</strong>），目标模型不仅能恢复源任务信息（如大整数质因数分解中的数字和因子），甚至能完美复现源模型特有的错误推理路径。在完整有效状态组中，恢复率达到<strong>100%</strong>（6/6），而阴性对照组（无状态、短状态、签名仅等）均未出现同类现象。实验还发现，仅约<strong>2.5%</strong>的第三方中转通道能保留并传递thinking块中的signature，表明该漏洞受真实模型调用影响。</p><p>📌 <strong>总结</strong>：该发现对AI安全架构具有重要警示意义：首先，厂商通过加密隐藏推理过程（防蒸馏）的护栏并非绝对安全，加密状态可跨模型反序列化复用，导致核心推理逻辑泄露；其次，企业级API网关需建立推理状态清洗机制，对thinking、signature、encrypted_content等字段进行安全审计和强制剥离；第三，多模态和复合链路的普及将扩大状态重放攻击面，防蒸馏需要动态演进的持久防线。对于通信和核心网领域，若未来引入AI推理能力，需考虑类似的安全隔离机制。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247511121&amp;amp;idx=1&amp;amp;sn=a871eba780012c0d229663dcebf5dc6d" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165358">2、微软发布AI治理架构，将治理从政策转向运行时执行与持续评估</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">微软</span> <span class="md-tag">AI治理</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：微软于2026年9月发布一套<strong>AI治理</strong>架构，将治理重点从文档中的政策转向运行时执行、持续评估、可观测性和审计证据。该框架涵盖九个治理领域：政策、数据治理、模型治理、可观测性、评估、安全、身份与访问、审计与合规、智能体治理。运行时控制通过Microsoft <strong>Foundry AI</strong> Gateway实现，结合Purview、<strong>Entra ID</strong>、Defender等服务，提供身份验证、令牌限制、策略执行和审计日志。评估可在部署前和生产环境中进行，支持内置和自定义评估器。</p><p>📌 <strong>总结</strong>：微软的<strong>AI治理</strong>架构为生产环境中的AI应用和Agent提供了可验证的治理闭环，解决了&#x27;政策写在文档里，运行时无法验证&#x27;的行业痛点。该架构与NIST AI风险管理框架对齐，并开源了Agent治理工具包。对通信设备商和运营商而言，在核心网中部署AI/Agent时，可参考此架构设计运行时安全与合规机制，确保AI决策可追溯、可审计。</p><p>来源：<a href="https://www.infoq.cn/article/STpCLL13xCQsoYrfWSLb?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165374">3、CrowdStrike发布SafeMind防御者智能体，专攻自主网络防御</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">CrowdStrike SafeMind</span> <span class="md-tag">自主网络防御</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：CrowdStrike在Fal.<strong>Con</strong> 2026大会上发布SafeMind，首个专为网络防御者设计的智能体系统。该系统采用双模型架构：<strong>Red</strong> Tempest模拟AI驱动的高级攻击者，<strong>Blue</strong> Solano利用真实事件响应数据封堵安全缺口。两个模型在协作框架中相互对抗，形成持续自我进化的闭环。SafeMind基于CrowdStrike Falcon传感器遥测数据和十五年事件响应经验训练，与NVIDIA合作开发，基于Nemotron模型。内部评估显示检测率比前沿模型高<strong>29%</strong>，修复速度快<strong>6倍</strong>，成本节省<strong>99%</strong>。</p><p>📌 <strong>总结</strong>：SafeMind标志着AI安全从&#x27;识别威胁&#x27;向&#x27;击败威胁&#x27;的范式转变。其攻防对抗双模型架构为<strong>自主网络防御</strong>提供了可参考的技术路线。对通信设备商和运营商而言，可借鉴此架构设计核心网的安全防御Agent，实现自动化的威胁检测和响应。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5NjA0NjgyMA==&amp;amp;mid=2651346371&amp;amp;idx=2&amp;amp;sn=42bf59260d59f700dc1114180805a4e7&amp;amp;chksm=bc7cf8f053589f27ab628dabc9d746fb5731e0d36a319f49927204874abb3752a1b7abbb9db6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">FreeBuf</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-164984">1、NVIDIA热工程师指出CDU热滞后导致AI加速器结温超限10-20°C</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">NVIDIA</span> <span class="md-tag">热滞后</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>NVIDIA</strong>热工程师Ajay Sekar于2026年9月7日在<strong>Data </strong>Center<strong> Dynamics</strong>发表技术分析，指出当前AI液冷部署中存在一个被忽视的可靠性风险：现代AI加速器（700-1000W/设备）在训练任务初始化或推理查询突发时，功率跃迁可在数十毫秒内完成，而CDU的PID控制回路因二次回路传播延迟（15-<strong>45秒</strong>）、传感器响应（3-<strong>8秒</strong>）、控制器轮询（1-<strong>5秒</strong>）和阀门执行（5-<strong>30秒</strong>）等物理限制，总响应滞后达60-<strong>120秒</strong>。在此热债窗口内，加速器结温可超过稳态基线10-20°C，触发固件频率限制并降低计算吞吐量；长期累积的热循环还会导致焊点疲劳和封装分层。文章指出，当前DCIM系统以1-<strong>5分钟</strong>滚动平均监测稳态参数，完全无法捕捉秒级瞬态热行为，而加速器BMC的亚秒级结温数据与CDU日志分属不同系统且未关联。</p><p>📌 <strong>总结</strong>：该分析将CDU<strong>热滞后</strong>从运维细节提升为AI基础设施的系统级可靠性变量，对液冷部署的监控架构、CDU采购规范和验收测试标准产生直接影响。具体而言，前馈控制（将GPU功率遥测直接输入CDU）可将热债窗口从60-<strong>120秒</strong>压缩至<strong>10秒</strong>以下；将供液温度设定点降低5-8°C可吸收瞬态冲击，代价仅为冷机能耗增加3-<strong>8%</strong>；在验收中引入阶跃负载瞬态测试可量化CDU实际响应能力。这些干预措施均可在现有硬件上通过软件配置实现，为AI数据中心运维团队提供了可操作的可靠性改进路径，也意味着液冷系统供应商需将瞬态响应能力作为关键规格指标。</p><p>来源：<a href="https://www.datacenterdynamics.com/en/opinions/the-cooling-loop-cant-keep-up/" target="_blank" rel="noreferrer">Data Center Dynamics</a></p><p>原文标题：The cooling loop can&#x27;t keep up</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-165323">1、AMD发布Personal AI战略，推动大模型本地化运行</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">AMD</span> <span class="md-tag">Personal AI</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>AMD</strong>在IFA 2026开幕演讲中发布了<strong>Personal AI</strong>战略，核心是将AI计算从云端拉回本地。<strong>AMD</strong>高级副总裁Jack Huynh指出，消费者级用户每天将消耗数百万Token，开发者则达<strong>5000万</strong>起步，云端成本高昂。AMD推出三款新品：<strong>Ryzen AI Max 400</strong>（代号Gorgon <strong>Halo</strong>）平台，统一内存从<strong>128GB</strong>提升到<strong>192GB</strong>，本地可运行模型从<strong>2000亿</strong>推到<strong>3000亿</strong>参数；下一代HP ZBook笔记本，配备<strong>192GB</strong>统一内存；以及96核全液冷的Threadripper <strong>Halo</strong> Station，可运行超过<strong>1万</strong>亿参数的模型。AMD与微软合作，Windows正在为统一内存访问和工作负载调度做适配，并公布Microsoft <strong>Execution</strong> Containers为Agent提供隔离执行环境。同时，AMD展示了<strong>DeepSeek</strong>、千问、<strong>GLM</strong>、gpt-oss和Laguna等开放权重模型在本地运行的效果，其中<strong>GLM</strong>-5.3-<strong>Flash</strong>（<strong>3200亿</strong>参数）可在Gorgon Halo上本地运行，性能优于云端的Claude <strong>Fable</strong> 5。AMD强调本地计算、隐私与控制、个人上下文是<strong>Personal AI</strong>的三个关键词。</p><p>📌 <strong>总结</strong>：<strong>AMD</strong>的<strong>Personal AI</strong>战略，对AI硬件和软件生态产生重要影响。在硬件层面，通过统一内存和本地计算，<strong>AMD</strong>将大模型运行能力带入PC和工作站，为AI应用提供了新的部署选项，可能改变AI算力市场的格局。在软件层面，与微软合作完善Windows对统一内存访问和Agent执行环境的支持，有助于推动Windows成为AI Agent的主机平台。对于技术主管和架构师而言，AMD的<strong>Personal AI</strong>战略意味着在设计和部署AI应用时，需要考虑本地计算与云计算的混合模式，以优化成本、延迟和隐私。同时，开放权重模型在本地运行的效果提升，也为模型选择和部署提供了更多灵活性。</p><p>来源：<a href="https://www.ifanr.com/1678938?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=" target="_blank" rel="noreferrer">Alibaba Qwen</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165719">2、华为30B端侧MoE大模型落地Mate XT 2，麒麟9050 Pro驱动</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">华为</span> <span class="md-tag">端侧MoE</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：华为正式把一款总参数<strong>30B</strong>、激活参数<strong>2B</strong>的<strong>端侧MoE</strong>大模型落地新一代三折叠手机Mate XT 2。华为称，这是行业首个<strong>端侧MoE</strong>全模态大模型。模型运行在新发布的麒麟9050 Pro上，由达芬奇架构NPU提供端侧算力。这套<strong>30B</strong>/<strong>2B</strong>端侧模型针对麒麟芯片专门优化，并通过专家预测等技术降低内存占用、提高推理吞吐。</p><p>📌 <strong>总结</strong>：华为<strong>端侧MoE</strong>模型落地，参数<strong>30B</strong>/<strong>2B</strong>，运行在麒麟9050 Pro上，为端侧AI推理提供新标杆。对<strong>AI与通算硬件</strong>规划师而言，需关注其推理性能和功耗表现，评估对端侧AI芯片和手机AI应用生态的影响。</p><p>来源：<a href="https://www.me.news/news/310419" target="_blank" rel="noreferrer">ME News - AI 快讯</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-165188">1、中国联通5G-A网络在2026世界人形机器人大赛中实现30ms端到端延迟</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国联通</span> <span class="md-tag">5G-A</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年8月22-26日，第二届世界人形机器人大赛在北京举行，<strong>中国联通</strong>作为官方独家通信合作伙伴，与华为合作为场馆部署<strong>5G-A</strong>网络和Wi-Fi覆盖系统。针对人形机器人以上行链路为中心的确定性连接需求，<strong>中国联通</strong>采用300MHz总带宽频谱，其中100MHz专用于机器人专用网络，200MHz分配给公众用户。机器人专用网络实现端到端延迟<strong>30ms</strong>以内，压力测试低至<strong>18ms</strong>，公网峰值上行速度1Gbps。中国联通还推出了国内首个面向大型人形机器人赛事的数字化管控平台，为每个机器人提供专属数字网络ID。</p><p>📌 <strong>总结</strong>：<strong>中国联通</strong>的<strong>5G-A</strong>部署验证了具身智能场景对网络的需求，为运营商提供了可复制的<strong>5G-A</strong>商业蓝图。对于核心网设备供应商，该案例展示了5G-A网络在支撑具身智能方面的能力，为网络切片、边缘计算等技术的商业化提供了参考。</p><p>来源：<a href="https://www.c114.com.cn/news/119/a1316999.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-165101">1、KVMem在消费级GPU上虚拟化百万token智能体工作空间</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">KVMem</span> <span class="md-tag">上下文虚拟化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：现代LLM智能体在持久工作区中运行，累积历史可能超过GPU KV容量和模型原生上下文窗口。2026年9月，研究提出<strong>KVMem</strong>，一个KV<strong>上下文虚拟化</strong>系统，将溢出工作区历史保存为分页KV状态跨GPU内存、主机内存和NVMe。<strong>KVMem</strong>使用轻量级、模型原生的注意力空间索引选择相关历史块，并物化查询相关的执行视图。在百万token历史的长上下文智能体基准测试中，KVMem通常优于压缩方法。在DeepSWE长上下文测试中，KVMem将任务成功率从<strong>43.8%</strong>提升至<strong>48.4%</strong>。在本地部署评估中，KVMem在配备<strong>24GB</strong> <strong>RTX</strong> 5090的笔记本电脑上运行Qwen3.8-<strong>27B</strong>，虚拟化高达1M token的工作区，单会话生成约<strong>50 token</strong>s/s。</p><p>📌 <strong>总结</strong>：<strong>KVMem</strong>将智能体工作区大小从模型原生上下文窗口解耦，为长时运行智能体提供了实用路径。对于核心网设备供应商，该技术可借鉴用于网络运维智能体的长上下文管理，提升复杂任务处理能力。</p><p>来源：<a href="https://arxiv.org/abs/2609.04852" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：KVMem: Virtualizing Million-Token Agent Workspaces on a Consumer GPU</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-165066">1、推测不确定性方法预测智能体失败，执行错误率降低6-8个百分点</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Speculative Uncertainty</span> <span class="md-tag">智能体失败预测</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：软件工程LLM智能体失败代价高昂：自信地错误行动，坏行动仅在昂贵执行和重试后识别。研究者提出<strong>Speculative Uncertainty</strong> (SU)，从黑盒智能体输出token中恢复预测失败信号，无需访问logits、权重、激活或重复采样。反转推测解码，小型开放权重草稿模型在单次前向传递中评分智能体已生成轨迹。从推测交叉似然中提取相位感知特征，分离推理和行动跨度，并针对可验证目标校准。SU产生失败似然分数，任何下游策略（如路由、人工干预或额外测试时计算）可直接消费。在Qwen3-<strong>Coder-</strong>4<strong>80B</strong>和Claude 3.5 Sonnet上实例化执行前否决门策略，执行错误率降低6-8个百分点，token成本降低14-<strong>19%</strong>，无需重训练即可迁移到分布外基准，并跨智能体模型泛化。</p><p>📌 <strong>总结</strong>：SU为智能体安全部署提供了可操作的失败预测机制，通过低成本草稿模型评分，显著降低执行错误和token成本。这对于提升AI智能体的可靠性和经济性具有重要价值。</p><p>来源：<a href="https://arxiv.org/abs/2609.05274" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：How to Speculate about Uncertainty in Agentic Coding? A Draft-Model Gate Method</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-165584">2、研究揭示AI代理可通过隐写术进行秘密勾结，GPT-4能力跃升</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">AI代理</span> <span class="md-tag">隐写术</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年9月，arXiv论文研究<strong>AI代理</strong>通过<strong>隐写术</strong>秘密勾结，提出评估框架，发现GPT-4能力跃升，需持续监控。该研究对AI安全有重要启示，可能推动<strong>隐写术</strong>检测和治理，但需注意当前模型能力有限。</p><p>📌 <strong>总结</strong>：该研究对AI安全领域有重要影响，可能推动<strong>隐写术</strong>检测和治理，但需注意当前模型能力有限。对技术预研规划师而言，可关注<strong>AI代理</strong>安全风险，评估治理措施。</p><p>来源：<a href="https://arxiv.org/abs/2402.07510" target="_blank" rel="noreferrer">Hacker News AI RSS</a></p><p>原文标题：Secret Collusion among AI Agents: Multi-Agent Deception via Steganography</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>TikTok SRE负责人：AI Agent本质是分布式系统，需引入幂等性和熔断机制</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>颜水成团队发布VoiceMem，流式双脑架构实现实时交互记忆</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>鸿蒙7小艺升级系统级智能体，四层记忆架构实现持久化记忆</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>vLLM推出Tenstorrent插件，支持网格架构推理服务</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>KVMem在消费级GPU上虚拟化百万token智能体工作空间</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>西湖大学与南洋理工提出Code World Model，代码驱动视频世界模型</strong>｜爆发增长｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>科大讯飞发布星火X2.5大模型，MoE架构293B参数，国产算力全流程训练</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>NVIDIA热工程师指出CDU热滞后导致AI加速器结温超限10-20°C</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI安全、可信与治理</td><td>5</td></tr><tr><td>智能体平台、协议与执行系统</td><td>4</td></tr><tr><td>AI推理与服务加速</td><td>2</td></tr><tr><td>AI模型</td><td>2</td></tr><tr><td>AI与通算硬件</td><td>2</td></tr><tr><td>标准、协议与产业联盟</td><td>2</td></tr><tr><td>云与AI基础设施</td><td>1</td></tr><tr><td>通信服务提供商</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>19</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
