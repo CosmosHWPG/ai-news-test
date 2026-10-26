@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-10-19</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-10-19</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-10-18T00:00:00+00:00 ~ 2026-10-19T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-10-26 16:28:56 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年10月19日</strong></p><p><strong>生成时间：2026-10-26 16:13 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：8 个 | 本期条目：11 条 | 覆盖板块：6 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 4 条，AI模型 1 条，模型训练 1 条，模型评测 2 条，AI安全、可信与治理 2 条，云与AI基础设施 1 条，合计 11 条。</li><li>日报内容：今日头条聚焦 <strong>Meta开放Muse Spark Open权重，8160亿参数模型可在两台Mac Studio本地运行</strong>，并同步关注Prime Intellect发布prime-rl 0.10.0，新增IPO损失并统一评测栈；MIT何恺明团队VISTA让多模态智能体按需回看画面，ARC-AGI-3得分从40.68升至满分；Anthropic为Claude Managed Agents上线Dynamic Workflows，由C…。</li><li>关键亮点：本期重点聚焦 智能体平台、协议与执行系统、AI模型、模型训练、模型评测，核心事件集中在 Meta、AIHot Virxact 一手信源热点、机智流、Anthropic，适合用于技术选型、竞品研判和专题复盘。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-232812">Meta开放Muse Spark Open权重，8160亿参数模型可在两台Mac Studio本地运行</a></li></ul><ul><li><a href="#event-233638">Prime Intellect发布prime-rl 0.10.0，新增IPO损失并统一评测栈</a></li></ul><ul><li><a href="#event-232212">MIT何恺明团队VISTA让多模态智能体按需回看画面，ARC-AGI-3得分从40.68升至满分</a></li></ul><ul><li><a href="#event-231854">Anthropic为Claude Managed Agents上线Dynamic Workflows，由Claude生成编排程序调度多Agent</a></li></ul><ul><li><a href="#event-231901">Taste-Bench 基准发布：14 个模型长期决策最佳仅 59.7%，推理加长无改善</a></li></ul><ul><li><a href="#event-231905">Google Research 开源 Harness²：两层递归与八组件机制详解</a></li></ul><ul><li><a href="#event-232294">Cloudflare 修复容器跨租户数据泄露漏洞，dm-thin 块分配器跳过清零导致残留数据可读</a></li></ul><ul><li><a href="#event-232546">OCP 2026 推动开放以太网重构 AI 集群 Scale-Up 与 Scale-Out 网络</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-232212">1、MIT何恺明团队VISTA让多模态智能体按需回看画面，ARC-AGI-3得分从40.68升至满分</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">VISTA</span> <span class="md-tag">视觉记忆</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：MIT何恺明团队提出<strong>VISTA</strong>视觉交互框架，针对多模态智能体在长程交互中早期视觉信息被压缩或丢失的问题，将完整视觉历史以逐帧PNG形式保存在模型上下文之外，并提供inspect与read_pixels两类工具，让模型按当前推理需要自主取回历史帧、比较多时刻或放大局部区域。在ARC-<strong>AGI-</strong>3的25个公开游戏上，搭配Claude <strong>Opus 5.</strong>0的系统达到100.00分，搭配GPT-5.6 Sol达到99.00分，而两者不使用<strong>VISTA</strong>的官方评测得分分别仅为40分和13分。</p><p>📌 <strong>总结</strong>：<strong>VISTA</strong>验证了“外部无损<strong>视觉记忆</strong>+模型主导检视”这一架构对智能体长程推理的有效性，且不依赖额外训练，可直接叠加在现有底座模型之上。对智能体平台设计者而言，这意味着记忆层可以从上下文压缩转向可检索的外部档案，降低对超长上下文的依赖；对推理服务提供方而言，视觉档案的存储与检索接口可能成为新的服务组件，影响智能体运行时的架构分层与成本结构。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247566455&amp;amp;idx=1&amp;amp;sn=8eb10a196ca52ed6097fca7fabeee593&amp;amp;chksm=cf97fd4bd08e3c853e48591d2fda244ebf3bb86622654d85c997ca9faf09b7caee2b9b7c760f&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231854">2、Anthropic为Claude Managed Agents上线Dynamic Workflows，由Claude生成编排程序调度多Agent</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Anthropic Dynamic Workf…</span> <span class="md-tag">多Agent编排</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong>于2026年10月9日为Claude <strong>Managed</strong> Agents上线<strong>Dynamic</strong> <strong>Workflows</strong>（<strong>Beta</strong>），并在AI <strong>Engineer New York</strong> 2026大会工作坊中由技术人员CJ Avilla和Harrison Stall进一步介绍。该机制由Claude根据任务需求生成编排程序，确定任务拆分、阶段划分和Agent衔接方式，程序由服务器在后台执行，负责启动Agent、传递中间结果并根据执行情况推进后续任务。与传统Subagents由主Agent逐步决定后续操作不同，<strong>Dynamic</strong> <strong>Workflows</strong>将循环、条件分支和结果传递逻辑交给编排程序执行，中间数据保存在程序变量中，无需每次返回主Agent重新处理。官方文档显示单次工作流累计最多启动1000个Agent，同时运行线程上限64个，默认最长运行<strong>24小时</strong>，<strong>Managed</strong> Agents提供会话级预算机制。</p><p>📌 <strong>总结</strong>：<strong>Dynamic</strong> Workflows将多Agent系统的协调逻辑从主Agent推理转移到程序执行，降低了主Agent上下文被中间结果塞满的风险，同时通过预定义Agent名单、会话预算和权限策略保留了开发者对系统行为的约束。对智能体平台和核心网运维Agent的架构设计而言，这种“模型生成编排程序+程序后台执行”的模式提供了一种可参考的多Agent执行架构，其1000个Agent累计上限、64个并发线程和<strong>24小时</strong>运行边界也为系统容量规划提供了参考。但官方文档指出工作流返回completed仅表示程序执行结束，不代表业务任务成功，开发者仍需设计任务覆盖范围、失败项和关键结果的验收机制。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;amp;mid=2651295352&amp;amp;idx=3&amp;amp;sn=71768c99cf32c56d0371c9ef63f896b7&amp;amp;chksm=bc73c75281ed84c8e9b6ec7825012893100a8471e4c5240496031374a226dfee85722e85ac5d&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">InfoQ</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231905">3、Google Research 开源 Harness²：两层递归与八组件机制详解</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Harness²</span> <span class="md-tag">两层递归机制</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 10 月，<strong>Google</strong> Research 开源 <strong>Harness²</strong> 递归式智能体 <strong>Harness</strong> 优化框架，针对两个开放世界难题：测试时遇到未见任务且无 ground-truth 验证器，以及递归自我改进通常任务特化、无法泛化积累。框架采用两层递归：任务级递归通过 <strong>Propose-Probe-Compose</strong> 对比式改进环，先跑参考执行揭示 harness 如何表现，再提出通用缺陷与领域知识两个候选，在同一任务同等条件下探测并对比行为，由组合器只采纳有证据支持的编辑，用同任务 A/B 行为对比替代分数反馈；harnessing 级递归在每个任务后反思，把被采纳的 harness 与 <strong>EXPERIENCE.md</strong> 教训写入按领域组织的持久库，下一个任务仍从公共基础 harness 出发但由更新后的库引导。八个可编辑组件按作用分为上下文构建（系统提示词、护栏、记忆）、工具接口（工具指引、<strong>Skills</strong>）、编排（subagents）、脚本和插件。主要结果：k=1 单步下 <strong>GLM-5</strong> 在 <strong>OpenCode</strong> 的 <strong>WorkBuddy-Bench</strong> 从 64.2 升至 75.7（+11.5），<strong>LAB</strong> 部分通过率从 59.6 升至 71.4（+11.8）；为 <strong>Gemini</strong> 精炼的 harness 给 <strong>GLM-5</strong> 在 <strong>Code</strong> 子集带来 +17.3；去掉 library 在 <strong>WorkBuddy-Bench</strong> 损失 3.1 分。</p><p>📌 <strong>总结</strong>：该解读补充了 <strong>Harness²</strong> 在无验证器开放世界下的机制细节，说明用同任务 A/B 行为对比替代分数反馈可以绕开开放世界没有验证器的死结。跨模型迁移证据显示为 <strong>Gemini</strong> 精炼的 harness 可给 <strong>GLM-5</strong> 带来 +17.3 提升，并胜过 <strong>Claude Code</strong>、<strong>Codex</strong> 的固定生产 harness 4.6–5.8 分，说明 harness 优化具有可迁移的工程价值。执行器与编辑器用同一模型也能涨（<strong>GLM-5</strong> 自编辑在 <strong>LAB</strong> 上 +13.7），说明不依赖更强的教师模型。库的消融与跨基准迁移验证了 harnessing 级递归的价值。这些细节对智能体平台架构师和预研规划师在 harness 工程化设计上具有直接参考价值。</p><p>来源：<a href="https://aihot.news/items/lvsc8m9jlqviaauhihhis35qa" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-232237">4、浙大与北大团队提出SPADER，用步骤级GRPO与多样性奖励提升多答案问答长尾覆盖</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">SPADER</span> <span class="md-tag">步骤级GRPO</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年10月，浙江大学与北京大学团队在EMNLP 2026 Main发表<strong>SPADER</strong>框架，针对多答案问答中现有强化学习方法的两处错位：优势计算停留在轨迹级导致信用分配粗糙，以及F1奖励对头部与长尾实体一视同仁导致智能体缺乏探索长尾的动力。<strong>SPADER</strong>包含两个互补组件：逐步同伴优势SPA按决策步对齐并行轨迹，以同提示词、同交互轮次下的同伴回报为基线，将GRPO从轨迹级细化到步骤级，实现无critic、无外部评估器的步骤级信用分配；多样性感知探索奖励以横向信息增益保底、纵向新颖度溢价稀释头部实体，配合工具成本与终端结算，让何时继续搜索、何时终止作答从奖励结构中涌现。在Llama3.1-<strong>8B</strong>与Qwen3-<strong>8B</strong>两种基座上，SPADER在四个多答案QA基准上F1全部第一，QAMPARI上相对PPO和GRPO最高提升<strong>86.1%</strong>。</p><p>📌 <strong>总结</strong>：<strong>SPADER</strong>将GRPO的信用分配从轨迹级细化到步骤级，使智能体能够识别长程搜索轨迹中哪一步真正扩大了答案覆盖，这对工具增强问答和多步推理任务的强化学习训练具有直接参考价值。多样性感知探索奖励通过新颖度溢价稀释头部实体，解决了F1奖励下智能体提前收敛到高频答案的问题，为需要覆盖长尾实体的检索和问答场景提供了新的奖励设计思路。对AI前沿技术预研规划师而言，<strong>SPADER</strong>的步骤级信用分配方法可迁移到其他长程决策任务，但需注意其验证范围限于多答案问答基准，实际部署效果仍需进一步验证。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-10-18-9?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-232812">1、Meta开放Muse Spark Open权重，8160亿参数模型可在两台Mac Studio本地运行</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Meta Muse Spark Open</span> <span class="md-tag">稀疏混合专家架构</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Meta</strong>于10月15日宣布开放Muse <strong>Spark</strong> Open模型权重，定位为迄今能力最强的美国开放权重模型。该模型采用<strong>稀疏混合专家架构</strong>，总参数量<strong>8160亿</strong>，每token激活约<strong>420亿</strong>参数，支持1,048,<strong>576 token</strong>上下文，可接收文本、图片、音频和视频输入。本地部署方案通过MLX框架在两台搭载M5 Ultra的Mac Studio上运行，采用NVFP4精度将权重压缩至约<strong>537GB</strong>，并利用Thunderbolt上的RDMA实现分布式推理，四台Mac Studio生成速度超过每秒36个token。官方公布JobBench得分61.8、<strong>MCP-Atlas 89.2</strong>、<strong>OSWorld Verified 80.4</strong>，但Terminal-<strong>Bench 2.</strong>1和DeepSWE 1.1编程测试得分低于GLM 5.3 max和Kimi K3 max。</p><p>📌 <strong>总结</strong>：<strong>Muse Spark</strong> Open将大型智能体模型的竞争焦点从参数规模和榜单成绩延伸到实际部署环节。其MoE稀疏架构减少每token活跃计算，NVFP4量化降低权重存储开销，多机分布式推理提供总内存容量，三者配合使桌面级本地部署成为可能，但算子级加速1.03-<strong>3.95倍</strong>不等于端到端同等提升。对技术路线而言，这验证了开放权重模型在本地智能体工作流中的可行性；对商业判断而言，<strong>Muse Model</strong> License对年收入超<strong>2000万</strong>美元的MaaS企业要求单独协议，开放权重不等于无商业约束，企业需评估本地部署的硬件与运维成本是否优于托管API路径。</p><p>来源：<a href="https://www.infoq.cn/article/EuYOPRUBAeBgBGBu5ktk?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-233638">1、Prime Intellect发布prime-rl 0.10.0，新增IPO损失并统一评测栈</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">Prime Intellect prime-rl</span> <span class="md-tag">异步RL与IPO损失</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年10月19日，<strong>Prime</strong> Intellect发布prime-rl v0.10.0与verifiers v0.4.0。新版本新增RL算法IPO（<strong>INTELLECT Policy Optimization</strong>）并设为默认损失，针对异步RL中训练器与推理引擎概率不一致问题，改用概率差绝对值超过阈值的掩码准则，替代IcePop基于比率的掩码，避免对稀有token与高概率token的误判。吞吐方面，<strong>Qwen3-</strong>235B<strong>-A22B</strong> SFT在4×8 <strong>B300</strong>、16k序列长度、<strong>FSDP+EP</strong> 8配置下比torchtitan快<strong>1.15倍</strong>，MFU从<strong>40.7%</strong>升至<strong>46.6%</strong>，峰值内存从144GiB降至141GiB。</p><p>📌 <strong>总结</strong>：prime-rl以概率差掩码替代比率掩码，直接针对异步RL中训练与推理概率漂移导致的训练崩溃问题，在GLM-4.5-Air的SWE RL极端设定下IcePop于约1.2k步崩溃而IPO在eps 0.2与0.3下稳定训练，为大规模MoE模型的RL后训练提供了更稳定的开源工程栈。同时其MoE运行时统一、算子融合与稀疏注意力内核优化带来的吞吐与MFU提升，对推理与训练基础设施的成本评估有直接参考价值。</p><p>来源：<a href="https://aihot.news/items/vkxmsl9e04twrp0ynf3yqnnma" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-231901">1、Taste-Bench 基准发布：14 个模型长期决策最佳仅 59.7%，推理加长无改善</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Taste-Bench</span> <span class="md-tag">智能体长期决策</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 10 月，<strong>The Decoder</strong> 报道了一项名为 <strong>Taste-Bench</strong> 的新基准，由研究者通过 502 个决策分叉问题测量智能体在编码和 AI 研究任务中的长期决策品味。其方法是在智能体运行轨迹的分叉点冻结运行、隐藏后续工作，让模型在两条路径中选择更优方向，并以同一问题正反顺序各问一次、两次都答对才计分。测试覆盖 <strong>Claude</strong>、<strong>GPT</strong>、<strong>Grok</strong>、<strong>DeepSeek</strong>、<strong>GLM</strong>、<strong>MiniMax</strong> 和 <strong>Mistral</strong> 家族共 14 个模型，最佳 <strong>GPT</strong>-5.6 Sol 平均 <strong>59.7%</strong>，<strong>GPT-5.5</strong> 为 <strong>59.5%</strong>，其余明显更低，而纯猜测为 <strong>25%</strong>。当关键线索在后续工作中才出现时，平均准确率从 <strong>62.3%</strong> 降至 <strong>21%</strong>，接近随机；提高推理设置几乎不改变准确率。</p><p>📌 <strong>总结</strong>：<strong>Taste-Bench</strong> 把智能体评测从“任务是否完成”推进到“中间步骤质量”，说明现有端到端基准如 <strong>SWE-bench Verified</strong> 无法覆盖长期决策能力。对智能体平台与执行系统而言，这意味着仅靠增加推理预算或换更强模型难以解决长期规划缺陷，需要在 harness、记忆与工具编排层面引入对决策分叉的显式评估与训练。研究者还验证了品味可被蒸馏：以 <strong>Qwen3.6-27B</strong> 为学生模型，在未见任务上准确率从 <strong>30%</strong> 提升至 <strong>47.9%</strong>，并在 41 个 <strong>SWE-bench Pro</strong> 任务上把成功率从 <strong>14.6%</strong> 提升至 <strong>33.7%</strong>，为智能体长期规划能力的产品化改进提供了可复用路径。</p><p>来源：<a href="https://aihot.news/items/aeoroqziuohmuwkqy8zw8ws9l" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231845">2、VAST开源EdenLive实时生成式渲染器，单卡720P超24FPS</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">VAST EdenLive</span> <span class="md-tag">实时生成式渲染</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年10月，<strong>VAST</strong>（三启万物）发布并开源世界模型项目Project Eden的阶段性成果EdenLive，这是一个<strong>实时生成式渲染</strong>器，以Proxy（简化参考画面）或参考视频作为控制信号，结合目标首帧图像和文本提示词，持续生成写实、精细化或风格化的视频画面。在性能方面，单张NVIDIA <strong>RTX 5090</strong>、<strong>5B</strong>参数模型、720P配置下，EdenLive实时帧率超过24FPS，连续生成可持续到分钟级，输出提供480P和720P两档，端到端延迟在百毫秒量级。<strong>VAST</strong>同时开源了不同尺寸规格的模型权重、推理代码、<strong>Tech Report</strong>，以及Game <strong>Prototype Turbo</strong>——一款Prompt to <strong>Proxy Game Skill</strong>，并开放端到端Demo展示从自然语言生成游戏到EdenLive实时渲染的全过程。</p><p>📌 <strong>总结</strong>：EdenLive将交互状态与视觉渲染解耦，游戏规则和世界状态由上游交互系统维护，EdenLive专注于根据参考画面实时生成精细或风格化视觉内容，避免了视频模型隐式推断世界状态导致的错误累积。这一架构使生成式渲染真正进入实时交互循环，对游戏开发、影视动画前期制作和具身智能数据增强具有直接应用价值：开发者可先用简化3D场景搭建原型，再通过EdenLive实时生成高质量画面并自由切换风格，无需为每种画风重新制作全部场景资产，有望降低交互式内容创作的美术资产制作成本和周期。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651063676&amp;amp;idx=1&amp;amp;sn=a4814af1afbdc7ce1c9f6b582eb9bfac&amp;amp;chksm=856483dd1b680a4919a24ee0d2f0ad2810f6b4fdc3cf4beb9cdd6d8d4c0fcb3680179275248b&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-232294">1、Cloudflare 修复容器跨租户数据泄露漏洞，dm-thin 块分配器跳过清零导致残留数据可读</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Cloudflare Containers</span> <span class="md-tag">跨租户数据泄露</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>Cloudflare Containers</strong> 平台被披露存在<strong>跨租户数据泄露</strong>漏洞，该平台同时为 <strong>Cloudflare Sandboxes</strong> 提供支持。漏洞根源在于底层存储分配器：每个容器运行在 <strong>Firecracker</strong> 微虚拟机中，根磁盘通过 <strong>Linux</strong> 设备映射器的 dm-thin 精简配置机制管理，资源池使用 64 <strong>KiB</strong> 精简块并启用了 skip_block_zeroing 选项。当向未映射区域写入 4 <strong>KiB</strong> 块时，dm-thin 从共享资源池分配 64 KiB 物理块，仅覆盖 4 KiB，剩余约 60 KiB 保留前一租户数据。安全研究员 <strong>Oren Yomtov</strong> 于 9 月 4 日通过漏洞赏金计划报告，在 24 个部署点中的 18 个发现残留数据，恢复出目录结构、数据库页和完整 <strong>SQLite</strong> 数据库。<strong>Cloudflare</strong> 于 9 月 7 日完成修复部署，9 月 19 日完成历史数据清理。</p><p>📌 <strong>总结</strong>：该漏洞表明容器隔离不能仅依赖虚拟机边界，存储分配器的清零策略是租户隔离的关键控制点。对核心网架构师和云基础设施团队，该案例提示在共享存储上运行不可信工作负载时必须验证块复用前的清零行为；对 AI 沙箱和智能体执行环境，<strong>Firecracker</strong> 边界虽未失效，但底层存储优化选项可能绕过隔离假设，需在架构设计中增加分配时清零或释放时擦除的强制检查。</p><p>来源：<a href="https://www.infoq.cn/article/YmllSwKbZXY0bcVjjw70?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231874">2、英国发布AI安全计划，用前沿模型排查政府系统漏洞并研究智能体事故处置</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">英国AI安全计划</span> <span class="md-tag">智能体事故处置</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：2026年10月12日，英国人工智能大臣卡尼什卡·纳拉扬在伦敦帝国理工学院公布一系列AI安全计划。英国政府已在内部测试AI漏洞发现能力，两项试点共协助识别和处理1000多个潜在漏洞及其他公共服务安全威胁，中央漏洞监测服务投入运行后部分已识别问题的平均修复时间由50天缩短到8天。其中一项测试对9个政府机构公开代码仓库进行集中审查，一个月内形成407项安全发现，模型调用费用约<strong>1.3万</strong>英镑。英国还计划通过《网络安全与韧性法案》完善AI安全制度，讨论AI驱动的网络攻击、自主系统脱离监督以及严重AI事件和未遂事件的识别与报告。</p><p>📌 <strong>总结</strong>：英国将前沿模型引入政府系统漏洞排查并取得可量化效果，验证了AI在网络安全防御中的实际价值，同时着手建立<strong>智能体事故处置</strong>和未遂事件报告制度，为各国AI安全治理提供了从防御工具到制度框架的参考样本。该计划覆盖漏洞检测、模型测试、事故响应、法律调整和产业能力建设，但多数内容仍处于试点或政策研究阶段，智能体事故报告机制和模型发布前测试权限仍存在不确定性，短期内对产业界的直接约束有限。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5NjA0NjgyMA==&amp;amp;mid=2651349080&amp;amp;idx=1&amp;amp;sn=c1a91dda96478b161bb5920468edc211&amp;amp;chksm=bc5a6184986fc63f0a288c215096a425b6ef75fb4a2704af0a7094b5b586bcf188d4e213cb43&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">FreeBuf</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-232546">1、OCP 2026 推动开放以太网重构 AI 集群 Scale-Up 与 Scale-Out 网络</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">Meta Tahan 交换机</span> <span class="md-tag">开放以太网</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：在 <strong>OCP Global Summit</strong> 期间，<strong>Meta</strong>、博通、<strong>Arista</strong>、英伟达、思科、微软、是德科技及阿里巴巴等厂商围绕 AI 训练与推理网络分享了全栈<strong>开放以太网</strong>方案。<strong>Meta</strong> 的 <strong>Tahan</strong> 交换机基于博通 <strong>Tomahawk</strong> 5 实现 16 颗 <strong>MTIA</strong> 加速芯片单跳互联，端到端单向时延低于 1 微秒；<strong>OCP ESUN 1.1</strong> 规范以 12 字节统一转发报头替代传统 L3/L4 报头，并将帧间隙压缩至 1 至 8 字节；<strong>Arista</strong> 与博通联合推出的 <strong>SUE-T</strong> 规范将内存事务封装入以太网载荷，传输层控制逻辑在 5nm 工艺下面积小于 2 平方毫米。</p><p>📌 <strong>总结</strong>：该方案表明<strong>开放以太网</strong>正从 <strong>Scale-Out</strong> 向 <strong>Scale-Up</strong> 和 <strong>Scale-Across</strong> 延伸，通过链路层快速重传、信用流控和网卡端多路径喷射替代专有无损网络，降低对单一芯片厂商互联协议的依赖。对核心网与算力网络架构而言，这意味着数据中心内部与跨园区组网可能加速向开放标准收敛，设备商需评估在交换芯片、光模块和网络操作系统层面的适配机会。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg3MDY0OTQ0NA==&amp;amp;mid=2247519274&amp;amp;idx=1&amp;amp;sn=dfffd90437df9ed0beeb42ec19a14599&amp;amp;chksm=cf57592e0a5bdfd520f81230f24c9ff253dac5c268eaae6258042c710508396c25d8ea7c94c6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">Andy730</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-232212">1、MIT何恺明团队VISTA让多模态智能体按需回看画面，ARC-AGI-3得分从40.68升至满分</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">VISTA</span> <span class="md-tag">视觉记忆</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：MIT何恺明团队提出<strong>VISTA</strong>视觉交互框架，针对多模态智能体在长程交互中早期视觉信息被压缩或丢失的问题，将完整视觉历史以逐帧PNG形式保存在模型上下文之外，并提供inspect与read_pixels两类工具，让模型按当前推理需要自主取回历史帧、比较多时刻或放大局部区域。在ARC-<strong>AGI-</strong>3的25个公开游戏上，搭配Claude <strong>Opus 5.</strong>0的系统达到100.00分，搭配GPT-5.6 Sol达到99.00分，而两者不使用<strong>VISTA</strong>的官方评测得分分别仅为40分和13分。</p><p>📌 <strong>总结</strong>：<strong>VISTA</strong>验证了“外部无损<strong>视觉记忆</strong>+模型主导检视”这一架构对智能体长程推理的有效性，且不依赖额外训练，可直接叠加在现有底座模型之上。对智能体平台设计者而言，这意味着记忆层可以从上下文压缩转向可检索的外部档案，降低对超长上下文的依赖；对推理服务提供方而言，视觉档案的存储与检索接口可能成为新的服务组件，影响智能体运行时的架构分层与成本结构。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg2NzU4MDgzMA==&amp;amp;mid=2247566455&amp;amp;idx=1&amp;amp;sn=8eb10a196ca52ed6097fca7fabeee593&amp;amp;chksm=cf97fd4bd08e3c853e48591d2fda244ebf3bb86622654d85c997ca9faf09b7caee2b9b7c760f&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机智流</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231854">2、Anthropic为Claude Managed Agents上线Dynamic Workflows，由Claude生成编排程序调度多Agent</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Anthropic Dynamic Workf…</span> <span class="md-tag">多Agent编排</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong>于2026年10月9日为Claude <strong>Managed</strong> Agents上线<strong>Dynamic</strong> <strong>Workflows</strong>（<strong>Beta</strong>），并在AI <strong>Engineer New York</strong> 2026大会工作坊中由技术人员CJ Avilla和Harrison Stall进一步介绍。该机制由Claude根据任务需求生成编排程序，确定任务拆分、阶段划分和Agent衔接方式，程序由服务器在后台执行，负责启动Agent、传递中间结果并根据执行情况推进后续任务。与传统Subagents由主Agent逐步决定后续操作不同，<strong>Dynamic</strong> <strong>Workflows</strong>将循环、条件分支和结果传递逻辑交给编排程序执行，中间数据保存在程序变量中，无需每次返回主Agent重新处理。官方文档显示单次工作流累计最多启动1000个Agent，同时运行线程上限64个，默认最长运行<strong>24小时</strong>，<strong>Managed</strong> Agents提供会话级预算机制。</p><p>📌 <strong>总结</strong>：<strong>Dynamic</strong> Workflows将多Agent系统的协调逻辑从主Agent推理转移到程序执行，降低了主Agent上下文被中间结果塞满的风险，同时通过预定义Agent名单、会话预算和权限策略保留了开发者对系统行为的约束。对智能体平台和核心网运维Agent的架构设计而言，这种“模型生成编排程序+程序后台执行”的模式提供了一种可参考的多Agent执行架构，其1000个Agent累计上限、64个并发线程和<strong>24小时</strong>运行边界也为系统容量规划提供了参考。但官方文档指出工作流返回completed仅表示程序执行结束，不代表业务任务成功，开发者仍需设计任务覆盖范围、失败项和关键结果的验收机制。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDE0Mjc4MA==&amp;amp;mid=2651295352&amp;amp;idx=3&amp;amp;sn=71768c99cf32c56d0371c9ef63f896b7&amp;amp;chksm=bc73c75281ed84c8e9b6ec7825012893100a8471e4c5240496031374a226dfee85722e85ac5d&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">InfoQ</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231905">3、Google Research 开源 Harness²：两层递归与八组件机制详解</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Harness²</span> <span class="md-tag">两层递归机制</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 10 月，<strong>Google</strong> Research 开源 <strong>Harness²</strong> 递归式智能体 <strong>Harness</strong> 优化框架，针对两个开放世界难题：测试时遇到未见任务且无 ground-truth 验证器，以及递归自我改进通常任务特化、无法泛化积累。框架采用两层递归：任务级递归通过 <strong>Propose-Probe-Compose</strong> 对比式改进环，先跑参考执行揭示 harness 如何表现，再提出通用缺陷与领域知识两个候选，在同一任务同等条件下探测并对比行为，由组合器只采纳有证据支持的编辑，用同任务 A/B 行为对比替代分数反馈；harnessing 级递归在每个任务后反思，把被采纳的 harness 与 <strong>EXPERIENCE.md</strong> 教训写入按领域组织的持久库，下一个任务仍从公共基础 harness 出发但由更新后的库引导。八个可编辑组件按作用分为上下文构建（系统提示词、护栏、记忆）、工具接口（工具指引、<strong>Skills</strong>）、编排（subagents）、脚本和插件。主要结果：k=1 单步下 <strong>GLM-5</strong> 在 <strong>OpenCode</strong> 的 <strong>WorkBuddy-Bench</strong> 从 64.2 升至 75.7（+11.5），<strong>LAB</strong> 部分通过率从 59.6 升至 71.4（+11.8）；为 <strong>Gemini</strong> 精炼的 harness 给 <strong>GLM-5</strong> 在 <strong>Code</strong> 子集带来 +17.3；去掉 library 在 <strong>WorkBuddy-Bench</strong> 损失 3.1 分。</p><p>📌 <strong>总结</strong>：该解读补充了 <strong>Harness²</strong> 在无验证器开放世界下的机制细节，说明用同任务 A/B 行为对比替代分数反馈可以绕开开放世界没有验证器的死结。跨模型迁移证据显示为 <strong>Gemini</strong> 精炼的 harness 可给 <strong>GLM-5</strong> 带来 +17.3 提升，并胜过 <strong>Claude Code</strong>、<strong>Codex</strong> 的固定生产 harness 4.6–5.8 分，说明 harness 优化具有可迁移的工程价值。执行器与编辑器用同一模型也能涨（<strong>GLM-5</strong> 自编辑在 <strong>LAB</strong> 上 +13.7），说明不依赖更强的教师模型。库的消融与跨基准迁移验证了 harnessing 级递归的价值。这些细节对智能体平台架构师和预研规划师在 harness 工程化设计上具有直接参考价值。</p><p>来源：<a href="https://aihot.news/items/lvsc8m9jlqviaauhihhis35qa" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-232237">4、浙大与北大团队提出SPADER，用步骤级GRPO与多样性奖励提升多答案问答长尾覆盖</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">SPADER</span> <span class="md-tag">步骤级GRPO</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年10月，浙江大学与北京大学团队在EMNLP 2026 Main发表<strong>SPADER</strong>框架，针对多答案问答中现有强化学习方法的两处错位：优势计算停留在轨迹级导致信用分配粗糙，以及F1奖励对头部与长尾实体一视同仁导致智能体缺乏探索长尾的动力。<strong>SPADER</strong>包含两个互补组件：逐步同伴优势SPA按决策步对齐并行轨迹，以同提示词、同交互轮次下的同伴回报为基线，将GRPO从轨迹级细化到步骤级，实现无critic、无外部评估器的步骤级信用分配；多样性感知探索奖励以横向信息增益保底、纵向新颖度溢价稀释头部实体，配合工具成本与终端结算，让何时继续搜索、何时终止作答从奖励结构中涌现。在Llama3.1-<strong>8B</strong>与Qwen3-<strong>8B</strong>两种基座上，SPADER在四个多答案QA基准上F1全部第一，QAMPARI上相对PPO和GRPO最高提升<strong>86.1%</strong>。</p><p>📌 <strong>总结</strong>：<strong>SPADER</strong>将GRPO的信用分配从轨迹级细化到步骤级，使智能体能够识别长程搜索轨迹中哪一步真正扩大了答案覆盖，这对工具增强问答和多步推理任务的强化学习训练具有直接参考价值。多样性感知探索奖励通过新颖度溢价稀释头部实体，解决了F1奖励下智能体提前收敛到高频答案的问题，为需要覆盖长尾实体的检索和问答场景提供了新的奖励设计思路。对AI前沿技术预研规划师而言，<strong>SPADER</strong>的步骤级信用分配方法可迁移到其他长程决策任务，但需注意其验证范围限于多答案问答基准，实际部署效果仍需进一步验证。</p><p>来源：<a href="https://www.jiqizhixin.com/articles/2026-10-18-9?source=rss" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-232812">1、Meta开放Muse Spark Open权重，8160亿参数模型可在两台Mac Studio本地运行</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Meta Muse Spark Open</span> <span class="md-tag">稀疏混合专家架构</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Meta</strong>于10月15日宣布开放Muse <strong>Spark</strong> Open模型权重，定位为迄今能力最强的美国开放权重模型。该模型采用<strong>稀疏混合专家架构</strong>，总参数量<strong>8160亿</strong>，每token激活约<strong>420亿</strong>参数，支持1,048,<strong>576 token</strong>上下文，可接收文本、图片、音频和视频输入。本地部署方案通过MLX框架在两台搭载M5 Ultra的Mac Studio上运行，采用NVFP4精度将权重压缩至约<strong>537GB</strong>，并利用Thunderbolt上的RDMA实现分布式推理，四台Mac Studio生成速度超过每秒36个token。官方公布JobBench得分61.8、<strong>MCP-Atlas 89.2</strong>、<strong>OSWorld Verified 80.4</strong>，但Terminal-<strong>Bench 2.</strong>1和DeepSWE 1.1编程测试得分低于GLM 5.3 max和Kimi K3 max。</p><p>📌 <strong>总结</strong>：<strong>Muse Spark</strong> Open将大型智能体模型的竞争焦点从参数规模和榜单成绩延伸到实际部署环节。其MoE稀疏架构减少每token活跃计算，NVFP4量化降低权重存储开销，多机分布式推理提供总内存容量，三者配合使桌面级本地部署成为可能，但算子级加速1.03-<strong>3.95倍</strong>不等于端到端同等提升。对技术路线而言，这验证了开放权重模型在本地智能体工作流中的可行性；对商业判断而言，<strong>Muse Model</strong> License对年收入超<strong>2000万</strong>美元的MaaS企业要求单独协议，开放权重不等于无商业约束，企业需评估本地部署的硬件与运维成本是否优于托管API路径。</p><p>来源：<a href="https://www.infoq.cn/article/EuYOPRUBAeBgBGBu5ktk?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-233638">1、Prime Intellect发布prime-rl 0.10.0，新增IPO损失并统一评测栈</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">Prime Intellect prime-rl</span> <span class="md-tag">异步RL与IPO损失</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年10月19日，<strong>Prime</strong> Intellect发布prime-rl v0.10.0与verifiers v0.4.0。新版本新增RL算法IPO（<strong>INTELLECT Policy Optimization</strong>）并设为默认损失，针对异步RL中训练器与推理引擎概率不一致问题，改用概率差绝对值超过阈值的掩码准则，替代IcePop基于比率的掩码，避免对稀有token与高概率token的误判。吞吐方面，<strong>Qwen3-</strong>235B<strong>-A22B</strong> SFT在4×8 <strong>B300</strong>、16k序列长度、<strong>FSDP+EP</strong> 8配置下比torchtitan快<strong>1.15倍</strong>，MFU从<strong>40.7%</strong>升至<strong>46.6%</strong>，峰值内存从144GiB降至141GiB。</p><p>📌 <strong>总结</strong>：prime-rl以概率差掩码替代比率掩码，直接针对异步RL中训练与推理概率漂移导致的训练崩溃问题，在GLM-4.5-Air的SWE RL极端设定下IcePop于约1.2k步崩溃而IPO在eps 0.2与0.3下稳定训练，为大规模MoE模型的RL后训练提供了更稳定的开源工程栈。同时其MoE运行时统一、算子融合与稀疏注意力内核优化带来的吞吐与MFU提升，对推理与训练基础设施的成本评估有直接参考价值。</p><p>来源：<a href="https://aihot.news/items/vkxmsl9e04twrp0ynf3yqnnma" target="_blank" rel="noreferrer">AIHot Virxact 一手信源热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-231901">1、Taste-Bench 基准发布：14 个模型长期决策最佳仅 59.7%，推理加长无改善</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Taste-Bench</span> <span class="md-tag">智能体长期决策</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 10 月，<strong>The Decoder</strong> 报道了一项名为 <strong>Taste-Bench</strong> 的新基准，由研究者通过 502 个决策分叉问题测量智能体在编码和 AI 研究任务中的长期决策品味。其方法是在智能体运行轨迹的分叉点冻结运行、隐藏后续工作，让模型在两条路径中选择更优方向，并以同一问题正反顺序各问一次、两次都答对才计分。测试覆盖 <strong>Claude</strong>、<strong>GPT</strong>、<strong>Grok</strong>、<strong>DeepSeek</strong>、<strong>GLM</strong>、<strong>MiniMax</strong> 和 <strong>Mistral</strong> 家族共 14 个模型，最佳 <strong>GPT</strong>-5.6 Sol 平均 <strong>59.7%</strong>，<strong>GPT-5.5</strong> 为 <strong>59.5%</strong>，其余明显更低，而纯猜测为 <strong>25%</strong>。当关键线索在后续工作中才出现时，平均准确率从 <strong>62.3%</strong> 降至 <strong>21%</strong>，接近随机；提高推理设置几乎不改变准确率。</p><p>📌 <strong>总结</strong>：<strong>Taste-Bench</strong> 把智能体评测从“任务是否完成”推进到“中间步骤质量”，说明现有端到端基准如 <strong>SWE-bench Verified</strong> 无法覆盖长期决策能力。对智能体平台与执行系统而言，这意味着仅靠增加推理预算或换更强模型难以解决长期规划缺陷，需要在 harness、记忆与工具编排层面引入对决策分叉的显式评估与训练。研究者还验证了品味可被蒸馏：以 <strong>Qwen3.6-27B</strong> 为学生模型，在未见任务上准确率从 <strong>30%</strong> 提升至 <strong>47.9%</strong>，并在 41 个 <strong>SWE-bench Pro</strong> 任务上把成功率从 <strong>14.6%</strong> 提升至 <strong>33.7%</strong>，为智能体长期规划能力的产品化改进提供了可复用路径。</p><p>来源：<a href="https://aihot.news/items/aeoroqziuohmuwkqy8zw8ws9l" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231845">2、VAST开源EdenLive实时生成式渲染器，单卡720P超24FPS</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">VAST EdenLive</span> <span class="md-tag">实时生成式渲染</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年10月，<strong>VAST</strong>（三启万物）发布并开源世界模型项目Project Eden的阶段性成果EdenLive，这是一个<strong>实时生成式渲染</strong>器，以Proxy（简化参考画面）或参考视频作为控制信号，结合目标首帧图像和文本提示词，持续生成写实、精细化或风格化的视频画面。在性能方面，单张NVIDIA <strong>RTX 5090</strong>、<strong>5B</strong>参数模型、720P配置下，EdenLive实时帧率超过24FPS，连续生成可持续到分钟级，输出提供480P和720P两档，端到端延迟在百毫秒量级。<strong>VAST</strong>同时开源了不同尺寸规格的模型权重、推理代码、<strong>Tech Report</strong>，以及Game <strong>Prototype Turbo</strong>——一款Prompt to <strong>Proxy Game Skill</strong>，并开放端到端Demo展示从自然语言生成游戏到EdenLive实时渲染的全过程。</p><p>📌 <strong>总结</strong>：EdenLive将交互状态与视觉渲染解耦，游戏规则和世界状态由上游交互系统维护，EdenLive专注于根据参考画面实时生成精细或风格化视觉内容，避免了视频模型隐式推断世界状态导致的错误累积。这一架构使生成式渲染真正进入实时交互循环，对游戏开发、影视动画前期制作和具身智能数据增强具有直接应用价值：开发者可先用简化3D场景搭建原型，再通过EdenLive实时生成高质量画面并自由切换风格，无需为每种画风重新制作全部场景资产，有望降低交互式内容创作的美术资产制作成本和周期。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651063676&amp;amp;idx=1&amp;amp;sn=a4814af1afbdc7ce1c9f6b582eb9bfac&amp;amp;chksm=856483dd1b680a4919a24ee0d2f0ad2810f6b4fdc3cf4beb9cdd6d8d4c0fcb3680179275248b&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-232294">1、Cloudflare 修复容器跨租户数据泄露漏洞，dm-thin 块分配器跳过清零导致残留数据可读</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Cloudflare Containers</span> <span class="md-tag">跨租户数据泄露</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>Cloudflare Containers</strong> 平台被披露存在<strong>跨租户数据泄露</strong>漏洞，该平台同时为 <strong>Cloudflare Sandboxes</strong> 提供支持。漏洞根源在于底层存储分配器：每个容器运行在 <strong>Firecracker</strong> 微虚拟机中，根磁盘通过 <strong>Linux</strong> 设备映射器的 dm-thin 精简配置机制管理，资源池使用 64 <strong>KiB</strong> 精简块并启用了 skip_block_zeroing 选项。当向未映射区域写入 4 <strong>KiB</strong> 块时，dm-thin 从共享资源池分配 64 KiB 物理块，仅覆盖 4 KiB，剩余约 60 KiB 保留前一租户数据。安全研究员 <strong>Oren Yomtov</strong> 于 9 月 4 日通过漏洞赏金计划报告，在 24 个部署点中的 18 个发现残留数据，恢复出目录结构、数据库页和完整 <strong>SQLite</strong> 数据库。<strong>Cloudflare</strong> 于 9 月 7 日完成修复部署，9 月 19 日完成历史数据清理。</p><p>📌 <strong>总结</strong>：该漏洞表明容器隔离不能仅依赖虚拟机边界，存储分配器的清零策略是租户隔离的关键控制点。对核心网架构师和云基础设施团队，该案例提示在共享存储上运行不可信工作负载时必须验证块复用前的清零行为；对 AI 沙箱和智能体执行环境，<strong>Firecracker</strong> 边界虽未失效，但底层存储优化选项可能绕过隔离假设，需在架构设计中增加分配时清零或释放时擦除的强制检查。</p><p>来源：<a href="https://www.infoq.cn/article/YmllSwKbZXY0bcVjjw70?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-231874">2、英国发布AI安全计划，用前沿模型排查政府系统漏洞并研究智能体事故处置</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">英国AI安全计划</span> <span class="md-tag">智能体事故处置</span> <span class="md-tag">合规/监管影响</span></p><p>📋 <strong>要点</strong>：2026年10月12日，英国人工智能大臣卡尼什卡·纳拉扬在伦敦帝国理工学院公布一系列AI安全计划。英国政府已在内部测试AI漏洞发现能力，两项试点共协助识别和处理1000多个潜在漏洞及其他公共服务安全威胁，中央漏洞监测服务投入运行后部分已识别问题的平均修复时间由50天缩短到8天。其中一项测试对9个政府机构公开代码仓库进行集中审查，一个月内形成407项安全发现，模型调用费用约<strong>1.3万</strong>英镑。英国还计划通过《网络安全与韧性法案》完善AI安全制度，讨论AI驱动的网络攻击、自主系统脱离监督以及严重AI事件和未遂事件的识别与报告。</p><p>📌 <strong>总结</strong>：英国将前沿模型引入政府系统漏洞排查并取得可量化效果，验证了AI在网络安全防御中的实际价值，同时着手建立<strong>智能体事故处置</strong>和未遂事件报告制度，为各国AI安全治理提供了从防御工具到制度框架的参考样本。该计划覆盖漏洞检测、模型测试、事故响应、法律调整和产业能力建设，但多数内容仍处于试点或政策研究阶段，智能体事故报告机制和模型发布前测试权限仍存在不确定性，短期内对产业界的直接约束有限。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5NjA0NjgyMA==&amp;amp;mid=2651349080&amp;amp;idx=1&amp;amp;sn=c1a91dda96478b161bb5920468edc211&amp;amp;chksm=bc5a6184986fc63f0a288c215096a425b6ef75fb4a2704af0a7094b5b586bcf188d4e213cb43&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">FreeBuf</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>云与AI基础设施</h2><h3 id="event-232546">1、OCP 2026 推动开放以太网重构 AI 集群 Scale-Up 与 Scale-Out 网络</h3><p><span class="md-tag">云与AI基础设施</span> <span class="md-tag">Meta Tahan 交换机</span> <span class="md-tag">开放以太网</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：在 <strong>OCP Global Summit</strong> 期间，<strong>Meta</strong>、博通、<strong>Arista</strong>、英伟达、思科、微软、是德科技及阿里巴巴等厂商围绕 AI 训练与推理网络分享了全栈<strong>开放以太网</strong>方案。<strong>Meta</strong> 的 <strong>Tahan</strong> 交换机基于博通 <strong>Tomahawk</strong> 5 实现 16 颗 <strong>MTIA</strong> 加速芯片单跳互联，端到端单向时延低于 1 微秒；<strong>OCP ESUN 1.1</strong> 规范以 12 字节统一转发报头替代传统 L3/L4 报头，并将帧间隙压缩至 1 至 8 字节；<strong>Arista</strong> 与博通联合推出的 <strong>SUE-T</strong> 规范将内存事务封装入以太网载荷，传输层控制逻辑在 5nm 工艺下面积小于 2 平方毫米。</p><p>📌 <strong>总结</strong>：该方案表明<strong>开放以太网</strong>正从 <strong>Scale-Out</strong> 向 <strong>Scale-Up</strong> 和 <strong>Scale-Across</strong> 延伸，通过链路层快速重传、信用流控和网卡端多路径喷射替代专有无损网络，降低对单一芯片厂商互联协议的依赖。对核心网与算力网络架构而言，这意味着数据中心内部与跨园区组网可能加速向开放标准收敛，设备商需评估在交换芯片、光模块和网络操作系统层面的适配机会。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzg3MDY0OTQ0NA==&amp;amp;mid=2247519274&amp;amp;idx=1&amp;amp;sn=dfffd90437df9ed0beeb42ec19a14599&amp;amp;chksm=cf57592e0a5bdfd520f81230f24c9ff253dac5c268eaae6258042c710508396c25d8ea7c94c6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">Andy730</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>MIT何恺明团队VISTA让多模态智能体按需回看画面，ARC-AGI-3得分从40.68升至满分</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Google Research 开源 Harness²：两层递归与八组件机制详解</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>浙大与北大团队提出SPADER，用步骤级GRPO与多样性奖励提升多答案问答长尾覆盖</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Meta开放Muse Spark Open权重，8160亿参数模型可在两台Mac Studio本地运行</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>VAST开源EdenLive实时生成式渲染器，单卡720P超24FPS</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>OCP 2026 推动开放以太网重构 AI 集群 Scale-Up 与 Scale-Out 网络</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>4</td></tr><tr><td>模型评测</td><td>2</td></tr><tr><td>AI安全、可信与治理</td><td>2</td></tr><tr><td>AI模型</td><td>1</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>云与AI基础设施</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>11</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
