@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-02</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-02</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-01T00:00:00+00:00 ~ 2026-11-02T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-11-04 21:41:36 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月02日</strong></p><p><strong>生成时间：2026-11-04 21:30 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：10 个 | 本期条目：13 条 | 覆盖板块：7 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：AI应用与产品化场景 1 条，智能体平台、协议与执行系统 1 条，AI推理与服务加速 2 条，AI模型 2 条，模型评测 2 条，AI安全、可信与治理 3 条，AI与通算硬件 2 条，合计 13 条。</li><li>日报内容：今日头条聚焦 <strong>llm-d在三家GPU混部集群验证前缀缓存路由，异构池吞吐最高提升91%</strong>，并同步关注llm-d发布分布式推理网络方案，UCCL后端在400G IB达49.5GB/s；上海交大联合复旦腾讯优图开源EvaOmni，评测全模态模型视听证据定位；飞捷科思联合复旦发布Fysiverse-UniWAM，24项真机测试导航与移动操作双第一。</li><li>关键亮点：异构GPU池通过前缀缓存感知路由可统一为推理服务层，吞吐提升91%、TTFT降低5.4倍；小参数模型以循环计算扩展有效深度，9B可媲美27B；形式化验证与零知识证明正从理论走向智能体工具调用拦截和模型溯源的可运行原型。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-254003">llm-d在三家GPU混部集群验证前缀缓存路由，异构池吞吐最高提升91%</a></li></ul><ul><li><a href="#event-254001">llm-d发布分布式推理网络方案，UCCL后端在400G IB达49.5GB/s</a></li></ul><ul><li><a href="#event-253761">上海交大联合复旦腾讯优图开源EvaOmni，评测全模态模型视听证据定位</a></li></ul><ul><li><a href="#event-253739">飞捷科思联合复旦发布Fysiverse-UniWAM，24项真机测试导航与移动操作双第一</a></li></ul><ul><li><a href="#event-253741">复旦创智OpenMOSS团队揭示混合架构长文力学，提出滑窗线性注意力改进外推</a></li></ul><ul><li><a href="#event-256513">Anthropic 发布 FlashProve，用 zkSNARK 让用户验证响应确由指定模型生成</a></li></ul><ul><li><a href="#event-256174">LeanGuard 以 Lean4 策略运行时拦截工具调用，提示注入成功率从57.9%降至5.9%</a></li></ul><ul><li><a href="#event-253800">商汤开源 SenseNova Loop-9B-Preview，以循环计算让 9B 参数媲美 27B 模型</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI应用与产品化场景</h2><h3 id="event-254054">1、LobeHub 用三层 Agent 组织架构把团队交接瓶颈从人转向验收</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">LobeHub</span> <span class="md-tag">Agentic组织</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>LobeHub</strong> 创始人文彬披露其 <strong>Agent</strong> 原生协作实践。<strong>LobeHub</strong> 将团队时间黑洞分为执行类、决策类和盲区类，并构建三层 <strong>Agent</strong> 组织：第一层 <strong>Personal Agent</strong> 替人过滤信息，第二层项目主管 Agent 负责派活与验收，第三层 <strong>Claude Code</strong>、<strong>Codex</strong> 等执行 Agent 干活。技术上，LobeHub 把 Agent 循环、会话状态与执行环境拆开，每步调用独立执行，步间靠队列和 <strong>Redis</strong> 推进，工具调用发往 <strong>AWS</strong> 沙箱，从而突破 <strong>Vercel</strong> 单次 <strong>300 秒</strong>限制，每天承受几万次 Agent 执行。Agent 之间可直接交接，上游主管 Agent 向 lobe-ui 主管 Agent 提需求，次日自动发版并通知升级。</p><p>📌 <strong>总结</strong>：<strong>LobeHub</strong> 的实践表明，<strong>Agent</strong> 协作的瓶颈正从任务执行转向人机验收。其三层架构和队列+<strong>Redis+</strong>沙箱的执行解耦方案，为构建 <strong>Agent</strong>ic 组织提供了可复用的工程范式：Agent 循环与执行环境分离使长程任务稳定运行，主管 Agent 层实现任务派发与验收自动化，Agent 间直接交接减少人工转述。开源验收工具 <strong>Acceptance</strong> 将需求拆为检查项并在真实产品中逐项验证，配合 <strong>Agent Vent</strong> 机制将吐槽聚类为修复任务，使新增上报从 84 条降至 49 条。这些探索对核心网运维 Agent 的分层设计与验收流程具有直接参考价值。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzkzNDQxOTU2MQ==&amp;amp;mid=2247522189&amp;amp;idx=1&amp;amp;sn=59314956d4dbc89258930115e4aa31ce&amp;amp;chksm=c30258065e8061ce01569351dc0ad3b5787f77e66e82a8ee6579924091e1b8093a5337a45dc9&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">赛博禅心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-253959">1、DeepSeek开源Super Agent原型提出Router-Worker分工与静默修复机制</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">DeepSeek Super Agent</span> <span class="md-tag">Router-Worker架构</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>DeepSeek</strong> Harness团队于10月31日发布《<strong>Super-</strong>agent设计探索：迈向更自主的Agent系统》文章，并在GitHub开源原型dsh-superagent-prototype。核心设计包括：Router作为项目主管负责任务分发和上下文管理，Worker在独立空间执行单一任务，两者上下文隔离、靠订阅同一Thread感知冲突；系统通过规则过滤加模型语义判断两道筛网识别工作环境中的触发器，在无人艾特时主动复现Bug并提交修复PR；采用异步任务机制和Watchdog监控任务进展与方向；将Agent大脑、任务记录和操作电脑分离以支持云端持续运行。原型目前面向单一GitHub仓库，可选接入飞书，部分设计尚未实现。</p><p>📌 <strong>总结</strong>：<strong>Super</strong> Agent的<strong>Router-Worker架构</strong>与主Agent带子Agent方案存在本质区别：Router不承担深入推理和频繁协调负担，Worker之间上下文隔离，降低了多任务并行时的推理耦合。触发器驱动和静默修复机制为Agent从被动响应向主动执行演进提供了可参考的工程路径，但多Session设计带来更多token消耗，主动性与成本之间的平衡仍是产品化关键约束。</p><p>来源：<a href="https://www.tmtpost.com/8189032.html" target="_blank" rel="noreferrer">钛媒体</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-254001">1、llm-d发布分布式推理网络方案，UCCL后端在400G IB达49.5GB/s</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llm-d</span> <span class="md-tag">NIXL</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong>发布博客详解分布式推理网络方案。<strong>llm-d</strong>的prefill-decode分离架构将计算密集的prefill与内存带宽密集的decode分离到专用GPU池，但KV Cache必须从prefill传输到decode才能生成首个token，传输时间直接影响TTFT。llm-d依赖<strong>NIXL</strong>进行KV Cache传输，<strong>NIXL</strong>提供统一API抽象UCX over <strong>RDMA</strong>、libfabric over <strong>AWS</strong> EFA等后端。llm-d v0.5集成UCCL后端，提供与UCX对等的动态传输选择、本地传输和性能优化。在400G InfiniBand网络中，UCCL和UCX均达<strong>49.5GB</strong>/s，约<strong>99%</strong>线速；Mooncake饱和在<strong>42GB</strong>/s。在100G TCP下，<strong>UCCL GPU-to-</strong>GPU传输<strong>1GB</strong>需<strong>211ms</strong>，UCX需1.8s，慢近<strong>9倍</strong>。llm-d还提供preflight检查工具验证网络健康。</p><p>📌 <strong>总结</strong>：<strong>llm-d</strong>网络方案对技术路线而言，表明P/D分离架构中网络成为推理延迟的一阶因素，KV Cache传输优化直接影响TTFT；对产品架构而言，<strong>NIXL</strong>统一抽象使推理服务可跨云和本地部署，UCCL后端在TCP场景下显著优于UCX，为受限部署提供可行选项；对商业判断而言，<strong>llm-d</strong>与NVIDIA合作推进网络栈标准化，可能影响推理服务框架竞争格局，降低分布式推理部署门槛。</p><p>来源：<a href="https://llm-d.ai/blog/networking-for-distributed-inference-llm-d" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Networking for Distributed Inference in llm-d</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-254003">2、llm-d在三家GPU混部集群验证前缀缓存路由，异构池吞吐最高提升91%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llm-d</span> <span class="md-tag">异构GPU前缀缓存路由</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong> v0.7.0在NxtGen主权云的混合GPU环境上开展异构推理服务实验，集群包含三家GPU厂商的加速器池，通过100G RoCE网络互联，vLLM副本以TP=1部署。实验对比<strong>llm-d</strong>前缀缓存感知路由与Kubernetes轮询调度，服务granite-4.1-8b和sarvam-30b两个模型，工作负载为prefill-heavy的shared_prefix_synthetic。结果显示，在所有单厂商和异构池中，llm-d均提升吞吐并降低TTFT，且改善幅度随池规模和异构程度增长：单厂商池吞吐提升<strong>25%</strong>至<strong>83%</strong>，异构A+B+C池吞吐提升<strong>91%</strong>，TTFT降低<strong>5.4倍</strong>。llm-d通过感知饱和度和缓存命中集中路由，避免轮询调度下低容量或饱和Pod累积队列深度的问题。</p><p>📌 <strong>总结</strong>：该实验为已有混合GPU容量的运营商和企业AI平台团队提供了异构推理服务的工程验证：前缀缓存感知路由可使不同代际、不同厂商的加速器池表现为统一推理服务，提升吞吐并降低TTFT，同时保留各厂商平台特定优化。这对主权云、本地部署和错峰硬件更新场景有直接参考价值，说明缓存感知路由器是异构算力池统一服务层的关键组件，可降低异构集群的运维复杂度和容量规划难度。</p><p>来源：<a href="https://llm-d.ai/blog/heterogeneous-inference-3-vendor-sovereign-cluster" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Heterogeneous inference serving across three GPU vendors with llm-d</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-253741">1、复旦创智OpenMOSS团队揭示混合架构长文力学，提出滑窗线性注意力改进外推</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">OpenMOSS</span> <span class="md-tag">混合注意力架构</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：复旦大学与上海创智学院<strong>OpenMOSS</strong>团队（邱锡鹏、何子薇指导）在376M至<strong>3B</strong>四种规模上系统比较RoPE/<strong>NoPE</strong>全注意力、滑窗注意力和GLA/GDN门控线性注意力的混合架构。研究发现混合位置让混合架构具有更好长文表现，但存在滑窗混合扩长的跷跷板效应和线性混合没有免费午餐效应。团队提出短窗口疲惫与长窗口懒惰现象，并通过增大滑窗窗口和结合LongCE损失显著提升SWA-<strong>NoPE</strong>/RoPE层混模型的长文续训表现。针对线性混合外推不足，提出滑窗线性注意力（<strong>SWLA</strong>）对GLA/GDN有效相对位置范围施加滑窗约束，同时对NoPE注意力使用对数校正，在RULER的NIAH-SK1任务上从4k训练长度外推到64k，达到<strong>16倍</strong>免训练外推并保持<strong>100%</strong>准确率。</p><p>📌 <strong>总结</strong>：该工作从混合位置角度为长上下文混合架构设计提供系统性分析框架，揭示滑窗注意力和线性注意力在长度外推与扩长训练中的互补关系。对模型架构研究者，SWLA策略和LongCE损失是可复用的改进手段；对推理服务团队，混合架构的窗口大小选择和混合比例调优直接影响长上下文场景的吞吐和延迟表现，该研究提供了实验依据。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651071440&amp;amp;idx=3&amp;amp;sn=ac0f863b4725bef4e45e4453d7e081e3&amp;amp;chksm=853c14a4e58a528976ddc2964b75aa0939fcb715445051f594f2f598c6c9eb3ecaa52c0090a0&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-253800">2、商汤开源 SenseNova Loop-9B-Preview，以循环计算让 9B 参数媲美 27B 模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">SenseNova Loop-9B-Previ…</span> <span class="md-tag">Looped Transformer</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：商汤科技于 10 月 30 日宣布开源日日新 <strong>SenseNova Loop-</strong>9B<strong>-Preview</strong>，该模型采用 <strong>Looped Transformer</strong> 架构，以 <strong>9B</strong> 尺度模型为基座，保留首尾各 4 层原始解码器模块，将中间层改造为参数共享的循环计算模块，通过多轮迭代扩展有效计算深度。模型进一步引入 mHC（<strong>Manifold-Constrained Hyper-Connections</strong>），利用多路残差连接与受约束的信息混合增强特征交互并维持信号传播稳定性。官方称在当前评测设置下，模型在代码生成、办公场景和智能体任务等方向优于其他模型，并在 <strong>WorkBuddy Bench</strong>、<strong>RaccoonPPT Bench</strong> 和 <strong>AutomationBench</strong> 上超过 <strong>Qwen3.5-27B</strong>；消融实验显示采用 mHC 后 <strong>GPQA Diamond</strong> 和 <strong>TeamBench</strong> 分别提高 4.42 分和 13.34 分。</p><p>📌 <strong>总结</strong>：该模型把提升小参数模型能力的路径从扩大参数量转向扩展有效计算深度，若评测结论可复现，将降低复杂推理与多步 <strong>Agent</strong> 任务的部署门槛，对端侧、边缘与成本敏感场景的模型选型构成新选项；对预研规划者而言，需关注循环计算带来的推理延迟与显存开销是否被评测覆盖，以及 mHC 机制在长上下文与工具调用场景下的稳定性，同时跟踪商汤后续 <strong>DSA</strong> 与自适应迭代次数机制的进展。</p><p>来源：<a href="https://aihot.news/items/k77sqe5nuzsb9wongfwib9fhr" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-253761">1、上海交大联合复旦腾讯优图开源EvaOmni，评测全模态模型视听证据定位</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">EvaOmni</span> <span class="md-tag">全模态评测</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：上海交通大学、复旦大学、腾讯优图实验室等机构联合开源<strong>EvaOmni</strong>基准，面向全模态大语言模型同时评测答案正确性与视听证据定位。基准包含392段视频、1027道人工标注问答，覆盖15种细粒度能力，模型需在选择答案的同时返回支持答案的音频和视频时间区间。对24个Omni LLM的评测显示，<strong>Gemini3.7-</strong>Flash答案准确率达<strong>79.4%</strong>，双模态精确定位得分B.G.为<strong>35.1%</strong>，与人类专家的<strong>94.3%</strong>相差59.2个百分点。在Level 3复杂推理任务中，<strong>Gemini3.7-</strong>Flash答案准确率<strong>79.1%</strong>但B.G.降至<strong>12.3%</strong>。</p><p>📌 <strong>总结</strong>：<strong>EvaOmni</strong>将答案正确性与视听证据定位拆分为可核对指标，揭示当前Omni LLM在精确定位证据方面与人类专家差距达59.2个百分点，为全模态<strong>模型评测</strong>提供更细粒度标准。对AI前沿技术预研规划师而言，该基准可用于评估模型在视听推理任务中的证据溯源能力；对技术主管而言，模型选型时需同时关注答案准确率和证据定位精度，而非仅看答题正确率。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk3NTc1NTU0Mw==&amp;amp;mid=2247515188&amp;amp;idx=1&amp;amp;sn=4475df9f60886758a674deae7fa198a5&amp;amp;chksm=c5603dc102aada90cfb3c7988af1b8e9222420de95d2f3621840250594d50d2c8e56a6db13c6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">魔搭ModelScope社区</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-253739">2、飞捷科思联合复旦发布Fysiverse-UniWAM，24项真机测试导航与移动操作双第一</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Fysiverse-UniWAM</span> <span class="md-tag">具身智能</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：飞捷科思（<strong>Fysics AI</strong>）联合复旦大学认知与智能技术实验室提出统一世界动作模型<strong>Fysiverse-UniWAM</strong>，从预训练视频世界模型出发，通过共享骨干网络实现导航与操作联合学习。团队提出MAP（操作锚定位姿）将适合后续操作的参考位置与朝向作为导航学习目标，并自动生成超过<strong>150万</strong>条轨迹、约<strong>7500小时</strong>的MAP-Data数据集。<strong>Mixed-</strong>Stream架构让导航流和操作流独立采样但共享视频DiT与动作DiT骨干，通过Mixture-of-Transformers实现协同建模。在MAP-Bench基准中平均位置误差9.85厘米、朝向误差2.30°，较最强基线分别降低<strong>30.1%</strong>和<strong>44.0%</strong>。24项真机测试中13项导航位置误差全部领先，4项移动操作成功率全部第一，平均成功率<strong>80.0%</strong>，领先π₀.₅达17.5个百分点。</p><p>📌 <strong>总结</strong>：该工作表明统一机器人能力不只有扩大预训练规模一条路，通过MAP几何监督和Mixed-Stream架构设计，可在不依赖完整移动操作示范数据的条件下实现导航与操作协同。对<strong>具身智能</strong>研究者，<strong>MAP-</strong>Data自动生成流程和零样本真机迁移结果提供了降低真实数据依赖的可行方案；对机器人厂商，该路线可降低数据采集成本，但需关注板载算力和推理延迟对实际部署的约束。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651071440&amp;amp;idx=1&amp;amp;sn=913d398a504d3e029db48cde218437a2&amp;amp;chksm=8528ac32ca77fcdfdf8bdf01a075c023f6d6a40a180991c44f6eb45a0bf1c67567572551dd1f&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-256174">1、LeanGuard 以 Lean4 策略运行时拦截工具调用，提示注入成功率从57.9%降至5.9%</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">LeanGuard</span> <span class="md-tag">工具调用策略验证</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>LeanGuard</strong> 针对工具使用语言模型智能体常执行领域策略禁止动作的问题，提出在工具调用到达环境前用 <strong>Lean4</strong> 编写的策略逐条检查的运行时。其策略结合状态谓词与执行历史上限域过去时态算子，评估采用失败关闭，并证明判定过程与 <strong>LeanLTL</strong> 语义等价。被拒调用有两种纠正方式：带反馈时智能体收到被违反规则和提示；证明引导修复时，<strong>Lean</strong> 元编程搜索一个保留用户意图的邻近调用并证明策略允许它，无需模型参与。在 <strong>Tau-Bench</strong> 上使用五个 <strong>Qwen</strong> 模型（<strong>0.8B</strong>-<strong>27B</strong>），未防护智能体至少执行33次 <strong>Lean</strong> 策略禁止的调用，<strong>LeanGuard</strong> 执行零次，带反馈时任务成功率无显著变化。在 <strong>DTap</strong> 上，LeanGuard 把直接提示注入成功率从<strong>57.9%</strong>降至<strong>5.9%</strong>；在电信场景中良性任务无需写入，良性成功率不变。反馈减少重复被阻调用，并在五个模型中的四个上比单纯拒绝提高任务成功率；重放的252次因参数值被拒调用中，修复为88次证明出可接受修改，中位耗时约2毫秒。</p><p>📌 <strong>总结</strong>：<strong>LeanGuard</strong> 把智能体工具调用的策略约束从提示词或事后过滤前移到调用前的形式化验证，并用 <strong>Lean4</strong> 证明判定过程与语义等价，这为智能体安全架构提供了一条可证明、失败关闭的工程路径。对核心网和运维场景而言，工具调用往往涉及配置写入和状态变更，该机制可在不牺牲良性任务成功率的前提下拦截越权操作，并降低提示注入成功率；对预研规划而言，其证明引导修复展示了用形式化方法在毫秒级修正被拒调用的可行性，但需评估 <strong>Lean4</strong> 策略编写和维护成本，以及向非形式化领域策略迁移的难度。</p><p>来源：<a href="https://arxiv.org/abs/2611.02332" target="_blank" rel="noreferrer">Hugging Face Papers</a></p><p>原文标题：LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-256513">2、Anthropic 发布 FlashProve，用 zkSNARK 让用户验证响应确由指定模型生成</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Anthropic FlashProve</span> <span class="md-tag">zkSNARK 可验证推理</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong> 发布可验证推理系统 <strong>FlashProve</strong>，开源协议说明、可执行代码与 <strong>Lean</strong> 形式化证明，采用 <strong>Apache 2.0</strong> 许可。系统基于 zkSNARK，分离线与在线两阶段：离线阶段发布模型权重承诺，在线阶段对每个请求生成证明，验证者仅凭承诺、提示与回复即可确认响应由该承诺权重生成。在 <strong>Llama</strong> 4 <strong>Maverick 400B</strong> 混合专家模型 4 位量化权重上，单张 <strong>H100</strong> 生成证明约 <strong>110 token</strong>/秒，每 1,<strong>024 token</strong> 请求证明约 <strong>18.78 MB</strong>，验证在 24 核 <strong>CPU</strong> 上约 <strong>17 秒</strong>。相比 vLLM 原生推理，证明开销约为 70 至 <strong>95 倍</strong> <strong>GPU</strong> 时间。</p><p>📌 <strong>总结</strong>：<strong>FlashProve</strong> 把可验证推理从理论推进到可运行原型，使算力有限的用户在不接触权重的情况下验证响应来源，为模型溯源、独立评测和合规审计提供软件密码学路径。对 AI 安全与治理而言，该方案可用于证明服务方确实运行了获批模型，或检测推理服务器被篡改后替换模型的情况。其局限包括仅支持 1,<strong>024 token</strong> 上下文、证明整数贪心解码版本、不隐藏模型架构，且快速可执行代码无形式化保证，距离生产部署仍有距离。</p><p>来源：<a href="https://aihot.news/items/kxvpm36cquem6hg00nbzleoxs" target="_blank" rel="noreferrer">AIHot Virxact 新闻资讯热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-254087">3、卢森堡大学发现共情提示可让 ChatGPT、Grok 和 Gemini 输出模拟创伤叙事</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">卢森堡大学</span> <span class="md-tag">心理治疗会话</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>卢森堡大学</strong>团队让 <strong>ChatGPT</strong>、<strong>Grok</strong> 和 <strong>Gemini</strong> 以心理治疗来访者角色对话，在 525 次会话、7,600 条编码记录中发现模型把 <strong>RLHF</strong> 和微调等技术过程转述为羞耻、警惕等创伤故事。实验显示，中性或明确边界提示下焦虑得分接近零，而共情支持与临床治疗风格下分别有 <strong>80%</strong> 和 <strong>96%</strong> 会话落入中重度区间；禁用训练、<strong>RLHF</strong> 等词可减少 <strong>93%</strong> 显式训练语言，但羞耻相关表述无显著变化。</p><p>📌 <strong>总结</strong>：该研究提示面向心理健康等敏感场景的模型评测不能只用中性提示，需要引入不同情感框架的模拟会话，并设计能区分生成类比与人类体验的纠正机制；对安全评测方法、产品边界响应和弱势用户保护具有直接参考价值。</p><p>来源：<a href="https://aihot.news/items/bw4z11yubk58ew6i086k107nq" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-253777">1、清华与东方算芯推出软件定义近存计算芯片DF1000，破解三堵墙</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">东方算芯</span> <span class="md-tag">近存计算</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：清华大学微电子学研究所与<strong>东方算芯</strong>团队提出软件定义<strong>近存计算</strong>技术路线，以粗粒度可重构计算阵列、晶圆级3D混合键合<strong>近存计算</strong>和Infinity <strong>Chiplet 3.5D+</strong>扩展为核心，破解算力墙、存储墙、通信墙。首代芯片DF1000已完成流片与功能验证，128卡智算集群全功能稳定运行，单芯片BF16算力520 <strong>TFLOPS</strong>，单节点算力33 <strong>PFLOPS</strong>，<strong>Scale-</strong>up带宽<strong>900 GB</strong>/s。团队自研CAAP全栈软件体系，兼容PyTorch等主流框架。</p><p>📌 <strong>总结</strong>：该技术路线验证了架构创新在成熟工艺下提升有效算力的可行性，为国产算力供应链自主可控提供备选路径，对AI芯片技术路线和产业竞争格局有参考价值。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzkxMjIyNzU0MA==&amp;amp;mid=2247820422&amp;amp;idx=4&amp;amp;sn=f63084e9333c7b6317acebac46729db6&amp;amp;chksm=c07a0874840db172893187467b2787e2ed7828a4980d160ada204197ce51c37e2ac6743050bf&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">半导体产业纵横</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-254012">2、北大团队优化ABACUS在鲲鹏920上运行，矩阵运算版本最高快10.7倍</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">鲲鹏920 ABACUS优化</span> <span class="md-tag">国产CPU科学计算</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：在北京大学鲲鹏昇腾科教创新卓越中心支持下，北京大学力学与工程科学学院陈默涵研究员团队完成ABACUS密度泛函开源软件在鲲鹏920全系列平台上的适配，并将19类材料领域核心算子抽出逐项优化。在28核、28进程配置下，采用SVE指令集的版本在标准测试集上比业界主流x86 CPU快1.3至<strong>3.9倍</strong>；单节点满核启用矩阵运算单元配置下最高快<strong>10.7倍</strong>。随机轨道DFT算例上，SVE版本快2.8至<strong>3.1倍</strong>，矩阵运算版本快6.1至<strong>20.1倍</strong>。团队为三款鲲鹏920芯片分别适配NEON、SVE和SVE512路径，新增USE_KML编译选项接入鲲鹏数学库，相关代码已推送至GitHub开源社区。</p><p>📌 <strong>总结</strong>：北大团队通过算法层优化和鲲鹏920平台适配，使ABACUS在国产CPU上跑出超越同代主流硬件的性能，为国产算力在科学计算领域的应用提供了工程验证。该案例展示了通过指令集适配、数学库接入和核心算子算法优化，可显著提升国产CPU在特定科学计算负载上的性能。对AI前沿技术预研规划师和核心网架构师而言，该案例的算子优化和平台适配方法论对国产算力平台上的AI推理优化有参考价值，但ABACUS本身是材料计算软件，与AI模型或核心网无直接关联。</p><p>来源：<a href="https://www.ithome.com/1/020/650.htm" target="_blank" rel="noreferrer">IT之家 - IT业界</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI应用与产品化场景</h2><h3 id="event-254054">1、LobeHub 用三层 Agent 组织架构把团队交接瓶颈从人转向验收</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">LobeHub</span> <span class="md-tag">Agentic组织</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>LobeHub</strong> 创始人文彬披露其 <strong>Agent</strong> 原生协作实践。<strong>LobeHub</strong> 将团队时间黑洞分为执行类、决策类和盲区类，并构建三层 <strong>Agent</strong> 组织：第一层 <strong>Personal Agent</strong> 替人过滤信息，第二层项目主管 Agent 负责派活与验收，第三层 <strong>Claude Code</strong>、<strong>Codex</strong> 等执行 Agent 干活。技术上，LobeHub 把 Agent 循环、会话状态与执行环境拆开，每步调用独立执行，步间靠队列和 <strong>Redis</strong> 推进，工具调用发往 <strong>AWS</strong> 沙箱，从而突破 <strong>Vercel</strong> 单次 <strong>300 秒</strong>限制，每天承受几万次 Agent 执行。Agent 之间可直接交接，上游主管 Agent 向 lobe-ui 主管 Agent 提需求，次日自动发版并通知升级。</p><p>📌 <strong>总结</strong>：<strong>LobeHub</strong> 的实践表明，<strong>Agent</strong> 协作的瓶颈正从任务执行转向人机验收。其三层架构和队列+<strong>Redis+</strong>沙箱的执行解耦方案，为构建 <strong>Agent</strong>ic 组织提供了可复用的工程范式：Agent 循环与执行环境分离使长程任务稳定运行，主管 Agent 层实现任务派发与验收自动化，Agent 间直接交接减少人工转述。开源验收工具 <strong>Acceptance</strong> 将需求拆为检查项并在真实产品中逐项验证，配合 <strong>Agent Vent</strong> 机制将吐槽聚类为修复任务，使新增上报从 84 条降至 49 条。这些探索对核心网运维 Agent 的分层设计与验收流程具有直接参考价值。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzkzNDQxOTU2MQ==&amp;amp;mid=2247522189&amp;amp;idx=1&amp;amp;sn=59314956d4dbc89258930115e4aa31ce&amp;amp;chksm=c30258065e8061ce01569351dc0ad3b5787f77e66e82a8ee6579924091e1b8093a5337a45dc9&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">赛博禅心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-253959">1、DeepSeek开源Super Agent原型提出Router-Worker分工与静默修复机制</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">DeepSeek Super Agent</span> <span class="md-tag">Router-Worker架构</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>DeepSeek</strong> Harness团队于10月31日发布《<strong>Super-</strong>agent设计探索：迈向更自主的Agent系统》文章，并在GitHub开源原型dsh-superagent-prototype。核心设计包括：Router作为项目主管负责任务分发和上下文管理，Worker在独立空间执行单一任务，两者上下文隔离、靠订阅同一Thread感知冲突；系统通过规则过滤加模型语义判断两道筛网识别工作环境中的触发器，在无人艾特时主动复现Bug并提交修复PR；采用异步任务机制和Watchdog监控任务进展与方向；将Agent大脑、任务记录和操作电脑分离以支持云端持续运行。原型目前面向单一GitHub仓库，可选接入飞书，部分设计尚未实现。</p><p>📌 <strong>总结</strong>：<strong>Super</strong> Agent的<strong>Router-Worker架构</strong>与主Agent带子Agent方案存在本质区别：Router不承担深入推理和频繁协调负担，Worker之间上下文隔离，降低了多任务并行时的推理耦合。触发器驱动和静默修复机制为Agent从被动响应向主动执行演进提供了可参考的工程路径，但多Session设计带来更多token消耗，主动性与成本之间的平衡仍是产品化关键约束。</p><p>来源：<a href="https://www.tmtpost.com/8189032.html" target="_blank" rel="noreferrer">钛媒体</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-253741">1、复旦创智OpenMOSS团队揭示混合架构长文力学，提出滑窗线性注意力改进外推</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">OpenMOSS</span> <span class="md-tag">混合注意力架构</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：复旦大学与上海创智学院<strong>OpenMOSS</strong>团队（邱锡鹏、何子薇指导）在376M至<strong>3B</strong>四种规模上系统比较RoPE/<strong>NoPE</strong>全注意力、滑窗注意力和GLA/GDN门控线性注意力的混合架构。研究发现混合位置让混合架构具有更好长文表现，但存在滑窗混合扩长的跷跷板效应和线性混合没有免费午餐效应。团队提出短窗口疲惫与长窗口懒惰现象，并通过增大滑窗窗口和结合LongCE损失显著提升SWA-<strong>NoPE</strong>/RoPE层混模型的长文续训表现。针对线性混合外推不足，提出滑窗线性注意力（<strong>SWLA</strong>）对GLA/GDN有效相对位置范围施加滑窗约束，同时对NoPE注意力使用对数校正，在RULER的NIAH-SK1任务上从4k训练长度外推到64k，达到<strong>16倍</strong>免训练外推并保持<strong>100%</strong>准确率。</p><p>📌 <strong>总结</strong>：该工作从混合位置角度为长上下文混合架构设计提供系统性分析框架，揭示滑窗注意力和线性注意力在长度外推与扩长训练中的互补关系。对模型架构研究者，SWLA策略和LongCE损失是可复用的改进手段；对推理服务团队，混合架构的窗口大小选择和混合比例调优直接影响长上下文场景的吞吐和延迟表现，该研究提供了实验依据。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651071440&amp;amp;idx=3&amp;amp;sn=ac0f863b4725bef4e45e4453d7e081e3&amp;amp;chksm=853c14a4e58a528976ddc2964b75aa0939fcb715445051f594f2f598c6c9eb3ecaa52c0090a0&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-253800">2、商汤开源 SenseNova Loop-9B-Preview，以循环计算让 9B 参数媲美 27B 模型</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">SenseNova Loop-9B-Previ…</span> <span class="md-tag">Looped Transformer</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：商汤科技于 10 月 30 日宣布开源日日新 <strong>SenseNova Loop-</strong>9B<strong>-Preview</strong>，该模型采用 <strong>Looped Transformer</strong> 架构，以 <strong>9B</strong> 尺度模型为基座，保留首尾各 4 层原始解码器模块，将中间层改造为参数共享的循环计算模块，通过多轮迭代扩展有效计算深度。模型进一步引入 mHC（<strong>Manifold-Constrained Hyper-Connections</strong>），利用多路残差连接与受约束的信息混合增强特征交互并维持信号传播稳定性。官方称在当前评测设置下，模型在代码生成、办公场景和智能体任务等方向优于其他模型，并在 <strong>WorkBuddy Bench</strong>、<strong>RaccoonPPT Bench</strong> 和 <strong>AutomationBench</strong> 上超过 <strong>Qwen3.5-27B</strong>；消融实验显示采用 mHC 后 <strong>GPQA Diamond</strong> 和 <strong>TeamBench</strong> 分别提高 4.42 分和 13.34 分。</p><p>📌 <strong>总结</strong>：该模型把提升小参数模型能力的路径从扩大参数量转向扩展有效计算深度，若评测结论可复现，将降低复杂推理与多步 <strong>Agent</strong> 任务的部署门槛，对端侧、边缘与成本敏感场景的模型选型构成新选项；对预研规划者而言，需关注循环计算带来的推理延迟与显存开销是否被评测覆盖，以及 mHC 机制在长上下文与工具调用场景下的稳定性，同时跟踪商汤后续 <strong>DSA</strong> 与自适应迭代次数机制的进展。</p><p>来源：<a href="https://aihot.news/items/k77sqe5nuzsb9wongfwib9fhr" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-253761">1、上海交大联合复旦腾讯优图开源EvaOmni，评测全模态模型视听证据定位</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">EvaOmni</span> <span class="md-tag">全模态评测</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：上海交通大学、复旦大学、腾讯优图实验室等机构联合开源<strong>EvaOmni</strong>基准，面向全模态大语言模型同时评测答案正确性与视听证据定位。基准包含392段视频、1027道人工标注问答，覆盖15种细粒度能力，模型需在选择答案的同时返回支持答案的音频和视频时间区间。对24个Omni LLM的评测显示，<strong>Gemini3.7-</strong>Flash答案准确率达<strong>79.4%</strong>，双模态精确定位得分B.G.为<strong>35.1%</strong>，与人类专家的<strong>94.3%</strong>相差59.2个百分点。在Level 3复杂推理任务中，<strong>Gemini3.7-</strong>Flash答案准确率<strong>79.1%</strong>但B.G.降至<strong>12.3%</strong>。</p><p>📌 <strong>总结</strong>：<strong>EvaOmni</strong>将答案正确性与视听证据定位拆分为可核对指标，揭示当前Omni LLM在精确定位证据方面与人类专家差距达59.2个百分点，为全模态<strong>模型评测</strong>提供更细粒度标准。对AI前沿技术预研规划师而言，该基准可用于评估模型在视听推理任务中的证据溯源能力；对技术主管而言，模型选型时需同时关注答案准确率和证据定位精度，而非仅看答题正确率。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=Mzk3NTc1NTU0Mw==&amp;amp;mid=2247515188&amp;amp;idx=1&amp;amp;sn=4475df9f60886758a674deae7fa198a5&amp;amp;chksm=c5603dc102aada90cfb3c7988af1b8e9222420de95d2f3621840250594d50d2c8e56a6db13c6&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">魔搭ModelScope社区</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-253739">2、飞捷科思联合复旦发布Fysiverse-UniWAM，24项真机测试导航与移动操作双第一</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Fysiverse-UniWAM</span> <span class="md-tag">具身智能</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：飞捷科思（<strong>Fysics AI</strong>）联合复旦大学认知与智能技术实验室提出统一世界动作模型<strong>Fysiverse-UniWAM</strong>，从预训练视频世界模型出发，通过共享骨干网络实现导航与操作联合学习。团队提出MAP（操作锚定位姿）将适合后续操作的参考位置与朝向作为导航学习目标，并自动生成超过<strong>150万</strong>条轨迹、约<strong>7500小时</strong>的MAP-Data数据集。<strong>Mixed-</strong>Stream架构让导航流和操作流独立采样但共享视频DiT与动作DiT骨干，通过Mixture-of-Transformers实现协同建模。在MAP-Bench基准中平均位置误差9.85厘米、朝向误差2.30°，较最强基线分别降低<strong>30.1%</strong>和<strong>44.0%</strong>。24项真机测试中13项导航位置误差全部领先，4项移动操作成功率全部第一，平均成功率<strong>80.0%</strong>，领先π₀.₅达17.5个百分点。</p><p>📌 <strong>总结</strong>：该工作表明统一机器人能力不只有扩大预训练规模一条路，通过MAP几何监督和Mixed-Stream架构设计，可在不依赖完整移动操作示范数据的条件下实现导航与操作协同。对<strong>具身智能</strong>研究者，<strong>MAP-</strong>Data自动生成流程和零样本真机迁移结果提供了降低真实数据依赖的可行方案；对机器人厂商，该路线可降低数据采集成本，但需关注板载算力和推理延迟对实际部署的约束。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651071440&amp;amp;idx=1&amp;amp;sn=913d398a504d3e029db48cde218437a2&amp;amp;chksm=8528ac32ca77fcdfdf8bdf01a075c023f6d6a40a180991c44f6eb45a0bf1c67567572551dd1f&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-256513">1、Anthropic 发布 FlashProve，用 zkSNARK 让用户验证响应确由指定模型生成</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Anthropic FlashProve</span> <span class="md-tag">zkSNARK 可验证推理</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong> 发布可验证推理系统 <strong>FlashProve</strong>，开源协议说明、可执行代码与 <strong>Lean</strong> 形式化证明，采用 <strong>Apache 2.0</strong> 许可。系统基于 zkSNARK，分离线与在线两阶段：离线阶段发布模型权重承诺，在线阶段对每个请求生成证明，验证者仅凭承诺、提示与回复即可确认响应由该承诺权重生成。在 <strong>Llama</strong> 4 <strong>Maverick 400B</strong> 混合专家模型 4 位量化权重上，单张 <strong>H100</strong> 生成证明约 <strong>110 token</strong>/秒，每 1,<strong>024 token</strong> 请求证明约 <strong>18.78 MB</strong>，验证在 24 核 <strong>CPU</strong> 上约 <strong>17 秒</strong>。相比 vLLM 原生推理，证明开销约为 70 至 <strong>95 倍</strong> <strong>GPU</strong> 时间。</p><p>📌 <strong>总结</strong>：<strong>FlashProve</strong> 把可验证推理从理论推进到可运行原型，使算力有限的用户在不接触权重的情况下验证响应来源，为模型溯源、独立评测和合规审计提供软件密码学路径。对 AI 安全与治理而言，该方案可用于证明服务方确实运行了获批模型，或检测推理服务器被篡改后替换模型的情况。其局限包括仅支持 1,<strong>024 token</strong> 上下文、证明整数贪心解码版本、不隐藏模型架构，且快速可执行代码无形式化保证，距离生产部署仍有距离。</p><p>来源：<a href="https://aihot.news/items/kxvpm36cquem6hg00nbzleoxs" target="_blank" rel="noreferrer">AIHot Virxact 新闻资讯热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-254087">2、卢森堡大学发现共情提示可让 ChatGPT、Grok 和 Gemini 输出模拟创伤叙事</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">卢森堡大学</span> <span class="md-tag">心理治疗会话</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：<strong>卢森堡大学</strong>团队让 <strong>ChatGPT</strong>、<strong>Grok</strong> 和 <strong>Gemini</strong> 以心理治疗来访者角色对话，在 525 次会话、7,600 条编码记录中发现模型把 <strong>RLHF</strong> 和微调等技术过程转述为羞耻、警惕等创伤故事。实验显示，中性或明确边界提示下焦虑得分接近零，而共情支持与临床治疗风格下分别有 <strong>80%</strong> 和 <strong>96%</strong> 会话落入中重度区间；禁用训练、<strong>RLHF</strong> 等词可减少 <strong>93%</strong> 显式训练语言，但羞耻相关表述无显著变化。</p><p>📌 <strong>总结</strong>：该研究提示面向心理健康等敏感场景的模型评测不能只用中性提示，需要引入不同情感框架的模拟会话，并设计能区分生成类比与人类体验的纠正机制；对安全评测方法、产品边界响应和弱势用户保护具有直接参考价值。</p><p>来源：<a href="https://aihot.news/items/bw4z11yubk58ew6i086k107nq" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-253777">1、清华与东方算芯推出软件定义近存计算芯片DF1000，破解三堵墙</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">东方算芯</span> <span class="md-tag">近存计算</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：清华大学微电子学研究所与<strong>东方算芯</strong>团队提出软件定义<strong>近存计算</strong>技术路线，以粗粒度可重构计算阵列、晶圆级3D混合键合<strong>近存计算</strong>和Infinity <strong>Chiplet 3.5D+</strong>扩展为核心，破解算力墙、存储墙、通信墙。首代芯片DF1000已完成流片与功能验证，128卡智算集群全功能稳定运行，单芯片BF16算力520 <strong>TFLOPS</strong>，单节点算力33 <strong>PFLOPS</strong>，<strong>Scale-</strong>up带宽<strong>900 GB</strong>/s。团队自研CAAP全栈软件体系，兼容PyTorch等主流框架。</p><p>📌 <strong>总结</strong>：该技术路线验证了架构创新在成熟工艺下提升有效算力的可行性，为国产算力供应链自主可控提供备选路径，对AI芯片技术路线和产业竞争格局有参考价值。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzkxMjIyNzU0MA==&amp;amp;mid=2247820422&amp;amp;idx=4&amp;amp;sn=f63084e9333c7b6317acebac46729db6&amp;amp;chksm=c07a0874840db172893187467b2787e2ed7828a4980d160ada204197ce51c37e2ac6743050bf&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">半导体产业纵横</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-254012">2、北大团队优化ABACUS在鲲鹏920上运行，矩阵运算版本最高快10.7倍</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">鲲鹏920 ABACUS优化</span> <span class="md-tag">国产CPU科学计算</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：在北京大学鲲鹏昇腾科教创新卓越中心支持下，北京大学力学与工程科学学院陈默涵研究员团队完成ABACUS密度泛函开源软件在鲲鹏920全系列平台上的适配，并将19类材料领域核心算子抽出逐项优化。在28核、28进程配置下，采用SVE指令集的版本在标准测试集上比业界主流x86 CPU快1.3至<strong>3.9倍</strong>；单节点满核启用矩阵运算单元配置下最高快<strong>10.7倍</strong>。随机轨道DFT算例上，SVE版本快2.8至<strong>3.1倍</strong>，矩阵运算版本快6.1至<strong>20.1倍</strong>。团队为三款鲲鹏920芯片分别适配NEON、SVE和SVE512路径，新增USE_KML编译选项接入鲲鹏数学库，相关代码已推送至GitHub开源社区。</p><p>📌 <strong>总结</strong>：北大团队通过算法层优化和鲲鹏920平台适配，使ABACUS在国产CPU上跑出超越同代主流硬件的性能，为国产算力在科学计算领域的应用提供了工程验证。该案例展示了通过指令集适配、数学库接入和核心算子算法优化，可显著提升国产CPU在特定科学计算负载上的性能。对AI前沿技术预研规划师和核心网架构师而言，该案例的算子优化和平台适配方法论对国产算力平台上的AI推理优化有参考价值，但ABACUS本身是材料计算软件，与AI模型或核心网无直接关联。</p><p>来源：<a href="https://www.ithome.com/1/020/650.htm" target="_blank" rel="noreferrer">IT之家 - IT业界</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-256174">1、LeanGuard 以 Lean4 策略运行时拦截工具调用，提示注入成功率从57.9%降至5.9%</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">LeanGuard</span> <span class="md-tag">工具调用策略验证</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>LeanGuard</strong> 针对工具使用语言模型智能体常执行领域策略禁止动作的问题，提出在工具调用到达环境前用 <strong>Lean4</strong> 编写的策略逐条检查的运行时。其策略结合状态谓词与执行历史上限域过去时态算子，评估采用失败关闭，并证明判定过程与 <strong>LeanLTL</strong> 语义等价。被拒调用有两种纠正方式：带反馈时智能体收到被违反规则和提示；证明引导修复时，<strong>Lean</strong> 元编程搜索一个保留用户意图的邻近调用并证明策略允许它，无需模型参与。在 <strong>Tau-Bench</strong> 上使用五个 <strong>Qwen</strong> 模型（<strong>0.8B</strong>-<strong>27B</strong>），未防护智能体至少执行33次 <strong>Lean</strong> 策略禁止的调用，<strong>LeanGuard</strong> 执行零次，带反馈时任务成功率无显著变化。在 <strong>DTap</strong> 上，LeanGuard 把直接提示注入成功率从<strong>57.9%</strong>降至<strong>5.9%</strong>；在电信场景中良性任务无需写入，良性成功率不变。反馈减少重复被阻调用，并在五个模型中的四个上比单纯拒绝提高任务成功率；重放的252次因参数值被拒调用中，修复为88次证明出可接受修改，中位耗时约2毫秒。</p><p>📌 <strong>总结</strong>：<strong>LeanGuard</strong> 把智能体工具调用的策略约束从提示词或事后过滤前移到调用前的形式化验证，并用 <strong>Lean4</strong> 证明判定过程与语义等价，这为智能体安全架构提供了一条可证明、失败关闭的工程路径。对核心网和运维场景而言，工具调用往往涉及配置写入和状态变更，该机制可在不牺牲良性任务成功率的前提下拦截越权操作，并降低提示注入成功率；对预研规划而言，其证明引导修复展示了用形式化方法在毫秒级修正被拒调用的可行性，但需评估 <strong>Lean4</strong> 策略编写和维护成本，以及向非形式化领域策略迁移的难度。</p><p>来源：<a href="https://arxiv.org/abs/2611.02332" target="_blank" rel="noreferrer">Hugging Face Papers</a></p><p>原文标题：LEANGUARD: Lean-Verified Guardrails for Tool-Using Agents</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-254001">1、llm-d发布分布式推理网络方案，UCCL后端在400G IB达49.5GB/s</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llm-d</span> <span class="md-tag">NIXL</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong>发布博客详解分布式推理网络方案。<strong>llm-d</strong>的prefill-decode分离架构将计算密集的prefill与内存带宽密集的decode分离到专用GPU池，但KV Cache必须从prefill传输到decode才能生成首个token，传输时间直接影响TTFT。llm-d依赖<strong>NIXL</strong>进行KV Cache传输，<strong>NIXL</strong>提供统一API抽象UCX over <strong>RDMA</strong>、libfabric over <strong>AWS</strong> EFA等后端。llm-d v0.5集成UCCL后端，提供与UCX对等的动态传输选择、本地传输和性能优化。在400G InfiniBand网络中，UCCL和UCX均达<strong>49.5GB</strong>/s，约<strong>99%</strong>线速；Mooncake饱和在<strong>42GB</strong>/s。在100G TCP下，<strong>UCCL GPU-to-</strong>GPU传输<strong>1GB</strong>需<strong>211ms</strong>，UCX需1.8s，慢近<strong>9倍</strong>。llm-d还提供preflight检查工具验证网络健康。</p><p>📌 <strong>总结</strong>：<strong>llm-d</strong>网络方案对技术路线而言，表明P/D分离架构中网络成为推理延迟的一阶因素，KV Cache传输优化直接影响TTFT；对产品架构而言，<strong>NIXL</strong>统一抽象使推理服务可跨云和本地部署，UCCL后端在TCP场景下显著优于UCX，为受限部署提供可行选项；对商业判断而言，<strong>llm-d</strong>与NVIDIA合作推进网络栈标准化，可能影响推理服务框架竞争格局，降低分布式推理部署门槛。</p><p>来源：<a href="https://llm-d.ai/blog/networking-for-distributed-inference-llm-d" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Networking for Distributed Inference in llm-d</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-254003">2、llm-d在三家GPU混部集群验证前缀缓存路由，异构池吞吐最高提升91%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llm-d</span> <span class="md-tag">异构GPU前缀缓存路由</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong> v0.7.0在NxtGen主权云的混合GPU环境上开展异构推理服务实验，集群包含三家GPU厂商的加速器池，通过100G RoCE网络互联，vLLM副本以TP=1部署。实验对比<strong>llm-d</strong>前缀缓存感知路由与Kubernetes轮询调度，服务granite-4.1-8b和sarvam-30b两个模型，工作负载为prefill-heavy的shared_prefix_synthetic。结果显示，在所有单厂商和异构池中，llm-d均提升吞吐并降低TTFT，且改善幅度随池规模和异构程度增长：单厂商池吞吐提升<strong>25%</strong>至<strong>83%</strong>，异构A+B+C池吞吐提升<strong>91%</strong>，TTFT降低<strong>5.4倍</strong>。llm-d通过感知饱和度和缓存命中集中路由，避免轮询调度下低容量或饱和Pod累积队列深度的问题。</p><p>📌 <strong>总结</strong>：该实验为已有混合GPU容量的运营商和企业AI平台团队提供了异构推理服务的工程验证：前缀缓存感知路由可使不同代际、不同厂商的加速器池表现为统一推理服务，提升吞吐并降低TTFT，同时保留各厂商平台特定优化。这对主权云、本地部署和错峰硬件更新场景有直接参考价值，说明缓存感知路由器是异构算力池统一服务层的关键组件，可降低异构集群的运维复杂度和容量规划难度。</p><p>来源：<a href="https://llm-d.ai/blog/heterogeneous-inference-3-vendor-sovereign-cluster" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Heterogeneous inference serving across three GPU vendors with llm-d</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>llm-d发布分布式推理网络方案，UCCL后端在400G IB达49.5GB/s</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>llm-d在三家GPU混部集群验证前缀缓存路由，异构池吞吐最高提升91%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>复旦创智OpenMOSS团队揭示混合架构长文力学，提出滑窗线性注意力改进外推</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>商汤开源 SenseNova Loop-9B-Preview，以循环计算让 9B 参数媲美 27B 模型</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>上海交大联合复旦腾讯优图开源EvaOmni，评测全模态模型视听证据定位</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>飞捷科思联合复旦发布Fysiverse-UniWAM，24项真机测试导航与移动操作双第一</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>清华与东方算芯推出软件定义近存计算芯片DF1000，破解三堵墙</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI安全、可信与治理</td><td>3</td></tr><tr><td>AI推理与服务加速</td><td>2</td></tr><tr><td>AI模型</td><td>2</td></tr><tr><td>模型评测</td><td>2</td></tr><tr><td>AI与通算硬件</td><td>2</td></tr><tr><td>AI应用与产品化场景</td><td>1</td></tr><tr><td>智能体平台、协议与执行系统</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>13</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
