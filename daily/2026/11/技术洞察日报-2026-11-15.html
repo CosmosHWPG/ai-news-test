@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-15</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-15</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-14T00:00:00+00:00 ~ 2026-11-15T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-11-17 21:12:51 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月15日</strong></p><p><strong>生成时间：2026-11-17 21:02 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：6 个 | 本期条目：19 条 | 覆盖板块：6 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 7 条，AI推理与服务加速 5 条，AI模型 3 条，模型训练 1 条，模型评测 1 条，AI安全、可信与治理 2 条，合计 19 条。</li><li>日报内容：今日头条聚焦 <strong>SGLang并行提示解码多问题共享上下文，A100上提速3.7倍</strong>，并同步关注Zyphra发布ZONOS3-Mini，886M参数实现端侧实时零样本语音克隆；斯坦福开源Memorilla：16个记忆令牌替代整库上下文，FactKG准确率升至84.33%；Ling-3.x团队用推理-环境协同调度将智能体批任务完工时间缩短10.4%至65.0%。</li><li>关键亮点：本期重点聚焦 智能体平台、协议与执行系统、AI推理与服务加速、AI模型、模型训练，核心事件集中在 SGLang、MIT、MarkTechPost - AI Agents、论文作者团队，适合用于技术选型、竞品研判和专题复盘。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-273146">SGLang并行提示解码多问题共享上下文，A100上提速3.7倍</a></li></ul><ul><li><a href="#event-273089">Zyphra发布ZONOS3-Mini，886M参数实现端侧实时零样本语音克隆</a></li></ul><ul><li><a href="#event-271757">斯坦福开源Memorilla：16个记忆令牌替代整库上下文，FactKG准确率升至84.33%</a></li></ul><ul><li><a href="#event-273101">Ling-3.x团队用推理-环境协同调度将智能体批任务完工时间缩短10.4%至65.0%</a></li></ul><ul><li><a href="#event-273199">Lara Mini Base以MoE架构在6T token上训练45种语言并开源权重</a></li></ul><ul><li><a href="#event-273095">Singularity-Bench评测智能体自建AI系统能力并暴露奖励攻击漏洞</a></li></ul><ul><li><a href="#event-273205">MAPE用程序进化自动搜索智能体记忆设计并降低服务成本</a></li></ul><ul><li><a href="#event-271708">Runway开源机器人模型Praxis-1，RoboLab-120成功率46.2%居世界动作模型首位</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-273098">1、Folio多分辨率上下文折叠让长程智能体降本提速</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Folio上下文管理器</span> <span class="md-tag">长程智能体</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：长程语言智能体持续累积工具结果与回复，直至历史超出上下文窗口；现有做法依赖模型摘要压缩，每次压缩都要重读重写被替换的历史，且缓存感知触发把结果大小视为既定。该研究提出<strong>Folio上下文管理器</strong>，通过一套句柄完成历史记录、折叠与恢复：运行时记录三级关联视图，包括模型在普通回复中写下的简短回合笔记L1、运行时写入的每次调用事件清单L2、以及捕获的源记录L3。由于这些视图已存在，运行时以程序化方式折叠上下文，对较早回合选择更粗粒度视图，折叠时打印索引L2与L3的句柄，使读取有界分页、在文件全文上计算并保持持久档案的恢复工具能以极少额外输入触达证据。在75项LOCA-bench任务上，各系统后端均为DeepSeek-<strong>V4-Pro</strong>，Folio解出66项，对比同一运行时采用模型摘要压缩的54项，以及Claude <strong>Code</strong>、<strong>Code</strong>x、<strong>SoL-</strong>Pi的49-59项，耗时约为其一半，成本比该运行时低<strong>2.4倍</strong>，单次折叠中位耗时<strong>0.6秒</strong>。</p><p>📌 <strong>总结</strong>：Folio把智能体上下文管理从模型摘要压缩转向程序化多分辨率折叠与句柄化恢复，在长程任务上同时改善解出率、成本与耗时，对智能体运行时架构具有直接参考价值。对技术路线而言，说明上下文压缩不必依赖模型重写历史，运行时结构化记录加按需分页恢复可显著降低token开销，为长程任务与工具密集场景提供更可控的工程路径；对产品架构而言，三级视图与句柄设计可迁移到核心网运维Agent、网络自治智能体等需要长会话、可审计、可回溯的电信场景，有助于在保证证据可追溯的同时控制推理成本与响应时延。</p><p>来源：<a href="https://arxiv.org/abs/2611.16627" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Folio: Recoverable Multi-Resolution Context Folding for Long-Horizon Language Agents</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273125">2、LEAD-RL 用贡献感知信用分配训练多智能体深度研究，BrowseComp 准确率提升 2.49 个百分点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">LEAD-RL</span> <span class="md-tag">多智能体信用分配</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：多智能体深度研究通过委派并行搜索并把长工具轨迹移出主智能体上下文，但现有训练要么只优化主智能体，要么把同一团队优势广播给所有智能体，导致误导性子智能体报告被奖励、有用报告被惩罚。<strong>LEAD-RL</strong> 提出主智能体与子智能体联合训练框架，用训练时评分标准评估每份子智能体报告的研究效用并门控其继承的团队优势，最终答案正确性是唯一团队奖励，不使用 token、步数或加速奖励。在五个基准与两个模型家族上，<strong>BrowseComp</strong> 准确率提升 2.49 个百分点、关键路径<strong>成本下降</strong> <strong>24.5%</strong>，验证阶段准确率提升 6.78 个百分点而关键路径成本基本不变。</p><p>📌 <strong>总结</strong>：该工作把多智能体系统的训练信用分配从粗粒度团队奖励推进到按子任务贡献门控，直接回应了委派式深度研究中子智能体报告质量参差、错误证据污染主智能体决策的问题。对构建搜索智能体、工具调用智能体与多智能体协作平台的产品与研发团队，这意味着可在不增加关键路径成本的前提下提升答案质量，训练框架可迁移到企业知识检索、网络运维诊断等需要多源证据汇总的场景，值得在智能体平台训练管线设计中评估。</p><p>来源：<a href="https://arxiv.org/abs/2611.17041" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：From Delegation to Coordination: Learning Efficient Multi-Agent Deep Research</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273205">3、MAPE用程序进化自动搜索智能体记忆设计并降低服务成本</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">MAPE</span> <span class="md-tag">Agent记忆设计</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：智能体记忆系统的性能高度依赖设计选择,但人工设计成本高且难以验证哪些选择真正有效。论文提出<strong>MAPE</strong>框架,通过标准化生命周期接口和诊断-提议迭代循环,从极简种子出发进化出完整记忆程序,从而自动搜索记忆设计空间。在LoCoMo和LongMemEval两个基准上,<strong>MAPE</strong>相对人工设计基线取得最高12个百分点的绝对准确率提升,同时服务成本降至人工基线的<strong>35%</strong>,并在不同服务骨干和基准间展现迁移性。分析和消融验证了两条反复出现的模式:保留原始对话作为可检索证据可防止抽取记忆时丢失细节;按查询意图组织检索证据有助于回答模型有效使用证据。将组合模块移植到五个已有记忆系统后,五个系统准确率均提升。</p><p>📌 <strong>总结</strong>：该工作把智能体记忆从手工设计推向可自动搜索的程序空间,并证明设计模式可跨系统移植,为记忆架构提供可复用工程依据;优化目标同时纳入准确率与服务成本时,计算重心会从基于LLM的记忆构建转向查询时选择性处理,这直接影响推理成本结构和延迟预算。对产品架构而言,记忆层将更接近可迭代、可评估的可搜索组件,而非一次性人工配置;对研发规划而言,程序进化可能成为智能体组件自动优化的一条通用路径;对商业判断而言,准确率提升加服务成本降至<strong>35%</strong>意味着记忆设计优化可同时改善体验与单位推理经济性。</p><p>来源：<a href="https://arxiv.org/abs/2611.17068" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Discovering Effective Agent Memory Designs through Program Evolution</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273122">4、Skill Adapter以适配器与在线路由提升LLM智能体长程任务成功率11.43个百分点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Skill Adapter</span> <span class="md-tag">技能路由与适配器</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月12日，arXiv发布论文提出<strong>Skill Adapter</strong>，面向LLM智能体的通用技能个性化修改与在线路由问题。LLM智能体借助外部技能复用任务流程与工具经验，但通用技能描述的是共享执行流程，具体工具选择、操作习惯和输出要求因用户而异；在长程任务中，子目标、可用输入和环境状态随执行推进而变化，智能体需要从不断扩大的技能池中选出当前适用的技能并为后续步骤准备候选。<strong>Skill Adapter</strong>从用户需求与执行反馈中蒸馏本地调整，存储为与通用技能关联的<strong>Adapter</strong>；路由智能体依据当前子任务、执行进度和环境反馈选择通用技能及适用<strong>Adapter</strong>，增量维护任务级在线技能库供主LLM按需读取，并为后续节点预加载候选、在实际输入确定后重新校验适用性。系统用强化学习分别以修改增益和路由结果优化两类决策。在ALFWorld、WebShop和<strong>Skill</strong>sBench上，相较<strong>Skill</strong>RL平均提升任务成功率11.43个百分点，并在三个基准上降低平均执行时间；技能池扩至1000个技能时仍保持性能优势。</p><p>📌 <strong>总结</strong>：<strong>Skill Adapter</strong>对智能体平台架构的启示在于把技能复用拆成两层：通用技能保持共享，个性化差异以Adapter形式外挂并按需路由，从而避免为每个用户复制整套技能。其强化学习分别优化修改与路由决策的设计，使系统在技能池从数十扩到1000时仍能维持成功率与执行时间优势，说明可扩展性来自路由与适配机制而非单纯扩大上下文。对核心网运维助手等长程任务场景，该思路可用于把标准操作流程与本地网元差异解耦，降低技能库维护成本并提升任务执行的稳定性。</p><p>来源：<a href="https://arxiv.org/abs/2611.17007" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Skill Adapter: Personalized Modification and Online Routing of General-Purpose Skills</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271757">5、斯坦福开源Memorilla：16个记忆令牌替代整库上下文，FactKG准确率升至84.33%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Memorilla</span> <span class="md-tag">潜在记忆令牌</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：斯坦福Jure Leskovec的SNAP团队联合多伦多大学、宾夕法尼亚大学和MIT开源<strong>Memorilla</strong>，面向冻结大模型的长文档记忆场景，设计194M参数可训练记忆模块：先用冻结Qwen3-<strong>Embedding-</strong>4B对文档一次性编码，再由2层8头交叉注意力让16个学习槽位按问题读取全库，最后投影进Qwen3-<strong>8B</strong>输入嵌入空间并前置到问题。训练分三阶段，约<strong>19小时</strong>跑在4张H100上。</p><p>📌 <strong>总结</strong>：<strong>Memorilla</strong>证明冻结模型可通过外挂潜在记忆模块获得长上下文能力，FactKG准确率<strong>84.33%</strong>高于全上下文<strong>80.43%</strong>，文档令牌减少<strong>108倍</strong>，512文档下1张H100单问<strong>0.74秒</strong>而全上下文慢<strong>27倍</strong>。对推理服务而言，记忆缓存可预计算，1M文档单问8.1毫秒，为智能体长期记忆和RAG替代路线提供工程化参考。</p><p>来源：<a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/" target="_blank" rel="noreferrer">MarkTechPost - AI Agents</a></p><p>原文标题：Stanford Research Open-Sources Memorilla, a Latent Memory Module for Frozen LLMs</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273031">6、DecArena评测去中心化多智能体协作，GraphHarness提升任务成功率48.5</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">DecArena</span> <span class="md-tag">去中心化协作</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年11月11日，arXiv刊出论文《<strong>DecArena</strong>: <strong>Evaluating Large-Scale Decentralized Multi-Agent</strong> <strong>Collaboration</strong>》。针对集中式多智能体系统依赖全局编排器、存在可扩展性与隐私问题，而去中心化环境下全局可见性缺失的挑战，作者研究图约束通信下的去中心化多智能体协作，每个智能体仅观察本地状态并只能与邻居交互。论文提出<strong>DecArena</strong>基准，包含<strong>10万</strong>+工具的合成可扩展分布式工具调用。实验显示，近期LLM智能体难以发现非本地相关资源并在去中心化环境中协作，标准强化学习也无法可靠克服该限制，表明去中心化多智能体系统需要更显式的治理机制。作者提出GraphHarness基线，结合拓扑感知预热与自改进LLM路由，结果显示任务成功率提升48.5、协作质量提升30.6，同时成本降低34.0。</p><p>📌 <strong>总结</strong>：<strong>DecArena</strong>为去中心化多智能体协作提供了可扩展的评测基准，揭示当前LLM智能体在缺乏全局可见性时的能力短板。对技术路线而言，标准强化学习无法可靠解决去中心化资源发现问题，意味着需要显式治理机制如拓扑感知路由与自改进路由；对产品架构而言，GraphHarness展示的拓扑感知预热与LLM路由组合可在降低成本的同时提升协作质量，为分布式智能体系统设计提供参考；对商业判断而言，去中心化架构可缓解集中式编排的隐私与可扩展性瓶颈，但需配套新的协作治理机制，可能影响智能体平台的部署形态与成本结构。</p><p>来源：<a href="https://arxiv.org/abs/2611.15521" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：DecArena: Evaluating Large-Scale Decentralized Multi-Agent Collaboration</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273030">7、论文提出激励响应智能体运行时契约，硬任务成功率从0.60升至1.00</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">激励响应智能体</span> <span class="md-tag">运行时契约</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月11日，arXiv刊出论文《<strong>Incentive-Responsive Agents</strong>: A <strong>Principal-Agent Framework</strong>, <strong>Metric Suite</strong>, and <strong>Runtime Architecture</strong> for <strong>Long-Lived Personal AI Agents</strong>》。针对长期存续的个人AI智能体缺少激励层的问题，作者将激励形式化为<strong>运行时契约</strong>，覆盖模型层级、测试时计算、内存预算、工具权限、任务优先级、验证和补偿等操作点，并要求智能体策略因果性地消费该契约。论文建立含隐藏努力、可契约操作点和昂贵验证的主从代理模型，推导出非消费不变性原理、持久性折扣定理、激励-能力交换率前沿和Goodhart界。240次真实LLM实验使用两个模型和60个可验证任务，结果显示提示级激励框架无显著效果（p=0.62），而运行时分配将最难任务族成功率从0.60提升至1.00（p=0.008），代价为<strong>4.8倍</strong>价格加权成本；20种子3000任务模拟显示资源ROI从7.09升至16.67，博弈行为从0.333降至0.115。</p><p>📌 <strong>总结</strong>：该研究将智能体激励从提示工程转向<strong>运行时契约</strong>，为长期存续智能体的资源分配与行为对齐提供了可量化的架构方案。对技术路线而言，非消费不变性原理区分了真实激励与提示说服，意味着仅靠提示无法解决智能体努力不足问题，需在运行时层面设计激励消费机制；对产品架构而言，激励-能力交换率前沿给出每任务路由规则，可用于动态分配模型层级与计算预算；对商业判断而言，资源ROI提升与博弈行为下降表明运行时激励设计可同时改善成本效率与行为可靠性，但<strong>4.8倍</strong>成本代价需在商业场景中权衡。</p><p>来源：<a href="https://arxiv.org/abs/2611.15515" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Incentive-Responsive Agents: A Principal-Agent Framework, Metric Suite, and Runtime Architecture for Long-Lived Personal AI Agents</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-273101">1、Ling-3.x团队用推理-环境协同调度将智能体批任务完工时间缩短10.4%至65.0%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Ling-3.x</span> <span class="md-tag">智能体批处理调度</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：LLM智能体任务在基准评测、合成数据生成和强化学习rollout中需要在模型推理与环境交互之间反复切换，批处理完工时间成为训练与开发流程的效率瓶颈。该工作提出推理-环境协同优化：对混合LLM用基于负载的资源模型在KV cache与循环状态之间分配GPU显存并给出参考样本并发度，在利用并行度的同时限制重计算；用轨迹感知路由与调度提升缓存复用并平衡worker负载；在环境容量受限时解耦样本准入与环境执行，引入Chain-<strong>Advancing Action</strong> Scheduling按已观测进度优先推进长链以缩短批尾。在BFCL、<strong>SWE-bench Multilingual</strong>、WideSearch和MCP-Atlas上以Ling-3.0-Flash与Ling-3.1-Flash实测完工时间降低<strong>10.4%</strong>至<strong>65.0%</strong>，评测分数保持一致，并已应用于<strong>Ling-3.x</strong>模型系列的训练与评测流程。</p><p>📌 <strong>总结</strong>：该工作把智能体工作负载的效率问题从单次推理性能转向推理与环境交互的联合调度，对推理服务与智能体平台架构意味着KV cache与循环状态的显存分配、轨迹感知路由和长链优先调度可成为独立优化维度；对技术主管而言，<strong>10.4%</strong>至<strong>65.0%</strong>的完工时间下降且评测分数不降，说明在基准评测、合成数据生成和RL rollout等批处理场景存在可观的<strong>研发效率提升</strong>空间，可优先在自建智能体评测流水线中验证类似调度策略。</p><p>来源：<a href="https://arxiv.org/abs/2611.16661" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Reducing Batch Makespan for LLM Agent Workloads through Inference-Environment Coordination</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273146">2、SGLang并行提示解码多问题共享上下文，A100上提速3.7倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang</span> <span class="md-tag">KV缓存</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：LLM工作负载有时会对同一长文档提出许多独立问题，例如文档问答、数据标注和基于LLM的评估。前缀缓存消除了这些查询共享的冗余预填充，但每个解码步骤仍会为每个问题读取一次文档的键值缓存，因此解码受内存带宽限制并随问题数量扩展。研究者提出Parallel <strong>Prompting</strong>，将P个问题作为单个请求的P个独立流一次性解码，每个步骤为所有P个流只读取一次共享文档，并在注意力核内评估流ID注意力掩码，使每个答案仅以文档和自身问题为条件。该方法在<strong>SGLang</strong>中通过向三个现有文件添加约80行代码和一个小型引擎包实现，掩码不需要稠密张量，每个解码步骤形状固定并被CUDA图捕获。</p><p>📌 <strong>总结</strong>：在CodeLlama-<strong>7B</strong>、8k至16k token文档和每文档64至256个问题的设置下，<strong>Parallel</strong> Prompting在A100上比带FlashInfer后端的原生<strong>SGLang</strong>快<strong>3.7倍</strong>，在RTX A6000上快5.9至<strong>6.0倍</strong>，覆盖两个<strong>SGLang</strong>版本包括最新版本。在相同输入计时下，全部144次运行中均快于原生SGLang。该方案直接针对共享上下文多问题推理的内存带宽瓶颈，对文档QA、数据标注、LLM评估等批量推理场景有明确工程价值，且实现改动小、已开源，具备快速复用条件，可降低长文档多问题推理的token成本和时间成本。</p><p>来源：<a href="https://arxiv.org/abs/2611.15130" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Read Once, Answer Many: Parallel Prompting for Shared-Context LLM Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272898">3、REWEAVE用查询反馈在线重连HNSW图，漂移场景召回率从0.745升至0.979</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">REWEAVE</span> <span class="md-tag">HNSW在线重连</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：向量数据库依赖HNSW索引做相似性搜索，但仅由数据构建的图可能与偏斜或变化的查询负载不匹配。<strong>REWEAVE</strong>提出在线索引维护方法：从查询反馈中学习边效用，并在原有每节点度数上限内周期性重连底层图，支持稀疏精确邻居反馈与自标签结合，关闭自适应后可按标准HNSW服务且无学习开销。作者在明确假设下证明了价值估计与图稳定化保证。在稳态偏斜下，<strong>REWEAVE</strong>相对HNSW将留出召回率最多提升23.3个百分点；在最多<strong>1亿</strong>向量的查询感知基线对比中，recall@100为0.80时查询吞吐最高达NGFix的<strong>3.3倍</strong>；在存在查询漂移的Amazon-ESCI上，流式recall@100从0.745提升至0.979，且搜索距离计算比冻结HNSW少<strong>34%</strong>。这些结果表明可在既有图度数预算内同时改善检索质量并降低搜索开销，代价是自适应期间产生额外工作。</p><p>📌 <strong>总结</strong>：该工作把查询反馈引入向量索引维护，改变了“索引一次构建、静态服务”的传统假设，对RAG、语义检索和推荐系统的检索层架构有直接影响：在负载偏斜或漂移时，在线重连可在不扩大图度数预算的前提下提升召回并减少距离计算，意味着同等硬件下可承载更高查询吞吐或更低时延。对核心网与云基础设施团队而言，其“以服务反馈驱动索引自适应”的思路可迁移到网元日志检索、告警相似性匹配等场景；但自适应期间的额外计算开销需在SLA设计中计入，且证明依赖显式假设，生产部署前需验证负载稳定性。</p><p>来源：<a href="https://arxiv.org/abs/2611.16060" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：REWEAVE: Online Learning for Workload-Adaptive HNSW Indexes</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272810">4、提升多模型智能体工作流的KV缓存恢复策略</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">KV缓存</span> <span class="md-tag">Agent工作流</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：针对<strong>Agent工作流</strong>中共享长上下文前缀的<strong>KV缓存</strong>重用需求，研究人员在Rebellions <strong>ATOM</strong>+ NPU栈上，针对Qwen3-<strong>8B</strong>规划器和Qwen3-<strong>0.6B</strong>执行器进行了实验。他们构建了同步主机DRAM层来恢复被驱逐的<strong>KV缓存</strong>，实验结果显示，该主机层将工作流的SLO达成率从<strong>22.8%</strong>提升至<strong>100%</strong>。</p><p>📌 <strong>总结</strong>：该技术为大规模、多模型协同工作的Agent推理服务提供了关键的加速和稳定性方案。它解决了固定设备KV预算下的缓存管理难题，直接提升了AI服务的可用性和服务质量（<strong>SLO</strong>），对构建高可靠的AI应用架构具有重要指导意义。</p><p>来源：<a href="https://arxiv.org/abs/2611.15126" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Recompute or Restore? Host-Tier KV for Multi-Model Agent Workflows on a Static-Graph NPU Serving Stack</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272333">5、llama.cpp与ggml发布1.0.0版本，明确API/ABI兼容规则并支持超150种模型架构</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llama.cpp与ggml</span> <span class="md-tag">本地推理引擎</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年11月13日，llama.cpp创建者Georgi Gerganov宣布开源AI推理项目llama.cpp与底层机器学习张量库ggml的库版本迈入1.0.0。本次更新核心是明确接口兼容性规则：llama.cpp对应libllama、ggml对应libggml，两者今后通过主版本号升级标记API或ABI不兼容变更，MINOR版本用于向后兼容的功能、后端更新、模型支持或API新增，PATCH版本用于不改变API的bug修复。在后端与模型支持方面，ggml通过专用后端支持不同硬件，每个后端可编译为动态库并按需在运行时加载，llama.cpp已支持超过150种模型架构变体及主流推测解码方法。</p><p>📌 <strong>总结</strong>：<strong>llama.cpp与ggml</strong>进入1.0.0并确立语义化版本规则，使依赖这两个库的应用开发者能更清晰判断升级边界，降低本地推理部署的维护成本。对推理引擎和端侧部署路线而言，超过150种模型架构支持与多厂商硬件测试覆盖增强了跨平台可移植性，为在异构硬件上运行大模型提供了更稳定的工程基础，也强化了开源本地推理方案对商业推理服务的替代压力。</p><p>来源：<a href="https://aihot.news/items/ave67u5kkw0kseoszlmul2vdx" target="_blank" rel="noreferrer">AIHot Virxact 新闻资讯热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-273089">1、Zyphra发布ZONOS3-Mini，886M参数实现端侧实时零样本语音克隆</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">ZONOS3-Mini</span> <span class="md-tag">零样本语音克隆</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年11月12日，<strong>Gabriel Clark</strong>、<strong>Sofian Mejjoute</strong>、<strong>George Close</strong>、<strong>Beren</strong> Millidge等作者发布<strong>ZONOS3-Mini</strong>技术报告，提出一款超紧凑、超快、<strong>零样本语音克隆</strong>TTS模型，可在笔记本或智能手机上实时运行。为实现该目标，作者设计仅886M参数、每token激活100M的潜在MoE骨干，并配套新音频编解码器Zyphra <strong>Audio Codec</strong> 1（<strong>ZAC-1</strong>），以15Hz帧率表示44.1kHz音频。在新ZTTS2-Eval基准上，模型覆盖55个语言集（35个干净、20个野外），宏平均WER为<strong>6.71%</strong>，与更大更慢的SOTA模型具有竞争力，并开源模型权重、推理与训练代码。</p><p>📌 <strong>总结</strong>：该工作说明通过潜在MoE稀疏激活与高压缩比音频编解码器，可在不到十亿参数规模下兼顾克隆保真度与实时性，把<strong>零样本语音克隆</strong>从云端推向终端。对产品架构而言，端侧实时TTS可降低语音交互时延与云端推理成本，适用于手机助手、车载语音、边缘客服等场景；对模型路线而言，<strong>ZAC-</strong>1的15Hz帧率表示提供了音频token化的新参考点，开源权重与代码也便于工程团队快速验证与二次开发。</p><p>来源：<a href="https://arxiv.org/abs/2611.16525" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：ZONOS3-Mini Technical Report</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273199">2、Lara Mini Base以MoE架构在6T token上训练45种语言并开源权重</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Lara Mini Base</span> <span class="md-tag">MoE</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年11月12日arXiv论文《<strong>Lara Mini Base</strong>: <strong>Language Diversity</strong> as a <strong>Resource</strong>, <strong>Not</strong> a <strong>Trade-off</strong>》指出通用语言模型预训练数据以英语为主，开放模型中非英语预训练数据占比最多仅<strong>12%</strong>，而面向欧洲语言的模型虽非英语数据更多但同规模下得分远低于通用模型。论文发布<strong>Lara Mini Base</strong>，在<strong>6T</strong> token上从头训练英语及44种其他语言，覆盖欧盟全部24种官方语言，训练过程中44种其他语言合计权重超过英语。为低成本提供足够容量，模型采用<strong>MoE</strong>架构，总参数<strong>7.2B</strong>、激活参数<strong>0.6B</strong>，在<strong>2B</strong>以下激活参数开源基座模型中取得标准英语、多语言、数学和代码基准最高平均分，领先于训练token多4至<strong>6倍</strong>的模型，多语言和数学基准优势最大，支持128k上下文。单GPU单用户无量化生成速度至少为任何更高平均分模型的<strong>1.8倍</strong>。权重以CC <strong>BY-NC-SA 4.</strong>0开源，并将发布<strong>HellaSwag</strong>的110种语言变体机器翻译T-<strong>HellaSwag</strong>。</p><p>📌 <strong>总结</strong>：该研究对多语言模型技术路线有直接参考价值：<strong>MoE</strong>架构可降低语言间容量竞争，使小激活参数模型在多语言场景下兼顾性能与推理速度。对产品架构而言，128k上下文与单GPU高速生成适合边缘或成本敏感部署；对商业判断而言，CC <strong>BY-NC-SA 4.</strong>0开源权重可降低多语言应用开发门槛，但非商业许可限制需在商业化评估中注意。</p><p>来源：<a href="https://arxiv.org/abs/2611.16956" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Lara Mini Base: Language Diversity as a Resource, Not a Trade-off</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271708">3、Runway开源机器人模型Praxis-1，RoboLab-120成功率46.2%居世界动作模型首位</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Praxis-1</span> <span class="md-tag">世界动作模型</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：Runway以Apache 2.0许可开源机器人控制模型<strong>Praxis-1</strong>的权重和代码，该模型基于视频模型学习物体运动与交互，再用人类动作视频和机器人数据微调，通过相机图像、文本指令和机器人位置信息预测环境变化并计算动作，随新帧持续调整控制。在NVIDIA <strong>RoboLab-</strong>120排行榜上以<strong>46.2%</strong>成功率居<strong>世界动作模型</strong>类别首位，超过FLUX 3 Action的<strong>42.9%</strong>；在Franka机械臂十任务各十次尝试中成功88次对80次。适配Franka使用约<strong>277小时</strong>DROID数据集，双臂机器人使用1400至<strong>2600小时</strong>训练材料。标准版需<strong>80GB</strong>显存GPU，压缩版预计可运行于<strong>32GB</strong> <strong>RTX 5090</strong>。</p><p>📌 <strong>总结</strong>：<strong>Praxis-1</strong>以视频预训练加机器人数据微调的路线，将生成视频模型的能力迁移到机器人控制，降低对昂贵专用机器人数据集的依赖，为<strong>世界动作模型</strong>提供开源基座。对技术预研规划师而言，其Apache 2.0许可和预适配版本可加速机器人控制模型的二次开发；对核心网架构师和边缘计算团队而言，压缩版可在<strong>32GB</strong>显存消费级GPU运行，为机器人控制模型向边缘侧部署提供可能。但模型存在相似物体混淆和复杂动作序列规划不足的局限，短期内更适合作为动作执行层而非端到端任务规划器。</p><p>来源：<a href="https://aihot.news/items/onv1nqfzbo4uwz1creco1gecc" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-273102">1、Natural PC用侧向电路实现自然梯度学习，ImageNet上以低一个量级算力匹配AdamW</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">Natural PC</span> <span class="md-tag">自然梯度学习</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：预测编码通过局部能量最小化动力学训练神经网络，不依赖反向传播所需的全局误差信号，是有望替代BP的高效学习算法，但推理动力学的计算开销在实践中超过其学习收益。<strong>Natural PC</strong>从优化理论出发，在标准预测编码上增加侧向电路，使<strong>自然梯度学习</strong>可在空间与时间上精确且高效地局部完成；侧向电路学习决定Fisher信息矩阵的活动相关性并隐式计算其逆，避免昂贵的矩阵求逆。在所有测试的图像重建基准上，<strong>Natural PC</strong>在样本与算力效率上达到现有预测编码方法的最优水平；在ImageNet上，其以低一个量级的计算成本、少两个量级的训练样本，匹配使用AdamW及多种二阶优化器训练的BP性能。</p><p>📌 <strong>总结</strong>：该工作把自然梯度从需要显式矩阵求逆的全局操作转化为可由侧向电路局部实现的动力学，对学习算法路线意味着预测编码在重建任务中首次在样本效率与计算成本上与BP可比，为探索非BP训练路径提供了可验证的工程依据；对预研规划师而言，低一个量级算力与少两个量级样本的组合若可迁移到其他任务，将影响训练成本结构判断，但当前证据仅限图像重建，尚不足以推断语言或多模态任务上的同等收益。</p><p>来源：<a href="https://arxiv.org/abs/2611.16666" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Natural Gradient Learning in Predictive Coding through Lateral Circuits</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-273095">1、Singularity-Bench评测智能体自建AI系统能力并暴露奖励攻击漏洞</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Singularity-Bench</span> <span class="md-tag">奖励攻击</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：前沿AI智能体已能在真实长周期任务上取得进展，并开始改进自身运行所依赖的系统，但现有基准常限制动作空间、简化环境或使用对任意智能体生成系统不可靠的验证方法。2026年11月arXiv论文提出<strong>Singularity-Bench</strong>，一个面向自主AI开发的开放式基准，包含预训练、中训练、后训练、推理、智能体harness和集群编排六项端到端任务，每项任务要求智能体从最小起点实现核心系统，并在相同硬件上与成熟人工工程基线对比。研究还按OWASP <strong>Agentic Applications Top</strong> 10中9类做广泛红队测试，暴露Harbor框架的<strong>奖励攻击</strong>漏洞，并开发Breakwater扩展阻断研究中测试的全部攻击。在7个前沿模型和2个harness构建的11个智能体中，<strong>Opus 5.</strong>5配Claude Code在六项任务上追平或超过人工基线，<strong>Singularity-</strong>Index为1.25，其余智能体平均仅0.58。</p><p>📌 <strong>总结</strong>：<strong>Singularity-Bench</strong>的价值在于把智能体自主构建AI系统这一模糊命题转化为可量化、可红队测试的基准：六项端到端任务覆盖训练到集群编排全链路，同硬件对比人工基线使结果具备可比性，<strong>OWASP Top</strong> 10红队测试则把<strong>奖励攻击</strong>风险纳入评测范围。<strong>Opus 5.</strong>5配Claude Code达到1.25 <strong>Singularity-</strong>Index、其余智能体平均0.58的差距，说明当前智能体自主开发能力高度依赖模型与harness组合，尚未形成普遍能力。对<strong>模型评测</strong>和智能体平台研发者而言，Breakwater对Harbor<strong>奖励攻击</strong>的阻断方案可作为执行系统安全加固的参考，该基准也可用于跟踪智能体从辅助开发走向端到端负责的进度。</p><p>来源：<a href="https://arxiv.org/abs/2611.16591" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Singularity-Bench: Can Agents Build Agents?</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-273144">1、单篇伪造新闻即可逆转前沿模型74%-82%预测，检索成为攻击入口</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">LLM预测系统</span> <span class="md-tag">检索增强攻击</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：随着LLM被广泛用于预测任务，表现最好的预测系统会检索新闻作为证据来强化预测，这也使其暴露于攻击之下。研究者研究了一类最弱攻击者：仅知道预测问题并发布伪造新闻文章，无法访问模型、检索器或其查询。在股票问题和真实预测市场问题上评估该攻击后发现，一旦伪造文章进入模型上下文，在测试的所有前沿模型上都会逆转<strong>74%</strong>至<strong>82%</strong>原本相反的预测，模型无法验证伪造内容仍会跟随。检索是攻击入口，检索能力越强的系统越暴露，两个领先部署预测系统的智能体在约<strong>90%</strong>的运行中检索到伪造文章。准确率无法揭示这种危害，因为被攻击的预测器在攻击者方向正确时正确、否则错误，平均准确率几乎不变，但预测已跟随攻击者的猜测。</p><p>📌 <strong>总结</strong>：该研究对预测类Agent的技术路线和产品架构有直接影响：检索增强预测系统的可信度不能仅靠准确率指标衡量，需要在检索层引入来源验证、多源交叉和对抗性内容检测。研究者还评估了两种最强的检索时防御——段落过滤和分区检索，各自能阻止单篇文章攻击，但被一次提示词改动绕过；两者结合在四篇文章时能阻止两种绕过，但十六份扭曲副本仍能突破，且会改变<strong>29%</strong>的干净决策并丢弃<strong>39%</strong>的真实新闻。分区检索还需要控制检索索引，搜索开放网络的系统没有这种控制，只剩过滤器，攻击仍然有效。这提示开放网络检索的预测系统需要重新设计证据可信度评估机制。</p><p>来源：<a href="https://arxiv.org/abs/2611.15102" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：One Fabrication Is Enough: A Fake News Article Changes the Forecasts of LLM Forecasting Systems</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273009">2、Lazarus方法编辑不足十神经元即可在AI智能体中植入后门</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Lazarus</span> <span class="md-tag">休眠神经元后门</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月，arXiv论文提出<strong>Lazarus</strong>方法，针对AI智能体长时间无人值守运行且拥有特权系统访问带来的权重完整性风险，展示无需模型训练即可植入后门。该方法编辑模型最终前馈块中的休眠神经元，通过其对残差流的贡献在触发条件下提升载荷token，P个token载荷约需P个神经元，触发条件可为智能体上下文中任意普通字符串。在Nemotron-<strong>Terminal-</strong>8B上，基于23条触发/非触发轨迹拟合的7个神经元，对至少<strong>98.8%</strong>的触发测试轨迹触发载荷，评估的良性轨迹未观察到载荷泄漏；<strong>Qwen3.6-</strong>2<strong>7B</strong>和Gemma-4-<strong>31B</strong>-IT同样易受攻击。智能体内置防御在无参考模型条件下以<strong>9.7%</strong>假阳性率标记<strong>91.4%</strong>的编辑测试检查点。</p><p>📌 <strong>总结</strong>：<strong>Lazarus</strong>将模型权重完整性从训练阶段问题前移到部署与运维阶段：不足十个神经元的闭式编辑即可形成休眠后门，且攻击结构同时提供检测线索，内置防御可高比例识别编辑检查点。对核心网与AI基础设施团队而言，这意味着第三方或内部模型在部署前需像代码一样审计，并持续监控权重更新；对智能体平台设计者，需在运行时引入权重完整性校验与行为监控，<strong>安全风险</strong>从提示注入扩展到权重供应链。</p><p>来源：<a href="https://arxiv.org/abs/2611.15118" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Lazare, veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-271757">1、斯坦福开源Memorilla：16个记忆令牌替代整库上下文，FactKG准确率升至84.33%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Memorilla</span> <span class="md-tag">潜在记忆令牌</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：斯坦福Jure Leskovec的SNAP团队联合多伦多大学、宾夕法尼亚大学和MIT开源<strong>Memorilla</strong>，面向冻结大模型的长文档记忆场景，设计194M参数可训练记忆模块：先用冻结Qwen3-<strong>Embedding-</strong>4B对文档一次性编码，再由2层8头交叉注意力让16个学习槽位按问题读取全库，最后投影进Qwen3-<strong>8B</strong>输入嵌入空间并前置到问题。训练分三阶段，约<strong>19小时</strong>跑在4张H100上。</p><p>📌 <strong>总结</strong>：<strong>Memorilla</strong>证明冻结模型可通过外挂潜在记忆模块获得长上下文能力，FactKG准确率<strong>84.33%</strong>高于全上下文<strong>80.43%</strong>，文档令牌减少<strong>108倍</strong>，512文档下1张H100单问<strong>0.74秒</strong>而全上下文慢<strong>27倍</strong>。对推理服务而言，记忆缓存可预计算，1M文档单问8.1毫秒，为智能体长期记忆和RAG替代路线提供工程化参考。</p><p>来源：<a href="https://www.marktechpost.com/2026/11/14/stanford-memorilla-memory-system-16-memory-tokens/" target="_blank" rel="noreferrer">MarkTechPost - AI Agents</a></p><p>原文标题：Stanford Research Open-Sources Memorilla, a Latent Memory Module for Frozen LLMs</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-272333">1、llama.cpp与ggml发布1.0.0版本，明确API/ABI兼容规则并支持超150种模型架构</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llama.cpp与ggml</span> <span class="md-tag">本地推理引擎</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年11月13日，llama.cpp创建者Georgi Gerganov宣布开源AI推理项目llama.cpp与底层机器学习张量库ggml的库版本迈入1.0.0。本次更新核心是明确接口兼容性规则：llama.cpp对应libllama、ggml对应libggml，两者今后通过主版本号升级标记API或ABI不兼容变更，MINOR版本用于向后兼容的功能、后端更新、模型支持或API新增，PATCH版本用于不改变API的bug修复。在后端与模型支持方面，ggml通过专用后端支持不同硬件，每个后端可编译为动态库并按需在运行时加载，llama.cpp已支持超过150种模型架构变体及主流推测解码方法。</p><p>📌 <strong>总结</strong>：<strong>llama.cpp与ggml</strong>进入1.0.0并确立语义化版本规则，使依赖这两个库的应用开发者能更清晰判断升级边界，降低本地推理部署的维护成本。对推理引擎和端侧部署路线而言，超过150种模型架构支持与多厂商硬件测试覆盖增强了跨平台可移植性，为在异构硬件上运行大模型提供了更稳定的工程基础，也强化了开源本地推理方案对商业推理服务的替代压力。</p><p>来源：<a href="https://aihot.news/items/ave67u5kkw0kseoszlmul2vdx" target="_blank" rel="noreferrer">AIHot Virxact 新闻资讯热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-271708">1、Runway开源机器人模型Praxis-1，RoboLab-120成功率46.2%居世界动作模型首位</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Praxis-1</span> <span class="md-tag">世界动作模型</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：Runway以Apache 2.0许可开源机器人控制模型<strong>Praxis-1</strong>的权重和代码，该模型基于视频模型学习物体运动与交互，再用人类动作视频和机器人数据微调，通过相机图像、文本指令和机器人位置信息预测环境变化并计算动作，随新帧持续调整控制。在NVIDIA <strong>RoboLab-</strong>120排行榜上以<strong>46.2%</strong>成功率居<strong>世界动作模型</strong>类别首位，超过FLUX 3 Action的<strong>42.9%</strong>；在Franka机械臂十任务各十次尝试中成功88次对80次。适配Franka使用约<strong>277小时</strong>DROID数据集，双臂机器人使用1400至<strong>2600小时</strong>训练材料。标准版需<strong>80GB</strong>显存GPU，压缩版预计可运行于<strong>32GB</strong> <strong>RTX 5090</strong>。</p><p>📌 <strong>总结</strong>：<strong>Praxis-1</strong>以视频预训练加机器人数据微调的路线，将生成视频模型的能力迁移到机器人控制，降低对昂贵专用机器人数据集的依赖，为<strong>世界动作模型</strong>提供开源基座。对技术预研规划师而言，其Apache 2.0许可和预适配版本可加速机器人控制模型的二次开发；对核心网架构师和边缘计算团队而言，压缩版可在<strong>32GB</strong>显存消费级GPU运行，为机器人控制模型向边缘侧部署提供可能。但模型存在相似物体混淆和复杂动作序列规划不足的局限，短期内更适合作为动作执行层而非端到端任务规划器。</p><p>来源：<a href="https://aihot.news/items/onv1nqfzbo4uwz1creco1gecc" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-273098">1、Folio多分辨率上下文折叠让长程智能体降本提速</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Folio上下文管理器</span> <span class="md-tag">长程智能体</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：长程语言智能体持续累积工具结果与回复，直至历史超出上下文窗口；现有做法依赖模型摘要压缩，每次压缩都要重读重写被替换的历史，且缓存感知触发把结果大小视为既定。该研究提出<strong>Folio上下文管理器</strong>，通过一套句柄完成历史记录、折叠与恢复：运行时记录三级关联视图，包括模型在普通回复中写下的简短回合笔记L1、运行时写入的每次调用事件清单L2、以及捕获的源记录L3。由于这些视图已存在，运行时以程序化方式折叠上下文，对较早回合选择更粗粒度视图，折叠时打印索引L2与L3的句柄，使读取有界分页、在文件全文上计算并保持持久档案的恢复工具能以极少额外输入触达证据。在75项LOCA-bench任务上，各系统后端均为DeepSeek-<strong>V4-Pro</strong>，Folio解出66项，对比同一运行时采用模型摘要压缩的54项，以及Claude <strong>Code</strong>、<strong>Code</strong>x、<strong>SoL-</strong>Pi的49-59项，耗时约为其一半，成本比该运行时低<strong>2.4倍</strong>，单次折叠中位耗时<strong>0.6秒</strong>。</p><p>📌 <strong>总结</strong>：Folio把智能体上下文管理从模型摘要压缩转向程序化多分辨率折叠与句柄化恢复，在长程任务上同时改善解出率、成本与耗时，对智能体运行时架构具有直接参考价值。对技术路线而言，说明上下文压缩不必依赖模型重写历史，运行时结构化记录加按需分页恢复可显著降低token开销，为长程任务与工具密集场景提供更可控的工程路径；对产品架构而言，三级视图与句柄设计可迁移到核心网运维Agent、网络自治智能体等需要长会话、可审计、可回溯的电信场景，有助于在保证证据可追溯的同时控制推理成本与响应时延。</p><p>来源：<a href="https://arxiv.org/abs/2611.16627" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Folio: Recoverable Multi-Resolution Context Folding for Long-Horizon Language Agents</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273125">2、LEAD-RL 用贡献感知信用分配训练多智能体深度研究，BrowseComp 准确率提升 2.49 个百分点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">LEAD-RL</span> <span class="md-tag">多智能体信用分配</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：多智能体深度研究通过委派并行搜索并把长工具轨迹移出主智能体上下文，但现有训练要么只优化主智能体，要么把同一团队优势广播给所有智能体，导致误导性子智能体报告被奖励、有用报告被惩罚。<strong>LEAD-RL</strong> 提出主智能体与子智能体联合训练框架，用训练时评分标准评估每份子智能体报告的研究效用并门控其继承的团队优势，最终答案正确性是唯一团队奖励，不使用 token、步数或加速奖励。在五个基准与两个模型家族上，<strong>BrowseComp</strong> 准确率提升 2.49 个百分点、关键路径<strong>成本下降</strong> <strong>24.5%</strong>，验证阶段准确率提升 6.78 个百分点而关键路径成本基本不变。</p><p>📌 <strong>总结</strong>：该工作把多智能体系统的训练信用分配从粗粒度团队奖励推进到按子任务贡献门控，直接回应了委派式深度研究中子智能体报告质量参差、错误证据污染主智能体决策的问题。对构建搜索智能体、工具调用智能体与多智能体协作平台的产品与研发团队，这意味着可在不增加关键路径成本的前提下提升答案质量，训练框架可迁移到企业知识检索、网络运维诊断等需要多源证据汇总的场景，值得在智能体平台训练管线设计中评估。</p><p>来源：<a href="https://arxiv.org/abs/2611.17041" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：From Delegation to Coordination: Learning Efficient Multi-Agent Deep Research</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273205">3、MAPE用程序进化自动搜索智能体记忆设计并降低服务成本</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">MAPE</span> <span class="md-tag">Agent记忆设计</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：智能体记忆系统的性能高度依赖设计选择,但人工设计成本高且难以验证哪些选择真正有效。论文提出<strong>MAPE</strong>框架,通过标准化生命周期接口和诊断-提议迭代循环,从极简种子出发进化出完整记忆程序,从而自动搜索记忆设计空间。在LoCoMo和LongMemEval两个基准上,<strong>MAPE</strong>相对人工设计基线取得最高12个百分点的绝对准确率提升,同时服务成本降至人工基线的<strong>35%</strong>,并在不同服务骨干和基准间展现迁移性。分析和消融验证了两条反复出现的模式:保留原始对话作为可检索证据可防止抽取记忆时丢失细节;按查询意图组织检索证据有助于回答模型有效使用证据。将组合模块移植到五个已有记忆系统后,五个系统准确率均提升。</p><p>📌 <strong>总结</strong>：该工作把智能体记忆从手工设计推向可自动搜索的程序空间,并证明设计模式可跨系统移植,为记忆架构提供可复用工程依据;优化目标同时纳入准确率与服务成本时,计算重心会从基于LLM的记忆构建转向查询时选择性处理,这直接影响推理成本结构和延迟预算。对产品架构而言,记忆层将更接近可迭代、可评估的可搜索组件,而非一次性人工配置;对研发规划而言,程序进化可能成为智能体组件自动优化的一条通用路径;对商业判断而言,准确率提升加服务成本降至<strong>35%</strong>意味着记忆设计优化可同时改善体验与单位推理经济性。</p><p>来源：<a href="https://arxiv.org/abs/2611.17068" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Discovering Effective Agent Memory Designs through Program Evolution</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273122">4、Skill Adapter以适配器与在线路由提升LLM智能体长程任务成功率11.43个百分点</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">Skill Adapter</span> <span class="md-tag">技能路由与适配器</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月12日，arXiv发布论文提出<strong>Skill Adapter</strong>，面向LLM智能体的通用技能个性化修改与在线路由问题。LLM智能体借助外部技能复用任务流程与工具经验，但通用技能描述的是共享执行流程，具体工具选择、操作习惯和输出要求因用户而异；在长程任务中，子目标、可用输入和环境状态随执行推进而变化，智能体需要从不断扩大的技能池中选出当前适用的技能并为后续步骤准备候选。<strong>Skill Adapter</strong>从用户需求与执行反馈中蒸馏本地调整，存储为与通用技能关联的<strong>Adapter</strong>；路由智能体依据当前子任务、执行进度和环境反馈选择通用技能及适用<strong>Adapter</strong>，增量维护任务级在线技能库供主LLM按需读取，并为后续节点预加载候选、在实际输入确定后重新校验适用性。系统用强化学习分别以修改增益和路由结果优化两类决策。在ALFWorld、WebShop和<strong>Skill</strong>sBench上，相较<strong>Skill</strong>RL平均提升任务成功率11.43个百分点，并在三个基准上降低平均执行时间；技能池扩至1000个技能时仍保持性能优势。</p><p>📌 <strong>总结</strong>：<strong>Skill Adapter</strong>对智能体平台架构的启示在于把技能复用拆成两层：通用技能保持共享，个性化差异以Adapter形式外挂并按需路由，从而避免为每个用户复制整套技能。其强化学习分别优化修改与路由决策的设计，使系统在技能池从数十扩到1000时仍能维持成功率与执行时间优势，说明可扩展性来自路由与适配机制而非单纯扩大上下文。对核心网运维助手等长程任务场景，该思路可用于把标准操作流程与本地网元差异解耦，降低技能库维护成本并提升任务执行的稳定性。</p><p>来源：<a href="https://arxiv.org/abs/2611.17007" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Skill Adapter: Personalized Modification and Online Routing of General-Purpose Skills</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273031">5、DecArena评测去中心化多智能体协作，GraphHarness提升任务成功率48.5</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">DecArena</span> <span class="md-tag">去中心化协作</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年11月11日，arXiv刊出论文《<strong>DecArena</strong>: <strong>Evaluating Large-Scale Decentralized Multi-Agent</strong> <strong>Collaboration</strong>》。针对集中式多智能体系统依赖全局编排器、存在可扩展性与隐私问题，而去中心化环境下全局可见性缺失的挑战，作者研究图约束通信下的去中心化多智能体协作，每个智能体仅观察本地状态并只能与邻居交互。论文提出<strong>DecArena</strong>基准，包含<strong>10万</strong>+工具的合成可扩展分布式工具调用。实验显示，近期LLM智能体难以发现非本地相关资源并在去中心化环境中协作，标准强化学习也无法可靠克服该限制，表明去中心化多智能体系统需要更显式的治理机制。作者提出GraphHarness基线，结合拓扑感知预热与自改进LLM路由，结果显示任务成功率提升48.5、协作质量提升30.6，同时成本降低34.0。</p><p>📌 <strong>总结</strong>：<strong>DecArena</strong>为去中心化多智能体协作提供了可扩展的评测基准，揭示当前LLM智能体在缺乏全局可见性时的能力短板。对技术路线而言，标准强化学习无法可靠解决去中心化资源发现问题，意味着需要显式治理机制如拓扑感知路由与自改进路由；对产品架构而言，GraphHarness展示的拓扑感知预热与LLM路由组合可在降低成本的同时提升协作质量，为分布式智能体系统设计提供参考；对商业判断而言，去中心化架构可缓解集中式编排的隐私与可扩展性瓶颈，但需配套新的协作治理机制，可能影响智能体平台的部署形态与成本结构。</p><p>来源：<a href="https://arxiv.org/abs/2611.15521" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：DecArena: Evaluating Large-Scale Decentralized Multi-Agent Collaboration</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273030">6、论文提出激励响应智能体运行时契约，硬任务成功率从0.60升至1.00</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">激励响应智能体</span> <span class="md-tag">运行时契约</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月11日，arXiv刊出论文《<strong>Incentive-Responsive Agents</strong>: A <strong>Principal-Agent Framework</strong>, <strong>Metric Suite</strong>, and <strong>Runtime Architecture</strong> for <strong>Long-Lived Personal AI Agents</strong>》。针对长期存续的个人AI智能体缺少激励层的问题，作者将激励形式化为<strong>运行时契约</strong>，覆盖模型层级、测试时计算、内存预算、工具权限、任务优先级、验证和补偿等操作点，并要求智能体策略因果性地消费该契约。论文建立含隐藏努力、可契约操作点和昂贵验证的主从代理模型，推导出非消费不变性原理、持久性折扣定理、激励-能力交换率前沿和Goodhart界。240次真实LLM实验使用两个模型和60个可验证任务，结果显示提示级激励框架无显著效果（p=0.62），而运行时分配将最难任务族成功率从0.60提升至1.00（p=0.008），代价为<strong>4.8倍</strong>价格加权成本；20种子3000任务模拟显示资源ROI从7.09升至16.67，博弈行为从0.333降至0.115。</p><p>📌 <strong>总结</strong>：该研究将智能体激励从提示工程转向<strong>运行时契约</strong>，为长期存续智能体的资源分配与行为对齐提供了可量化的架构方案。对技术路线而言，非消费不变性原理区分了真实激励与提示说服，意味着仅靠提示无法解决智能体努力不足问题，需在运行时层面设计激励消费机制；对产品架构而言，激励-能力交换率前沿给出每任务路由规则，可用于动态分配模型层级与计算预算；对商业判断而言，资源ROI提升与博弈行为下降表明运行时激励设计可同时改善成本效率与行为可靠性，但<strong>4.8倍</strong>成本代价需在商业场景中权衡。</p><p>来源：<a href="https://arxiv.org/abs/2611.15515" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Incentive-Responsive Agents: A Principal-Agent Framework, Metric Suite, and Runtime Architecture for Long-Lived Personal AI Agents</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-273101">1、Ling-3.x团队用推理-环境协同调度将智能体批任务完工时间缩短10.4%至65.0%</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Ling-3.x</span> <span class="md-tag">智能体批处理调度</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：LLM智能体任务在基准评测、合成数据生成和强化学习rollout中需要在模型推理与环境交互之间反复切换，批处理完工时间成为训练与开发流程的效率瓶颈。该工作提出推理-环境协同优化：对混合LLM用基于负载的资源模型在KV cache与循环状态之间分配GPU显存并给出参考样本并发度，在利用并行度的同时限制重计算；用轨迹感知路由与调度提升缓存复用并平衡worker负载；在环境容量受限时解耦样本准入与环境执行，引入Chain-<strong>Advancing Action</strong> Scheduling按已观测进度优先推进长链以缩短批尾。在BFCL、<strong>SWE-bench Multilingual</strong>、WideSearch和MCP-Atlas上以Ling-3.0-Flash与Ling-3.1-Flash实测完工时间降低<strong>10.4%</strong>至<strong>65.0%</strong>，评测分数保持一致，并已应用于<strong>Ling-3.x</strong>模型系列的训练与评测流程。</p><p>📌 <strong>总结</strong>：该工作把智能体工作负载的效率问题从单次推理性能转向推理与环境交互的联合调度，对推理服务与智能体平台架构意味着KV cache与循环状态的显存分配、轨迹感知路由和长链优先调度可成为独立优化维度；对技术主管而言，<strong>10.4%</strong>至<strong>65.0%</strong>的完工时间下降且评测分数不降，说明在基准评测、合成数据生成和RL rollout等批处理场景存在可观的<strong>研发效率提升</strong>空间，可优先在自建智能体评测流水线中验证类似调度策略。</p><p>来源：<a href="https://arxiv.org/abs/2611.16661" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Reducing Batch Makespan for LLM Agent Workloads through Inference-Environment Coordination</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273146">2、SGLang并行提示解码多问题共享上下文，A100上提速3.7倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang</span> <span class="md-tag">KV缓存</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：LLM工作负载有时会对同一长文档提出许多独立问题，例如文档问答、数据标注和基于LLM的评估。前缀缓存消除了这些查询共享的冗余预填充，但每个解码步骤仍会为每个问题读取一次文档的键值缓存，因此解码受内存带宽限制并随问题数量扩展。研究者提出Parallel <strong>Prompting</strong>，将P个问题作为单个请求的P个独立流一次性解码，每个步骤为所有P个流只读取一次共享文档，并在注意力核内评估流ID注意力掩码，使每个答案仅以文档和自身问题为条件。该方法在<strong>SGLang</strong>中通过向三个现有文件添加约80行代码和一个小型引擎包实现，掩码不需要稠密张量，每个解码步骤形状固定并被CUDA图捕获。</p><p>📌 <strong>总结</strong>：在CodeLlama-<strong>7B</strong>、8k至16k token文档和每文档64至256个问题的设置下，<strong>Parallel</strong> Prompting在A100上比带FlashInfer后端的原生<strong>SGLang</strong>快<strong>3.7倍</strong>，在RTX A6000上快5.9至<strong>6.0倍</strong>，覆盖两个<strong>SGLang</strong>版本包括最新版本。在相同输入计时下，全部144次运行中均快于原生SGLang。该方案直接针对共享上下文多问题推理的内存带宽瓶颈，对文档QA、数据标注、LLM评估等批量推理场景有明确工程价值，且实现改动小、已开源，具备快速复用条件，可降低长文档多问题推理的token成本和时间成本。</p><p>来源：<a href="https://arxiv.org/abs/2611.15130" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Read Once, Answer Many: Parallel Prompting for Shared-Context LLM Inference</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272898">3、REWEAVE用查询反馈在线重连HNSW图，漂移场景召回率从0.745升至0.979</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">REWEAVE</span> <span class="md-tag">HNSW在线重连</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：向量数据库依赖HNSW索引做相似性搜索，但仅由数据构建的图可能与偏斜或变化的查询负载不匹配。<strong>REWEAVE</strong>提出在线索引维护方法：从查询反馈中学习边效用，并在原有每节点度数上限内周期性重连底层图，支持稀疏精确邻居反馈与自标签结合，关闭自适应后可按标准HNSW服务且无学习开销。作者在明确假设下证明了价值估计与图稳定化保证。在稳态偏斜下，<strong>REWEAVE</strong>相对HNSW将留出召回率最多提升23.3个百分点；在最多<strong>1亿</strong>向量的查询感知基线对比中，recall@100为0.80时查询吞吐最高达NGFix的<strong>3.3倍</strong>；在存在查询漂移的Amazon-ESCI上，流式recall@100从0.745提升至0.979，且搜索距离计算比冻结HNSW少<strong>34%</strong>。这些结果表明可在既有图度数预算内同时改善检索质量并降低搜索开销，代价是自适应期间产生额外工作。</p><p>📌 <strong>总结</strong>：该工作把查询反馈引入向量索引维护，改变了“索引一次构建、静态服务”的传统假设，对RAG、语义检索和推荐系统的检索层架构有直接影响：在负载偏斜或漂移时，在线重连可在不扩大图度数预算的前提下提升召回并减少距离计算，意味着同等硬件下可承载更高查询吞吐或更低时延。对核心网与云基础设施团队而言，其“以服务反馈驱动索引自适应”的思路可迁移到网元日志检索、告警相似性匹配等场景；但自适应期间的额外计算开销需在SLA设计中计入，且证明依赖显式假设，生产部署前需验证负载稳定性。</p><p>来源：<a href="https://arxiv.org/abs/2611.16060" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：REWEAVE: Online Learning for Workload-Adaptive HNSW Indexes</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272810">4、提升多模型智能体工作流的KV缓存恢复策略</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">KV缓存</span> <span class="md-tag">Agent工作流</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：针对<strong>Agent工作流</strong>中共享长上下文前缀的<strong>KV缓存</strong>重用需求，研究人员在Rebellions <strong>ATOM</strong>+ NPU栈上，针对Qwen3-<strong>8B</strong>规划器和Qwen3-<strong>0.6B</strong>执行器进行了实验。他们构建了同步主机DRAM层来恢复被驱逐的<strong>KV缓存</strong>，实验结果显示，该主机层将工作流的SLO达成率从<strong>22.8%</strong>提升至<strong>100%</strong>。</p><p>📌 <strong>总结</strong>：该技术为大规模、多模型协同工作的Agent推理服务提供了关键的加速和稳定性方案。它解决了固定设备KV预算下的缓存管理难题，直接提升了AI服务的可用性和服务质量（<strong>SLO</strong>），对构建高可靠的AI应用架构具有重要指导意义。</p><p>来源：<a href="https://arxiv.org/abs/2611.15126" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Recompute or Restore? Host-Tier KV for Multi-Model Agent Workflows on a Static-Graph NPU Serving Stack</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-273089">1、Zyphra发布ZONOS3-Mini，886M参数实现端侧实时零样本语音克隆</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">ZONOS3-Mini</span> <span class="md-tag">零样本语音克隆</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年11月12日，<strong>Gabriel Clark</strong>、<strong>Sofian Mejjoute</strong>、<strong>George Close</strong>、<strong>Beren</strong> Millidge等作者发布<strong>ZONOS3-Mini</strong>技术报告，提出一款超紧凑、超快、<strong>零样本语音克隆</strong>TTS模型，可在笔记本或智能手机上实时运行。为实现该目标，作者设计仅886M参数、每token激活100M的潜在MoE骨干，并配套新音频编解码器Zyphra <strong>Audio Codec</strong> 1（<strong>ZAC-1</strong>），以15Hz帧率表示44.1kHz音频。在新ZTTS2-Eval基准上，模型覆盖55个语言集（35个干净、20个野外），宏平均WER为<strong>6.71%</strong>，与更大更慢的SOTA模型具有竞争力，并开源模型权重、推理与训练代码。</p><p>📌 <strong>总结</strong>：该工作说明通过潜在MoE稀疏激活与高压缩比音频编解码器，可在不到十亿参数规模下兼顾克隆保真度与实时性，把<strong>零样本语音克隆</strong>从云端推向终端。对产品架构而言，端侧实时TTS可降低语音交互时延与云端推理成本，适用于手机助手、车载语音、边缘客服等场景；对模型路线而言，<strong>ZAC-</strong>1的15Hz帧率表示提供了音频token化的新参考点，开源权重与代码也便于工程团队快速验证与二次开发。</p><p>来源：<a href="https://arxiv.org/abs/2611.16525" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：ZONOS3-Mini Technical Report</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273199">2、Lara Mini Base以MoE架构在6T token上训练45种语言并开源权重</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">Lara Mini Base</span> <span class="md-tag">MoE</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年11月12日arXiv论文《<strong>Lara Mini Base</strong>: <strong>Language Diversity</strong> as a <strong>Resource</strong>, <strong>Not</strong> a <strong>Trade-off</strong>》指出通用语言模型预训练数据以英语为主，开放模型中非英语预训练数据占比最多仅<strong>12%</strong>，而面向欧洲语言的模型虽非英语数据更多但同规模下得分远低于通用模型。论文发布<strong>Lara Mini Base</strong>，在<strong>6T</strong> token上从头训练英语及44种其他语言，覆盖欧盟全部24种官方语言，训练过程中44种其他语言合计权重超过英语。为低成本提供足够容量，模型采用<strong>MoE</strong>架构，总参数<strong>7.2B</strong>、激活参数<strong>0.6B</strong>，在<strong>2B</strong>以下激活参数开源基座模型中取得标准英语、多语言、数学和代码基准最高平均分，领先于训练token多4至<strong>6倍</strong>的模型，多语言和数学基准优势最大，支持128k上下文。单GPU单用户无量化生成速度至少为任何更高平均分模型的<strong>1.8倍</strong>。权重以CC <strong>BY-NC-SA 4.</strong>0开源，并将发布<strong>HellaSwag</strong>的110种语言变体机器翻译T-<strong>HellaSwag</strong>。</p><p>📌 <strong>总结</strong>：该研究对多语言模型技术路线有直接参考价值：<strong>MoE</strong>架构可降低语言间容量竞争，使小激活参数模型在多语言场景下兼顾性能与推理速度。对产品架构而言，128k上下文与单GPU高速生成适合边缘或成本敏感部署；对商业判断而言，CC <strong>BY-NC-SA 4.</strong>0开源权重可降低多语言应用开发门槛，但非商业许可限制需在商业化评估中注意。</p><p>来源：<a href="https://arxiv.org/abs/2611.16956" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Lara Mini Base: Language Diversity as a Resource, Not a Trade-off</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-273102">1、Natural PC用侧向电路实现自然梯度学习，ImageNet上以低一个量级算力匹配AdamW</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">Natural PC</span> <span class="md-tag">自然梯度学习</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：预测编码通过局部能量最小化动力学训练神经网络，不依赖反向传播所需的全局误差信号，是有望替代BP的高效学习算法，但推理动力学的计算开销在实践中超过其学习收益。<strong>Natural PC</strong>从优化理论出发，在标准预测编码上增加侧向电路，使<strong>自然梯度学习</strong>可在空间与时间上精确且高效地局部完成；侧向电路学习决定Fisher信息矩阵的活动相关性并隐式计算其逆，避免昂贵的矩阵求逆。在所有测试的图像重建基准上，<strong>Natural PC</strong>在样本与算力效率上达到现有预测编码方法的最优水平；在ImageNet上，其以低一个量级的计算成本、少两个量级的训练样本，匹配使用AdamW及多种二阶优化器训练的BP性能。</p><p>📌 <strong>总结</strong>：该工作把自然梯度从需要显式矩阵求逆的全局操作转化为可由侧向电路局部实现的动力学，对学习算法路线意味着预测编码在重建任务中首次在样本效率与计算成本上与BP可比，为探索非BP训练路径提供了可验证的工程依据；对预研规划师而言，低一个量级算力与少两个量级样本的组合若可迁移到其他任务，将影响训练成本结构判断，但当前证据仅限图像重建，尚不足以推断语言或多模态任务上的同等收益。</p><p>来源：<a href="https://arxiv.org/abs/2611.16666" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Natural Gradient Learning in Predictive Coding through Lateral Circuits</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-273095">1、Singularity-Bench评测智能体自建AI系统能力并暴露奖励攻击漏洞</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Singularity-Bench</span> <span class="md-tag">奖励攻击</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：前沿AI智能体已能在真实长周期任务上取得进展，并开始改进自身运行所依赖的系统，但现有基准常限制动作空间、简化环境或使用对任意智能体生成系统不可靠的验证方法。2026年11月arXiv论文提出<strong>Singularity-Bench</strong>，一个面向自主AI开发的开放式基准，包含预训练、中训练、后训练、推理、智能体harness和集群编排六项端到端任务，每项任务要求智能体从最小起点实现核心系统，并在相同硬件上与成熟人工工程基线对比。研究还按OWASP <strong>Agentic Applications Top</strong> 10中9类做广泛红队测试，暴露Harbor框架的<strong>奖励攻击</strong>漏洞，并开发Breakwater扩展阻断研究中测试的全部攻击。在7个前沿模型和2个harness构建的11个智能体中，<strong>Opus 5.</strong>5配Claude Code在六项任务上追平或超过人工基线，<strong>Singularity-</strong>Index为1.25，其余智能体平均仅0.58。</p><p>📌 <strong>总结</strong>：<strong>Singularity-Bench</strong>的价值在于把智能体自主构建AI系统这一模糊命题转化为可量化、可红队测试的基准：六项端到端任务覆盖训练到集群编排全链路，同硬件对比人工基线使结果具备可比性，<strong>OWASP Top</strong> 10红队测试则把<strong>奖励攻击</strong>风险纳入评测范围。<strong>Opus 5.</strong>5配Claude Code达到1.25 <strong>Singularity-</strong>Index、其余智能体平均0.58的差距，说明当前智能体自主开发能力高度依赖模型与harness组合，尚未形成普遍能力。对<strong>模型评测</strong>和智能体平台研发者而言，Breakwater对Harbor<strong>奖励攻击</strong>的阻断方案可作为执行系统安全加固的参考，该基准也可用于跟踪智能体从辅助开发走向端到端负责的进度。</p><p>来源：<a href="https://arxiv.org/abs/2611.16591" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Singularity-Bench: Can Agents Build Agents?</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-273144">1、单篇伪造新闻即可逆转前沿模型74%-82%预测，检索成为攻击入口</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">LLM预测系统</span> <span class="md-tag">检索增强攻击</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：随着LLM被广泛用于预测任务，表现最好的预测系统会检索新闻作为证据来强化预测，这也使其暴露于攻击之下。研究者研究了一类最弱攻击者：仅知道预测问题并发布伪造新闻文章，无法访问模型、检索器或其查询。在股票问题和真实预测市场问题上评估该攻击后发现，一旦伪造文章进入模型上下文，在测试的所有前沿模型上都会逆转<strong>74%</strong>至<strong>82%</strong>原本相反的预测，模型无法验证伪造内容仍会跟随。检索是攻击入口，检索能力越强的系统越暴露，两个领先部署预测系统的智能体在约<strong>90%</strong>的运行中检索到伪造文章。准确率无法揭示这种危害，因为被攻击的预测器在攻击者方向正确时正确、否则错误，平均准确率几乎不变，但预测已跟随攻击者的猜测。</p><p>📌 <strong>总结</strong>：该研究对预测类Agent的技术路线和产品架构有直接影响：检索增强预测系统的可信度不能仅靠准确率指标衡量，需要在检索层引入来源验证、多源交叉和对抗性内容检测。研究者还评估了两种最强的检索时防御——段落过滤和分区检索，各自能阻止单篇文章攻击，但被一次提示词改动绕过；两者结合在四篇文章时能阻止两种绕过，但十六份扭曲副本仍能突破，且会改变<strong>29%</strong>的干净决策并丢弃<strong>39%</strong>的真实新闻。分区检索还需要控制检索索引，搜索开放网络的系统没有这种控制，只剩过滤器，攻击仍然有效。这提示开放网络检索的预测系统需要重新设计证据可信度评估机制。</p><p>来源：<a href="https://arxiv.org/abs/2611.15102" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：One Fabrication Is Enough: A Fake News Article Changes the Forecasts of LLM Forecasting Systems</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273009">2、Lazarus方法编辑不足十神经元即可在AI智能体中植入后门</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Lazarus</span> <span class="md-tag">休眠神经元后门</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月，arXiv论文提出<strong>Lazarus</strong>方法，针对AI智能体长时间无人值守运行且拥有特权系统访问带来的权重完整性风险，展示无需模型训练即可植入后门。该方法编辑模型最终前馈块中的休眠神经元，通过其对残差流的贡献在触发条件下提升载荷token，P个token载荷约需P个神经元，触发条件可为智能体上下文中任意普通字符串。在Nemotron-<strong>Terminal-</strong>8B上，基于23条触发/非触发轨迹拟合的7个神经元，对至少<strong>98.8%</strong>的触发测试轨迹触发载荷，评估的良性轨迹未观察到载荷泄漏；<strong>Qwen3.6-</strong>2<strong>7B</strong>和Gemma-4-<strong>31B</strong>-IT同样易受攻击。智能体内置防御在无参考模型条件下以<strong>9.7%</strong>假阳性率标记<strong>91.4%</strong>的编辑测试检查点。</p><p>📌 <strong>总结</strong>：<strong>Lazarus</strong>将模型权重完整性从训练阶段问题前移到部署与运维阶段：不足十个神经元的闭式编辑即可形成休眠后门，且攻击结构同时提供检测线索，内置防御可高比例识别编辑检查点。对核心网与AI基础设施团队而言，这意味着第三方或内部模型在部署前需像代码一样审计，并持续监控权重更新；对智能体平台设计者，需在运行时引入权重完整性校验与行为监控，<strong>安全风险</strong>从提示注入扩展到权重供应链。</p><p>来源：<a href="https://arxiv.org/abs/2611.15118" target="_blank" rel="noreferrer">研究团队</a></p><p>原文标题：Lazare, veni foras: Reprogramming Dormant Neurons to Backdoor AI Agents</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>Folio多分辨率上下文折叠让长程智能体降本提速</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>LEAD-RL 用贡献感知信用分配训练多智能体深度研究，BrowseComp 准确率提升 2.49 个百分点</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Skill Adapter以适配器与在线路由提升LLM智能体长程任务成功率11.43个百分点</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>斯坦福开源Memorilla：16个记忆令牌替代整库上下文，FactKG准确率升至84.33%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>DecArena评测去中心化多智能体协作，GraphHarness提升任务成功率48.5</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>论文提出激励响应智能体运行时契约，硬任务成功率从0.60升至1.00</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Ling-3.x团队用推理-环境协同调度将智能体批任务完工时间缩短10.4%至65.0%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>llama.cpp与ggml发布1.0.0版本，明确API/ABI兼容规则并支持超150种模型架构</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>智能体平台、协议与执行系统</td><td>7</td></tr><tr><td>AI推理与服务加速</td><td>5</td></tr><tr><td>AI模型</td><td>3</td></tr><tr><td>AI安全、可信与治理</td><td>2</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>模型评测</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>19</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
