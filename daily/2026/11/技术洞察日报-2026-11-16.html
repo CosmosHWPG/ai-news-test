@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-16</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-16</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-15T00:00:00+00:00 ~ 2026-11-16T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-11-17 21:13:18 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月16日</strong></p><p><strong>生成时间：2026-11-17 19:53 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：5 个 | 本期条目：5 条 | 覆盖板块：4 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：AI推理与服务加速 1 条，AI模型 2 条，模型训练 1 条，AI与通算硬件 1 条，合计 5 条。</li><li>日报内容：今日头条聚焦 <strong>SII与Xinxu AI将RSI闭环用于前沿预训练，801-30B-A3B基座超越Qwen3-30B-A3B</strong>，并同步关注llm-d 用 Wide-EP 与 CPU 卸载把 GLM-5.2 智能体推理成本压到每百万输出 3.55…；安纳智芯AX100模拟计算芯片流片单次矩阵方程求解低于100纳秒；美团开源 1.6 万亿参数智能体模型 LongCat-2.5 全程基于华为昇腾训练。</li><li>关键亮点：在于：预训练侧出现以智能体生产系统为迭代对象的 RSI 闭环；推理侧长上下文智能体负载的瓶颈被定位在 prefill 与 KV 复用，Wide-EP 加 CPU 卸载给出可量化成本；国产昇腾可承载万亿参数模型训练与部署；模拟计算芯片为矩阵方程求解提供不依赖先进制程的新路线。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-273326">SII与Xinxu AI将RSI闭环用于前沿预训练，801-30B-A3B基座超越Qwen3-30B-A3B</a></li></ul><ul><li><a href="#event-273500">llm-d 用 Wide-EP 与 CPU 卸载把 GLM-5.2 智能体推理成本压到每百万输出 3.55 美元</a></li></ul><ul><li><a href="#event-273694">安纳智芯AX100模拟计算芯片流片单次矩阵方程求解低于100纳秒</a></li></ul><ul><li><a href="#event-273263">美团开源 1.6 万亿参数智能体模型 LongCat-2.5 全程基于华为昇腾训练</a></li></ul><ul><li><a href="#event-273600">OpenAI 用万级智能体 88 小时攻下纳维-斯托克斯千禧难题</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI推理与服务加速</h2><h3 id="event-273500">1、llm-d 用 Wide-EP 与 CPU 卸载把 GLM-5.2 智能体推理成本压到每百万输出 3.55 美元</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llm-d</span> <span class="md-tag">GLM-5.2 智能体推理</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong> 在其 well-lit paths 中新增面向智能体负载的 agentic-serving 配方，以 <strong>GLM-5.2-FP8</strong> 在 <strong>H200</strong> 上部署为例，基于 <strong>SemiAnalysis Weka</strong> 语料中 219 个生产 <strong>Claude Code</strong> 会话构建负载画像：主智能体请求中位输入 195K token、输出仅 <strong>317 token</strong>，<strong>96%</strong> 的主智能体轮次复用至少 <strong>90%</strong> 输入，输入占全部服务 token 的 <strong>98.6%</strong>。由于 <strong>GLM-5.2</strong> 采用 <strong>MLA</strong> 压缩 KV，张量并行无法切分 KV 缓存，TP=8 会保留八份副本，且跨节点 all-reduce 开销高，<strong>llm-d</strong> 改用数据并行注意力加专家并行 <strong>MoE</strong> 的 <strong>Wide-EP</strong> 路径，并叠加前缀感知路由、<strong>CPU</strong> 卸载、分离式 prefill/decode 与可选 <strong>MTP</strong>。实测 64 卡部署在并发 64 到 128 之间输出从 3679 提升到 6281 tok/s，前缀路由捕获 96-<strong>97%</strong> 可复用前缀，<strong>CPU</strong> 卸载在并发 128 下把输出从 951 提升到 2776 tok/s，<strong>MTP</strong> 让 32 卡在 128 并发下维持 30 tok/s/用户。</p><p>📌 <strong>总结</strong>：该案例说明长上下文智能体推理的瓶颈在 prefill 与 KV 复用而非 decode，<strong>MLA</strong> 模型需要数据并行注意力加专家并行的组合才能释放 KV 预算，这对推理服务架构选型具有直接参考价值。按 <strong>H200</strong> 每小时 2.71 美元租金测算，64 卡部署的每百万输入 token 成本约 0.05 美元、输出约 3.55 美元，低于 <strong>Z.ai</strong> 公开的 1.40/4.40 美元与 <strong>Claude Opus 4.8</strong> 的 5/25 美元，为自建推理集群替代托管 <strong>API</strong> 提供了可量化的成本依据，但该数字仅覆盖 <strong>GPU</strong> 租金，不含完整 <strong>API</strong> 运营成本。</p><p>来源：<a href="https://llm-d.ai/blog/serving-glm-5-2-agentic-workloads-on-llm-d" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Serving GLM-5.2 for Agentic Workloads on llm-d</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-273263">1、美团开源 1.6 万亿参数智能体模型 LongCat-2.5 全程基于华为昇腾训练</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">美团 LongCat-2.5</span> <span class="md-tag">昇腾训练</span> <span class="md-tag">竞争威胁</span></p><p>📋 <strong>要点</strong>：美团 <strong>LongCat</strong> 团队在模型首次亮相一周后开源 <strong>1.6 万</strong>亿参数 <strong>MoE</strong> 智能体模型 <strong>LongCat</strong>-2.5，每 token 激活约 <strong>480 亿</strong>参数，采用 <strong>MIT</strong> 许可证支持商用。模型面向长多步任务和编程场景，<strong>API</strong> 支持百万 token 上下文和最长 <strong>12.8 万</strong> token 输出，可理解文本、图像和视频并支持推理开关；图像以原生分辨率转为 token 与文本一起处理。训练侧使用 <strong>GitHub</strong> 拉取请求的真实软件任务和复现的智能体失败进行强化学习，训练环境屏蔽互联网与 <strong>Git</strong> 历史。部署侧将专家权重和激活量化到 4-bit，官方自托管方案基于 194 片华为 <strong>Atlas A2</strong> 昇腾加速器，未提供 <strong>Nvidia GPU</strong> 指引。在 <strong>Terminal Bench</strong> v2.1 上取得 88.4 分，接近 <strong>Claude Opus</strong> 5 的 89.1 分。</p><p>📌 <strong>总结</strong>：<strong>LongCat-2.5</strong> 的核心意义在于用可开源的万亿参数模型和配套昇腾部署方案，证明中国 AI 芯片可以承担超大模型训练与推理主线，使国产算力方案从备选变为具备商业竞争力的路线；对技术主管和商业主管而言，这意味着推理成本结构、供应链风险和模型选型评估需要纳入国产芯片路径。对 AI 前沿规划师，原生多模态 token 化和 4-bit 量化部署是值得跟踪的工程方向；对核心网和通信设备团队，该模型支持 <strong>OpenAI</strong> 和 <strong>Anthropic</strong> 格式并接入 <strong>Claude Code</strong>、<strong>Codex</strong>、<strong>Hermes</strong> 等智能体框架，为本地化智能体部署提供自主可控的模型底座参考。</p><p>来源：<a href="https://aihot.news/items/vmxj294x2po8q08slhdd5xmv0" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273600">2、OpenAI 用万级智能体 88 小时攻下纳维-斯托克斯千禧难题</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">OpenAI</span> <span class="md-tag">千禧难题</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong> 在 9 月 8 日公告中披露，其利用一个 8 月 28 日刚开训、尚未发布的新模型，把约一万个智能体分成可互相通信的小组，配备缓存互联网和代码执行能力，对未解<strong>千禧难题</strong>发起攻击。9 月 5 日，距首批智能体开工约 <strong>88 小时</strong>，智能体给出纳维-斯托克斯方程会形成奇点的结论，随后 <strong>GPT-6 Astra</strong> 用 <strong>Lean</strong> 在 <strong>17 小时</strong>内完成逐行核验。整个过程智能体互发 <strong>270 万</strong>条消息，输出约 <strong>1300 亿</strong> token，奥特曼估算成本约一千万美元。<strong>OpenAI</strong> 表示不领取 <strong>100 万</strong>美元奖金，并称该模型比 <strong>GPT-6 Astra</strong> 强得多但未公布名称。</p><p>📌 <strong>总结</strong>：该事件把 AI 数学发现从单模型推理推进到大规模智能体协作加形式化核验的工程范式，证明在可自动验证的数学领域，AI 可以承担长周期、高算力投入的探索任务。对 AI 研发规划而言，它提示智能体集群、缓存互联网、代码执行和 <strong>Lean</strong> 核验可组合成新的研究流水线；对商业判断而言，一千万美元量级的单题成本和奥特曼关于一年后成本降至百分之一的预期，是评估 AI 科研经济性的关键锚点。</p><p>来源：<a href="http://weixin.sogou.com/weixin?type=2&amp;amp;query=%E6%96%B0%E6%99%BA%E5%85%83+10000%E4%B8%AAAI%E5%88%86%E8%BA%AB88%E5%B0%8F%E6%97%B6%E6%94%BB%E4%B8%8B%E5%8D%83%E7%A6%A7%E9%9A%BE%E9%A2%98%EF%BC%81%E5%A5%A5%E7%89%B9%E6%9B%BC%E4%B8%A4%E5%A4%9C%E6%B2%A1%E7%9D%A1%EF%BC%8C%E5%8D%B4%E4%B8%8D%E9%A2%86100%E4%B8%87%E5%A5%96%E9%87%91" target="_blank" rel="noreferrer">新智元 微信公众号</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-273326">1、SII与Xinxu AI将RSI闭环用于前沿预训练，801-30B-A3B基座超越Qwen3-30B-A3B</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">801-30B-A3B</span> <span class="md-tag">递归自我改进</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：SII与Xinxu AI公开了将<strong>递归自我改进</strong>（<strong>RSI</strong>）式闭环应用于完整前沿预训练的项目，训练出<strong>801-</strong>30B<strong>-A3B</strong>。该项目从零开始，三个月内消耗<strong>11.8T</strong> tokens，得到总参数<strong>30B</strong>、每token激活<strong>3B</strong>的MoE基座。其核心不是迭代模型权重，而是迭代由智能体、研究人员、数据管线和训练设施组成的生产系统，具体分为调试闭环、潜力闭环和经验到指标闭环三类共六条实例，共享上下文基础设施并保存失败原因。数据侧将<strong>26万</strong>个原始PR转为<strong>22万</strong>个可执行任务，在九种智能体框架上生成约<strong>200万</strong>条轨迹，验证后保留<strong>110万</strong>条、超过<strong>100B</strong> tokens，智能体数据总量达<strong>134B</strong> tokens并进入长上下文预训练。</p><p>📌 <strong>总结</strong>：该工作把RSI从后训练扩展到前沿预训练，验证了以可低成本复跑的小闭环替代一次性大训练、以组织记忆承载递归改进的可行性，对预训练配方调整、数据管线设计和训练设施工程化具有直接参考价值。其智能体自动生产可执行可验证轨迹的漏斗方法，为长上下文预训练数据构建提供了可复用路径。但需注意801仅做<strong>6.33B</strong> tokens轻量SFT、未做RL，对比对象多为完整后训练模型，且数据与配方同时变化，增益不能归因于单一修复，结论仍需多种子复现验证。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247513741&amp;amp;idx=1&amp;amp;sn=57af631575f90b485b10dd2f8421579e" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-273694">1、安纳智芯AX100模拟计算芯片流片单次矩阵方程求解低于100纳秒</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">安纳智芯AX100</span> <span class="md-tag">模拟计算芯片</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：据科技日报从<strong>模拟计算芯片</strong>公司安纳智芯了解，其自主研发的AX100芯片已于2026年10月完成流片，被称为世界首颗全集成一步求解矩阵方程<strong>模拟计算芯片</strong>。测试显示单次矩阵方程求解时间小于100纳秒，单次计算功耗约80毫瓦。该芯片将矩阵方程直接映射为电路，电路自平衡后一次读出结果，无需数字芯片那样的海量乘加迭代。团队在<strong>293万</strong>参数Autoencoder和<strong>272万</strong>参数Transformer上验证，二阶优化方案使训练更新消耗分别减少<strong>92%</strong>和<strong>56%</strong>；具身智能运动控制与规划端到端算法提速<strong>150%</strong>至<strong>500%</strong>；128×128信道格拉姆矩阵相比数字ASIC与GPU等效吞吐提升20至<strong>207倍</strong>、等效能效提升27.6至<strong>61.3倍</strong>。芯片不依赖先进制程。</p><p>📌 <strong>总结</strong>：AX100的意义在于把模拟计算从实验室精度突破推向可流片产线，且不依赖先进制程，为矩阵方程求解密集的AI训练优化、机器人实时控制和通信基带信号处理提供数字芯片之外的新底层硬件路线。对核心网与通信系统而言，信道格拉姆矩阵求解的吞吐与能效提升数据值得关注；对预研规划师而言，模拟计算范式若可扩展，可能改变算力供给结构和供应链风险分布。</p><p>来源：<a href="https://www.ithome.com/1/027/430.htm" target="_blank" rel="noreferrer">IT之家 - Discovery / Invention</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-273263">1、美团开源 1.6 万亿参数智能体模型 LongCat-2.5 全程基于华为昇腾训练</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">美团 LongCat-2.5</span> <span class="md-tag">昇腾训练</span> <span class="md-tag">竞争威胁</span></p><p>📋 <strong>要点</strong>：美团 <strong>LongCat</strong> 团队在模型首次亮相一周后开源 <strong>1.6 万</strong>亿参数 <strong>MoE</strong> 智能体模型 <strong>LongCat</strong>-2.5，每 token 激活约 <strong>480 亿</strong>参数，采用 <strong>MIT</strong> 许可证支持商用。模型面向长多步任务和编程场景，<strong>API</strong> 支持百万 token 上下文和最长 <strong>12.8 万</strong> token 输出，可理解文本、图像和视频并支持推理开关；图像以原生分辨率转为 token 与文本一起处理。训练侧使用 <strong>GitHub</strong> 拉取请求的真实软件任务和复现的智能体失败进行强化学习，训练环境屏蔽互联网与 <strong>Git</strong> 历史。部署侧将专家权重和激活量化到 4-bit，官方自托管方案基于 194 片华为 <strong>Atlas A2</strong> 昇腾加速器，未提供 <strong>Nvidia GPU</strong> 指引。在 <strong>Terminal Bench</strong> v2.1 上取得 88.4 分，接近 <strong>Claude Opus</strong> 5 的 89.1 分。</p><p>📌 <strong>总结</strong>：<strong>LongCat-2.5</strong> 的核心意义在于用可开源的万亿参数模型和配套昇腾部署方案，证明中国 AI 芯片可以承担超大模型训练与推理主线，使国产算力方案从备选变为具备商业竞争力的路线；对技术主管和商业主管而言，这意味着推理成本结构、供应链风险和模型选型评估需要纳入国产芯片路径。对 AI 前沿规划师，原生多模态 token 化和 4-bit 量化部署是值得跟踪的工程方向；对核心网和通信设备团队，该模型支持 <strong>OpenAI</strong> 和 <strong>Anthropic</strong> 格式并接入 <strong>Claude Code</strong>、<strong>Codex</strong>、<strong>Hermes</strong> 等智能体框架，为本地化智能体部署提供自主可控的模型底座参考。</p><p>来源：<a href="https://aihot.news/items/vmxj294x2po8q08slhdd5xmv0" target="_blank" rel="noreferrer">AIHot Virxact 全量热点 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273600">2、OpenAI 用万级智能体 88 小时攻下纳维-斯托克斯千禧难题</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">OpenAI</span> <span class="md-tag">千禧难题</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>OpenAI</strong> 在 9 月 8 日公告中披露，其利用一个 8 月 28 日刚开训、尚未发布的新模型，把约一万个智能体分成可互相通信的小组，配备缓存互联网和代码执行能力，对未解<strong>千禧难题</strong>发起攻击。9 月 5 日，距首批智能体开工约 <strong>88 小时</strong>，智能体给出纳维-斯托克斯方程会形成奇点的结论，随后 <strong>GPT-6 Astra</strong> 用 <strong>Lean</strong> 在 <strong>17 小时</strong>内完成逐行核验。整个过程智能体互发 <strong>270 万</strong>条消息，输出约 <strong>1300 亿</strong> token，奥特曼估算成本约一千万美元。<strong>OpenAI</strong> 表示不领取 <strong>100 万</strong>美元奖金，并称该模型比 <strong>GPT-6 Astra</strong> 强得多但未公布名称。</p><p>📌 <strong>总结</strong>：该事件把 AI 数学发现从单模型推理推进到大规模智能体协作加形式化核验的工程范式，证明在可自动验证的数学领域，AI 可以承担长周期、高算力投入的探索任务。对 AI 研发规划而言，它提示智能体集群、缓存互联网、代码执行和 <strong>Lean</strong> 核验可组合成新的研究流水线；对商业判断而言，一千万美元量级的单题成本和奥特曼关于一年后成本降至百分之一的预期，是评估 AI 科研经济性的关键锚点。</p><p>来源：<a href="http://weixin.sogou.com/weixin?type=2&amp;amp;query=%E6%96%B0%E6%99%BA%E5%85%83+10000%E4%B8%AAAI%E5%88%86%E8%BA%AB88%E5%B0%8F%E6%97%B6%E6%94%BB%E4%B8%8B%E5%8D%83%E7%A6%A7%E9%9A%BE%E9%A2%98%EF%BC%81%E5%A5%A5%E7%89%B9%E6%9B%BC%E4%B8%A4%E5%A4%9C%E6%B2%A1%E7%9D%A1%EF%BC%8C%E5%8D%B4%E4%B8%8D%E9%A2%86100%E4%B8%87%E5%A5%96%E9%87%91" target="_blank" rel="noreferrer">新智元 微信公众号</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型训练</h2><h3 id="event-273326">1、SII与Xinxu AI将RSI闭环用于前沿预训练，801-30B-A3B基座超越Qwen3-30B-A3B</h3><p><span class="md-tag">模型训练</span> <span class="md-tag">801-30B-A3B</span> <span class="md-tag">递归自我改进</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：SII与Xinxu AI公开了将<strong>递归自我改进</strong>（<strong>RSI</strong>）式闭环应用于完整前沿预训练的项目，训练出<strong>801-</strong>30B<strong>-A3B</strong>。该项目从零开始，三个月内消耗<strong>11.8T</strong> tokens，得到总参数<strong>30B</strong>、每token激活<strong>3B</strong>的MoE基座。其核心不是迭代模型权重，而是迭代由智能体、研究人员、数据管线和训练设施组成的生产系统，具体分为调试闭环、潜力闭环和经验到指标闭环三类共六条实例，共享上下文基础设施并保存失败原因。数据侧将<strong>26万</strong>个原始PR转为<strong>22万</strong>个可执行任务，在九种智能体框架上生成约<strong>200万</strong>条轨迹，验证后保留<strong>110万</strong>条、超过<strong>100B</strong> tokens，智能体数据总量达<strong>134B</strong> tokens并进入长上下文预训练。</p><p>📌 <strong>总结</strong>：该工作把RSI从后训练扩展到前沿预训练，验证了以可低成本复跑的小闭环替代一次性大训练、以组织记忆承载递归改进的可行性，对预训练配方调整、数据管线设计和训练设施工程化具有直接参考价值。其智能体自动生产可执行可验证轨迹的漏斗方法，为长上下文预训练数据构建提供了可复用路径。但需注意801仅做<strong>6.33B</strong> tokens轻量SFT、未做RL，对比对象多为完整后训练模型，且数据与配方同时变化，增益不能归因于单一修复，结论仍需多种子复现验证。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247513741&amp;amp;idx=1&amp;amp;sn=57af631575f90b485b10dd2f8421579e" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-273694">1、安纳智芯AX100模拟计算芯片流片单次矩阵方程求解低于100纳秒</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">安纳智芯AX100</span> <span class="md-tag">模拟计算芯片</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：据科技日报从<strong>模拟计算芯片</strong>公司安纳智芯了解，其自主研发的AX100芯片已于2026年10月完成流片，被称为世界首颗全集成一步求解矩阵方程<strong>模拟计算芯片</strong>。测试显示单次矩阵方程求解时间小于100纳秒，单次计算功耗约80毫瓦。该芯片将矩阵方程直接映射为电路，电路自平衡后一次读出结果，无需数字芯片那样的海量乘加迭代。团队在<strong>293万</strong>参数Autoencoder和<strong>272万</strong>参数Transformer上验证，二阶优化方案使训练更新消耗分别减少<strong>92%</strong>和<strong>56%</strong>；具身智能运动控制与规划端到端算法提速<strong>150%</strong>至<strong>500%</strong>；128×128信道格拉姆矩阵相比数字ASIC与GPU等效吞吐提升20至<strong>207倍</strong>、等效能效提升27.6至<strong>61.3倍</strong>。芯片不依赖先进制程。</p><p>📌 <strong>总结</strong>：AX100的意义在于把模拟计算从实验室精度突破推向可流片产线，且不依赖先进制程，为矩阵方程求解密集的AI训练优化、机器人实时控制和通信基带信号处理提供数字芯片之外的新底层硬件路线。对核心网与通信系统而言，信道格拉姆矩阵求解的吞吐与能效提升数据值得关注；对预研规划师而言，模拟计算范式若可扩展，可能改变算力供给结构和供应链风险分布。</p><p>来源：<a href="https://www.ithome.com/1/027/430.htm" target="_blank" rel="noreferrer">IT之家 - Discovery / Invention</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-273500">1、llm-d 用 Wide-EP 与 CPU 卸载把 GLM-5.2 智能体推理成本压到每百万输出 3.55 美元</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">llm-d</span> <span class="md-tag">GLM-5.2 智能体推理</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong> 在其 well-lit paths 中新增面向智能体负载的 agentic-serving 配方，以 <strong>GLM-5.2-FP8</strong> 在 <strong>H200</strong> 上部署为例，基于 <strong>SemiAnalysis Weka</strong> 语料中 219 个生产 <strong>Claude Code</strong> 会话构建负载画像：主智能体请求中位输入 195K token、输出仅 <strong>317 token</strong>，<strong>96%</strong> 的主智能体轮次复用至少 <strong>90%</strong> 输入，输入占全部服务 token 的 <strong>98.6%</strong>。由于 <strong>GLM-5.2</strong> 采用 <strong>MLA</strong> 压缩 KV，张量并行无法切分 KV 缓存，TP=8 会保留八份副本，且跨节点 all-reduce 开销高，<strong>llm-d</strong> 改用数据并行注意力加专家并行 <strong>MoE</strong> 的 <strong>Wide-EP</strong> 路径，并叠加前缀感知路由、<strong>CPU</strong> 卸载、分离式 prefill/decode 与可选 <strong>MTP</strong>。实测 64 卡部署在并发 64 到 128 之间输出从 3679 提升到 6281 tok/s，前缀路由捕获 96-<strong>97%</strong> 可复用前缀，<strong>CPU</strong> 卸载在并发 128 下把输出从 951 提升到 2776 tok/s，<strong>MTP</strong> 让 32 卡在 128 并发下维持 30 tok/s/用户。</p><p>📌 <strong>总结</strong>：该案例说明长上下文智能体推理的瓶颈在 prefill 与 KV 复用而非 decode，<strong>MLA</strong> 模型需要数据并行注意力加专家并行的组合才能释放 KV 预算，这对推理服务架构选型具有直接参考价值。按 <strong>H200</strong> 每小时 2.71 美元租金测算，64 卡部署的每百万输入 token 成本约 0.05 美元、输出约 3.55 美元，低于 <strong>Z.ai</strong> 公开的 1.40/4.40 美元与 <strong>Claude Opus 4.8</strong> 的 5/25 美元，为自建推理集群替代托管 <strong>API</strong> 提供了可量化的成本依据，但该数字仅覆盖 <strong>GPU</strong> 租金，不含完整 <strong>API</strong> 运营成本。</p><p>来源：<a href="https://llm-d.ai/blog/serving-glm-5-2-agentic-workloads-on-llm-d" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Serving GLM-5.2 for Agentic Workloads on llm-d</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>llm-d 用 Wide-EP 与 CPU 卸载把 GLM-5.2 智能体推理成本压到每百万输出 3.55 美元</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>美团开源 1.6 万亿参数智能体模型 LongCat-2.5 全程基于华为昇腾训练</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>OpenAI 用万级智能体 88 小时攻下纳维-斯托克斯千禧难题</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>SII与Xinxu AI将RSI闭环用于前沿预训练，801-30B-A3B基座超越Qwen3-30B-A3B</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI模型</td><td>2</td></tr><tr><td>AI推理与服务加速</td><td>1</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>AI与通算硬件</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>5</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
