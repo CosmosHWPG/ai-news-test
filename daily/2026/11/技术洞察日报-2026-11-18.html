@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-18（纯电信版）</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-18（纯电信版）</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-09T16:00:00+00:00 ~ 2026-11-17T16:58:51.147675+00:00</span>
+        <span>HTML 导出时间：2026-11-18 22:38:14 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月18日</strong></p><p><strong>生成时间：2026-11-18 01:45 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：12 个 | 本期条目：30 条 | 覆盖板块：6 个</strong></p><p><strong>专题范围：2026-11-10 00:00 至 2026-11-18 00:58（北京时间）；本版按通信领域价值精选Top 30，核心网与核心网+AI优先，保留素材原评分，不修改普通日报自动准入。</strong></p><div class="daily-summary-box"><ul><li>核心网与AI：爱立信阐释6G核心网独立AI域；河南移动与华为推进核心网智能运维；LMT Defence基于Open5GS研发国防专网核心网；Verizon以租户独立核心网支撑五站点专网。</li><li>自智运维与智能体：中兴Co-sight/A2A-T、One NZ与Nokia合作、KDDI与Blue Planet实验室验证，以及电信智能体共享数据与身份治理观点，分别呈现产品、合作、验证和架构思考。</li><li>无线与网络产品：AI-RAN的ASIC路线与基站内AI加速、CIS-RAN样机、5G-A体验经营、泛光基站及6G智能承载协议，是本期的主要产品和演进线索；试验结果、研究提案与后续部署计划均分别标注。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-274318">爱立信详解6G核心网AI域架构：意图处理、智能体协作与独立演进</a></li></ul><ul><li><a href="#event-267680">河南移动联合华为发布智诊云核智能体，核心网运维转向主动预防</a></li></ul><ul><li><a href="#event-273789">LMT Defence基于Open5GS研发自有5G核心网，面向国防专网验证</a></li></ul><ul><li><a href="#event-274193">中兴通讯以Co-sight智能体框架落地故障网优投诉场景并开源A2A-T协议</a></li></ul><ul><li><a href="#event-269279">Verizon在Thames Freeport完成多站点私有5G部署，Nokia提供DAC与MXIE平台</a></li></ul><ul><li><a href="#event-268025">One New Zealand扩大与Nokia合作，以可信数据与保障自动化推进自治网络转型</a></li></ul><ul><li><a href="#event-268956">Ciena Blue Planet联合埃森哲助KDDI推进自治网络，2028年扩展至移动网</a></li></ul><ul><li><a href="#event-269062">Persistent Systems提出电信AI智能体需共享数据层以协同决策</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI应用与产品化场景</h2><h3 id="event-269279">1、Verizon在Thames Freeport完成多站点私有5G部署，Nokia提供DAC与MXIE平台</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">Verizon Business</span> <span class="md-tag">私有5G多租户</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：<strong>Verizon</strong> Business于2026年11月完成英国Thames Freeport多站点私有5G网络部署，覆盖港口、物流中心和制造设施共五个站点，共用同一商业枢纽但每个租户运行独立核心网以保障数据主权。硬件与软件由Nokia <strong>Enterprise Campus</strong> Edge提供，包括数字自动化云DAC和本地边缘计算平台MXIE。该网络支持物理AI、计算机视觉、实时资产追踪、预测性维护和边缘计算等用例。<strong>Verizon</strong>通过Connectivity <strong>Innovation</strong> Lab测试了AI车辆损伤检测和数字卡车处理平台，前者发现人工检查遗漏的损伤，后者实时追踪卡车移动并定位闸口排队成因。</p><p>📌 <strong>总结</strong>：该部署验证了多租户私有5G在港口物流场景中通过独立核心网实现数据主权隔离的架构可行性，对核心网架构师的启示是：私有5G多站点部署需在共享商业枢纽与租户级核心网隔离之间取得平衡，<strong>Nokia</strong> DAC与MXIE的组合提供了从无线到边缘计算的端到端参考。对商业主管而言，港口物流的AI用例已验证可发现人工遗漏问题，具备向其他工业场景复制的商业潜力。</p><p>来源：<a href="https://www.mobileworldlive.com/verizon/verizon-docks-multisite-private-5g-networks-at-thames-freeport/" target="_blank" rel="noreferrer">Mobile World Live</a></p><p>原文标题：Verizon docks multi-site private 5G networks at Thames Freeport</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274229">2、中国电信推出天翼词元统一Token量纲，可通兑智谱GLM-5.3与DeepSeek-V4</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">中国电信天翼词元</span> <span class="md-tag">Token统一量纲</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：<strong>中国电信</strong>近日推出Token经营统一量纲“天翼词元”（<strong>China Telecom AI Token</strong>），可通兑智谱GLM-5.3、<strong>DeepSeek-</strong>V4等主流大模型Token，也可兑换自有及生态AI应用权益。用户开通后获得统一API Key与访问地址，可在<strong>中国电信</strong>超级智能体TeleAgent中直接使用，也可接入WorkBuddy、<strong>Qoder</strong>、<strong>MiniMax Code</strong>、千问办公等主流智能体工具，实现分钟级接入。星辰TokenHub平台按各模型Token与天翼词元的兑换公式自动换算，默认使用智能路由按任务类型匹配最优性价比模型。以智谱GLM-5.3为例，1000天翼词元可兑换<strong>125万</strong>输入Token或<strong>35.7万</strong>输出Token；<strong>DeepSeek-</strong>V4.1-Flash则可兑换<strong>500万</strong>输入Token或<strong>125万</strong>输出Token。</p><p>📌 <strong>总结</strong>：通过统一Token量纲、<strong>API</strong> Key和模型路由把运营商AI能力组合成可经营服务，值得关注身份、计量、跨模型兑换与渠道接口。属于运营商AI服务产品，不代表新增核心网标准或算法性能突破。</p><p>来源：<a href="https://www.c114.com.cn/news/117/a1321064.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-274193">1、中兴通讯以Co-sight智能体框架落地故障网优投诉场景并开源A2A-T协议</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">中兴通讯Co-sight</span> <span class="md-tag">A2A-T协议</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：中兴在2026信息通信网络运营维护服务年会介绍AIRNet方案：以Co-sight智能体框架和1+N模型架构嵌入运营商生产系统，披露故障、网优、投诉场景落地，并介绍对外开源<strong>A2A-T协议</strong>及智能体测评数据集。</p><p>📌 <strong>总结</strong>：重点是通信智能体产品化、跨域互操作及轻量模型部署的组合路径。本文为厂商会议披露，原文未给出各场景统一对照测试或规模化收益数据，不能等同于独立效果评测。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1321139.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-269062">2、Persistent Systems提出电信AI智能体需共享数据层以协同决策</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">电信AI智能体协同</span> <span class="md-tag">共享数据层</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>Persistent</strong> Systems全球CMT负责人Kuljesh Puri在RCR Wireless撰文指出，电信运营商已快速将AI智能体部署于网络运维、客服和容量规划，但各智能体独立运行在跨域事件中产生冲突决策。以城域光纤中断为例，网络运维智能体数秒内完成流量重路由，客服智能体因不知情仍发放服务补偿并派单，容量规划智能体次日将重路由负载误判为新需求并触发扩容。据GSMA Intelligence数据，电信行业三分之二的AI部署已上线，但仅<strong>41%</strong>运营商具备真正的端到端数据架构。Puri主张为每个智能体提供<strong>共享数据层</strong>，统一客户、服务和网络视图，使告警可基于客户影响、商业风险和可用修复手段综合判断。</p><p>📌 <strong>总结</strong>：作者用断纤后运维、客服、规划智能体相互冲突的场景说明共享上下文与协调机制的必要性，可为通信多智能体数据架构提供设计参考。这是厂商高管观点文章，不是已完成部署或可直接归因的效果测评。</p><p>来源：<a href="https://rcrwireless.com/20261112/reader-forum/telecoms-next-ai-gains-will-come-from-agents-that-work-together-reader-forum" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：Telecom’s next AI gains will come from agents that work together (Reader Forum)</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271534">3、观点：运营商可成为AI智能体身份认证与Token使用治理经纪方</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">电信运营商</span> <span class="md-tag">AI智能体身份认证</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：11月13日Fierce观点文章提出，运营商可利用连接提供者身份识别、认证AI智能体，约束工作流授权和Token使用量。现有素材仅保留短摘要，尚不足以证明具体产品接口或商用部署。</p><p>📌 <strong>总结</strong>：对核心网能力开放、身份体系与AI业务经营的价值是提供一个产品方向。仅作为观点线索收录，不将其包装成已发布的核心网网元或成熟解决方案。</p><p>来源：<a href="https://www.fierce-network.com/wireless/opinion-telcos-can-be-broker-ai-workloads" target="_blank" rel="noreferrer">Fierce Wireless</a></p><p>原文标题：Opinion: Telcos can be a broker for AI workloads</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274214">4、广东移动携手华为发布全球首个AI-OTN单域自治示范区实践成果</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">广东移动与华为AI-OTN单域自治方案</span> <span class="md-tag">网络智能体</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：在2026移动网络大会期间，广东移动携手华为基于广州传输现网正式发布全球首个AI-OTN单域自治示范区实践成果。针对超大规模城域光网络层次多、类型复杂、人工设计光路耗时长、隐患难以及时发现、故障排查和上站处理成本高等挑战，双方部署基于<strong>网络智能体</strong>的AI-OTN单域自治解决方案，通过智能技术重构光网络全生命周期运维流程。具体能力包括：<strong>网络智能体</strong>根据用户业务需求自动完成端到端光路计算并主动规避同路由风险，将串行处理流程优化为多任务并行自动执行，配合CPE设备即插即用，一线装维人员平均上门次数由3次减少至1次，实现政企业务当日交付；融合智能光模块多维感知能力和四层三维网络隐患评估模型，由网络智能体全天候监测光功率劣化、同路由、单节点等潜在风险，隐患识别准确率超过<strong>95%</strong>，将月度被动巡检升级为实时主动监测。</p><p>📌 <strong>总结</strong>：该实践表明<strong>网络智能体</strong>在光网络运维场景中已具备可量化的效率提升能力，业务开通从人工逐段规划转向自动端到端计算，隐患识别从定期巡检转向实时监测，故障处理从人工排查转向智能定位。对运营商而言，<strong>AI-</strong>OTN单域自治方案可显著降低政企业务交付周期和运维人力成本，提升网络可靠性和客户体验。对设备商而言，<strong>网络智能体</strong>与光网络的深度融合将成为光传输产品差异化的关键方向。对核心网架构师和自智网络规划者而言，该案例为高阶自智网络在传输域的落地提供了参考架构和效果基准。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1321091.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>核心网与通信系统架构</h2><h3 id="event-267680">1、河南移动联合华为发布智诊云核智能体，核心网运维转向主动预防</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">智诊云核联合智能体</span> <span class="md-tag">核心网智能运维</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：随着5G和云原生技术加速发展，核心网规模扩大与业务复杂度提升使传统人工运维在隐性故障发现、故障定界和跨专业协同上遭遇瓶颈。河南移动携手华为发布<strong>智诊云核联合智能体</strong>，基于CDAF云诊分析框架与MDAF模型驱动分析框架的联合架构，CDAF作为数据底座整合核心网元、传输链路和业务系统多维数据构建统一运维数据湖，MDAF基于预训练模型与领域知识库进行根因推演与智能决策，两者通过协同编排层形成感知-分析-决策-执行闭环。方案采用BFD双向转发检测机制实时检测隐性丢包与异常链路，通过自适应补偿算法消除芯片统计误差实现<strong>1%</strong>精度丢包检测，并以异常链路汇聚算法自动分析共因设备。</p><p>📌 <strong>总结</strong>：该方案将AI能力深度嵌入核心网运维体系，使故障定位从人工逐设备排查转向自动汇聚分析，显著提升故障定位效率与运维自动化水平。对核心网架构师而言，CDAF与MDAF的联合架构提供了数据底座与模型驱动分析协同的参考设计，其业务路径与BFD检测路径贴合、VRF与隧道一致性设计降低了对现网性能的影响，为运营商在保障业务连续性前提下引入智能运维提供了可验证的工程路径，也为设备商在<strong>核心网智能运维</strong>产品线上提供了差异化竞争方向。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1320907.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-273789">2、LMT Defence基于Open5GS研发自有5G核心网，面向国防专网验证</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">LMT Defence</span> <span class="md-tag">Open5GS</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>Light Reading</strong>报道，<strong>LMT Defence</strong>约两年来以开源<strong>Open5GS</strong>为基础研发自身5G核心网，并已面向拉脱维亚与乌克兰军方开展私有5G测试和演示；方案面向固定指挥中心及广域连接，同时探索ISAC无人机探测。</p><p>📌 <strong>总结</strong>：展示运营商以开源核心网加系统集成切入国防专网的产品路径。测试演示不等于广泛军用部署，抗干扰与ISAC仍须分别核对试验条件和工程成熟度。</p><p>来源：<a href="https://www.lightreading.com/5g/latvia-pushes-5g-answer-to-ukraine-s-starlink-problem" target="_blank" rel="noreferrer">Light Reading</a></p><p>原文标题：Latvia pushes 5G answer to Ukraine&#x27;s Starlink problem</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-268025">3、One New Zealand扩大与Nokia合作，以可信数据与保障自动化推进自治网络转型</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">Nokia</span> <span class="md-tag">自治网络</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：<strong>One New</strong> Zealand与<strong>Nokia</strong>宣布扩大合作，以可信数据、保障和生命周期自动化推进AI原生运营与网络自治。现有素材主要是官方简讯，未提供统一的效率收益对照。</p><p>📌 <strong>总结</strong>：可跟踪运营商从单点AI向数据底座、保障与生命周期协同的采购演进；保留为合作与产品路线事件，不把合作公告写成已经完成的网络自治效果。</p><p>来源：<a href="https://www.nokia.com/newsroom/one-new-zealand-expands-nokia-partnership-to-accelerate-its-autonomous-networks-transformation/" target="_blank" rel="noreferrer">Nokia Newsroom</a></p><p>原文标题：One New Zealand expands Nokia partnership to accelerate its autonomous networks transformation</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-268259">4、中国移动研究院提出eSIM卡内切换架构，破解网联无人机双链路难题</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">eSIM（eUICC）</span> <span class="md-tag">MEP多配置并发</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：针对山区、城市楼宇密集区等复杂低空作业环境下网联无人机蜂窝链路易劣化、基站切换失败和双SIM方案硬件成本高的问题，中国移动研究院业务研究所孙宇平提出以<strong>eSIM（eUICC）</strong>替代插拔式SIM与双贴片SIM的通信架构。该方案利用eSIM无机械触点、小型化、支持远程下载多套运营商Profile的特性，并依托MEP（<strong>Multiple Enabled Profiles</strong>）使单张eUICC同时启用两个Profile、双运营商并发驻网；同时构建“云端管控平台—eSIM卡侧处理—机载模组协同执行”三方架构，由eSIM直接读取蜂窝网络测量参数，在卡内完成解析、策略匹配与切换判决，云端结合位置、航迹和区域覆盖生成策略下发，并保留人工应急干预通道。</p><p>📌 <strong>总结</strong>：该架构将核心切换逻辑从终端模组SDK下沉至eSIM标准化配置引擎，省去应用层中转以降低切换时延，并可按航线动态调整切换优先级、在信号优良时择机省电，从而减少遥控与图传中断、优化机载功耗。对核心网与通信系统而言，这意味着终端侧对运营商网络的选择与驻留策略可被云端统一编排，弱化对各家模组SDK的依赖，有利于运营商统一管控和行业标准化落地；对低空经济产业化而言，单卡双Profile并发可简化机载硬件、降低量产成本，并具备向网联机器人、应急通信终端迁移的工程价值。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzAwMTA3ODExOQ==&amp;amp;mid=2651753115&amp;amp;idx=1&amp;amp;sn=05ca61234bf4307273feb9c4998e8633&amp;amp;chksm=8056f8c1ae6088beaf914005340374e22a7b880ab7c77e95f375351ec3529abd5d677e63c2f1&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">中移智库</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-267700">5、中国移动230GBaud单波1.6Tb/s实现960km长距传输，1.6T光层标准获试验支撑</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">中国移动</span> <span class="md-tag">1.6T光传输</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2024年<strong>中国移动</strong>完成400G骨干全光网首次规模应用后，面向智算中心互联确立超<strong>200GB</strong>aud为<strong>1.6T</strong>重点研发方向；历经两年攻关，其联合合作伙伴实现从<strong>130GB</strong>aud到<strong>230GB</strong>aud的跨越，基于常规G.652.D光纤完成960km单波<strong>1.6T</strong>b/s实时传输，创该速率最长纪录。标准侧，<strong>中国移动</strong>今年7月在ITU-T SG15主导完成T比特核心标准G.709.5一阶段制定，提出以太优化容器等机制，并牵头启动骨干长距<strong>1.6T</strong>光层系统标准G.696.1。</p><p>📌 <strong>总结</strong>：该试验把<strong>1.6T</strong>技术能力边界推到千公里量级，为G.696.1光层标准提供实测基础，意味着<strong>1.6T</strong>代际从城域走向骨干具备工程可行性；对设备商而言，<strong>230GB</strong>aud波特率与电层容器机制将牵引光模块、DSP和OTN设备路线，并影响智算DCI长距互联的成本结构。子载波等光层新型损伤机理仍待研究，是下一阶段标准与产品化的关键不确定点。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1320854.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-268450">6、VIAVI加入英国ORBIT项目，以RAN数字孪生技术验证布莱克浦电车公交专用5G网络</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">VIAVI ORBIT项目</span> <span class="md-tag">RAN数字孪生</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年11月，唯亚威通讯VIAVI正式加入英国ORBIT项目，该项目由英国数字文化、媒体和体育部DCMS与Innovate UK联合资助，总预算约<strong>415万</strong>美元，将在布莱克浦电车与公交网络中部署并验证独立非公共5G网络SNPN。ORBIT聚焦多厂商Open RAN组件的系统级集成与保障，应用场景包括突发事件处置的实时CCTV视频回传、车载屏幕多媒体内容分发以及面向运营技术OT通信的网络切片。VIAVI基于TeraVM AI RAN场景生成器的网络数字孪生对布莱克浦电车与公交线路建模，让控制流程在高度逼真的流量场景中先行打磨和测试，再进入现网试验，从而在设备上路前从系统层面验证性能、韧性与能效，降低技术风险和集成开销。</p><p>📌 <strong>总结</strong>：VIAVI在ORBIT项目中以<strong>RAN数字孪生</strong>技术验证多厂商Open RAN部署，将数字孪生能力从实验室延伸到真实公共交通基础设施场景。该方法可在现网部署前验证连接性和AI驱动控制，降低集成开销和技术风险，对5G专网和Open RAN的工程验证方法论具有参考价值。项目计划输出互操作性与保障报告及可复用参考架构，有望为5G保障方案的早期市场评估提供支撑。对核心网架构师而言，该案例展示了数字孪生在RAN侧部署验证中的实际用法；对技术主管而言，可关注该方法向电网、机场、港口等分布式基础设施的推广潜力。</p><p>来源：<a href="https://www.c114.com.cn/news/50/a1320949.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274216">7、广东电信联手华为在华强北部署FDD Massive MIMO，上行流量提升48%</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">广东电信与华为5G-A大上行网络</span> <span class="md-tag">FDD Massive MIMO</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>中国电信</strong>广东公司联合华为在深圳华强北高密商圈规模部署1.8GHz+2.1GHz双频<strong>8T</strong>8R，并完成<strong>FDD </strong>Massive<strong> MIMO</strong>首秀，以精细化建设应对直播经济与AI终端叠加带来的上行需求。方案依托2.1GHz与3.5GHz协同实现百兆上行带宽，通过空间复用与波束赋形提升室内覆盖并精准调度上行无线资源。落地成效包括5G-A室内覆盖提升约10dB、区域总流量提升约<strong>34%</strong>、上行总流量提升约<strong>48%</strong>，用户侧室内直播卡顿频次下降<strong>50%</strong>，AI实时交互响应及时率提升<strong>90%</strong>。</p><p>📌 <strong>总结</strong>：该示范区验证了<strong>FDD </strong>Massive<strong> MIMO</strong>在密集城市场景释放上行潜力的可行性，对无线网架构师意味着上行容量规划可从依赖新增频谱转向频谱重耕与多天线空间复用组合；对5G/6G标准专家，华强北实测数据为上行增强、AI终端实时回传等场景的标准化需求提供现网依据。对商业主管而言，直播与AI眼镜、智能机器人等终端业态的上行体验改善直接关联商圈商户经营成效，提示运营商可将大上行能力包装为面向直播产业带的差异化网络服务，并以AI实时交互及时率作为新型体验指标拓展B<strong>2B</strong>方案。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1321089.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-266964">8、Google Fi 借 MEP 双 eSIM 恢复多网自动切换能力</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">Google Fi Wireless</span> <span class="md-tag">MEP 双 eSIM</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>Google</strong> 为 <strong>Google</strong> Fi Wireless 恢复多网络能力，在 <strong>Pixel</strong> 9 及更新机型上通过多启用配置文件（<strong>MEP</strong>）技术让手机同时托管两张 eSIM，并在可用时保持双蜂窝网络同时激活。服务接入 <strong>T-Mobile US</strong> 网络（Google 自2023年起的独家网络伙伴）以及一家未具名的第二张 5G 网络，检测到弱覆盖时自动切换到备用服务，同时把 <strong>Wi-Fi Auto Connect</strong>+ 扩展到更多地点。<strong>MEP</strong> 并非新概念，<strong>Android</strong> 手机自2022年起已支持。</p><p>📌 <strong>总结</strong>：该动作把 <strong>MVNO</strong> 从单运营商绑定转向终端侧多网并发与自动切换，说明多 eSIM 并发、网络选择与弱覆盖切换正成为终端与网络协同的关键能力。对核心网架构而言，多运营商并发接入会推动网络选择、策略控制与切片映射在终端侧前置；对运营商与设备商，则意味着终端侧多连接可能削弱单一运营商的用户锁定，需在漫游、<strong>QoS</strong> 与计费策略上重新设计。</p><p>来源：<a href="https://www.sdxcentral.com/news/google-mvno-service-brings-back-multi-network-capability/" target="_blank" rel="noreferrer">SDxCentral</a></p><p>原文标题：Google MVNO service brings back multi-network capability</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271466">9、诺基亚获美国战争部RAPID合同推进ISAC多域威胁感知</h3><p><span class="md-tag">核心网与通信系统架构</span> <span class="md-tag">Nokia</span> <span class="md-tag">ISAC</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年11月13日，诺基亚联邦解决方案宣布获得美国战争部FutureG办公室管理的RAPID项目合同，支持<strong>ISAC</strong>演示的真实世界应用原型开发。项目基于诺基亚AI-RAN平台，整合诺基亚及第三方传感与频谱威胁感知应用，结合多种传感模态和传感器融合技术，提供对无人机威胁更全面的态势感知。参与方包括诺基亚关联公司、德州理工大学、<strong>DeepSig</strong>、<strong>Hidden</strong> Level和Future <strong>Technologies</strong>。该合同旨在验证5G和未来6G网络如何用于提升威胁检测和态势感知能力，保护关键基础设施免受新兴威胁。</p><p>📌 <strong>总结</strong>：RAPID合同将AI-RAN与5G/6G感知研发面向国防场景结合，为设备商探索通信感知融合产品提供路径。当前是合同与研发方向，不能写成全套<strong>ISAC</strong>能力已量产交付。</p><p>来源：<a href="https://www.nokia.com/newsroom/nokia-federal-solutions-awarded-department-of-war-rapid-contract-to-advance-multi-domain-threat-awareness/" target="_blank" rel="noreferrer">Nokia Newsroom</a></p><p>原文标题：Nokia Federal Solutions awarded Department of War RAPID contract to advance multi-domain threat awareness</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>标准、协议与产业联盟</h2><h3 id="event-274318">1、爱立信详解6G核心网AI域架构：意图处理、智能体协作与独立演进</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">3GPP 6G核心网AI域</span> <span class="md-tag">意图处理与智能体协作</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：爱立信11月13日技术博客提出在演进的分组交换域之外设置独立AI域，为UE和AF提供意图处理、智能体协作及AI服务。UE通过专用PDU会话连接AI域，身份认证、授权与策略仍受运营商控制。该内容是厂商对6G研究架构的阐释，不是3GPP已经冻结的标准或已规模商用产品。</p><p>📌 <strong>总结</strong>：对核心网研发的价值在于明确连接/移动性与AI服务控制的责任分离，并给出AI域入口、能力开放和信任边界的设计线索。可用于跟踪SA2架构讨论及运营商AI服务化方向，不能把研究提案当成标准定案。</p><p>来源：<a href="https://www.ericsson.com/en/blog/2026/11/ai-domain-6g-core-network" target="_blank" rel="noreferrer">Ericsson</a></p><p>原文标题：Architecture of the AI domain in the 6G core network</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-269058">2、GSMA与ITU签署开放电信AI意向书，推进OTel 2.0模型生态</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">GSMA Open Telco AI</span> <span class="md-tag">开放电信模型</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年11月12日，<strong>GSMA</strong>与国际电信联盟（<strong>ITU</strong>）在MWC26多哈签署意向书，围绕<strong>GSMA</strong>的Open <strong>Telco</strong> AI计划合作推进“可信、开放的电信AI”。该意向书层级低于谅解备忘录，不具约束义务，也未公布资金与时间表，仅设定三个工作流框架。GSMA的OTel 2.0电信模型截至10月下载量已超<strong>3000万</strong>次，但下载量并不等同于实际部署。此举背景是<strong>ITU</strong>成员国正在PP-26全权代表大会上讨论另一项AI授权，同时业界担忧仅四到五家大型厂商掌握电信智能能力，运营商在网络关键场景中面临供应中断风险。</p><p>📌 <strong>总结</strong>：体现<strong>开放电信模型</strong>、数据和基准成为产业协作议题，但该意向书不具约束力，原文未给出资金和实施时间表；模型下载量不能直接视作运营商生产部署量。</p><p>来源：<a href="https://rcrwireless.com/20261112/ai/gsma-itu-letter-of-intent-telecom-ai" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：GSMA and ITU sign letter of intent on open telecom AI</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-270184">3、中国移动联合二十家伙伴成立6G智能承载协议MSA工作组并发布研究报告</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">中国移动MSA工作组</span> <span class="md-tag">6G智能承载协议</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>中国移动</strong>联合运营商、科研机构、高校、设备厂商、芯片厂商和测试仪表厂商等全球二十家合作伙伴，在全球固定网络创新联盟（<strong>NIDA</strong>）成立面向6G的智能承载协议多源工作组（<strong>MSA</strong>），并发布《面向6G的智能承载协议研究报告》。报告梳理了6G新空口、新业务、新架构对承载网的需求，指出6G业务流量呈现高动态、强突发、强协同特征，承载网需支撑6G内生AI任务就近卸载和泛在智能体高频实时交互，并提出基于物理层异质转发的大带宽低时延连接、基于业务感知驱动建路的高动态灵活承载、基于多业务流联动的多维通道协同承载和基于智能体实时分析的AI内生智能承载四大关键技术与协议创新方向。</p><p>📌 <strong>总结</strong>：该工作组的成立意味着6G承载网的技术路线开始从传统连接管道向业务驱动、AI内生的智能承载底座演进，对承载协议体系、转发机制和资源管控方式提出协同演进要求。对核心网与承载网架构师而言，需要关注AI内生智能承载与6G内生AI任务卸载对协议栈和网元功能划分的影响；对5G/6G标准专家而言，MSA工作组可能成为6G承载协议标准提案和产业协作的前置平台，值得跟踪其后续技术架构、协议体系和演进路径的产出。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1320980.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272419">4、中国移动牵头发布业界首份泛光基站技术白皮书，明确6G基站光电融合演进路径</h3><p><span class="md-tag">标准、协议与产业联盟</span> <span class="md-tag">中国移动研究院</span> <span class="md-tag">泛光基站</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026<strong>中国移动</strong>网络大会期间，<strong>中国移动</strong>研究院副院长丁海煜携手北京邮电大学、工业和信息化部电子第五研究所、京信网络、弥尔光半导体、锐捷网络、上海曦智科技、深圳万里眼、武汉光迅科技、犀里光电、甬江实验室、中信科移动创新中心、中兴通讯等十二家产业链伙伴，联合发布《<strong>泛光基站</strong>技术白皮书》。该白皮书是业界首份由运营商牵头、联动产业链上下游聚焦6G基站光电融合方向编制的技术文件，系统界定<strong>泛光基站</strong>核心定义、整体架构与关键技术体系。针对传统纯电子架构面临的基带大算力处理能耗高、超宽带信号前传传输成本高、高频及超高频场景射频变频难度大三大瓶颈，白皮书提出以光计算技术破解基带算力能耗难题、以模拟光前传技术优化传输架构、以微波光子技术攻克高频变频壁垒，并明确基带计算域、前传传输域、射频前端域的针对性攻关路径与落地方案。</p><p>📌 <strong>总结</strong>：该白皮书将6G基站光电融合从单点技术预研提升到体系化、规模化协同发展阶段，为全行业开展<strong>泛光基站</strong>技术研究、标准制定和产品研发提供权威指引。对5G/6G标准专家而言，<strong>泛光基站</strong>概念和三大功能域的光子技术体系可作为3GPP 6G无线接入网架构讨论的输入；对设备商而言，白皮书明确的攻关路径和产业协同框架将影响基站产品路线图规划；对运营商而言，光电融合方案有望降低基站运行功耗和前传成本，支撑绿色智算和低成本规模化部署。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1321012.html" target="_blank" rel="noreferrer">C114 通信网 - 本地</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-268559">1、爱立信中国区CTO王浩博拆解AI-RAN路线并主张边缘推理不落基站</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">爱立信 AI-RAN</span> <span class="md-tag">边缘推理部署位置</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>爱立信中国</strong>区CTO王浩博在移动网络大会期间接受《通信产业报》采访，将AI-<strong>RAN</strong>拆为AI in <strong>RAN</strong>、AI for RAN、AI on RAN、AI and RAN四类。他称AI in RAN的L1/L2时延约束苛刻，一个时隙仅0.5毫秒，适合定制ASIC而非GPU；AI and RAN共平台部署仍处探索，缺现网验证。对边缘推理，他称传输仅占端到端时延2到5毫秒，算力下沉基站难换回时延增益，建议部署在地市核心网或C-RAN机房并与RAN松耦合。切片方面，他称全球差异化连接案例增长约<strong>30%</strong>，但中国落地瓶颈在市场侧产品设计与套餐重构。</p><p>📌 <strong>总结</strong>：访谈将AI-RAN路线分歧落到L1/L2时延、<strong>ASIC</strong>/GPU选型、供电散热与TCO，并提出边缘推理优先考虑地市核心网或C-RAN机房。是设备商CTO的工程观点与产品论述，不是对所有架构的统一实验结论。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDYwNDk5NQ==&amp;amp;mid=2657491474&amp;amp;idx=1&amp;amp;sn=9f7d1f8855033d3f8aa3b131c08537d9&amp;amp;chksm=bc352215cbc6765b47be42ceb237afb48f94bfeb9856d2c3e46d9b223e68ad607684942bfa2c&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">爱立信中国</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-270199">2、中国移动发布CIS-RAN通智一体小站样机，BBU集成国产智算芯片</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">中国移动CIS-RAN</span> <span class="md-tag">通智一体基站</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年移动网络大会上，<strong>中国移动</strong>正式发布自研CIS-RAN通智一体小站样机，面向AI时代网络演进构建硬件、软件、运维三层通智融合架构。硬件平台由<strong>通智一体基站</strong>与智算扩展单元协同构成，基站BBU集成国产智算芯片，扩展单元支持算力按需扩容与多站共享；AI4RAN增强无线性能与感知能力，RAN4AI实现AI业务大容量、低时延、确定性承载；无线运维智能体实现自然语言驱动的自开通、自运维、自优化。<strong>中国移动</strong>研究院联合紫金创新研究院研发的CIS-RAN无线智脑系统已中标苏州市具身智能机器人创新中心算力网络项目。</p><p>📌 <strong>总结</strong>：该样机把AI与RAN的融合从架构探索推向工程实践，对6G无线通算智一体技术路线具有方向性意义。<strong>中国移动</strong>首席专家李男指出，<strong>ASIC+GPU+</strong>CPU异构协同与GPU原生两条路线尚未形成共识，异构路线可利旧5G设备、能耗与成本更低，而GPU承载<strong>4T</strong>R小站物理层协议栈经优化后功耗与成本已接近传统架构。这为设备商在基站算力选型、国产智算芯片集成和无线运维智能体方向提供了可验证的工程参考，也影响6G基站架构与算力部署的长期演进判断。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1320961.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274209">3、VodafoneThree在伦敦部署爱立信AIR 3266，AI调度器测试下行吞吐提升20%</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">爱立信AIR 3266</span> <span class="md-tag">AI原生RAN</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：VodafoneThree已在其伦敦网络中部署<strong>爱立信</strong>AIR<strong> 3266</strong> <strong>Massive</strong> MIMO基站，首个站点于2026年10月投入运行，这是双方价值<strong>125亿</strong>瑞典克朗合作协议的最新里程碑，计划在全国超10000个站点部署下一代RAN及核心网解决方案。<strong>AIR</strong> 3266将5G中频段TDD <strong>Massive</strong> MIMO与最高400MHz带宽支持结合，重量仅16千克，可节省<strong>30%</strong>以上能耗，隐含碳排放最高降低<strong>50%</strong>。该设备搭载新一代爱立信硅芯科技，内置专用神经网络加速器，AI推理性能提升十倍，使AI模型可实时优化对时延敏感的无线功能。爱立信AI原生链路自适应调度器在初步测试中于拥塞条件下将下行吞吐量提升高达<strong>20%</strong>，VodafoneThree将在本财年底前试点，若验证成功计划2027年全国部署。</p><p>📌 <strong>总结</strong>：展示将神经网络加速器嵌入Massive MIMO设备、在无线侧运行AI调度的产品路线。区分首个伦敦站点的部署、拥塞条件下的初测增益和2027年全国部署计划，不能把计划覆盖数计为当前商用规模。</p><p>来源：<a href="https://www.c114.com.cn/news/137/a1321104.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-267691">4、诺基亚与VMO2完成英国首个AI-RAN现网试验，ASIC方案实现约20%频谱效率提升</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">诺基亚</span> <span class="md-tag">AI-RAN</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>诺基亚</strong>与Virgin <strong>Media</strong> O2披露，双方已在伦敦帕丁顿Giga Site完成英国首个<strong>AI-RAN</strong>功能现网部署试验，试验期间技术在VMO2现网中为真实用户提供服务。传统移动站点主要依靠相对静态的算法管理无线资源，<strong>诺基亚</strong>方案通过嵌入RAN的预测型AI持续学习网络状况、预判需求变化，自动调整站点频谱与容量分配，无需人工干预即可响应流量波动，最终实现约<strong>20%</strong>的频谱效率提升，并在需求高峰时段显著提升吞吐量。诺基亚随后向LightReading证实，该试验站点并未采用基于英伟达GPU的<strong>AI-RAN</strong>解决方案，而是通过定制ASIC承载新的AI-RAN功能。</p><p>📌 <strong>总结</strong>：关键差异是<strong>AI-RAN</strong>功能可在既有ASIC平台演进，而非天然要求GPU替换。约<strong>20%</strong>的频谱效率收益属于报道中的该站点试验条件，不应外推至全网或其他厂商方案。</p><p>来源：<a href="https://www.c114.com.cn/news/16/a1320871.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274194">5、中国移动与中兴在盘锦完成多频一体化AAU商用部署，4G容量提升40%</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">中兴通讯多频一体化AAU</span> <span class="md-tag">4G网络简化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：大型工业园区和城市高热点区域普遍存在天面资源紧张、4G/5G容量不足、<strong>4G网络简化</strong>困难等建网痛点。<strong>中国移动</strong>携手中兴通讯在辽宁盘锦阿美精细化工产业园完成1.8GHz+2.6GHz多频一体化AAU外场商用部署，该技术将4G、5G RRU与天线整合为一体化设备，采用高低频协同架构，在不新增独立天线的情况下同步提升4G与5G网络能力。部署结果显示通道数翻倍，网络容量提升<strong>40%</strong>以上，覆盖距离增强约150米，4G速率提升<strong>100%</strong>，同时通过设备整合降低能耗与站点配套消耗，节约电费及铁塔租赁成本。</p><p>📌 <strong>总结</strong>：该商用部署验证了多频一体化AAU在存量天面资源约束下同时提升4G容量与5G能力的工程可行性，对运营商而言意味着<strong>4G网络简化</strong>不必以牺牲容量为代价，可在高热点区域和工业园区以更低配套成本完成提质。对设备商而言，RRU与天线一体化设计将竞争焦点引向多频协同、能效和站点配套节省，而非单纯通道数堆叠。该案例为4G向5G演进过渡期的网络投资决策提供了可复制的参考，但缺少具体能耗下降比例和单站成本数据，商业价值仍需后续验证。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1321138.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-268956">1、Ciena Blue Planet联合埃森哲助KDDI推进自治网络，2028年扩展至移动网</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">KDDI</span> <span class="md-tag">自治网络</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：Ciena旗下<strong>Blue</strong> Planet宣布与日本运营商<strong>KDDI</strong>合作推进<strong>自治网络</strong>建设，埃森哲提供咨询与集成支持，初期试验在<strong>KDDI</strong>与埃森哲实验室环境开展。演示基于<strong>Blue</strong> <strong>Planet AI</strong> Studio及库存、编排、分析等自动化套件，探索自然语言告警搜索、AI驱动告警优先级排序、智能体闭环故障修复以及跨域服务生命周期自动化。该多年期项目先从KDDI固网运维起步，计划2028年扩展至移动网络。Blue Planet负责人称KDDI采取数据优先的<strong>自治网络</strong>路径，KDDI方面表示希望在日本网络环境下安全扩展AI运营。</p><p>📌 <strong>总结</strong>：重点是以共用数据基础连接资产、编排、分析和智能体闭环修复。报道所述验证在<strong>KDDI</strong>/埃森哲实验室进行，计划先固网、2028年扩展移动网；不能表述为移动网络已全面部署。</p><p>来源：<a href="https://www.sdxcentral.com/news/ciena-brings-autonomous-networks-to-japan-with-blue-planet/" target="_blank" rel="noreferrer">SDxCentral</a></p><p>原文标题：Ciena brings autonomous networks to Japan with Blue Planet</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271652">2、西班牙电信中标北约5G专网试验中心，整合诺基亚无线与AI防御用例</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">西班牙电信</span> <span class="md-tag">5G专网</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>西班牙电信</strong>宣布获得西班牙国防部一份为期三年的合同，为北约委托在斯洛伐克军事区域新建的5G技术受控实验中心提供<strong>5G专网</strong>，合同涵盖基础设施设计、部署与运维，并承担工程实施、用户培训与技术支持。方案整合XRF的指挥控制系统以支撑战略、战役和战术层级军事演习，采用诺基亚5G无线设备与Zebra Technologies的加固手机、平板、5G SIM等终端，联合Atika Technologies实施。试验用例包括基于人工智能和扩展现实的应用、安全通信以及反无人机能力。<strong>西班牙电信</strong>自2022年起为北约供应商，此前已在空中、海上和陆地场景完成5G战术气泡、VoNR语音与实时视频传输等验证。</p><p>📌 <strong>总结</strong>：对通信设备供应商而言，国防<strong>5G专网</strong>成为继工业专网之后的又一高价值增量场景，诺基亚无线设备进入北约试验体系有助于其标准话语权与后续合同获取；对核心网架构师，军事场景对低时延、不依赖公网、边缘计算和抗干扰提出更高要求，推动5G SA专网与边缘算力下沉设计；对标准专家，北约数字铸造厂等机制可能形成独立于3GPP的国防通信需求输入，值得跟踪其对5G-A/6G军事用例的影响。</p><p>来源：<a href="https://www.mobileworldlive.com/spanish/telefonica-apuesta-por-la-5g-en-el-sector-de-la-defensa/" target="_blank" rel="noreferrer">Mobile World Live</a></p><p>原文标题：Telefónica apuesta por la 5G en el sector de la defensa</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-269071">3、中国移动联合华为发布UE Logo 2.0，以5G-A×AI推动体验经营规模商用</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国移动UE Logo 2.0</span> <span class="md-tag">5G-A体验经营</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：在2026年移动网络大会上，中国移动联合华为发布UE <strong>Logo 2.0</strong>，将原有静态身份标识升级为动态交互服务入口，实现体验感知、权益触达、业务办理全链路打通。其技术机制是网络侧实时提供用户、业务、时空与体验信息，业务侧结合套餐综合决策并下达终端，终端侧通过元服务界面推送结果，形成“网找人”的主动服务模式。河南移动作为先锋样板已发展上万UE <strong>Logo 2.0</strong>用户，10月以来累计服务<strong>8.5万</strong>人次，<strong>43%</strong>用户有意愿反复使用，试用期付费订阅率达<strong>10%</strong>，年底规划具备百万级商用承载能力。中国移动同时宣布11月25日在京沪线启动5G-A高铁尊享服务试商用，依托5G-A 3CC大带宽、核心网AI-NWDAF智能画像和无线智能板时延保障，覆盖视频、游戏、直播、会议、通话五类场景。</p><p>📌 <strong>总结</strong>：UE <strong>Logo 2.</strong>0把端网交互入口与体验分级经营结合，可观察核心网策略、无线保障和终端呈现如何联动。河南试用数据是局部结果，11月25日京沪高铁服务在本报告截点仍属计划试商用。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzEzMTY0MA==&amp;amp;mid=2652093873&amp;amp;idx=1&amp;amp;sn=34a5e7c445d07d63519d509db20bbc07&amp;amp;chksm=bc77218b63a4e48bc09ede59d31f76dfe4524212fb4f57f223d7229b72ef1554da6c30922a57&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">C114通信网</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272416">4、中国移动联合中兴通讯等发布卫星相控阵天线关键技术实践案例</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国移动研究院</span> <span class="md-tag">卫星相控阵天线</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年移动网络大会期间，<strong>中国移动</strong>研究院联合中兴通讯、国电高科、钧天航宇发布<strong>卫星相控阵天线</strong>关键技术及实践案例，面向6G天地一体终端直连卫星场景。针对阵子数多导致校准慢、影响波束赋形准确度的问题，提出多子板并行快速校准技术、校准序列及算法，实现阵内阵间并行计算，序列运算量及校准时长降低超<strong>50%</strong>，并联合钧天航宇在二维折展手机直连<strong>卫星相控阵天线</strong>实践应用。针对星地链路损耗大、手机发射功率低导致上行链路弱的问题，提出上行链路增强技术，通过下行圆极化、上行双线极化的混合极化天线与双接收链路弥补极化损耗，经与中兴联合测试验证速率提升不低于<strong>30%</strong>，并已与国电高科开展全面技术合作。</p><p>📌 <strong>总结</strong>：该实践将<strong>卫星相控阵天线</strong>的校准效率与上行链路性能作为可量化指标，为6G天地一体终端直连卫星的工程化部署提供了可复用的技术路径。对核心网与通信系统架构而言，终端直连卫星的链路能力提升将影响未来非地面网络与地面网络融合的架构设计；对设备商与运营商而言，快速校准与混合极化方案可作为相控阵天线产品研发和标准提案的参考基线，降低卫星载荷与终端侧协同优化的不确定性。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1321015.html" target="_blank" rel="noreferrer">C114 通信网 - 本地</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274203">5、运营商以5G-A切片、专网和边缘计算探索机器人确定性连接服务</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国电信</span> <span class="md-tag">5G-A网络切片</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年11月，赛立信通信研究部文章指出，具身智能被视为继大模型、AI Agent之后的核心演进方向，其“感知—理解—决策—执行”闭环对通信网络、算力基础设施和数据服务提出全新需求。<strong>中国电信</strong>以5G-A为核心抓手，面向机器人高清视频回传、远程控制、多机协同等需求，发挥5G-A大上行、低时延、高可靠特性，通过网络切片、专网、边缘计算等技术提供确定性网络保障。<strong>中国电信</strong>明确不入局机器人硬件研发生产，而是将网络能力封装为标准化服务，向机器人厂商和行业客户输出可保障时延与带宽的通信方案，解决复杂环境下网络不稳定、协同调度困难的痛点。</p><p>📌 <strong>总结</strong>：文章对运营商切入具身智能的连接、算力与平台角色作综合分析，可用于梳理机器人专用连接产品的能力清单。不是一份已完成的单项目验收报告，不能据此声称所有场景已实现端到端确定性保障。</p><p>来源：<a href="https://www.c114.com.cn/news/16/a1321111.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272420">6、中国联通公示手机直连卫星试验星中标候选人，最高限价7800万元</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国联通</span> <span class="md-tag">手机直连卫星</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>中国联通</strong>公示2026年手机直连试验星新建工程-S01试验星在轨交付服务采购（第二次）中标候选人，项目最高投标限价<strong>7800万</strong>元（不含税），资金为企业自筹。中标候选人第一名中国科学院微小卫星创新研究院报价<strong>6177万</strong>元，第二名浙江时空道宇报价<strong>6977万</strong>元，第三名北京微纳星空报价<strong>6960万</strong>元，公示期为11月12日至16日。项目服务涵盖卫星试制、运载发射及3年以上在轨测运控服务。此前<strong>中国联通</strong>于2025年9月获首张卫星移动通信业务经营许可，2026年3月获公众应用商用试验批复，4月天通卫星服务全国上线。</p><p>📌 <strong>总结</strong>：试验星采购是<strong>手机直连卫星</strong>的在轨验证准备，提供运营商天地融合投入与服务周期线索。公示中标候选人不等于合同最终生效、卫星已发射或大众直连服务已经商用。</p><p>来源：<a href="https://www.c114.com.cn/news/119/a1320991.html" target="_blank" rel="noreferrer">C114 通信网 - 本地</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI应用与产品化场景</h2><h3 id="event-269279">1、Verizon在Thames Freeport完成多站点私有5G部署，Nokia提供DAC与MXIE平台</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">Verizon Business</span> <span class="md-tag">私有5G多租户</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：<strong>Verizon</strong> Business于2026年11月完成英国Thames Freeport多站点私有5G网络部署，覆盖港口、物流中心和制造设施共五个站点，共用同一商业枢纽但每个租户运行独立核心网以保障数据主权。硬件与软件由Nokia <strong>Enterprise Campus</strong> Edge提供，包括数字自动化云DAC和本地边缘计算平台MXIE。该网络支持物理AI、计算机视觉、实时资产追踪、预测性维护和边缘计算等用例。<strong>Verizon</strong>通过Connectivity <strong>Innovation</strong> Lab测试了AI车辆损伤检测和数字卡车处理平台，前者发现人工检查遗漏的损伤，后者实时追踪卡车移动并定位闸口排队成因。</p><p>📌 <strong>总结</strong>：该部署验证了多租户私有5G在港口物流场景中通过独立核心网实现数据主权隔离的架构可行性，对核心网架构师的启示是：私有5G多站点部署需在共享商业枢纽与租户级核心网隔离之间取得平衡，<strong>Nokia</strong> DAC与MXIE的组合提供了从无线到边缘计算的端到端参考。对商业主管而言，港口物流的AI用例已验证可发现人工遗漏问题，具备向其他工业场景复制的商业潜力。</p><p>来源：<a href="https://www.mobileworldlive.com/verizon/verizon-docks-multisite-private-5g-networks-at-thames-freeport/" target="_blank" rel="noreferrer">Mobile World Live</a></p><p>原文标题：Verizon docks multi-site private 5G networks at Thames Freeport</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274229">2、中国电信推出天翼词元统一Token量纲，可通兑智谱GLM-5.3与DeepSeek-V4</h3><p><span class="md-tag">AI应用与产品化场景</span> <span class="md-tag">中国电信天翼词元</span> <span class="md-tag">Token统一量纲</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：<strong>中国电信</strong>近日推出Token经营统一量纲“天翼词元”（<strong>China Telecom AI Token</strong>），可通兑智谱GLM-5.3、<strong>DeepSeek-</strong>V4等主流大模型Token，也可兑换自有及生态AI应用权益。用户开通后获得统一API Key与访问地址，可在<strong>中国电信</strong>超级智能体TeleAgent中直接使用，也可接入WorkBuddy、<strong>Qoder</strong>、<strong>MiniMax Code</strong>、千问办公等主流智能体工具，实现分钟级接入。星辰TokenHub平台按各模型Token与天翼词元的兑换公式自动换算，默认使用智能路由按任务类型匹配最优性价比模型。以智谱GLM-5.3为例，1000天翼词元可兑换<strong>125万</strong>输入Token或<strong>35.7万</strong>输出Token；<strong>DeepSeek-</strong>V4.1-Flash则可兑换<strong>500万</strong>输入Token或<strong>125万</strong>输出Token。</p><p>📌 <strong>总结</strong>：通过统一Token量纲、<strong>API</strong> Key和模型路由把运营商AI能力组合成可经营服务，值得关注身份、计量、跨模型兑换与渠道接口。属于运营商AI服务产品，不代表新增核心网标准或算法性能突破。</p><p>来源：<a href="https://www.c114.com.cn/news/117/a1321064.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-274193">1、中兴通讯以Co-sight智能体框架落地故障网优投诉场景并开源A2A-T协议</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">中兴通讯Co-sight</span> <span class="md-tag">A2A-T协议</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：中兴在2026信息通信网络运营维护服务年会介绍AIRNet方案：以Co-sight智能体框架和1+N模型架构嵌入运营商生产系统，披露故障、网优、投诉场景落地，并介绍对外开源<strong>A2A-T协议</strong>及智能体测评数据集。</p><p>📌 <strong>总结</strong>：重点是通信智能体产品化、跨域互操作及轻量模型部署的组合路径。本文为厂商会议披露，原文未给出各场景统一对照测试或规模化收益数据，不能等同于独立效果评测。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1321139.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-269062">2、Persistent Systems提出电信AI智能体需共享数据层以协同决策</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">电信AI智能体协同</span> <span class="md-tag">共享数据层</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>Persistent</strong> Systems全球CMT负责人Kuljesh Puri在RCR Wireless撰文指出，电信运营商已快速将AI智能体部署于网络运维、客服和容量规划，但各智能体独立运行在跨域事件中产生冲突决策。以城域光纤中断为例，网络运维智能体数秒内完成流量重路由，客服智能体因不知情仍发放服务补偿并派单，容量规划智能体次日将重路由负载误判为新需求并触发扩容。据GSMA Intelligence数据，电信行业三分之二的AI部署已上线，但仅<strong>41%</strong>运营商具备真正的端到端数据架构。Puri主张为每个智能体提供<strong>共享数据层</strong>，统一客户、服务和网络视图，使告警可基于客户影响、商业风险和可用修复手段综合判断。</p><p>📌 <strong>总结</strong>：作者用断纤后运维、客服、规划智能体相互冲突的场景说明共享上下文与协调机制的必要性，可为通信多智能体数据架构提供设计参考。这是厂商高管观点文章，不是已完成部署或可直接归因的效果测评。</p><p>来源：<a href="https://rcrwireless.com/20261112/reader-forum/telecoms-next-ai-gains-will-come-from-agents-that-work-together-reader-forum" target="_blank" rel="noreferrer">RCR Wireless - AI Infrastructure</a></p><p>原文标题：Telecom’s next AI gains will come from agents that work together (Reader Forum)</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271534">3、观点：运营商可成为AI智能体身份认证与Token使用治理经纪方</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">电信运营商</span> <span class="md-tag">AI智能体身份认证</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：11月13日Fierce观点文章提出，运营商可利用连接提供者身份识别、认证AI智能体，约束工作流授权和Token使用量。现有素材仅保留短摘要，尚不足以证明具体产品接口或商用部署。</p><p>📌 <strong>总结</strong>：对核心网能力开放、身份体系与AI业务经营的价值是提供一个产品方向。仅作为观点线索收录，不将其包装成已发布的核心网网元或成熟解决方案。</p><p>来源：<a href="https://www.fierce-network.com/wireless/opinion-telcos-can-be-broker-ai-workloads" target="_blank" rel="noreferrer">Fierce Wireless</a></p><p>原文标题：Opinion: Telcos can be a broker for AI workloads</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274214">4、广东移动携手华为发布全球首个AI-OTN单域自治示范区实践成果</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">广东移动与华为AI-OTN单域自治方案</span> <span class="md-tag">网络智能体</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：在2026移动网络大会期间，广东移动携手华为基于广州传输现网正式发布全球首个AI-OTN单域自治示范区实践成果。针对超大规模城域光网络层次多、类型复杂、人工设计光路耗时长、隐患难以及时发现、故障排查和上站处理成本高等挑战，双方部署基于<strong>网络智能体</strong>的AI-OTN单域自治解决方案，通过智能技术重构光网络全生命周期运维流程。具体能力包括：<strong>网络智能体</strong>根据用户业务需求自动完成端到端光路计算并主动规避同路由风险，将串行处理流程优化为多任务并行自动执行，配合CPE设备即插即用，一线装维人员平均上门次数由3次减少至1次，实现政企业务当日交付；融合智能光模块多维感知能力和四层三维网络隐患评估模型，由网络智能体全天候监测光功率劣化、同路由、单节点等潜在风险，隐患识别准确率超过<strong>95%</strong>，将月度被动巡检升级为实时主动监测。</p><p>📌 <strong>总结</strong>：该实践表明<strong>网络智能体</strong>在光网络运维场景中已具备可量化的效率提升能力，业务开通从人工逐段规划转向自动端到端计算，隐患识别从定期巡检转向实时监测，故障处理从人工排查转向智能定位。对运营商而言，<strong>AI-</strong>OTN单域自治方案可显著降低政企业务交付周期和运维人力成本，提升网络可靠性和客户体验。对设备商而言，<strong>网络智能体</strong>与光网络的深度融合将成为光传输产品差异化的关键方向。对核心网架构师和自智网络规划者而言，该案例为高阶自智网络在传输域的落地提供了参考架构和效果基准。</p><p>来源：<a href="https://www.c114.com.cn/news/126/a1321091.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信设备供应商</h2><h3 id="event-268559">1、爱立信中国区CTO王浩博拆解AI-RAN路线并主张边缘推理不落基站</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">爱立信 AI-RAN</span> <span class="md-tag">边缘推理部署位置</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>爱立信中国</strong>区CTO王浩博在移动网络大会期间接受《通信产业报》采访，将AI-<strong>RAN</strong>拆为AI in <strong>RAN</strong>、AI for RAN、AI on RAN、AI and RAN四类。他称AI in RAN的L1/L2时延约束苛刻，一个时隙仅0.5毫秒，适合定制ASIC而非GPU；AI and RAN共平台部署仍处探索，缺现网验证。对边缘推理，他称传输仅占端到端时延2到5毫秒，算力下沉基站难换回时延增益，建议部署在地市核心网或C-RAN机房并与RAN松耦合。切片方面，他称全球差异化连接案例增长约<strong>30%</strong>，但中国落地瓶颈在市场侧产品设计与套餐重构。</p><p>📌 <strong>总结</strong>：访谈将AI-RAN路线分歧落到L1/L2时延、<strong>ASIC</strong>/GPU选型、供电散热与TCO，并提出边缘推理优先考虑地市核心网或C-RAN机房。是设备商CTO的工程观点与产品论述，不是对所有架构的统一实验结论。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MDYwNDk5NQ==&amp;amp;mid=2657491474&amp;amp;idx=1&amp;amp;sn=9f7d1f8855033d3f8aa3b131c08537d9&amp;amp;chksm=bc352215cbc6765b47be42ceb237afb48f94bfeb9856d2c3e46d9b223e68ad607684942bfa2c&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">爱立信中国</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-270199">2、中国移动发布CIS-RAN通智一体小站样机，BBU集成国产智算芯片</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">中国移动CIS-RAN</span> <span class="md-tag">通智一体基站</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：2026年移动网络大会上，<strong>中国移动</strong>正式发布自研CIS-RAN通智一体小站样机，面向AI时代网络演进构建硬件、软件、运维三层通智融合架构。硬件平台由<strong>通智一体基站</strong>与智算扩展单元协同构成，基站BBU集成国产智算芯片，扩展单元支持算力按需扩容与多站共享；AI4RAN增强无线性能与感知能力，RAN4AI实现AI业务大容量、低时延、确定性承载；无线运维智能体实现自然语言驱动的自开通、自运维、自优化。<strong>中国移动</strong>研究院联合紫金创新研究院研发的CIS-RAN无线智脑系统已中标苏州市具身智能机器人创新中心算力网络项目。</p><p>📌 <strong>总结</strong>：该样机把AI与RAN的融合从架构探索推向工程实践，对6G无线通算智一体技术路线具有方向性意义。<strong>中国移动</strong>首席专家李男指出，<strong>ASIC+GPU+</strong>CPU异构协同与GPU原生两条路线尚未形成共识，异构路线可利旧5G设备、能耗与成本更低，而GPU承载<strong>4T</strong>R小站物理层协议栈经优化后功耗与成本已接近传统架构。这为设备商在基站算力选型、国产智算芯片集成和无线运维智能体方向提供了可验证的工程参考，也影响6G基站架构与算力部署的长期演进判断。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1320961.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274209">3、VodafoneThree在伦敦部署爱立信AIR 3266，AI调度器测试下行吞吐提升20%</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">爱立信AIR 3266</span> <span class="md-tag">AI原生RAN</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：VodafoneThree已在其伦敦网络中部署<strong>爱立信</strong>AIR<strong> 3266</strong> <strong>Massive</strong> MIMO基站，首个站点于2026年10月投入运行，这是双方价值<strong>125亿</strong>瑞典克朗合作协议的最新里程碑，计划在全国超10000个站点部署下一代RAN及核心网解决方案。<strong>AIR</strong> 3266将5G中频段TDD <strong>Massive</strong> MIMO与最高400MHz带宽支持结合，重量仅16千克，可节省<strong>30%</strong>以上能耗，隐含碳排放最高降低<strong>50%</strong>。该设备搭载新一代爱立信硅芯科技，内置专用神经网络加速器，AI推理性能提升十倍，使AI模型可实时优化对时延敏感的无线功能。爱立信AI原生链路自适应调度器在初步测试中于拥塞条件下将下行吞吐量提升高达<strong>20%</strong>，VodafoneThree将在本财年底前试点，若验证成功计划2027年全国部署。</p><p>📌 <strong>总结</strong>：展示将神经网络加速器嵌入Massive MIMO设备、在无线侧运行AI调度的产品路线。区分首个伦敦站点的部署、拥塞条件下的初测增益和2027年全国部署计划，不能把计划覆盖数计为当前商用规模。</p><p>来源：<a href="https://www.c114.com.cn/news/137/a1321104.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-267691">4、诺基亚与VMO2完成英国首个AI-RAN现网试验，ASIC方案实现约20%频谱效率提升</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">诺基亚</span> <span class="md-tag">AI-RAN</span> <span class="md-tag">架构替代</span></p><p>📋 <strong>要点</strong>：<strong>诺基亚</strong>与Virgin <strong>Media</strong> O2披露，双方已在伦敦帕丁顿Giga Site完成英国首个<strong>AI-RAN</strong>功能现网部署试验，试验期间技术在VMO2现网中为真实用户提供服务。传统移动站点主要依靠相对静态的算法管理无线资源，<strong>诺基亚</strong>方案通过嵌入RAN的预测型AI持续学习网络状况、预判需求变化，自动调整站点频谱与容量分配，无需人工干预即可响应流量波动，最终实现约<strong>20%</strong>的频谱效率提升，并在需求高峰时段显著提升吞吐量。诺基亚随后向LightReading证实，该试验站点并未采用基于英伟达GPU的<strong>AI-RAN</strong>解决方案，而是通过定制ASIC承载新的AI-RAN功能。</p><p>📌 <strong>总结</strong>：关键差异是<strong>AI-RAN</strong>功能可在既有ASIC平台演进，而非天然要求GPU替换。约<strong>20%</strong>的频谱效率收益属于报道中的该站点试验条件，不应外推至全网或其他厂商方案。</p><p>来源：<a href="https://www.c114.com.cn/news/16/a1320871.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274194">5、中国移动与中兴在盘锦完成多频一体化AAU商用部署，4G容量提升40%</h3><p><span class="md-tag">通信设备供应商</span> <span class="md-tag">中兴通讯多频一体化AAU</span> <span class="md-tag">4G网络简化</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：大型工业园区和城市高热点区域普遍存在天面资源紧张、4G/5G容量不足、<strong>4G网络简化</strong>困难等建网痛点。<strong>中国移动</strong>携手中兴通讯在辽宁盘锦阿美精细化工产业园完成1.8GHz+2.6GHz多频一体化AAU外场商用部署，该技术将4G、5G RRU与天线整合为一体化设备，采用高低频协同架构，在不新增独立天线的情况下同步提升4G与5G网络能力。部署结果显示通道数翻倍，网络容量提升<strong>40%</strong>以上，覆盖距离增强约150米，4G速率提升<strong>100%</strong>，同时通过设备整合降低能耗与站点配套消耗，节约电费及铁塔租赁成本。</p><p>📌 <strong>总结</strong>：该商用部署验证了多频一体化AAU在存量天面资源约束下同时提升4G容量与5G能力的工程可行性，对运营商而言意味着<strong>4G网络简化</strong>不必以牺牲容量为代价，可在高热点区域和工业园区以更低配套成本完成提质。对设备商而言，RRU与天线一体化设计将竞争焦点引向多频协同、能效和站点配套节省，而非单纯通道数堆叠。该案例为4G向5G演进过渡期的网络投资决策提供了可复制的参考，但缺少具体能耗下降比例和单站成本数据，商业价值仍需后续验证。</p><p>来源：<a href="https://www.c114.com.cn/news/127/a1321138.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>通信服务提供商</h2><h3 id="event-268956">1、Ciena Blue Planet联合埃森哲助KDDI推进自治网络，2028年扩展至移动网</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">KDDI</span> <span class="md-tag">自治网络</span> <span class="md-tag">运维效率提升</span></p><p>📋 <strong>要点</strong>：Ciena旗下<strong>Blue</strong> Planet宣布与日本运营商<strong>KDDI</strong>合作推进<strong>自治网络</strong>建设，埃森哲提供咨询与集成支持，初期试验在<strong>KDDI</strong>与埃森哲实验室环境开展。演示基于<strong>Blue</strong> <strong>Planet AI</strong> Studio及库存、编排、分析等自动化套件，探索自然语言告警搜索、AI驱动告警优先级排序、智能体闭环故障修复以及跨域服务生命周期自动化。该多年期项目先从KDDI固网运维起步，计划2028年扩展至移动网络。Blue Planet负责人称KDDI采取数据优先的<strong>自治网络</strong>路径，KDDI方面表示希望在日本网络环境下安全扩展AI运营。</p><p>📌 <strong>总结</strong>：重点是以共用数据基础连接资产、编排、分析和智能体闭环修复。报道所述验证在<strong>KDDI</strong>/埃森哲实验室进行，计划先固网、2028年扩展移动网；不能表述为移动网络已全面部署。</p><p>来源：<a href="https://www.sdxcentral.com/news/ciena-brings-autonomous-networks-to-japan-with-blue-planet/" target="_blank" rel="noreferrer">SDxCentral</a></p><p>原文标题：Ciena brings autonomous networks to Japan with Blue Planet</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-271652">2、西班牙电信中标北约5G专网试验中心，整合诺基亚无线与AI防御用例</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">西班牙电信</span> <span class="md-tag">5G专网</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>西班牙电信</strong>宣布获得西班牙国防部一份为期三年的合同，为北约委托在斯洛伐克军事区域新建的5G技术受控实验中心提供<strong>5G专网</strong>，合同涵盖基础设施设计、部署与运维，并承担工程实施、用户培训与技术支持。方案整合XRF的指挥控制系统以支撑战略、战役和战术层级军事演习，采用诺基亚5G无线设备与Zebra Technologies的加固手机、平板、5G SIM等终端，联合Atika Technologies实施。试验用例包括基于人工智能和扩展现实的应用、安全通信以及反无人机能力。<strong>西班牙电信</strong>自2022年起为北约供应商，此前已在空中、海上和陆地场景完成5G战术气泡、VoNR语音与实时视频传输等验证。</p><p>📌 <strong>总结</strong>：对通信设备供应商而言，国防<strong>5G专网</strong>成为继工业专网之后的又一高价值增量场景，诺基亚无线设备进入北约试验体系有助于其标准话语权与后续合同获取；对核心网架构师，军事场景对低时延、不依赖公网、边缘计算和抗干扰提出更高要求，推动5G SA专网与边缘算力下沉设计；对标准专家，北约数字铸造厂等机制可能形成独立于3GPP的国防通信需求输入，值得跟踪其对5G-A/6G军事用例的影响。</p><p>来源：<a href="https://www.mobileworldlive.com/spanish/telefonica-apuesta-por-la-5g-en-el-sector-de-la-defensa/" target="_blank" rel="noreferrer">Mobile World Live</a></p><p>原文标题：Telefónica apuesta por la 5G en el sector de la defensa</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-269071">3、中国移动联合华为发布UE Logo 2.0，以5G-A×AI推动体验经营规模商用</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国移动UE Logo 2.0</span> <span class="md-tag">5G-A体验经营</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：在2026年移动网络大会上，中国移动联合华为发布UE <strong>Logo 2.0</strong>，将原有静态身份标识升级为动态交互服务入口，实现体验感知、权益触达、业务办理全链路打通。其技术机制是网络侧实时提供用户、业务、时空与体验信息，业务侧结合套餐综合决策并下达终端，终端侧通过元服务界面推送结果，形成“网找人”的主动服务模式。河南移动作为先锋样板已发展上万UE <strong>Logo 2.0</strong>用户，10月以来累计服务<strong>8.5万</strong>人次，<strong>43%</strong>用户有意愿反复使用，试用期付费订阅率达<strong>10%</strong>，年底规划具备百万级商用承载能力。中国移动同时宣布11月25日在京沪线启动5G-A高铁尊享服务试商用，依托5G-A 3CC大带宽、核心网AI-NWDAF智能画像和无线智能板时延保障，覆盖视频、游戏、直播、会议、通话五类场景。</p><p>📌 <strong>总结</strong>：UE <strong>Logo 2.</strong>0把端网交互入口与体验分级经营结合，可观察核心网策略、无线保障和终端呈现如何联动。河南试用数据是局部结果，11月25日京沪高铁服务在本报告截点仍属计划试商用。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MjM5MzEzMTY0MA==&amp;amp;mid=2652093873&amp;amp;idx=1&amp;amp;sn=34a5e7c445d07d63519d509db20bbc07&amp;amp;chksm=bc77218b63a4e48bc09ede59d31f76dfe4524212fb4f57f223d7229b72ef1554da6c30922a57&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">C114通信网</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272416">4、中国移动联合中兴通讯等发布卫星相控阵天线关键技术实践案例</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国移动研究院</span> <span class="md-tag">卫星相控阵天线</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026年移动网络大会期间，<strong>中国移动</strong>研究院联合中兴通讯、国电高科、钧天航宇发布<strong>卫星相控阵天线</strong>关键技术及实践案例，面向6G天地一体终端直连卫星场景。针对阵子数多导致校准慢、影响波束赋形准确度的问题，提出多子板并行快速校准技术、校准序列及算法，实现阵内阵间并行计算，序列运算量及校准时长降低超<strong>50%</strong>，并联合钧天航宇在二维折展手机直连<strong>卫星相控阵天线</strong>实践应用。针对星地链路损耗大、手机发射功率低导致上行链路弱的问题，提出上行链路增强技术，通过下行圆极化、上行双线极化的混合极化天线与双接收链路弥补极化损耗，经与中兴联合测试验证速率提升不低于<strong>30%</strong>，并已与国电高科开展全面技术合作。</p><p>📌 <strong>总结</strong>：该实践将<strong>卫星相控阵天线</strong>的校准效率与上行链路性能作为可量化指标，为6G天地一体终端直连卫星的工程化部署提供了可复用的技术路径。对核心网与通信系统架构而言，终端直连卫星的链路能力提升将影响未来非地面网络与地面网络融合的架构设计；对设备商与运营商而言，快速校准与混合极化方案可作为相控阵天线产品研发和标准提案的参考基线，降低卫星载荷与终端侧协同优化的不确定性。</p><p>来源：<a href="https://www.c114.com.cn/news/118/a1321015.html" target="_blank" rel="noreferrer">C114 通信网 - 本地</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-274203">5、运营商以5G-A切片、专网和边缘计算探索机器人确定性连接服务</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国电信</span> <span class="md-tag">5G-A网络切片</span> <span class="md-tag">新收入机会</span></p><p>📋 <strong>要点</strong>：2026年11月，赛立信通信研究部文章指出，具身智能被视为继大模型、AI Agent之后的核心演进方向，其“感知—理解—决策—执行”闭环对通信网络、算力基础设施和数据服务提出全新需求。<strong>中国电信</strong>以5G-A为核心抓手，面向机器人高清视频回传、远程控制、多机协同等需求，发挥5G-A大上行、低时延、高可靠特性，通过网络切片、专网、边缘计算等技术提供确定性网络保障。<strong>中国电信</strong>明确不入局机器人硬件研发生产，而是将网络能力封装为标准化服务，向机器人厂商和行业客户输出可保障时延与带宽的通信方案，解决复杂环境下网络不稳定、协同调度困难的痛点。</p><p>📌 <strong>总结</strong>：文章对运营商切入具身智能的连接、算力与平台角色作综合分析，可用于梳理机器人专用连接产品的能力清单。不是一份已完成的单项目验收报告，不能据此声称所有场景已实现端到端确定性保障。</p><p>来源：<a href="https://www.c114.com.cn/news/16/a1321111.html" target="_blank" rel="noreferrer">C114 通信网 - 技术</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-272420">6、中国联通公示手机直连卫星试验星中标候选人，最高限价7800万元</h3><p><span class="md-tag">通信服务提供商</span> <span class="md-tag">中国联通</span> <span class="md-tag">手机直连卫星</span> <span class="md-tag">标准/生态影响</span></p><p>📋 <strong>要点</strong>：2026年11月，<strong>中国联通</strong>公示2026年手机直连试验星新建工程-S01试验星在轨交付服务采购（第二次）中标候选人，项目最高投标限价<strong>7800万</strong>元（不含税），资金为企业自筹。中标候选人第一名中国科学院微小卫星创新研究院报价<strong>6177万</strong>元，第二名浙江时空道宇报价<strong>6977万</strong>元，第三名北京微纳星空报价<strong>6960万</strong>元，公示期为11月12日至16日。项目服务涵盖卫星试制、运载发射及3年以上在轨测运控服务。此前<strong>中国联通</strong>于2025年9月获首张卫星移动通信业务经营许可，2026年3月获公众应用商用试验批复，4月天通卫星服务全国上线。</p><p>📌 <strong>总结</strong>：试验星采购是<strong>手机直连卫星</strong>的在轨验证准备，提供运营商天地融合投入与服务周期线索。公示中标候选人不等于合同最终生效、卫星已发射或大众直连服务已经商用。</p><p>来源：<a href="https://www.c114.com.cn/news/119/a1320991.html" target="_blank" rel="noreferrer">C114 通信网 - 本地</a></p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>爱立信详解6G核心网AI域架构：意图处理、智能体协作与独立演进</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>河南移动联合华为发布智诊云核智能体，核心网运维转向主动预防</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>LMT Defence基于Open5GS研发自有5G核心网，面向国防专网验证</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Verizon在Thames Freeport完成多站点私有5G部署，Nokia提供DAC与MXIE平台</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>One New Zealand扩大与Nokia合作，以可信数据与保障自动化推进自治网络转型</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Ciena Blue Planet联合埃森哲助KDDI推进自治网络，2028年扩展至移动网</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>爱立信中国区CTO王浩博拆解AI-RAN路线并主张边缘推理不落基站</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>西班牙电信中标北约5G专网试验中心，整合诺基亚无线与AI防御用例</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>核心网与通信系统架构</td><td>9</td></tr><tr><td>通信服务提供商</td><td>6</td></tr><tr><td>通信设备供应商</td><td>5</td></tr><tr><td>智能体平台、协议与执行系统</td><td>4</td></tr><tr><td>标准、协议与产业联盟</td><td>4</td></tr><tr><td>AI应用与产品化场景</td><td>2</td></tr><tr><td><strong>合计</strong></td><td><strong>30</strong></td></tr></table><p>素材处理说明：本版30条均来自已完成模型摘要、模型评分和当前版本Embedding的既有素材；本次另补抓入库的2条GSMA素材保留原任务待处理，未计入本版。</p>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
