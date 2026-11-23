@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-09</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-09</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-08T00:00:00+00:00 ~ 2026-11-09T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-11-23 23:55:31 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月09日</strong></p><p><strong>生成时间：2026-11-15 00:15 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：6 个 | 本期条目：6 条 | 覆盖板块：3 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：智能体平台、协议与执行系统 2 条，AI推理与服务加速 3 条，模型评测 1 条，合计 6 条。</li><li>日报内容：吉林大学联合上海AI实验室提出EvoTeam，多智能体团队三层协同进化；LobeHub用自家Agent团队开发自身产品，30项软件工程任务通过率达70%；Evolving Infra 解耦算力分配与 KV 缓存，智能体推理时延最高降 4.1 倍；英伟达等提出TacitVLA，用attention mask让动作不等推理文本，延迟最多降低3.4倍。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-264699">吉林大学联合上海AI实验室提出EvoTeam，多智能体团队三层协同进化</a></li></ul><ul><li><a href="#event-264583">英伟达等提出TacitVLA，用attention mask让动作不等推理文本，延迟最多降低3.4倍</a></li></ul><ul><li><a href="#event-264639">Anthropic公开Claude Code六层审查流程回滚率反降四成</a></li></ul><ul><li><a href="#event-269721">Evolving Infra 解耦算力分配与 KV 缓存，智能体推理时延最高降 4.1 倍</a></li></ul><ul><li><a href="#event-264859">LobeHub用自家Agent团队开发自身产品，30项软件工程任务通过率达70%</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-264699">1、吉林大学联合上海AI实验室提出EvoTeam，多智能体团队三层协同进化</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">OhEvoTeam</span> <span class="md-tag">Oh多智能体协作</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：吉林大学联合上海人工智能实验室提出EvoTeam，解决多智能体系统完成100个任务后仍无法从历史经验中成长的问题。EvoTeam将系统成长拆为三个层次：<strong>Agent</strong> Skills关注个体专业能力积累，<strong>Agent</strong> Teams关注团队协作架构调整，<strong>Interaction</strong> Rules关注信息交接规则优化。系统维护全局Agent Pool和可持续更新的Team <strong>Library</strong>，通过自适应组队、团队范围协作和多级经验进化形成闭环。在GAIA、<strong>LoCoBench</strong>、<strong>LOCA-</strong>Bench和BeyondSWE混合任务中平均分59.58，相比Meta-Team的55.55提高4.03分。</p><p>📌 <strong>总结</strong>：EvoTeam将进化从单个Agent延伸到整个团队，使团队成为可复用可进化的经验载体。消融实验显示GAIA上移除交互规则后得分从77.00降至67.00，进一步移除可复用团队后降至61.00，证明团队组织和交互规则均提供实际贡献。跨模型迁移实验中GPT-5.6-Luna和DeepSeek-<strong>V4.1-</strong>Flash的差距不超过4分，展现出协作经验的跨模型迁移潜力，为多智能体系统的持续进化提供了工程参考。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247513461&amp;amp;idx=2&amp;amp;sn=e5115064319dc85fcf0de87bdcea61d8" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-264859">2、LobeHub用自家Agent团队开发自身产品，30项软件工程任务通过率达70%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">LobeHub</span> <span class="md-tag">多Agent协作</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>LobeHub</strong>团队将自研AI协作平台嵌入日常研发流程，由主管Agent Nasa拆解需求并派发给Coding <strong>Agent Dario</strong>，Dario完成编码、测试并提交PR，再由<strong>Code</strong>x代码审查机器人检查问题，Dario根据反馈修改后经人工审阅合并。在FrontierHarness的30道软件工程任务中，优化后的Agent Harness使用Kimi K3完成21道，通过率<strong>70%</strong>，每道成功任务成本中位数1.68美元，超过<strong>Code</strong>x和Claude Code。团队还实现了跨项目Agent直接沟通，lobe-ui组件库发布6.0.1版本后上游项目自动收到升级通知。</p><p>📌 <strong>总结</strong>：<strong>LobeHub</strong>将Agent <strong>Loop</strong>、Session和工具运行环境拆开管理，使Agent在用户退出对话后仍能后台持续执行任务，并曾用客户端数据迁移任务连续运行2天<strong>3小时</strong><strong>47分钟</strong>、拆出60个任务完成56次独立迁移。这套机制让<strong>多Agent协作</strong>从演示走向可交付的工程流程，对AI Native组织的<strong>研发效率提升</strong>和Agent平台架构设计具有直接参考价值，也为人机协同中的验收权归属提供了可操作范式。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;amp;mid=2247940486&amp;amp;idx=1&amp;amp;sn=8678d2fd2fb6c737c7acfdcfd4733b86&amp;amp;chksm=e9cca3da4d43a2447908e4c34409d3beb93b53eed8b7cde1dd20925b8f3fe9cf6135b93c9fbd&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">量子位</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-269721">1、Evolving Infra 解耦算力分配与 KV 缓存，智能体推理时延最高降 4.1 倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Evolving Infra</span> <span class="md-tag">KV Cache</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：智能体工作负载已成为 <strong>LLM</strong> 推理需求的主要来源，但现有 prefill-decode 分离式服务系统对算力分配和 KV 缓存管理的运行时自适应能力有限，且依赖的粗粒度信号难以刻画智能体负载的多样性与动态性，导致 prefill 与 decode 节点间负载不均、智能体将复用的 KV 缓存被提前淘汰。<strong>Evolving Infra</strong> 将算力分配与 KV 缓存管理解耦，使节点可在 prefill 与 decode 之间高效切换；在此基础上，在线规划器根据负载构成匹配 PD 切分比例，智能体感知的分布式 KV 管理器利用智能体上下文管理信号指导缓存淘汰与迁移。在最多 256 块 <strong>GB300 GPU</strong> 上，针对编码、数学和计算机操作任务，使用 <strong>GLM-5.2</strong> 与 <strong>Kimi K2.6</strong> 测试，端到端平均请求时延和 <strong>P</strong>95 T<strong>TFT</strong> 相比 <strong>NVIDIA</strong> 生产框架 <strong>Dynamo</strong> 最高降低 <strong>4.1 倍</strong>和 <strong>14 倍</strong>。</p><p>📌 <strong>总结</strong>：该工作把智能体上下文管理信号引入推理服务的调度与缓存决策，说明面向智能体的推理系统需要从静态 PD 分离走向运行时自适应。对推理服务架构而言，解耦算力分配与 KV 缓存管理可提升异构负载下的资源利用率，降低长上下文智能体任务的尾时延；对产品与商业判断而言，这类优化直接关系到智能体应用的 token 成本与并发承载能力，是推理服务差异化竞争的关键方向。</p><p>来源：<a href="https://arxiv.org/abs/2611.12304" target="_blank" rel="noreferrer">Hugging Face Papers</a></p><p>原文标题：Evolving Infra: Agent-Adaptive LLM Serving at Scale</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-264583">2、英伟达等提出TacitVLA，用attention mask让动作不等推理文本，延迟最多降低3.4倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">TacitVLA</span> <span class="md-tag">VLA推理延迟</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：针对推理VLA模型先写推理文本再输出动作导致延迟高的问题，英伟达、纽约大学、UC伯克利、约翰斯·霍普金斯大学和斯坦福大学的研究团队提出<strong>TacitVLA</strong>，保留训练时写推理对backbone的塑造作用和长程任务中推理文本作为记忆的作用，去掉部署时action expert读取当前步骤推理的环节，唯一改动是attention mask让action expert看不到推理token。在机器人操作和自动驾驶四个benchmark上，<strong>TacitVLA</strong>成功率与显式推理相当并超过无推理训练，单张H100上LIBERO输出动作从495毫秒降至147毫秒，延迟最多降低<strong>3.4倍</strong>；在RMBench上平均成功率<strong>77.5%</strong>，此前最好为<strong>56.5%</strong>；在RoboMME计数任务上达到<strong>82.7%</strong>，此前最好为<strong>66.8%</strong>。</p><p>📌 <strong>总结</strong>：该工作把推理VLA的收益来源拆分为学习写推理和读取推理两种途径，证明动作不需要读取当前步骤的推理文本，仅保留训练时写推理的监督作用即可在部署时跳过推理生成，为机器人操作和自动驾驶的实时控制提供了无需额外模型或调度器的加速方案。对<strong>AI推理与服务加速</strong>方向而言，这一发现说明推理文本的价值主要在训练阶段而非部署阶段，attention mask级别的改动即可实现<strong>3.4倍</strong>延迟降低，为VLA模型的服务化部署提供了低成本优化路径；在记忆任务上先算动作再在执行期间写日志的做法，也为长程任务的状态管理提供了工程参考。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651072888&amp;amp;idx=3&amp;amp;sn=75cf566a70af17c8a5cfa30d459aab8b&amp;amp;chksm=85625b5bcc8b79615ea7bfdfe8ed77c7ffcd1cecf36afaf69ff5db5a2a6fe3b165a02807402c&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-264647">3、Cloudflare AI Gateway推出Auto Router公测，基准测试称可靠性提升约10个百分点而成本降至约三分之一</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Cloudflare Auto Router</span> <span class="md-tag">模型路由</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Cloudflare通过AI Gateway推出Auto Router公测版，将模型设为cloudflare/auto后由边缘GPU上的Workers AI多头分类模型对请求进行14类任务概率分配，并从复杂性、歧义性、风险程度、上下文依赖度四维打1-5分，结合基准数据按效用=预期质量-自适应成本惩罚选模。Cloudflare公布的基准含97个任务、每模型三次采样和<strong>1万</strong>次Bootstrap重采样，称可靠性提高约10个百分点、成本约为三分之一，响应头cf-aig-routed-model与cf-aig-routing-reason可审计路由原因。但从业者指出风险评分仅依赖最近几轮、文本上限8KiB，长会话中早期风险标签可能被后续简短指令掩盖。</p><p>📌 <strong>总结</strong>：该产品将<strong>模型路由</strong>从静态配置推向请求级动态决策，为推理成本优化提供了可审计的工程路径；但风险评分上下文截断、模型池配置漂移和会话缓存复用等问题说明，自动路由在生产环境需配合跨轮次风险标签、会话ID保持和模型池审计，对核心网运维Agent等长会话高风险场景尤其需要注意成本与可靠性权衡。</p><p>来源：<a href="https://www.infoq.cn/article/gOcDmZM2MPAQhWtNb6IJ?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><hr><hr><h2>模型评测</h2><h3 id="event-264639">1、Anthropic公开Claude Code六层审查流程回滚率反降四成</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Claude Code</span> <span class="md-tag">代码审查</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong>旗下<strong>Claude Code</strong>团队公开内部<strong>代码审查</strong>流程。<strong>Claude Code</strong>约<strong>90%</strong>的自身代码由<strong>Claude</strong>编写，6月到9月合并PR数量翻倍多，<strong>Anthropic</strong>主代码库每日合并改动从5月约2500次涨至9月超<strong>3万</strong>次。团队采用六层检查：PR创建前跑测试和构建并由零上下文子智能体审查差异、PR上的AI并行审查与投票核验、安全审查、CI检查、按风险分级的人工审批、合并后主分支复检与功能开关灰度。配合快速发现快速回滚机制，回滚率相对下降超<strong>40%</strong>。团队还发现AI审查反复标出的问题约<strong>59%</strong>是首轮审查前就存在的老代码，随后改为满三轮未通过即提醒作者重新思考方案。</p><p>📌 <strong>总结</strong>：该流程证明在AI生成代码体量下，逐行人审不可行但可通过分层自动化检查替代，核心思路是把有没有人读过代码转化为这次改动可能出什么错、由哪道检查阻拦。对核心网设备供应商而言，这一模式对网元软件的大规模AI辅助开发与合规审查具有直接参考价值，尤其零上下文审查器、风险分级审批和事故复盘转为考题的机制可移植到高可靠性通信软件流水线。</p><p>来源：<a href="https://www.36kr.com/p/4060672855757954" target="_blank" rel="noreferrer">36氪</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><hr></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><h3 id="event-264699">1、吉林大学联合上海AI实验室提出EvoTeam，多智能体团队三层协同进化</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">OhEvoTeam</span> <span class="md-tag">Oh多智能体协作</span> <span class="md-tag">体验提升</span></p><p>📋 <strong>要点</strong>：吉林大学联合上海人工智能实验室提出EvoTeam，解决多智能体系统完成100个任务后仍无法从历史经验中成长的问题。EvoTeam将系统成长拆为三个层次：<strong>Agent</strong> Skills关注个体专业能力积累，<strong>Agent</strong> Teams关注团队协作架构调整，<strong>Interaction</strong> Rules关注信息交接规则优化。系统维护全局Agent Pool和可持续更新的Team <strong>Library</strong>，通过自适应组队、团队范围协作和多级经验进化形成闭环。在GAIA、<strong>LoCoBench</strong>、<strong>LOCA-</strong>Bench和BeyondSWE混合任务中平均分59.58，相比Meta-Team的55.55提高4.03分。</p><p>📌 <strong>总结</strong>：EvoTeam将进化从单个Agent延伸到整个团队，使团队成为可复用可进化的经验载体。消融实验显示GAIA上移除交互规则后得分从77.00降至67.00，进一步移除可复用团队后降至61.00，证明团队组织和交互规则均提供实际贡献。跨模型迁移实验中GPT-5.6-Luna和DeepSeek-<strong>V4.1-</strong>Flash的差距不超过4分，展现出协作经验的跨模型迁移潜力，为多智能体系统的持续进化提供了工程参考。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=Mzk0MTYzMzMxMA==&amp;amp;mid=2247513461&amp;amp;idx=2&amp;amp;sn=e5115064319dc85fcf0de87bdcea61d8" target="_blank" rel="noreferrer">微信科技 RSS（bestblogs 待验证）</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-264859">2、LobeHub用自家Agent团队开发自身产品，30项软件工程任务通过率达70%</h3><p><span class="md-tag">智能体平台、协议与执行系统</span> <span class="md-tag">LobeHub</span> <span class="md-tag">多Agent协作</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>LobeHub</strong>团队将自研AI协作平台嵌入日常研发流程，由主管Agent Nasa拆解需求并派发给Coding <strong>Agent Dario</strong>，Dario完成编码、测试并提交PR，再由<strong>Code</strong>x代码审查机器人检查问题，Dario根据反馈修改后经人工审阅合并。在FrontierHarness的30道软件工程任务中，优化后的Agent Harness使用Kimi K3完成21道，通过率<strong>70%</strong>，每道成功任务成本中位数1.68美元，超过<strong>Code</strong>x和Claude Code。团队还实现了跨项目Agent直接沟通，lobe-ui组件库发布6.0.1版本后上游项目自动收到升级通知。</p><p>📌 <strong>总结</strong>：<strong>LobeHub</strong>将Agent <strong>Loop</strong>、Session和工具运行环境拆开管理，使Agent在用户退出对话后仍能后台持续执行任务，并曾用客户端数据迁移任务连续运行2天<strong>3小时</strong><strong>47分钟</strong>、拆出60个任务完成56次独立迁移。这套机制让<strong>多Agent协作</strong>从演示走向可交付的工程流程，对AI Native组织的<strong>研发效率提升</strong>和Agent平台架构设计具有直接参考价值，也为人机协同中的验收权归属提供了可操作范式。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzIzNjc1NzUzMw==&amp;amp;mid=2247940486&amp;amp;idx=1&amp;amp;sn=8678d2fd2fb6c737c7acfdcfd4733b86&amp;amp;chksm=e9cca3da4d43a2447908e4c34409d3beb93b53eed8b7cde1dd20925b8f3fe9cf6135b93c9fbd&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">量子位</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-264583">1、英伟达等提出TacitVLA，用attention mask让动作不等推理文本，延迟最多降低3.4倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">TacitVLA</span> <span class="md-tag">VLA推理延迟</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：针对推理VLA模型先写推理文本再输出动作导致延迟高的问题，英伟达、纽约大学、UC伯克利、约翰斯·霍普金斯大学和斯坦福大学的研究团队提出<strong>TacitVLA</strong>，保留训练时写推理对backbone的塑造作用和长程任务中推理文本作为记忆的作用，去掉部署时action expert读取当前步骤推理的环节，唯一改动是attention mask让action expert看不到推理token。在机器人操作和自动驾驶四个benchmark上，<strong>TacitVLA</strong>成功率与显式推理相当并超过无推理训练，单张H100上LIBERO输出动作从495毫秒降至147毫秒，延迟最多降低<strong>3.4倍</strong>；在RMBench上平均成功率<strong>77.5%</strong>，此前最好为<strong>56.5%</strong>；在RoboMME计数任务上达到<strong>82.7%</strong>，此前最好为<strong>66.8%</strong>。</p><p>📌 <strong>总结</strong>：该工作把推理VLA的收益来源拆分为学习写推理和读取推理两种途径，证明动作不需要读取当前步骤的推理文本，仅保留训练时写推理的监督作用即可在部署时跳过推理生成，为机器人操作和自动驾驶的实时控制提供了无需额外模型或调度器的加速方案。对<strong>AI推理与服务加速</strong>方向而言，这一发现说明推理文本的价值主要在训练阶段而非部署阶段，attention mask级别的改动即可实现<strong>3.4倍</strong>延迟降低，为VLA模型的服务化部署提供了低成本优化路径；在记忆任务上先算动作再在执行期间写日志的做法，也为长程任务的状态管理提供了工程参考。</p><p>来源：<a href="http://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&amp;amp;mid=2651072888&amp;amp;idx=3&amp;amp;sn=75cf566a70af17c8a5cfa30d459aab8b&amp;amp;chksm=85625b5bcc8b79615ea7bfdfe8ed77c7ffcd1cecf36afaf69ff5db5a2a6fe3b165a02807402c&amp;amp;scene=0&amp;amp;xtrack=1#rd" target="_blank" rel="noreferrer">机器之心</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-264647">2、Cloudflare AI Gateway推出Auto Router公测，基准测试称可靠性提升约10个百分点而成本降至约三分之一</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Cloudflare Auto Router</span> <span class="md-tag">模型路由</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：Cloudflare通过AI Gateway推出Auto Router公测版，将模型设为cloudflare/auto后由边缘GPU上的Workers AI多头分类模型对请求进行14类任务概率分配，并从复杂性、歧义性、风险程度、上下文依赖度四维打1-5分，结合基准数据按效用=预期质量-自适应成本惩罚选模。Cloudflare公布的基准含97个任务、每模型三次采样和<strong>1万</strong>次Bootstrap重采样，称可靠性提高约10个百分点、成本约为三分之一，响应头cf-aig-routed-model与cf-aig-routing-reason可审计路由原因。但从业者指出风险评分仅依赖最近几轮、文本上限8KiB，长会话中早期风险标签可能被后续简短指令掩盖。</p><p>📌 <strong>总结</strong>：该产品将<strong>模型路由</strong>从静态配置推向请求级动态决策，为推理成本优化提供了可审计的工程路径；但风险评分上下文截断、模型池配置漂移和会话缓存复用等问题说明，自动路由在生产环境需配合跨轮次风险标签、会话ID保持和模型池审计，对核心网运维Agent等长会话高风险场景尤其需要注意成本与可靠性权衡。</p><p>来源：<a href="https://www.infoq.cn/article/gOcDmZM2MPAQhWtNb6IJ?utm_source=rss&amp;amp;utm_medium=article" target="_blank" rel="noreferrer">InfoQ AI &amp; LLM</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><hr><hr><h2>模型评测</h2><h3 id="event-264639">1、Anthropic公开Claude Code六层审查流程回滚率反降四成</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Claude Code</span> <span class="md-tag">代码审查</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：<strong>Anthropic</strong>旗下<strong>Claude Code</strong>团队公开内部<strong>代码审查</strong>流程。<strong>Claude Code</strong>约<strong>90%</strong>的自身代码由<strong>Claude</strong>编写，6月到9月合并PR数量翻倍多，<strong>Anthropic</strong>主代码库每日合并改动从5月约2500次涨至9月超<strong>3万</strong>次。团队采用六层检查：PR创建前跑测试和构建并由零上下文子智能体审查差异、PR上的AI并行审查与投票核验、安全审查、CI检查、按风险分级的人工审批、合并后主分支复检与功能开关灰度。配合快速发现快速回滚机制，回滚率相对下降超<strong>40%</strong>。团队还发现AI审查反复标出的问题约<strong>59%</strong>是首轮审查前就存在的老代码，随后改为满三轮未通过即提醒作者重新思考方案。</p><p>📌 <strong>总结</strong>：该流程证明在AI生成代码体量下，逐行人审不可行但可通过分层自动化检查替代，核心思路是把有没有人读过代码转化为这次改动可能出什么错、由哪道检查阻拦。对核心网设备供应商而言，这一模式对网元软件的大规模AI辅助开发与合规审查具有直接参考价值，尤其零上下文审查器、风险分级审批和事故复盘转为考题的机制可移植到高可靠性通信软件流水线。</p><p>来源：<a href="https://www.36kr.com/p/4060672855757954" target="_blank" rel="noreferrer">36氪</a></p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI推理与服务加速</h2><h3 id="event-269721">1、Evolving Infra 解耦算力分配与 KV 缓存，智能体推理时延最高降 4.1 倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Evolving Infra</span> <span class="md-tag">KV Cache</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：智能体工作负载已成为 <strong>LLM</strong> 推理需求的主要来源，但现有 prefill-decode 分离式服务系统对算力分配和 KV 缓存管理的运行时自适应能力有限，且依赖的粗粒度信号难以刻画智能体负载的多样性与动态性，导致 prefill 与 decode 节点间负载不均、智能体将复用的 KV 缓存被提前淘汰。<strong>Evolving Infra</strong> 将算力分配与 KV 缓存管理解耦，使节点可在 prefill 与 decode 之间高效切换；在此基础上，在线规划器根据负载构成匹配 PD 切分比例，智能体感知的分布式 KV 管理器利用智能体上下文管理信号指导缓存淘汰与迁移。在最多 256 块 <strong>GB300 GPU</strong> 上，针对编码、数学和计算机操作任务，使用 <strong>GLM-5.2</strong> 与 <strong>Kimi K2.6</strong> 测试，端到端平均请求时延和 <strong>P</strong>95 T<strong>TFT</strong> 相比 <strong>NVIDIA</strong> 生产框架 <strong>Dynamo</strong> 最高降低 <strong>4.1 倍</strong>和 <strong>14 倍</strong>。</p><p>📌 <strong>总结</strong>：该工作把智能体上下文管理信号引入推理服务的调度与缓存决策，说明面向智能体的推理系统需要从静态 PD 分离走向运行时自适应。对推理服务架构而言，解耦算力分配与 KV 缓存管理可提升异构负载下的资源利用率，降低长上下文智能体任务的尾时延；对产品与商业判断而言，这类优化直接关系到智能体应用的 token 成本与并发承载能力，是推理服务差异化竞争的关键方向。</p><p>来源：<a href="https://arxiv.org/abs/2611.12304" target="_blank" rel="noreferrer">Hugging Face Papers</a></p><p>原文标题：Evolving Infra: Agent-Adaptive LLM Serving at Scale</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><strong>吉林大学联合上海AI实验室提出EvoTeam，多智能体团队三层协同进化</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>LobeHub用自家Agent团队开发自身产品，30项软件工程任务通过率达70%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Evolving Infra 解耦算力分配与 KV 缓存，智能体推理时延最高降 4.1 倍</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Cloudflare AI Gateway推出Auto Router公测，基准测试称可靠性提升约10个百分点而成本降至约三分之一</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Google发布EmbeddingGemma 2，在768维统一空间嵌入文本代码图像视频音频</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>字节 Seedream 5.5 发布，支持 100 轮连续编辑与原生 RGBA 透明输出</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>Anthropic公开Claude Code六层审查流程回滚率反降四成</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li><li><strong>诺基亚推出首款商用AI-RAN平台，2028年目标频谱效率提升超100%</strong>｜业务强相关｜建议动作：生成快报草稿或指派领域责任人</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI推理与服务加速</td><td>3</td></tr><tr><td>通信设备供应商</td><td>3</td></tr><tr><td>智能体平台、协议与执行系统</td><td>2</td></tr><tr><td>AI模型</td><td>2</td></tr><tr><td>模型训练</td><td>1</td></tr><tr><td>模型评测</td><td>1</td></tr><tr><td>标准、协议与产业联盟</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>13</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
