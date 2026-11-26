@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-22</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-22</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-21T00:00:00+00:00 ~ 2026-11-22T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-11-26 19:14:12 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月22日</strong></p><p><strong>生成时间：2026-11-26 18:32 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：0 个 | 本期条目：0 条 | 覆盖板块：0 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：暂无保留条目，合计 0 条。</li><li>日报内容：此窗口无新增未发布独立事件。</li><li>关键亮点：此窗口无新增未发布独立事件。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li>暂无保留条目。</li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI模型</h2></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>AI模型</h2></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><ul><li>暂无入选条目</li></ul></section></div></div><hr><h2>快报候选</h2><ul><li>暂无保留条目。</li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI模型</td><td>0</td></tr><tr><td><strong>合计</strong></td><td><strong>0</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
