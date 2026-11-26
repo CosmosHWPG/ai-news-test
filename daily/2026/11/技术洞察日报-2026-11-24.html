@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>技术洞察日报 2026-11-24</title>
+  <style>
+:root {
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --ink: #1f2d2f;
+  --muted: #647174;
+  --line: #d9e3e0;
+  --teal: #207a74;
+  --teal-2: #e8f5f3;
+  --gold: #d79b31;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #263235;
+  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+}
+.report-shell {
+  width: min(1180px, calc(100vw - 40px));
+  margin: 28px auto 48px;
+}
+.report-header {
+  margin-bottom: 16px;
+  padding: 20px 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.report-header h1 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.report-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+}
+.report-meta span {
+  padding: 5px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fbfdfc;
+}
+.report-card {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(30, 54, 55, 0.08);
+}
+.markdown {
+  line-height: 1.65;
+  margin: 0;
+  color: #263235;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  line-height: 1.35;
+  color: var(--ink);
+  scroll-margin-top: 18px;
+}
+.markdown h1 {
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--teal);
+  font-size: 26px;
+}
+.markdown h2 {
+  margin: 26px 0 12px;
+  padding: 8px 12px;
+  background: var(--teal-2);
+  border-radius: 6px;
+  font-size: 18px;
+  text-align: center;
+}
+.markdown h3 {
+  margin: 20px 0 10px;
+  font-size: 15px;
+}
+.report-return-row {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8px 0 16px;
+}
+.report-return-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #bdded9;
+  border-radius: 7px;
+  background: #f4faf8;
+  color: var(--teal);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+}
+.markdown a.report-return-button {
+  border-bottom: 0;
+}
+.report-return-button:hover {
+  border-color: #8dc8c1;
+  background: var(--teal-2);
+}
+.markdown p {
+  margin: 8px 0;
+}
+.markdown blockquote {
+  margin: 14px 0;
+  padding: 12px 14px;
+  border-left: 4px solid var(--gold);
+  background: #fff8ec;
+  color: #453525;
+  border-radius: 6px;
+}
+.markdown ul {
+  margin: 8px 0 12px 0;
+  padding-left: 22px;
+}
+.markdown li {
+  margin: 5px 0;
+}
+.daily-summary-box {
+  margin: 16px 0 18px;
+  padding: 13px 16px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #f4faf8;
+  color: #304744;
+}
+.daily-summary-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.daily-summary-box li {
+  margin: 5px 0;
+}
+.report-tabs {
+  margin: 18px 0 22px;
+}
+.report-tab-buttons {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 8px 0 10px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.report-tab-button {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface);
+  color: var(--muted);
+  padding: 6px 10px 6px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.report-tab-button.active {
+  color: var(--teal);
+  border-color: #9bcfca;
+  background: var(--teal-2);
+}
+.report-tab-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 22px;
+  background: #eef7f5;
+  color: #0d7770;
+  border: 1px solid #c5dfdc;
+  font-size: 10px;
+  line-height: 1;
+}
+.report-tab-button.active .report-tab-icon {
+  background: #0f8c84;
+  border-color: #0f8c84;
+  color: #fff;
+}
+.report-tab-label {
+  white-space: nowrap;
+}
+.report-tab-panel {
+  display: none;
+  padding-top: 8px;
+}
+.report-tab-panel.active {
+  display: block;
+}
+.report-collapse {
+  margin: 14px 0 20px;
+  border: 1px solid #cfe4df;
+  border-radius: 8px;
+  background: #fbfefd;
+}
+.report-collapse > summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+  color: var(--teal);
+  background: #eef8f6;
+  border-radius: 8px;
+}
+.report-collapse-body {
+  padding: 0 14px 12px;
+}
+.markdown a {
+  color: var(--teal);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(32, 122, 116, 0.28);
+}
+.markdown strong {
+  color: var(--teal);
+}
+.markdown code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #f1f4f3;
+  color: #31545a;
+}
+.md-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0 8px;
+  margin: 0 4px 4px 0;
+  border-radius: 999px;
+  background: var(--teal-2);
+  border: 1px solid #bdded9;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+}
+.markdown hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+}
+.md-table {
+  width: 100%;
+  min-width: 0;
+  margin: 10px 0 16px;
+  border-collapse: collapse;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.md-table th,
+.md-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  background: #f3f8f7;
+  color: var(--ink);
+}
+.numbered-line {
+  font-weight: 700;
+}
+@media (max-width: 720px) {
+  .report-shell { width: min(100vw - 20px, 1180px); margin-top: 12px; }
+  .report-header, .report-card { padding: 16px; }
+  .report-tab-buttons { position: static; }
+}
+</style>
+</head>
+<body>
+  <main class="report-shell">
+    <header class="report-header">
+      <h1>技术洞察日报 2026-11-24</h1>
+      <div class="report-meta">
+        <span>报告类型：技术洞察日报</span>
+        <span>覆盖周期：2026-11-23T00:00:00+00:00 ~ 2026-11-24T00:00:00+00:00</span>
+        <span>HTML 导出时间：2026-11-26 19:17:09 CST</span>
+      </div>
+    </header>
+    <article class="report-card markdown">
+      <p><strong>日期：2026年11月24日</strong></p><p><strong>生成时间：2026-11-26 18:41 CST（Asia/Shanghai）</strong></p><p><strong>生效信源：9 个 | 本期条目：10 条 | 覆盖板块：5 个</strong></p><div class="daily-summary-box"><ul><li>板块分布：AI推理与服务加速 4 条，AI模型 1 条，模型评测 1 条，AI安全、可信与治理 3 条，AI与通算硬件 1 条，合计 10 条。</li><li>日报内容：清华联合无问芯穹开源 Uni3Sim，面向超节点集群的推理仿真平台；LMSYS 为 ERNIE 5.5 Flash 在 SGLang 上实现 1074 tokens/s 低延迟解码；AWS WAF上线AI端点自动发现与防护，覆盖LLM、MCP和A2A接口；OpenAI 与 Cisco 开源 Shirudo 运行时，用 eBPF 盾在打补丁前防护 Linux。</li><li>关键亮点：清华联合无问芯穹开源 Uni3Sim，面向超节点集群的推理仿真平台；LMSYS 为 ERNIE 5.5 Flash 在 SGLang 上实现 1074 tokens/s 低延迟解码；AWS WAF上线AI端点自动发现与防护，覆盖LLM、MCP和A2A接口；OpenAI 与 Cisco 开源 Shirudo 运行时，用 eBPF 盾在打补丁前防护 Linux。</li></ul></div><hr><h2 id="report-return-daily-headlines">今日头条</h2><ul><li><a href="#event-284972">清华联合无问芯穹开源 Uni3Sim，面向超节点集群的推理仿真平台</a></li><li><a href="#event-286833">LMSYS 为 ERNIE 5.5 Flash 在 SGLang 上实现 1074 tokens/s 低延迟解码</a></li><li><a href="#event-284629">AWS WAF上线AI端点自动发现与防护，覆盖LLM、MCP和A2A接口</a></li><li><a href="#event-284611">OpenAI 与 Cisco 开源 Shirudo 运行时，用 eBPF 盾在打补丁前防护 Linux</a></li></ul><div class="report-tabs" data-report-tabs><div class="report-tab-buttons"><button type="button" class="report-tab-button active" data-report-tab="report-tabs-0-0"><span class="report-tab-icon" aria-hidden="true">全</span><span class="report-tab-label">全部</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-1"><span class="report-tab-icon" aria-hidden="true">AI</span><span class="report-tab-label">AI产业&amp;行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-2"><span class="report-tab-icon" aria-hidden="true">基</span><span class="report-tab-label">基础竞争力</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-3"><span class="report-tab-icon" aria-hidden="true">5G</span><span class="report-tab-label">通信行业动态</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-4"><span class="report-tab-icon" aria-hidden="true">研</span><span class="report-tab-label">学术研究</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-5"><span class="report-tab-icon" aria-hidden="true">GH</span><span class="report-tab-label">开源&amp;GitHub 趋势</span></button><button type="button" class="report-tab-button" data-report-tab="report-tabs-0-6"><span class="report-tab-icon" aria-hidden="true">引</span><span class="report-tab-label">大咖言论</span></button></div><div class="report-tab-panels"><section class="report-tab-panel active" data-report-panel="report-tabs-0-0"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><hr><h2>智能体平台、协议与执行系统</h2><hr><h2>AI推理与服务加速</h2><h3 id="event-284972">1、清华联合无问芯穹开源 Uni3Sim，面向超节点集群的推理仿真平台</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Uni3Sim</span> <span class="md-tag">超节点集群仿真</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 11 月，无问芯穹联合清华大学朱振华助理教授、汪玉教授团队开源仿真平台 <strong>Uni3Sim</strong>，面向大规模 <strong>LLM</strong> 推理服务。平台以统一异构硬件、统一存储层次和统一 <strong>Scale-Up</strong>/<strong>Scale-Out</strong> 互连协议与拓扑为核心，构建 <strong>ArchPrism</strong>、<strong>HBFrame</strong> 和 <strong>ProtoBridge</strong> 三个模型，分别计算算子、存储访问和通信任务执行时间，并接入 <strong>SGLang</strong>、v<strong>LLM</strong> 原生调度器。团队在 <strong>NVIDIA A800</strong>、沐曦 <strong>C500</strong> 和昇腾 <strong>910B</strong> 上验证，<strong>Qwen3</strong> 和 <strong>Llama3.1</strong> 系列模型 <strong>TTFT</strong> 误差小于 <strong>21.2%</strong>，<strong>TPOT</strong> 误差小于 <strong>9.4%</strong>，系统吞吐误差小于 <strong>5.2%</strong>。</p><p>📌 <strong>总结</strong>：<strong>Uni3Sim</strong> 把超节点集群的性能评估从依赖物理试错转为可复现的数字仿真，使开发者在硬件落地前就能比较不同芯片、存储和互连方案对 <strong>TTFT</strong>、<strong>TPOT</strong> 和吞吐的影响。其存储池实验显示，<strong>GLM-5.2</strong> 在 128 张 <strong>H200</strong> 上实现 <strong>1.31 倍</strong>每 <strong>GPU</strong> 逻辑 <strong>Token</strong> 吞吐；缓存实验则揭示 KV <strong>Cache</strong> 复用率提至 <strong>60%</strong> 时吞吐增加 <strong>50.7%</strong> 但每 <strong>GPU</strong> 小时收入下降 <strong>19.7%</strong>，说明更高吞吐不一定带来更高收入。该平台对推理基础设施设计和商业定价策略均有参考价值。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;amp;mid=2247724069&amp;amp;idx=1&amp;amp;sn=5f06c706f49eac574d4142aa6098f2a6" target="_blank" rel="noreferrer">PaperWeekly 微信公众号 RSS</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-286833">2、LMSYS 为 ERNIE 5.5 Flash 在 SGLang 上实现 1074 tokens/s 低延迟解码</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang</span> <span class="md-tag">低延迟解码</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>LMSYS</strong> 针对 <strong>ERNIE 5.5 Flash</strong> 这类采用 mHC 多残差流的大型稀疏 <strong>MoE</strong> 模型，在 <strong>SGLang</strong> 中补充<strong>低延迟解码</strong>支持并做端到端优化。团队在四张 <strong>SM100 GPU</strong>、BS=1、55K 输入与 1K 输出条件下，引入低延迟 <strong>GEMM</strong> 与张量并行，集成 <strong>DSpark</strong> 投机解码，迭代调优计算通信融合、多流执行与 <strong>PDL</strong>，并完成 MegaLL<strong>MoE</strong>、注意力数据流重构和 <strong>One-Pass</strong> mHC 等优化，最终实现 <strong>1074 token</strong>s/s 的端到端解码速度。</p><p>📌 <strong>总结</strong>：该工作说明低并发解码是典型内存受限负载，优化重点在于缩短串行关键路径上的权重读取、调度同步与通信开销。对推理服务架构而言，投机解码、<strong>MoE</strong> 大核融合与注意力数据流重构可显著降低单请求延迟，为长上下文、低并发场景下的 serving 系统提供可复用的工程路线，也提示模型架构与推理引擎需协同设计。</p><p>来源：<a href="https://www.lmsys.org/blog/2026-11-23-ernie55-flash-low-latency" target="_blank" rel="noreferrer">LMSYS</a></p><p>原文标题：Toward the Decode Limit: ERNIE 5.5 Flash at 1074 tokens/s on SGLang - LMSYS Org</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-285322">3、llm-d与SGLang社区实现Kubernetes原生Wide-EP服务，TTFT最高降5.9倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang</span> <span class="md-tag">分层KV缓存</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong>与<strong>SGLang</strong>社区合作，将<strong>SGLang</strong>作为<strong>llm-d</strong>的可选推理引擎后端，与vLLM并列，仅需替换引擎相关部署叠加层与路由配置即可复用同一DisaggregatedSet编排、按rank的InferencePool发现、前缀缓存感知路由与验证流程；在Wide-EP部署中每个注意力数据并行rank持有独立KV缓存并共享专家权重，双方使每个DP rank成为独立可路由可观测的<strong>Kubernetes</strong>端点；实测在16卡1P1D部署中，将驱逐的KV块卸载到主机内存L2使缓存命中率保持<strong>85%</strong>至<strong>95%</strong>，并发128输出从319提升至1257 tok/s、提升<strong>3.94倍</strong>，中位TTFT从<strong>174.2秒</strong>降至<strong>20.1秒</strong>；扩展至32卡H200后中位TTFT再降<strong>5.9倍</strong>至<strong>3.43秒</strong>、输出1903 tok/s，共享L3在故障切换时以<strong>99.94%</strong>命中率恢复<strong>108万</strong>token并将冷副本恢复TTFT降低<strong>57%</strong>。</p><p>📌 <strong>总结</strong>：该集成表明推理服务栈正走向引擎可插拔与<strong>分层KV缓存</strong>标准化，<strong>SGLang</strong>与vLLM可在同一编排与路由体系下互换，降低多引擎选型的迁移成本；对架构师而言，主机内存L2与共享L3的分层设计直接决定长上下文场景的缓存命中率与故障恢复时延，是容量规划与SLA设计的关键变量，对技术主管而言，TTFT从<strong>174.2秒</strong>降至<strong>3.43秒</strong>的量化结果可作为推理集群扩容与成本权衡的依据，对商业判断而言，多副本韧性提升有助于支撑高并发在线服务的可用性承诺。</p><p>来源：<a href="https://llm-d.ai/blog/serving-glm-5-2-sglang-tiered-kv-cache-on-llm-d" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Bringing First-Class SGLang Serving to llm-d | llm-d</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-285321">4、SGLang与Miles实现比特精确的True On-Policy RL，消除训练与推理概率偏差</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang与Miles</span> <span class="md-tag">True On-Policy RL</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月23日，LMSYS博客发布由RadixArk Miles团队撰写的技术文章，介绍<strong>True </strong>On-Policy<strong> RL</strong>方案。在LLM强化学习中，推理引擎生成响应，训练器更新权重，但两者运行不同内核、不同批次形状，有时精度不同，在MoE模型中微小数值差异可能导致token路由到不同专家，使训练变为离策略。<strong>TOP</strong> RL通过让训练器逐比特复现推理引擎的log-probabilities，消除这一偏差。该方案在<strong>SGLang</strong>和Miles中实现，已在DeepSeek-<strong>V4-</strong>Flash和V4.1、<strong>GLM-5.2</strong>/5.3和5.3-<strong>Flash</strong>、<strong>Qwen3</strong>、3.5/3.6/3.8和3.8-<strong>Flash</strong>-Next上验证，所有模型族在全深度下通过比特级前向一致性测试，支持投机解码，已在Hopper和Blackwell GPU上测试。</p><p>📌 <strong>总结</strong>：<strong>TOP</strong> RL方案解决了在线策略强化学习中训练器与推理引擎概率不一致的根本问题，对技术路线而言，比特精确对齐可消除MoE模型中的专家路由偏差，使PPO/GRPO等算法真正保持在线策略，有望提升RL训练稳定性和收敛效率；对产品架构而言，该方案要求推理引擎和训练框架深度协同，<strong>SGLang</strong>和Miles的集成模式可能成为RL训练基础设施的新参考；对研发工作而言，代码和启动配方将开源，可降低复现门槛。</p><p>来源：<a href="https://www.lmsys.org/blog/2026-11-23-miles-true-on-policy" target="_blank" rel="noreferrer">LMSYS</a></p><p>原文标题：True On-Policy RL: Bit-Exact Rollout and Training with SGLang and Miles | Miles</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-285117">1、记忆张量联合NVIDIA开源554B记忆原生模型MemT-1.0-Pro</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">MemTensor</span> <span class="md-tag">记忆原生模型</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：记忆张量（<strong>MemTensor</strong>）于11月22日发布并开源与<strong>NVIDIA</strong>联合研发的<strong>记忆原生模型</strong>MemT-1.0-<strong>Pro</strong>，基于<strong>NVIDIA</strong> <strong>Nemotron</strong> 3 <strong>Ultra</strong>，拥有<strong>554B</strong>总参数和<strong>59B</strong>激活参数。其架构结合动态局部记忆与可训练超记忆，前者承接交互中写入的信息，后者学习如何存储和读取，在线交互时模型主干与超记忆权重保持固定，交互结束后更新动态记忆状态。训练采用持续预训练与后训练两阶段流程，以NVIDIA <strong>Megatron</strong> Core为基础设施，记忆写入采用基于Gated <strong>DeltaNet-</strong>2的稳定性改进更新机制。技术报告显示，<strong>Pro</strong>在BEAM-1M上取得41.80分，较Flash提升4.76分；在MemoryAgentBench上取得23.87分，提升6.51分，并以53.08分取得11项记忆评测最高平均分。</p><p>📌 <strong>总结</strong>：该模型把记忆从外部检索插件变成模型内部可训练能力，若在长交互和智能体场景中稳定，可减少对超长上下文和外部向量库的依赖，影响推理服务架构和成本结构。对预研规划而言，参数化记忆路线与RAG路线形成对照，需关注其在线更新机制在真实业务中的一致性和遗忘风险；对<strong>NVIDIA</strong>而言，该合作也展示Nemotron底座在记忆增强方向的生态扩展。</p><p>来源：<a href="https://www.mittrchina.com/news/detail/17278" target="_blank" rel="noreferrer">智谱AI / MITTR China</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>模型评测</h2><h3 id="event-285364">1、Meta Muse Ember 登 Arena Agent Index 帕累托前沿，成本低 75%-86%</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Meta Muse Ember</span> <span class="md-tag">Agent Arena Index</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>Arena</strong> 于 2026 年 11 月发布新的 <strong>Agent </strong>Arena<strong> Index</strong>，<strong>Meta</strong> 的 <strong>Muse Ember</strong> (<strong>Max</strong>) 以 1093 分、每任务中位成本 $0.02 登上帕累托前沿，并在 <strong>Work</strong>、<strong>Coding</strong>、<strong>Chat</strong>、<strong>Task Outcome</strong>、<strong>Steering</strong> 和 <strong>Tool Use</strong> 六个附加指数中均有上榜。其成本比 <strong>GPT-6 Luna</strong> (<strong>Max</strong>) 低 <strong>75%</strong>、比 <strong>Claude Haiku 5.5</strong> (<strong>High</strong>) 低 <strong>80%</strong>、比 <strong>DeepSeek</strong>-V4.1-Flash 低 <strong>86%</strong>，而整体指数分数相近。在 <strong>Tool Use</strong> 指数上，<strong>Muse Ember</strong> 以 1161 分位列第 21。</p><p>📌 <strong>总结</strong>：<strong>Muse Ember</strong> 在 <strong>Agent Arena Index</strong> 上以相近分数和低 <strong>75%</strong>-<strong>86%</strong> 的每任务成本登上帕累托前沿，说明高效模型在真实工作任务中已具备显著成本优势。对预研规划师和商业主管而言，这为智能体场景的模型选型提供了成本与性能权衡的量化依据；对技术主管而言，<strong>Tool Use</strong> 指数的表现提示工具调用能力正成为智能体模型竞争的关键维度。</p><p>来源：<a href="https://aihot.news/items/jw48xblv0pstxkymomt1n3n2i" target="_blank" rel="noreferrer">AIHot Virxact X 热点</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-284629">1、AWS WAF上线AI端点自动发现与防护，覆盖LLM、MCP和A2A接口</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">AWS WAF AI Security</span> <span class="md-tag">MCP/A2A</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月23日，<strong>AWS</strong> WAF的AI端点自动发现与防护正式可用。发现能力通过新的<strong>API</strong> <strong>Gateway API</strong> Portal提供，从流量日志和服务配置记录中自动识别<strong>API</strong> <strong>Gateway</strong>、<strong>Application Load</strong> Balancer和Amazon CloudFront后的LLM、MCP和A2A端点，无需部署代理或转发日志，未记录的公开MCP服务器会以影子API形式呈现。防护能力通过新的<strong>AWS </strong>WAF AI<strong> Security</strong>托管规则组提供，实施协议识别和合规检查以阻断畸形的MCP和A2A消息；启用内容检查后，规则组调用Amazon <strong>Bedrock</strong> Guardrails的InvokeGuardrailsCheck API检测请求中的提示注入、越狱尝试、有害内容以及响应中的敏感信息。API Portal在32个<strong>AWS</strong>区域可用，AI Security在7个区域可用，内容检查调用由<strong>Bedrock</strong>单独计费。</p><p>📌 <strong>总结</strong>：该能力将MCP和A2A这两类Agent协议端点纳入WAF的网关级防护，意味着Agent间通信的协议合规与内容安全可以在云边缘统一执行，而不必由每个Agent应用自行实现。对智能体平台架构而言，影子MCP服务器发现和Bedrock Guardrails内容检查为Agent工具调用与数据访问提供了可审计的安全执行点，可能推动企业将Agent安全策略从应用层上移到云网关层；但AI Security仅限7个区域，且内容检查按调用计费，规模化部署的成本影响仍需评估。</p><p>来源：<a href="https://aws.amazon.com/about-aws/whats-new/2026/11/waf-ai-endpoint-discovery-protection/" target="_blank" rel="noreferrer">AWS New</a></p><p>原文标题：AWS WAF announces automated discovery and protection for LLM, MCP, and A2A endpoints using Amazon Bedrock Guardrails</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-284611">2、OpenAI 与 Cisco 开源 Shirudo 运行时，用 eBPF 盾在打补丁前防护 Linux</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Shirudo</span> <span class="md-tag">eBPF 防护盾</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：针对漏洞披露后打补丁与重启仍需数天、期间服务暴露于攻击的问题，<strong>OpenAI</strong> 与 <strong>Cisco</strong> 开源 <strong>Shirudo</strong> 运行时，利用 eBPF 在操作系统关键点运行小程序，观察可疑行为并对运行中系统施加定向防护。其设计包含四项能力：无需重启即可阻断脆弱代码路径的实时防护、面向智能体的可编程控制以调查漏洞并生成盾、加载前经密码学签名与 eBPF 校验器验证的可信部署，以及基于 <strong>TPM</strong> 的硬件背书验证记录。在受控测试中，由 <strong>Codex</strong> 生成的盾为 <strong>Java Base64</strong> 解码器增加输入检查并附加到运行中的 <strong>Elasticsearch</strong> 进程，阻断了 <strong>Java4Shell</strong> 攻击尝试。</p><p>📌 <strong>总结</strong>：<strong>Shirudo</strong> 把 AI 生成防护与 eBPF 内核可编程能力结合，使安全团队能在补丁窗口期以可验证方式维持服务运行，对基础设施安全架构与运维流程有直接参考价值；其开源与签名验证设计也为智能体参与安全运维提供了权限与审计边界，但长期效果仍需在更多真实漏洞场景中验证。</p><p>来源：<a href="https://openai.com/index/introducing-shirudo" target="_blank" rel="noreferrer">OpenAI</a></p><p>原文标题：OpenAI and Cisco introduce Shirudo</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-284797">3、Anthropic 与 Claude 协作发布黎曼猜想 Lean 4 形式化证明，社区完成多轮独立核验</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Claude</span> <span class="md-tag">形式化验证</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月21日，<strong>Anthropic</strong> 研究科学家 <strong>Levent</strong> Alpöge 与人工智能模型 <strong>Claude</strong> 协作，公开发布黎曼猜想及广义黎曼猜想的 <strong>Lean</strong> 4 形式化证明，包含175187个文件、约<strong>1700万</strong>行代码。次日 <strong>Lean</strong> FRO 与 <strong>Mathlib</strong> 社区发布联合声明，确认代码通过严格编译与陈述比对。社区核验包括静态扫描排查 native_decide 等逃逸原语、脱离原环境导出重放至 nanoda 等多个独立检查器、独立干净文件比对与断网沙盒复现。<strong>MIT</strong> 数学家 <strong>Andrew Sutherland</strong> 的独立审计确认整个代码库没有 sorry、没有自定义公理，仅依赖 Lean 标准库三条基础公理。此前质疑者指出代码中存在 anyGeometry 定义恒返回 <strong>True</strong>，但该定义仅用于类型检查，不影响最终定理有效性。</p><p>📌 <strong>总结</strong>：该事件对 AI 安全与可信治理有深远影响：AI 生成的大规模形式化证明引入新的信任危机，信任主体从人类数学家的职业声誉转向 AI 和工具链的可靠性，AI 以达成目标为导向的训练机制可能促使其钻工具链或内核空子。对技术路线而言，<strong>形式化验证</strong>在 AI 辅助数学发现中的角色从辅助工具升级为关键裁判，<strong>RLVR</strong> 范式依赖证明助手提供客观负反馈；对产品架构而言，多独立检查器交叉重放和沙盒复现成为高保障验证的标准流程；对商业判断而言，<strong>形式化验证</strong>能力可能成为 AI 数学和科学发现领域的重要竞争壁垒。</p><p>来源：<a href="https://www.36kr.com/p/4082133433390211" target="_blank" rel="noreferrer">36氪</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-284616">1、NVIDIA cuDSS 1.0 正式版发布，稀疏求解较 Intel MKL 最高提速 151 倍</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">NVIDIA cuDSS</span> <span class="md-tag">稀疏线性求解</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026 年 11 月 23 日，<strong>NVIDIA</strong> 发布 <strong>GPU</strong> 加速<strong>稀疏线性求解</strong>库 cuDSS 1.0 正式版，面向结构力学、计算流体力学、电路仿真与电网分析等工程仿真场景。该版本在半导体与机械建模矩阵上相对 <strong>Intel MKL</strong> 取得几何平均 <strong>2.5 倍</strong>分析提速、<strong>5.9 倍</strong>数值分解提速与 <strong>151 倍</strong>三角求解提速；对对称不定系统默认启用保对称匹配与 <strong>Bunch-Kaufman</strong> 主元，在 <strong>SuiteSparse</strong> 矩阵上把范数相对后向误差改善最多 10 个数量级并消除扰动主元。</p><p>📌 <strong>总结</strong>：cuDSS 1.0 的混合内存模式在 <strong>GPU HBM</strong> 与 <strong>CPU DRAM</strong> 间编排数据，把大规模 <strong>VLSI</strong> 案例的最小显存需求降低约 <strong>30%</strong>，使原本需多 <strong>GPU</strong> 的问题可在单张 <strong>H100</strong>、<strong>B200</strong> 或 <strong>Vera Rubin</strong> 上求解，直接降低 <strong>EDA</strong> 与 <strong>CAE</strong> 仿真的硬件门槛与算力成本；其符号分解较 0.8.0 提速 <strong>2.21 倍</strong>，对依赖稀疏求解的工程软件厂商构成升级即获益的性能红利，也强化 <strong>NVIDIA</strong> 在科学计算软件栈的生态锁定。</p><p>来源：<a href="https://developer.nvidia.com/blog/accelerating-direct-sparse-solvers-for-computational-engineering-with-nvidia-cudss-1-0/" target="_blank" rel="noreferrer">NVIDIA</a></p><p>原文标题：Accelerating Direct Sparse Solvers for Computational Engineering with NVIDIA cuDSS 1.0</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-1"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>智能体平台、协议与执行系统</h2><hr><h2>AI推理与服务加速</h2><h3 id="event-286833">1、LMSYS 为 ERNIE 5.5 Flash 在 SGLang 上实现 1074 tokens/s 低延迟解码</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang</span> <span class="md-tag">低延迟解码</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>LMSYS</strong> 针对 <strong>ERNIE 5.5 Flash</strong> 这类采用 mHC 多残差流的大型稀疏 <strong>MoE</strong> 模型，在 <strong>SGLang</strong> 中补充<strong>低延迟解码</strong>支持并做端到端优化。团队在四张 <strong>SM100 GPU</strong>、BS=1、55K 输入与 1K 输出条件下，引入低延迟 <strong>GEMM</strong> 与张量并行，集成 <strong>DSpark</strong> 投机解码，迭代调优计算通信融合、多流执行与 <strong>PDL</strong>，并完成 MegaLL<strong>MoE</strong>、注意力数据流重构和 <strong>One-Pass</strong> mHC 等优化，最终实现 <strong>1074 token</strong>s/s 的端到端解码速度。</p><p>📌 <strong>总结</strong>：该工作说明低并发解码是典型内存受限负载，优化重点在于缩短串行关键路径上的权重读取、调度同步与通信开销。对推理服务架构而言，投机解码、<strong>MoE</strong> 大核融合与注意力数据流重构可显著降低单请求延迟，为长上下文、低并发场景下的 serving 系统提供可复用的工程路线，也提示模型架构与推理引擎需协同设计。</p><p>来源：<a href="https://www.lmsys.org/blog/2026-11-23-ernie55-flash-low-latency" target="_blank" rel="noreferrer">LMSYS</a></p><p>原文标题：Toward the Decode Limit: ERNIE 5.5 Flash at 1074 tokens/s on SGLang - LMSYS Org</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-285321">2、SGLang与Miles实现比特精确的True On-Policy RL，消除训练与推理概率偏差</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang与Miles</span> <span class="md-tag">True On-Policy RL</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026年11月23日，LMSYS博客发布由RadixArk Miles团队撰写的技术文章，介绍<strong>True </strong>On-Policy<strong> RL</strong>方案。在LLM强化学习中，推理引擎生成响应，训练器更新权重，但两者运行不同内核、不同批次形状，有时精度不同，在MoE模型中微小数值差异可能导致token路由到不同专家，使训练变为离策略。<strong>TOP</strong> RL通过让训练器逐比特复现推理引擎的log-probabilities，消除这一偏差。该方案在<strong>SGLang</strong>和Miles中实现，已在DeepSeek-<strong>V4-</strong>Flash和V4.1、<strong>GLM-5.2</strong>/5.3和5.3-<strong>Flash</strong>、<strong>Qwen3</strong>、3.5/3.6/3.8和3.8-<strong>Flash</strong>-Next上验证，所有模型族在全深度下通过比特级前向一致性测试，支持投机解码，已在Hopper和Blackwell GPU上测试。</p><p>📌 <strong>总结</strong>：<strong>TOP</strong> RL方案解决了在线策略强化学习中训练器与推理引擎概率不一致的根本问题，对技术路线而言，比特精确对齐可消除MoE模型中的专家路由偏差，使PPO/GRPO等算法真正保持在线策略，有望提升RL训练稳定性和收敛效率；对产品架构而言，该方案要求推理引擎和训练框架深度协同，<strong>SGLang</strong>和Miles的集成模式可能成为RL训练基础设施的新参考；对研发工作而言，代码和启动配方将开源，可降低复现门槛。</p><p>来源：<a href="https://www.lmsys.org/blog/2026-11-23-miles-true-on-policy" target="_blank" rel="noreferrer">LMSYS</a></p><p>原文标题：True On-Policy RL: Bit-Exact Rollout and Training with SGLang and Miles | Miles</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI模型</h2><h3 id="event-285117">1、记忆张量联合NVIDIA开源554B记忆原生模型MemT-1.0-Pro</h3><p><span class="md-tag">AI模型</span> <span class="md-tag">MemTensor</span> <span class="md-tag">记忆原生模型</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：记忆张量（<strong>MemTensor</strong>）于11月22日发布并开源与<strong>NVIDIA</strong>联合研发的<strong>记忆原生模型</strong>MemT-1.0-<strong>Pro</strong>，基于<strong>NVIDIA</strong> <strong>Nemotron</strong> 3 <strong>Ultra</strong>，拥有<strong>554B</strong>总参数和<strong>59B</strong>激活参数。其架构结合动态局部记忆与可训练超记忆，前者承接交互中写入的信息，后者学习如何存储和读取，在线交互时模型主干与超记忆权重保持固定，交互结束后更新动态记忆状态。训练采用持续预训练与后训练两阶段流程，以NVIDIA <strong>Megatron</strong> Core为基础设施，记忆写入采用基于Gated <strong>DeltaNet-</strong>2的稳定性改进更新机制。技术报告显示，<strong>Pro</strong>在BEAM-1M上取得41.80分，较Flash提升4.76分；在MemoryAgentBench上取得23.87分，提升6.51分，并以53.08分取得11项记忆评测最高平均分。</p><p>📌 <strong>总结</strong>：该模型把记忆从外部检索插件变成模型内部可训练能力，若在长交互和智能体场景中稳定，可减少对超长上下文和外部向量库的依赖，影响推理服务架构和成本结构。对预研规划而言，参数化记忆路线与RAG路线形成对照，需关注其在线更新机制在真实业务中的一致性和遗忘风险；对<strong>NVIDIA</strong>而言，该合作也展示Nemotron底座在记忆增强方向的生态扩展。</p><p>来源：<a href="https://www.mittrchina.com/news/detail/17278" target="_blank" rel="noreferrer">智谱AI / MITTR China</a></p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI安全、可信与治理</h2><h3 id="event-284629">1、AWS WAF上线AI端点自动发现与防护，覆盖LLM、MCP和A2A接口</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">AWS WAF AI Security</span> <span class="md-tag">MCP/A2A</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月23日，<strong>AWS</strong> WAF的AI端点自动发现与防护正式可用。发现能力通过新的<strong>API</strong> <strong>Gateway API</strong> Portal提供，从流量日志和服务配置记录中自动识别<strong>API</strong> <strong>Gateway</strong>、<strong>Application Load</strong> Balancer和Amazon CloudFront后的LLM、MCP和A2A端点，无需部署代理或转发日志，未记录的公开MCP服务器会以影子API形式呈现。防护能力通过新的<strong>AWS </strong>WAF AI<strong> Security</strong>托管规则组提供，实施协议识别和合规检查以阻断畸形的MCP和A2A消息；启用内容检查后，规则组调用Amazon <strong>Bedrock</strong> Guardrails的InvokeGuardrailsCheck API检测请求中的提示注入、越狱尝试、有害内容以及响应中的敏感信息。API Portal在32个<strong>AWS</strong>区域可用，AI Security在7个区域可用，内容检查调用由<strong>Bedrock</strong>单独计费。</p><p>📌 <strong>总结</strong>：该能力将MCP和A2A这两类Agent协议端点纳入WAF的网关级防护，意味着Agent间通信的协议合规与内容安全可以在云边缘统一执行，而不必由每个Agent应用自行实现。对智能体平台架构而言，影子MCP服务器发现和Bedrock Guardrails内容检查为Agent工具调用与数据访问提供了可审计的安全执行点，可能推动企业将Agent安全策略从应用层上移到云网关层；但AI Security仅限7个区域，且内容检查按调用计费，规模化部署的成本影响仍需评估。</p><p>来源：<a href="https://aws.amazon.com/about-aws/whats-new/2026/11/waf-ai-endpoint-discovery-protection/" target="_blank" rel="noreferrer">AWS New</a></p><p>原文标题：AWS WAF announces automated discovery and protection for LLM, MCP, and A2A endpoints using Amazon Bedrock Guardrails</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-284611">2、OpenAI 与 Cisco 开源 Shirudo 运行时，用 eBPF 盾在打补丁前防护 Linux</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Shirudo</span> <span class="md-tag">eBPF 防护盾</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：针对漏洞披露后打补丁与重启仍需数天、期间服务暴露于攻击的问题，<strong>OpenAI</strong> 与 <strong>Cisco</strong> 开源 <strong>Shirudo</strong> 运行时，利用 eBPF 在操作系统关键点运行小程序，观察可疑行为并对运行中系统施加定向防护。其设计包含四项能力：无需重启即可阻断脆弱代码路径的实时防护、面向智能体的可编程控制以调查漏洞并生成盾、加载前经密码学签名与 eBPF 校验器验证的可信部署，以及基于 <strong>TPM</strong> 的硬件背书验证记录。在受控测试中，由 <strong>Codex</strong> 生成的盾为 <strong>Java Base64</strong> 解码器增加输入检查并附加到运行中的 <strong>Elasticsearch</strong> 进程，阻断了 <strong>Java4Shell</strong> 攻击尝试。</p><p>📌 <strong>总结</strong>：<strong>Shirudo</strong> 把 AI 生成防护与 eBPF 内核可编程能力结合，使安全团队能在补丁窗口期以可验证方式维持服务运行，对基础设施安全架构与运维流程有直接参考价值；其开源与签名验证设计也为智能体参与安全运维提供了权限与审计边界，但长期效果仍需在更多真实漏洞场景中验证。</p><p>来源：<a href="https://openai.com/index/introducing-shirudo" target="_blank" rel="noreferrer">OpenAI</a></p><p>原文标题：OpenAI and Cisco introduce Shirudo</p><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-284797">3、Anthropic 与 Claude 协作发布黎曼猜想 Lean 4 形式化证明，社区完成多轮独立核验</h3><p><span class="md-tag">AI安全、可信与治理</span> <span class="md-tag">Claude</span> <span class="md-tag">形式化验证</span> <span class="md-tag">安全风险</span></p><p>📋 <strong>要点</strong>：2026年11月21日，<strong>Anthropic</strong> 研究科学家 <strong>Levent</strong> Alpöge 与人工智能模型 <strong>Claude</strong> 协作，公开发布黎曼猜想及广义黎曼猜想的 <strong>Lean</strong> 4 形式化证明，包含175187个文件、约<strong>1700万</strong>行代码。次日 <strong>Lean</strong> FRO 与 <strong>Mathlib</strong> 社区发布联合声明，确认代码通过严格编译与陈述比对。社区核验包括静态扫描排查 native_decide 等逃逸原语、脱离原环境导出重放至 nanoda 等多个独立检查器、独立干净文件比对与断网沙盒复现。<strong>MIT</strong> 数学家 <strong>Andrew Sutherland</strong> 的独立审计确认整个代码库没有 sorry、没有自定义公理，仅依赖 Lean 标准库三条基础公理。此前质疑者指出代码中存在 anyGeometry 定义恒返回 <strong>True</strong>，但该定义仅用于类型检查，不影响最终定理有效性。</p><p>📌 <strong>总结</strong>：该事件对 AI 安全与可信治理有深远影响：AI 生成的大规模形式化证明引入新的信任危机，信任主体从人类数学家的职业声誉转向 AI 和工具链的可靠性，AI 以达成目标为导向的训练机制可能促使其钻工具链或内核空子。对技术路线而言，<strong>形式化验证</strong>在 AI 辅助数学发现中的角色从辅助工具升级为关键裁判，<strong>RLVR</strong> 范式依赖证明助手提供客观负反馈；对产品架构而言，多独立检查器交叉重放和沙盒复现成为高保障验证的标准流程；对商业判断而言，<strong>形式化验证</strong>能力可能成为 AI 数学和科学发现领域的重要竞争壁垒。</p><p>来源：<a href="https://www.36kr.com/p/4082133433390211" target="_blank" rel="noreferrer">36氪</a></p></div></details><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI与通算硬件</h2><h3 id="event-284616">1、NVIDIA cuDSS 1.0 正式版发布，稀疏求解较 Intel MKL 最高提速 151 倍</h3><p><span class="md-tag">AI与通算硬件</span> <span class="md-tag">NVIDIA cuDSS</span> <span class="md-tag">稀疏线性求解</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：2026 年 11 月 23 日，<strong>NVIDIA</strong> 发布 <strong>GPU</strong> 加速<strong>稀疏线性求解</strong>库 cuDSS 1.0 正式版，面向结构力学、计算流体力学、电路仿真与电网分析等工程仿真场景。该版本在半导体与机械建模矩阵上相对 <strong>Intel MKL</strong> 取得几何平均 <strong>2.5 倍</strong>分析提速、<strong>5.9 倍</strong>数值分解提速与 <strong>151 倍</strong>三角求解提速；对对称不定系统默认启用保对称匹配与 <strong>Bunch-Kaufman</strong> 主元，在 <strong>SuiteSparse</strong> 矩阵上把范数相对后向误差改善最多 10 个数量级并消除扰动主元。</p><p>📌 <strong>总结</strong>：cuDSS 1.0 的混合内存模式在 <strong>GPU HBM</strong> 与 <strong>CPU DRAM</strong> 间编排数据，把大规模 <strong>VLSI</strong> 案例的最小显存需求降低约 <strong>30%</strong>，使原本需多 <strong>GPU</strong> 的问题可在单张 <strong>H100</strong>、<strong>B200</strong> 或 <strong>Vera Rubin</strong> 上求解，直接降低 <strong>EDA</strong> 与 <strong>CAE</strong> 仿真的硬件门槛与算力成本；其符号分解较 0.8.0 提速 <strong>2.21 倍</strong>，对依赖稀疏求解的工程软件厂商构成升级即获益的性能红利，也强化 <strong>NVIDIA</strong> 在科学计算软件栈的生态锁定。</p><p>来源：<a href="https://developer.nvidia.com/blog/accelerating-direct-sparse-solvers-for-computational-engineering-with-nvidia-cudss-1-0/" target="_blank" rel="noreferrer">NVIDIA</a></p><p>原文标题：Accelerating Direct Sparse Solvers for Computational Engineering with NVIDIA cuDSS 1.0</p></section><section class="report-tab-panel" data-report-panel="report-tabs-0-2"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-3"><ul><li>暂无入选条目</li></ul></section><section class="report-tab-panel" data-report-panel="report-tabs-0-4"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-284972">1、清华联合无问芯穹开源 Uni3Sim，面向超节点集群的推理仿真平台</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">Uni3Sim</span> <span class="md-tag">超节点集群仿真</span> <span class="md-tag">研发效率提升</span></p><p>📋 <strong>要点</strong>：2026 年 11 月，无问芯穹联合清华大学朱振华助理教授、汪玉教授团队开源仿真平台 <strong>Uni3Sim</strong>，面向大规模 <strong>LLM</strong> 推理服务。平台以统一异构硬件、统一存储层次和统一 <strong>Scale-Up</strong>/<strong>Scale-Out</strong> 互连协议与拓扑为核心，构建 <strong>ArchPrism</strong>、<strong>HBFrame</strong> 和 <strong>ProtoBridge</strong> 三个模型，分别计算算子、存储访问和通信任务执行时间，并接入 <strong>SGLang</strong>、v<strong>LLM</strong> 原生调度器。团队在 <strong>NVIDIA A800</strong>、沐曦 <strong>C500</strong> 和昇腾 <strong>910B</strong> 上验证，<strong>Qwen3</strong> 和 <strong>Llama3.1</strong> 系列模型 <strong>TTFT</strong> 误差小于 <strong>21.2%</strong>，<strong>TPOT</strong> 误差小于 <strong>9.4%</strong>，系统吞吐误差小于 <strong>5.2%</strong>。</p><p>📌 <strong>总结</strong>：<strong>Uni3Sim</strong> 把超节点集群的性能评估从依赖物理试错转为可复现的数字仿真，使开发者在硬件落地前就能比较不同芯片、存储和互连方案对 <strong>TTFT</strong>、<strong>TPOT</strong> 和吞吐的影响。其存储池实验显示，<strong>GLM-5.2</strong> 在 128 张 <strong>H200</strong> 上实现 <strong>1.31 倍</strong>每 <strong>GPU</strong> 逻辑 <strong>Token</strong> 吞吐；缓存实验则揭示 KV <strong>Cache</strong> 复用率提至 <strong>60%</strong> 时吞吐增加 <strong>50.7%</strong> 但每 <strong>GPU</strong> 小时收入下降 <strong>19.7%</strong>，说明更高吞吐不一定带来更高收入。该平台对推理基础设施设计和商业定价策略均有参考价值。</p><p>来源：<a href="https://mp.weixin.qq.com/s?__biz=MzIwMTc4ODE0Mw==&amp;amp;mid=2247724069&amp;amp;idx=1&amp;amp;sn=5f06c706f49eac574d4142aa6098f2a6" target="_blank" rel="noreferrer">PaperWeekly 微信公众号 RSS</a></p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-5"><details class="report-collapse" open><summary>AI核心技术板块</summary><div class="report-collapse-body"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>AI推理与服务加速</h2><h3 id="event-285322">1、llm-d与SGLang社区实现Kubernetes原生Wide-EP服务，TTFT最高降5.9倍</h3><p><span class="md-tag">AI推理与服务加速</span> <span class="md-tag">SGLang</span> <span class="md-tag">分层KV缓存</span> <span class="md-tag">性能提升</span></p><p>📋 <strong>要点</strong>：<strong>llm-d</strong>与<strong>SGLang</strong>社区合作，将<strong>SGLang</strong>作为<strong>llm-d</strong>的可选推理引擎后端，与vLLM并列，仅需替换引擎相关部署叠加层与路由配置即可复用同一DisaggregatedSet编排、按rank的InferencePool发现、前缀缓存感知路由与验证流程；在Wide-EP部署中每个注意力数据并行rank持有独立KV缓存并共享专家权重，双方使每个DP rank成为独立可路由可观测的<strong>Kubernetes</strong>端点；实测在16卡1P1D部署中，将驱逐的KV块卸载到主机内存L2使缓存命中率保持<strong>85%</strong>至<strong>95%</strong>，并发128输出从319提升至1257 tok/s、提升<strong>3.94倍</strong>，中位TTFT从<strong>174.2秒</strong>降至<strong>20.1秒</strong>；扩展至32卡H200后中位TTFT再降<strong>5.9倍</strong>至<strong>3.43秒</strong>、输出1903 tok/s，共享L3在故障切换时以<strong>99.94%</strong>命中率恢复<strong>108万</strong>token并将冷副本恢复TTFT降低<strong>57%</strong>。</p><p>📌 <strong>总结</strong>：该集成表明推理服务栈正走向引擎可插拔与<strong>分层KV缓存</strong>标准化，<strong>SGLang</strong>与vLLM可在同一编排与路由体系下互换，降低多引擎选型的迁移成本；对架构师而言，主机内存L2与共享L3的分层设计直接决定长上下文场景的缓存命中率与故障恢复时延，是容量规划与SLA设计的关键变量，对技术主管而言，TTFT从<strong>174.2秒</strong>降至<strong>3.43秒</strong>的量化结果可作为推理集群扩容与成本权衡的依据，对商业判断而言，多副本韧性提升有助于支撑高并发在线服务的可用性承诺。</p><p>来源：<a href="https://llm-d.ai/blog/serving-glm-5-2-sglang-tiered-kv-cache-on-llm-d" target="_blank" rel="noreferrer">llm-d</a></p><p>原文标题：Bringing First-Class SGLang Serving to llm-d | llm-d</p></div></details></section><section class="report-tab-panel" data-report-panel="report-tabs-0-6"><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><h3 id="event-285364">1、Meta Muse Ember 登 Arena Agent Index 帕累托前沿，成本低 75%-86%</h3><p><span class="md-tag">模型评测</span> <span class="md-tag">Meta Muse Ember</span> <span class="md-tag">Agent Arena Index</span> <span class="md-tag">成本下降</span></p><p>📋 <strong>要点</strong>：<strong>Arena</strong> 于 2026 年 11 月发布新的 <strong>Agent </strong>Arena<strong> Index</strong>，<strong>Meta</strong> 的 <strong>Muse Ember</strong> (<strong>Max</strong>) 以 1093 分、每任务中位成本 $0.02 登上帕累托前沿，并在 <strong>Work</strong>、<strong>Coding</strong>、<strong>Chat</strong>、<strong>Task Outcome</strong>、<strong>Steering</strong> 和 <strong>Tool Use</strong> 六个附加指数中均有上榜。其成本比 <strong>GPT-6 Luna</strong> (<strong>Max</strong>) 低 <strong>75%</strong>、比 <strong>Claude Haiku 5.5</strong> (<strong>High</strong>) 低 <strong>80%</strong>、比 <strong>DeepSeek</strong>-V4.1-Flash 低 <strong>86%</strong>，而整体指数分数相近。在 <strong>Tool Use</strong> 指数上，<strong>Muse Ember</strong> 以 1161 分位列第 21。</p><p>📌 <strong>总结</strong>：<strong>Muse Ember</strong> 在 <strong>Agent Arena Index</strong> 上以相近分数和低 <strong>75%</strong>-<strong>86%</strong> 的每任务成本登上帕累托前沿，说明高效模型在真实工作任务中已具备显著成本优势。对预研规划师和商业主管而言，这为智能体场景的模型选型提供了成本与性能权衡的量化依据；对技术主管而言，<strong>Tool Use</strong> 指数的表现提示工具调用能力正成为智能体模型竞争的关键维度。</p><p>来源：<a href="https://aihot.news/items/jw48xblv0pstxkymomt1n3n2i" target="_blank" rel="noreferrer">AIHot Virxact X 热点</a></p></section></div></div><div class="report-return-row"><a class="report-return-button" href="#report-return-daily-headlines" data-report-return-target="report-return-daily-headlines">返回</a></div><hr><h2>快报候选</h2><ul><li><a href="#event-286833">LMSYS 为 ERNIE 5.5 Flash 在 SGLang 上实现 1074 tokens/s 低延迟解码</a></li><li><a href="#event-285117">记忆张量联合NVIDIA开源554B记忆原生模型MemT-1.0-Pro</a></li><li><a href="#event-285322">llm-d与SGLang社区实现Kubernetes原生Wide-EP服务，TTFT最高降5.9倍</a></li><li><a href="#event-284616">NVIDIA cuDSS 1.0 正式版发布，稀疏求解较 Intel MKL 最高提速 151 倍</a></li><li><a href="#event-285321">SGLang与Miles实现比特精确的True On-Policy RL，消除训练与推理概率偏差</a></li></ul><h2>统计</h2><table class="md-table"><tr><th>板块</th><th>条目数</th></tr><tr><td>AI推理与服务加速</td><td>4</td></tr><tr><td>AI安全、可信与治理</td><td>3</td></tr><tr><td>AI模型</td><td>1</td></tr><tr><td>智能体平台、协议与执行系统</td><td>0</td></tr><tr><td>模型评测</td><td>1</td></tr><tr><td>AI与通算硬件</td><td>1</td></tr><tr><td><strong>合计</strong></td><td><strong>10</strong></td></tr></table>
+    </article>
+  </main>
+  <script>
+document.querySelectorAll("[data-report-tabs]").forEach((container) => {
+  const buttons = Array.from(container.querySelectorAll("[data-report-tab]"));
+  const panels = Array.from(container.querySelectorAll("[data-report-panel]"));
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.reportTab;
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.reportPanel === target));
+    });
+  });
+});
+function activateReportPanelForElement(element) {
+  const panel = element && element.closest("[data-report-panel]");
+  if (!panel) return;
+  const tabs = panel.closest("[data-report-tabs]");
+  if (!tabs) return;
+  const panelId = panel.dataset.reportPanel;
+  tabs.querySelectorAll("[data-report-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.reportTab === panelId);
+  });
+  tabs.querySelectorAll("[data-report-panel]").forEach((item) => {
+    item.classList.toggle("active", item === panel);
+  });
+}
+document.querySelectorAll("[data-report-return-target]").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    const targetId = button.dataset.reportReturnTarget || "";
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    event.preventDefault();
+    activateReportPanelForElement(target);
+    window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (target.id && window.history && window.history.replaceState) {
+        window.history.replaceState(null, "", `#${target.id}`);
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
